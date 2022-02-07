@@ -11,9 +11,19 @@ const defaultScreenOptions = {
 };
 
 const RootNavigation = () => {
+  // TODO add check if user logged in
+  const currentUser = true;
+
   return (
     <RootStack.Navigator screenOptions={defaultScreenOptions}>
-      <RootStack.Screen name={AppRoute.HOME} component={HomeScreen} />
+      {currentUser ? (
+        <RootStack.Screen name={AppRoute.APP} component={AppNavigation} />
+      ) : (
+        <>
+          <RootStack.Screen name={AuthRoute.SIGN_IN} component={HomeScreen} />
+          <RootStack.Screen name={AuthRoute.SIGN_UP} component={HomeScreen} />
+        </>
+      )}
     </RootStack.Navigator>
   );
 };

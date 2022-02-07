@@ -7,12 +7,18 @@ import OpportunitiesScreen from '../../screens/Opportunities/OpportunitiesScreen
 import OKRScreen from '../../screens/OKR/OKRScreen';
 import ProfileScreen from '../../screens/Profile/ProfileScreen';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import styles from './styles';
 
 const Tab = createMaterialBottomTabNavigator();
 
 const AppNavigation = () => {
   return (
-    <Tab.Navigator shifting={false} initialRouteName={AppRoute.HOME}>
+    <Tab.Navigator
+      shifting={false}
+      initialRouteName={AppRoute.HOME}
+      barStyle={styles.barStyle}
+      inactiveColor="#796EFC"
+    >
       <Tab.Screen
         name={AppRoute.HOME}
         component={HomeScreen}

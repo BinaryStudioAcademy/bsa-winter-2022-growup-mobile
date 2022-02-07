@@ -1,8 +1,9 @@
 import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import { AppRoute } from '../common/enums/navigation';
+import { AppRoute, AuthRoute } from '../common/enums/navigation';
 import HomeScreen from '../screens/Home';
+import AppNavigation from './app/app-navigation';
 
 const RootStack = createNativeStackNavigator();
 
@@ -11,9 +12,19 @@ const defaultScreenOptions = {
 };
 
 const RootNavigation = () => {
+  // TODO add check if user logged in
+  const currentUser = true;
+
   return (
     <RootStack.Navigator screenOptions={defaultScreenOptions}>
-      <RootStack.Screen name={AppRoute.HOME} component={HomeScreen} />
+      {currentUser ? (
+        <RootStack.Screen name={AppRoute.APP} component={AppNavigation} />
+      ) : (
+        <>
+          <RootStack.Screen name={AuthRoute.SIGN_IN} component={HomeScreen} />
+          <RootStack.Screen name={AuthRoute.SIGN_UP} component={HomeScreen} />
+        </>
+      )}
     </RootStack.Navigator>
   );
 };

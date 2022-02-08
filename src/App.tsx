@@ -2,7 +2,9 @@ import React, { useEffect } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { Provider as PaperProvider } from 'react-native-paper';
 import SplashScreen from 'react-native-splash-screen';
+import { Provider as StoreProvider } from 'react-redux';
 
+import { store } from './store/store';
 import RootNavigation from './navigation';
 
 const App = () => {
@@ -11,11 +13,13 @@ const App = () => {
   }, []);
 
   return (
-    <PaperProvider>
-      <NavigationContainer>
-        <RootNavigation />
-      </NavigationContainer>
-    </PaperProvider>
+    <StoreProvider store={store}>
+      <PaperProvider>
+        <NavigationContainer>
+          <RootNavigation />
+        </NavigationContainer>
+      </PaperProvider>
+    </StoreProvider>
   );
 };
 

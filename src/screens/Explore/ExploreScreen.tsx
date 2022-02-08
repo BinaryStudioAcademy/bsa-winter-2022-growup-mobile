@@ -1,15 +1,16 @@
 import React from 'react';
 import { View } from 'react-native';
-import { Text } from 'react-native-paper';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import Header from './components/header/Header';
+import styles from './styles';
 
 type IExploreScreenProps = Record<string, any>;
 
 const ExploreScreen: React.FC<IExploreScreenProps> = () => {
   return (
     <SafeAreaView>
-      <View>
-        <Text>Explore screen!</Text>
+      <View style={styles.screen}>
+        <Header />
       </View>
     </SafeAreaView>
   );

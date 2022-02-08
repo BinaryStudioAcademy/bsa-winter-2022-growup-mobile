@@ -8,6 +8,7 @@ import OpportunitiesScreen from '../../screens/Opportunities';
 import OKRScreen from '../../screens/OKR';
 import ProfileScreen from '../../screens/Profile';
 import styles from './styles';
+import { AppColors } from '../../common/enums/colors/colors';
 
 const Tab = createMaterialBottomTabNavigator();
 
@@ -17,7 +18,7 @@ const AppNavigation = () => {
       shifting={false}
       initialRouteName={AppRoute.HOME}
       barStyle={styles.barStyle}
-      inactiveColor="#796EFC"
+      inactiveColor={AppColors.NAVIGATION_SECONDARY}
     >
       <Tab.Screen
         name={AppRoute.HOME}

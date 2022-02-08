@@ -1,13 +1,14 @@
 import { StyleSheet } from 'react-native';
+import { AppColors } from '../../common/enums/colors/colors';
 
 const styles = StyleSheet.create({
   barStyle: {
     borderWidth: 0.5,
     borderBottomWidth: 1,
-    backgroundColor: '#463DA8',
+    backgroundColor: AppColors.PURPLE,
     borderTopLeftRadius: 15,
     borderTopRightRadius: 15,
-    borderColor: '#796EFC',
+    borderColor: AppColors.NAVIGATION_SECONDARY,
     overflow: 'hidden',
   },
 });

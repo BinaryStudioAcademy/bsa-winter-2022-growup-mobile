@@ -13,11 +13,11 @@ const defaultScreenOptions = {
 
 const RootNavigation = () => {
   // TODO add check if user logged in
-  const currentUser = true;
+  const isAuthorized = true;
 
   return (
     <RootStack.Navigator screenOptions={defaultScreenOptions}>
-      {currentUser ? (
+      {isAuthorized ? (
         <RootStack.Screen name={AppRoute.APP} component={AppNavigation} />
       ) : (
         <>

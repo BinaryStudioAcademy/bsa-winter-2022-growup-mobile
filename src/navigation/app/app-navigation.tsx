@@ -7,8 +7,8 @@ import ExploreScreen from '../../screens/Explore';
 import OpportunitiesScreen from '../../screens/Opportunities';
 import OKRScreen from '../../screens/OKR';
 import ProfileScreen from '../../screens/Profile';
-import styles from './styles';
 import { AppColors } from '../../common/enums/colors/colors';
+import styles from './styles';
 
 const Tab = createMaterialBottomTabNavigator();
 

@@ -6,6 +6,7 @@ import { Provider as StoreProvider } from 'react-redux';
 
 import { store } from 'src/store';
 import RootNavigation from 'src/navigation';
+import theme from 'src/styles/theme/theme';
 
 const App = () => {
   useEffect(() => {
@@ -14,7 +15,7 @@ const App = () => {
 
   return (
     <StoreProvider store={store}>
-      <PaperProvider>
+      <PaperProvider theme={theme}>
         <NavigationContainer>
           <RootNavigation />
         </NavigationContainer>

@@ -6,8 +6,8 @@ const styles = StyleSheet.create({
     color: AppColors.HINT,
   },
   body: {
-		color: AppColors.BLACK,
-	},
+    color: AppColors.BLACK,
+  },
 });
 
 export default styles;

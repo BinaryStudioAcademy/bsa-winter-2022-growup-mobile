@@ -3,7 +3,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { Provider as PaperProvider } from 'react-native-paper';
 import SplashScreen from 'react-native-splash-screen';
 
-import RootNavigation from './navigation';
+import RootNavigation from 'src/navigation';
 
 const App = () => {
   useEffect(() => {

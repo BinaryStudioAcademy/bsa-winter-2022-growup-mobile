@@ -1,8 +1,8 @@
-import { HttpHeader, HttpMethod, SecureStorageKey } from '../../common/enums';
-import { GetHeadersParams, HttpOptions } from '../../common/types';
-import { HttpError } from '../../exceptions';
-import { getStringifiedQuery } from '../../helpers';
-import { secureStorage as secureStorageService } from '../../services';
+import { HttpHeader, HttpMethod, SecureStorageKey } from 'src/common/enums';
+import { GetHeadersParams, HttpOptions } from 'src/common/types';
+import { HttpError } from 'src/exceptions';
+import { getStringifiedQuery } from 'src/helpers';
+import { secureStorage as secureStorageService } from 'src/services';
 
 type Constructor = {
   storage: typeof secureStorageService;

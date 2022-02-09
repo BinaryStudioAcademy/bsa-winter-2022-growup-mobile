@@ -4,5 +4,6 @@ export * from './exception';
 export * from './http';
 export * from './navigation';
 export * from './color';
-export * from './text-type';
+export * from './text-appearance';
 export * from './button-type';
+export * from './heading-level';

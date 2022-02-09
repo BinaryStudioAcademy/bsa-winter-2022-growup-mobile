@@ -1,4 +1,4 @@
-import { ContentType } from '../../enums';
+import { ContentType } from 'src/common/enums';
 
 type GetHeadersParams = {
   contentType?: ContentType;

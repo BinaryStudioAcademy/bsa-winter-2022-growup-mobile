@@ -5,7 +5,7 @@ import SplashScreen from 'react-native-splash-screen';
 import { Provider as StoreProvider } from 'react-redux';
 
 import { store } from './store/store';
-import RootNavigation from './navigation';
+import RootNavigation from 'src/navigation';
 
 const App = () => {
   useEffect(() => {

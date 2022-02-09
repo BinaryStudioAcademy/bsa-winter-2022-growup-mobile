@@ -5,7 +5,7 @@ import { StorageService } from './storage';
 import { Http } from './http';
 import { AuthApi } from './authApi';
 
-import { API_ORIGIN_URL, API_PREFIX } from '../common/constants';
+import { API_ORIGIN_URL, API_PREFIX } from 'src/common/constants';
 
 const storage = new StorageService({
   storage: AsyncStorage,

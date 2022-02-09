@@ -1,13 +1,11 @@
 name: Android build
-on: push
+on: workflow_dispatch
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - name: "[DEBUG] Fail the build"
-        run: exit 1
       - name: Install dependencies
         run: yarn install
       - name: Lint

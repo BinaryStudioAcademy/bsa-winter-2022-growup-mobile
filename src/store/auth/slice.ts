@@ -3,18 +3,18 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { IUser } from 'src/common/types';
 import { signIn } from './actions';
 
-interface IUserState {
+interface IAuthState {
   user: IUser | null;
   isAuthorized: boolean;
 }
 
-const initialState: IUserState = {
+const initialState: IAuthState = {
   user: null,
   isAuthorized: false,
 };
 
 const slice = createSlice({
-  name: 'user',
+  name: 'auth',
   initialState,
   reducers: {},
   extraReducers: builder => {

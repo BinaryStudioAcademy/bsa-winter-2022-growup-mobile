@@ -4,7 +4,7 @@ import { Provider as PaperProvider } from 'react-native-paper';
 import SplashScreen from 'react-native-splash-screen';
 import { Provider as StoreProvider } from 'react-redux';
 
-import { store } from './store/store';
+import { store } from 'src/store';
 import RootNavigation from 'src/navigation';
 
 const App = () => {

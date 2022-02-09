@@ -32,9 +32,8 @@ jobs:
           initial_comment: "GrowUp Mobile build success!\nHere is the file:"
       - name: Notify failure in Slack channel
         if: ${{ failure() }}
-        uses: jermainezhimin/slack-actions@v0.2
+        uses: joshmgross/send-slack-message@v1.0.1
         with:
-          action: post
-          slack-bot-token: ${{ secrets.SLACK_APP_TOKEN }}
-          channel-id: C032QNEGYHF
+          slack-token: ${{ secrets.SLACK_APP_TOKEN }}
+          channel: C032QNEGYHF
           message: "GrowUp Mobile build failed :("

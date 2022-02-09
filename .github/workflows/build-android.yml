@@ -8,8 +8,6 @@ jobs:
         uses: actions/checkout@v2
       - name: Install dependencies
         run: yarn install
-      - name: Lint
-        run: yarn run lint
       - name: Setup Java v1.8
         uses: actions/setup-java@v1
         with:
@@ -20,6 +18,13 @@ jobs:
         run: 'echo "sdk.dir = /usr/local/lib/android/sdk" > ./local.properties'
       - name: Build
         run: cd ./android && ./gradlew clean assembleRelease
+      - name: Notify failure in Slack channel (if failed)
+        if: ${{ failure() }}
+        uses: joshmgross/send-slack-message@v1.0.1
+        with:
+          slack-token: ${{ secrets.SLACK_APP_TOKEN }}
+          channel: C032QNEGYHF
+          message: "GrowUp Mobile build failed in branch ${{ github.ref }} :("
       - name: Notify success in Slack channel
         if: ${{ success() }}
         uses: adrey/slack-file-upload-action@1.0.5
@@ -28,10 +33,3 @@ jobs:
           path: ./android/app/build/outputs/apk/release/app-release.apk
           channel: growup_mobile_build_notifications
           initial_comment: "GrowUp Mobile build success in branch ${{ github.ref }}!\nHere is the file:"
-      - name: Notify failure in Slack channel
-        if: ${{ failure() }}
-        uses: joshmgross/send-slack-message@v1.0.1
-        with:
-          slack-token: ${{ secrets.SLACK_APP_TOKEN }}
-          channel: C032QNEGYHF
-          message: "GrowUp Mobile build failed in branch ${{ github.ref }} :("

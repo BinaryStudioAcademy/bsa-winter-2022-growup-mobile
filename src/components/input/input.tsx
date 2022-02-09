@@ -30,6 +30,7 @@ const Input: React.FC<IInputProps> = ({
         ...styles.inputContainer,
         ...style,
       }}
+<<<<<<< HEAD
       ref={field.ref}
       value={field.value}
       label={label}
@@ -38,6 +39,14 @@ const Input: React.FC<IInputProps> = ({
       activeUnderlineColor={AppColor.ACCENT}
       onChangeText={field.onChange}
       onBlur={field.onBlur}
+=======
+      value={field.name}
+      label={label}
+      placeholder={placeholder}
+      mode="flat"
+      activeUnderlineColor={AppColors.ACCENT}
+      onChangeText={field.onChange}
+>>>>>>> c613552 (feat: input component added)
     />
   );
 };

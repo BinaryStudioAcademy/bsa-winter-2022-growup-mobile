@@ -27,11 +27,11 @@ jobs:
           token: ${{ secrets.SLACK_APP_TOKEN }}
           path: ./android/app/build/outputs/apk/release/app-release.apk
           channel: growup_mobile_build_notifications
-          initial_comment: "GrowUp Mobile build success!\nHere is the file:"
+          initial_comment: "GrowUp Mobile build success in branch ${{ github.ref }}!\nHere is the file:"
       - name: Notify failure in Slack channel
         if: ${{ failure() }}
         uses: joshmgross/send-slack-message@v1.0.1
         with:
           slack-token: ${{ secrets.SLACK_APP_TOKEN }}
           channel: C032QNEGYHF
-          message: "GrowUp Mobile build failed :("
+          message: "GrowUp Mobile build failed in branch ${{ github.ref }} :("

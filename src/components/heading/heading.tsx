@@ -1,6 +1,7 @@
 import React from 'react';
 import { TextStyle } from 'react-native';
 import { Text } from 'react-native-paper';
+
 import { HeadingLevel } from 'src/common/enums';
 import styles from './styles';
 

@@ -4,7 +4,7 @@ import { Provider as PaperProvider } from 'react-native-paper';
 import SplashScreen from 'react-native-splash-screen';
 
 import RootNavigation from 'src/navigation';
-import theme from 'src/styles/theme/theme';
+import theme from 'src/styles/theme';
 
 const App = () => {
   useEffect(() => {

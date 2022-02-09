@@ -2,7 +2,8 @@ import React from 'react';
 import { Control, FieldValues, useController } from 'react-hook-form';
 import { TextStyle } from 'react-native';
 import { TextInput } from 'react-native-paper';
-import { AppColors } from 'src/common/enums';
+
+import { AppColor } from 'src/common/enums';
 import styles from './styles';
 
 type IInputProps = {
@@ -29,12 +30,14 @@ const Input: React.FC<IInputProps> = ({
         ...styles.inputContainer,
         ...style,
       }}
-      value={field.name}
+      ref={field.ref}
+      value={field.value}
       label={label}
       placeholder={placeholder}
       mode="flat"
-      activeUnderlineColor={AppColors.ACCENT}
+      activeUnderlineColor={AppColor.ACCENT}
       onChangeText={field.onChange}
+      onBlur={field.onBlur}
     />
   );
 };

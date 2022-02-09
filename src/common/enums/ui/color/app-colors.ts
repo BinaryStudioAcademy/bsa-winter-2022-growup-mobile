@@ -1,4 +1,4 @@
-enum AppColors {
+enum AppColor {
   PRIMARY = '#463DA8',
   SECONDARY = '#291965',
   ACCENT = '#EE2A64',
@@ -8,4 +8,4 @@ enum AppColors {
   INPUT_BACKGROUND = '#F0F3F9',
 }
 
-export { AppColors };
+export { AppColor };

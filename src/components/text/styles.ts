@@ -1,12 +1,13 @@
 import { StyleSheet } from 'react-native';
-import { AppColors } from '../../common/enums';
+
+import { AppColor, TextAppearance } from 'src/common/enums';
 
 const styles = StyleSheet.create({
-  hint: {
-    color: AppColors.HINT,
+  [TextAppearance.HINT]: {
+    color: AppColor.HINT,
   },
-  body: {
-    color: AppColors.BLACK,
+  [TextAppearance.BODY]: {
+    color: AppColor.BLACK,
   },
 });
 

@@ -1,7 +1,8 @@
 import React from 'react';
 import { TextStyle } from 'react-native';
 import { Text as TextPaper } from 'react-native-paper';
-import { TextAppearance } from '../../common/enums';
+
+import { TextAppearance } from 'src/common/enums';
 import styles from './styles';
 
 type ITextProps = {

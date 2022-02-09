@@ -1,8 +1,8 @@
 import React from 'react';
 import { Button as ButtonPaper } from 'react-native-paper';
 import { IconSource } from 'react-native-paper/lib/typescript/components/Icon';
-import { AppColors, ButtonType } from 'src/common/enums';
 
+import { AppColor, ButtonType } from 'src/common/enums';
 import styles from './styles';
 
 type IButtonProps = {
@@ -20,7 +20,7 @@ const Button: React.FC<IButtonProps> = ({ children, type, onPress, icon }) => {
       onPress={onPress}
       mode={type}
       icon={icon}
-      color={AppColors.ACCENT}
+      color={AppColor.ACCENT}
     >
       {children}
     </ButtonPaper>

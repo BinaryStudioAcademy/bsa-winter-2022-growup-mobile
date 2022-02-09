@@ -1,16 +1,17 @@
 import { StyleSheet } from 'react-native';
-import { AppColors } from 'src/common/enums';
+
+import { AppColor, ButtonType } from 'src/common/enums';
 
 const styles = StyleSheet.create({
   global: {
     borderRadius: 20,
   },
-  outlined: {
+  [ButtonType.OUTLINED]: {
     borderWidth: 2,
-    borderColor: AppColors.ACCENT,
+    borderColor: AppColor.ACCENT,
   },
-  text: {},
-  contained: {},
+  [ButtonType.TEXT]: {},
+  [ButtonType.CONTAINED]: {},
 });
 
 export default styles;

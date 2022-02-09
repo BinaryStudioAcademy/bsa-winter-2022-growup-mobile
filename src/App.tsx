@@ -4,6 +4,7 @@ import { Provider as PaperProvider } from 'react-native-paper';
 import SplashScreen from 'react-native-splash-screen';
 
 import RootNavigation from './navigation';
+import theme from './styles/theme/theme';
 
 const App = () => {
   useEffect(() => {
@@ -11,7 +12,7 @@ const App = () => {
   }, []);
 
   return (
-    <PaperProvider>
+    <PaperProvider theme={theme}>
       <NavigationContainer>
         <RootNavigation />
       </NavigationContainer>

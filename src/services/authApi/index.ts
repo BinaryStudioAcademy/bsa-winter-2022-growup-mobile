@@ -1,6 +1,6 @@
-import { ApiPath, ContentType, HttpMethod } from '../../common/enums';
-import { ISignInPayload, IUser } from '../../common/types';
-import { AuthResponse } from '../../common/types/auth';
+import { ApiPath, ContentType, HttpMethod } from 'src/common/enums';
+import { ISignInPayload, IUser } from 'src/common/types';
+import { AuthResponse } from 'src/common/types/auth';
 import { Http } from '../http';
 
 type Constructor = {

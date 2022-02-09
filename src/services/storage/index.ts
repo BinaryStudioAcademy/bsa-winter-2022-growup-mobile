@@ -1,4 +1,4 @@
-import { Storage as AsyncStorage, SecureStorage } from '../../common/types';
+import { Storage as AsyncStorage, SecureStorage } from 'src/common/types';
 
 type StorageUnion = AsyncStorage | SecureStorage;
 

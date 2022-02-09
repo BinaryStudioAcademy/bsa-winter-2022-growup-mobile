@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { AppColors } from '../../common/enums';
+import { AppColors } from 'src/common/enums';
 
 const styles = StyleSheet.create({
   global: {

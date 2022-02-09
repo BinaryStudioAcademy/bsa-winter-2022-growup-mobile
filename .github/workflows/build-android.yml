@@ -6,6 +6,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+      - name: "[DEBUG] Fail the build"
+        run: exit 1
       - name: Install dependencies
         run: yarn install
       - name: Lint
@@ -35,5 +37,3 @@ jobs:
           slack-bot-user-oauth-access-token: ${{ secrets.SLACK_APP_TOKEN }}
           slack-channel: C032QNEGYHF
           slack-text: "GrowUp Mobile build failed :("
-          slack-optional-icon_emoji: ":calling:"
-          slack-optional-as_user: false

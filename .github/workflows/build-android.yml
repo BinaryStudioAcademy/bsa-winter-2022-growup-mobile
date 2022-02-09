@@ -33,7 +33,7 @@ jobs:
         uses: archive/github-actions-slack@v2.3.2
         with:
           slack-bot-user-oauth-access-token: ${{ secrets.SLACK_APP_TOKEN }}
-          slack-channel: growup_mobile_build_notifications
+          slack-channel: C032QNEGYHF
           slack-text: "GrowUp Mobile build failed :("
           slack-optional-icon_emoji: ":calling:"
           slack-optional-as_user: false

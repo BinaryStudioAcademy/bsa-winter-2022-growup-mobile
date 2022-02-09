@@ -6,7 +6,7 @@ import { Provider as StoreProvider } from 'react-redux';
 
 import { store } from 'src/store';
 import RootNavigation from 'src/navigation';
-import theme from 'src/styles/theme/theme';
+import theme from 'src/styles/theme';
 
 const App = () => {
   useEffect(() => {

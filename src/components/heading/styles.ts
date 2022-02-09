@@ -1,15 +1,17 @@
 import { StyleSheet } from 'react-native';
 
+import { HeadingLevel } from 'src/common/enums';
+
 const styles = StyleSheet.create({
-  h4: {
+  [HeadingLevel.H4]: {
     fontSize: 24,
     fontFamily: 'NunitoSans-Bold',
   },
-  h5: {
+  [HeadingLevel.H5]: {
     fontSize: 18,
     fontFamily: 'NunitoSans-Bold',
   },
-  h6: {
+  [HeadingLevel.H6]: {
     fontSize: 16,
     fontFamily: 'NunitoSans-Bold',
   },

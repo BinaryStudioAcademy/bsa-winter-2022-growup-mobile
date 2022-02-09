@@ -12,12 +12,12 @@ const fontConfig = {
     thin: {
       fontFamily: 'NunitoSans-Light',
     },
-		semiBold: {
-			fontFamily: 'NunitoSans-SemiBold',
-		},
-		bold: {
-			fontFamily: 'NunitoSans-Bold',
-		}
+    semiBold: {
+      fontFamily: 'NunitoSans-SemiBold',
+    },
+    bold: {
+      fontFamily: 'NunitoSans-Bold',
+    },
   },
 };
 

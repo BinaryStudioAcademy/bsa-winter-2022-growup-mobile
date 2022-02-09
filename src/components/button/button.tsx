@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button as ButtonPaper } from 'react-native-paper';
 import { IconSource } from 'react-native-paper/lib/typescript/components/Icon';
-import { AppColors, ButtonType } from '../../common/enums';
+import { AppColors, ButtonType } from 'src/common/enums';
 
 import styles from './styles';
 

@@ -17,6 +17,23 @@ jobs:
       - name: Setup Android SDK
         uses: android-actions/setup-android@v2
       - name: Add SDK path to settings
-        run: 'echo "sdk.dir = $HOME/.android/sdk" > ./local.properties'
+        run: 'echo "sdk.dir = /usr/local/lib/android/sdk" > ./local.properties'
       - name: Build
-        run: cd ./android && ./gradlew clean build --no-daemon --no-build-cache
+        run: cd ./android && ./gradlew build
+      - name: Notify success in Slack channel
+        if: ${{ success() }}
+        uses: adrey/slack-file-upload-action@1.0.5
+        with:
+          token: ${{ secrets.SLACK_APP_TOKEN }}
+          path: ./android/build/outputs/apk/release/apk-release.apk
+          channel: growup_mobile_build_notifications
+          initial_comment: "GrowUp Mobile build success!\nHere is the file:"
+      - name: Notify failure in Slack channel
+        if: ${{ failure() }}
+        uses: archive/github-actions-slack@v2.3.2
+        with:
+          slack-bot-user-oauth-access-token: ${{ secrets.SLACK_APP_TOKEN }}
+          slack-channel: growup_mobile_build_notifications
+          slack-text: "GrowUp Mobile build failed :("
+          slack-optional-icon_emoji: ":calling:"
+          slack-optional-as_user: false

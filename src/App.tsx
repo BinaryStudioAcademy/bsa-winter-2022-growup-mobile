@@ -6,7 +6,11 @@ import { Provider as StoreProvider } from 'react-redux';
 
 import { store } from 'src/store';
 import RootNavigation from 'src/navigation';
+<<<<<<< HEAD
 import theme from 'src/styles/theme';
+=======
+import theme from 'src/styles/theme/theme';
+>>>>>>> dcb3643 (feat: app theme added)
 
 const App = () => {
   useEffect(() => {
@@ -14,6 +18,7 @@ const App = () => {
   }, []);
 
   return (
+<<<<<<< HEAD
     <StoreProvider store={store}>
       <PaperProvider theme={theme}>
         <NavigationContainer>
@@ -21,6 +26,13 @@ const App = () => {
         </NavigationContainer>
       </PaperProvider>
     </StoreProvider>
+=======
+    <PaperProvider theme={theme}>
+      <NavigationContainer>
+        <RootNavigation />
+      </NavigationContainer>
+    </PaperProvider>
+>>>>>>> dcb3643 (feat: app theme added)
   );
 };
 

@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { authApi } from 'src/services';
 
-import { ISignInPayload } from '../../common/types';
+import { ISignInPayload } from 'src/common/types';
 import { ActionType } from './common';
 
 const signIn = createAsyncThunk(

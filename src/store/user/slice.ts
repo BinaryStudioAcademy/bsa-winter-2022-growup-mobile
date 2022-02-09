@@ -1,11 +1,11 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-interface userState {
+interface IUserState {
   isLogged: boolean;
   isAdmin: boolean;
 }
 
-const initialState: userState = {
+const initialState: IUserState = {
   isLogged: false,
   isAdmin: false,
 };

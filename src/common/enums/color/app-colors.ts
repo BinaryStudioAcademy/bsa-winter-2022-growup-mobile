@@ -4,6 +4,7 @@ enum AppColors {
   ACCENT = '#EE2A64',
   WHITE = '#F6F7F9',
   BLACK = '#1D1D1D',
+	HINT = '#808C9C'
 }
 
 export { AppColors };

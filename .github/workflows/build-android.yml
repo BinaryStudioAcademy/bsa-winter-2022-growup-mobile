@@ -25,7 +25,7 @@ jobs:
         uses: adrey/slack-file-upload-action@1.0.5
         with:
           token: ${{ secrets.SLACK_APP_TOKEN }}
-          path: ./android/build/outputs/apk/release/app-release.apk
+          path: ./android/app/build/outputs/apk/release/app-release.apk
           channel: growup_mobile_build_notifications
           initial_comment: "GrowUp Mobile build success!\nHere is the file:"
       - name: Notify failure in Slack channel

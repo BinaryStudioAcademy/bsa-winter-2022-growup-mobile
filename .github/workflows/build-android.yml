@@ -19,7 +19,7 @@ jobs:
       - name: Add SDK path to settings
         run: 'echo "sdk.dir = /usr/local/lib/android/sdk" > ./local.properties'
       - name: Build
-        run: cd ./android && ./gradlew build
+        run: cd ./android && ./gradlew clean assembleRelease
       - name: Notify success in Slack channel
         if: ${{ success() }}
         uses: adrey/slack-file-upload-action@1.0.5

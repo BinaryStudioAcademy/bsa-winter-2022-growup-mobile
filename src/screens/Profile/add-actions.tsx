@@ -1,45 +1,38 @@
-import React from 'react';
-import { IActionProps } from 'react-native-floating-action';
-import FA5Icon from 'react-native-vector-icons/FontAwesome5';
-import { AppColor } from 'src/common/enums/ui';
+const addActions = (select: (name: string) => void) => {
+  const getSelect = (name: string) => () => select(name);
 
-const addActions: IActionProps[] = [
-  {
-    name: 'skill',
-    text: 'Skill',
-    color: AppColor.PRIMARY,
-    icon: <FA5Icon name="user" color={AppColor.WHITE} />,
-  },
-  {
-    name: 'location',
-    text: 'Location',
-    color: AppColor.PRIMARY,
-    icon: <FA5Icon name="location-arrow" color={AppColor.WHITE} />,
-  },
-  {
-    name: 'education',
-    text: 'Education',
-    color: AppColor.PRIMARY,
-    icon: <FA5Icon name="school" color={AppColor.WHITE} />,
-  },
-  {
-    name: 'language',
-    text: 'Language',
-    color: AppColor.PRIMARY,
-    icon: <FA5Icon name="language" color={AppColor.WHITE} />,
-  },
-  {
-    name: 'careerPoint',
-    text: 'Career point',
-    color: AppColor.PRIMARY,
-    icon: <FA5Icon name="check-circle" color={AppColor.WHITE} />,
-  },
-  {
-    name: 'interest',
-    text: 'Interest',
-    color: AppColor.PRIMARY,
-    icon: <FA5Icon name="heart" color={AppColor.WHITE} />,
-  },
-];
+  return [
+    {
+      label: 'Skill',
+      icon: 'account',
+      onPress: getSelect('skill'),
+    },
+    {
+      label: 'Location',
+      icon: 'map-marker',
+      onPress: getSelect('location'),
+    },
+    {
+      label: 'Education',
+      icon: 'school',
+      onPress: getSelect('education'),
+    },
+    {
+      label: 'Language',
+      icon: 'web',
+      onPress: getSelect('language'),
+    },
+    {
+      label: 'Career point',
+      icon: 'check-circle',
+      onPress: getSelect('careerPoint'),
+    },
+    {
+      label: 'Interest',
+      icon: 'heart',
+      onPress: getSelect('interest'),
+    },
+  ];
+};
 
 export default addActions;

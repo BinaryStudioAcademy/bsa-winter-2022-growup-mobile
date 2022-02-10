@@ -1,12 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View } from 'react-native';
-import { FloatingAction } from 'react-native-floating-action';
+import { FAB } from 'react-native-paper';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { AppColor } from 'src/common/enums/ui';
 import addActions from './add-actions';
 import styles from './styles';
 
 const ProfileScreen: React.FC = () => {
+  const [addMenuOpen, setAddMenuOpen] = useState<boolean>(false);
+
   /*
   const dispatch = useAppDispatch();
 
@@ -31,10 +32,12 @@ const ProfileScreen: React.FC = () => {
   return (
     <SafeAreaView style={styles.fullHeight}>
       <View style={styles.fullHeight}>
-        <FloatingAction
-          actions={addActions}
-          color={AppColor.PRIMARY}
-          onPressItem={handleItemPress}
+        <FAB.Group
+          open={addMenuOpen}
+          visible={true}
+          icon="plus"
+          actions={addActions(handleItemPress)}
+          onStateChange={({ open }) => setAddMenuOpen(open)}
         />
       </View>
     </SafeAreaView>

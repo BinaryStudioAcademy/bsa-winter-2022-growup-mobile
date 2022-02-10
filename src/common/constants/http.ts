@@ -1,0 +1,3 @@
+const HTTP_DEFAULT_ERROR_MESSAGE = 'Network Error';
+
+export { HTTP_DEFAULT_ERROR_MESSAGE };

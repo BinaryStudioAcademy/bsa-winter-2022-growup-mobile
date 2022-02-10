@@ -2,11 +2,6 @@ import React from 'react';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 
 import { AppRoute } from 'src/common/enums/navigation';
-import HomeScreen from 'src/screens/home';
-import ExploreScreen from 'src/screens/explore';
-import OpportunitiesScreen from 'src/screens/opportunities';
-import OKRScreen from 'src/screens/okr';
-import ProfileScreen from 'src/screens/profile';
 import { AppColor } from 'src/common/enums';
 import {
   AccountIcon,
@@ -16,6 +11,13 @@ import {
   ShieldSearchIcon,
 } from 'src/components';
 import styles from './styles';
+import {
+  ExploreScreen,
+  HomeScreen,
+  OKRScreen,
+  OpportunitiesScreen,
+  ProfileScreen,
+} from 'src/screens';
 
 const Tab = createMaterialBottomTabNavigator();
 

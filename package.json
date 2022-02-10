@@ -21,6 +21,7 @@
     "react-native": "0.67.2",
     "react-native-config": "^1.4.5",
     "react-native-encrypted-storage": "^4.0.2",
+    "react-native-fingerprint-scanner": "^6.0.0",
     "react-native-paper": "^4.11.2",
     "react-native-safe-area-context": "^3.3.2",
     "react-native-screens": "^3.10.2",

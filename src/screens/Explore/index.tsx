@@ -4,8 +4,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { Text } from 'src/components';
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-type IExploreScreenProps = Record<string, any>;
+type IExploreScreenProps = Record<string, never>;
 
 const ExploreScreen: React.FC<IExploreScreenProps> = () => {
   return (

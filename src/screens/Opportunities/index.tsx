@@ -4,8 +4,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { Text } from 'src/components';
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-type IOpportunitiesScreenProps = Record<string, any>;
+type IOpportunitiesScreenProps = Record<string, never>;
 
 const OpportunitiesScreen: React.FC<IOpportunitiesScreenProps> = () => {
   return (

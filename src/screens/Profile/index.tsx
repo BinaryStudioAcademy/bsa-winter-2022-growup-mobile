@@ -4,8 +4,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { Text } from 'src/components';
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-type IProfileScreenProps = Record<string, any>;
+type IProfileScreenProps = Record<string, never>;
 
 const ProfileScreen: React.FC<IProfileScreenProps> = () => {
   return (

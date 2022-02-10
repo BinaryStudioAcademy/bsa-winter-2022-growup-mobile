@@ -4,8 +4,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { Text } from 'src/components';
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-type IOKRScreenProps = Record<string, any>;
+type IOKRScreenProps = Record<string, never>;
 
 const OKRScreen: React.FC<IOKRScreenProps> = () => {
   return (

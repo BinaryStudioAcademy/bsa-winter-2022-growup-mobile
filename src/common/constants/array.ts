@@ -1,0 +1,4 @@
+const ARRAY_FIRST_IDX = 0;
+const ARRAY_NOT_FOUND_IDX = -1;
+
+export { ARRAY_FIRST_IDX, ARRAY_NOT_FOUND_IDX };

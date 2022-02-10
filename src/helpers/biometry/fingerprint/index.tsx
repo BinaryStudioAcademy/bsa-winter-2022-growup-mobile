@@ -1,6 +1,7 @@
 import { Platform } from 'react-native';
 import FingerprintScanner from 'react-native-fingerprint-scanner';
 import { captureFingerprintAndroid } from './android';
+import { captureFingerprintIOS } from './ios';
 
 interface FingerprintResult {
   done: boolean;
@@ -11,7 +12,7 @@ const acceptedBioTypes = ['Biometrics', 'Touch ID'];
 
 const internal = Platform.select<() => Promise<boolean>>({
   android: captureFingerprintAndroid,
-  // ios: captureFingerprintIOS,
+  ios: captureFingerprintIOS,
 });
 
 export const captureFingerprint = async (): Promise<FingerprintResult> => {

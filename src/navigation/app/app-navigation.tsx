@@ -1,13 +1,20 @@
 import React from 'react';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import { AppRoute } from '../../common/enums/navigation';
-import HomeScreen from '../../screens/Home';
-import ExploreScreen from '../../screens/Explore';
-import OpportunitiesScreen from '../../screens/Opportunities';
-import OKRScreen from '../../screens/OKR';
-import ProfileScreen from '../../screens/Profile';
-import { AppColors } from '../../common/enums/colors/colors';
+
+import { AppRoute } from 'src/common/enums/navigation';
+import HomeScreen from 'src/screens/home';
+import ExploreScreen from 'src/screens/explore';
+import OpportunitiesScreen from 'src/screens/opportunities';
+import OKRScreen from 'src/screens/okr';
+import ProfileScreen from 'src/screens/profile';
+import { AppColor } from 'src/common/enums';
+import {
+  AccountIcon,
+  CompassIcon,
+  HomeIcon,
+  RadarIcon,
+  ShieldSearchIcon,
+} from 'src/components';
 import styles from './styles';
 
 const Tab = createMaterialBottomTabNavigator();
@@ -18,24 +25,20 @@ const AppNavigation = () => {
       shifting={false}
       initialRouteName={AppRoute.HOME}
       barStyle={styles.barStyle}
-      inactiveColor={AppColors.NAVIGATION_SECONDARY}
+      inactiveColor={AppColor.NAVIGATION_SECONDARY}
     >
       <Tab.Screen
         name={AppRoute.HOME}
         component={HomeScreen}
         options={{
-          tabBarIcon: ({ color }) => (
-            <MaterialCommunityIcons name="home" color={color} size={25} />
-          ),
+          tabBarIcon: ({ color }) => <HomeIcon color={color} size={25} />,
         }}
       />
       <Tab.Screen
         name={AppRoute.EXPLORE}
         component={ExploreScreen}
         options={{
-          tabBarIcon: ({ color }) => (
-            <MaterialCommunityIcons name="compass" color={color} size={25} />
-          ),
+          tabBarIcon: ({ color }) => <CompassIcon color={color} size={25} />,
         }}
       />
       <Tab.Screen
@@ -43,11 +46,7 @@ const AppNavigation = () => {
         component={OpportunitiesScreen}
         options={{
           tabBarIcon: ({ color }) => (
-            <MaterialCommunityIcons
-              name="shield-search"
-              color={color}
-              size={25}
-            />
+            <ShieldSearchIcon color={color} size={25} />
           ),
         }}
       />
@@ -55,18 +54,14 @@ const AppNavigation = () => {
         name={AppRoute.OKR}
         component={OKRScreen}
         options={{
-          tabBarIcon: ({ color }) => (
-            <MaterialCommunityIcons name="radar" color={color} size={25} />
-          ),
+          tabBarIcon: ({ color }) => <RadarIcon color={color} size={25} />,
         }}
       />
       <Tab.Screen
         name={AppRoute.PROFILE}
         component={ProfileScreen}
         options={{
-          tabBarIcon: ({ color }) => (
-            <MaterialCommunityIcons name="account" color={color} size={26} />
-          ),
+          tabBarIcon: ({ color }) => <AccountIcon color={color} size={25} />,
         }}
       />
     </Tab.Navigator>

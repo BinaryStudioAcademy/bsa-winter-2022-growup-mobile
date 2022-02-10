@@ -1,8 +1,9 @@
 import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import { AppRoute } from 'src/common/enums/navigation';
-import HomeScreen from 'src/screens/Home';
+import { AppRoute, AuthRoute } from 'src/common/enums/navigation';
+import HomeScreen from 'src/screens/home';
+import AppNavigation from './app/app-navigation';
 
 const RootStack = createNativeStackNavigator();
 

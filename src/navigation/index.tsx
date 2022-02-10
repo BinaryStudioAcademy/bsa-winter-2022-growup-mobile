@@ -4,6 +4,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { AppRoute, AuthRoute } from 'src/common/enums/navigation';
 import HomeScreen from 'src/screens/home';
 import AppNavigation from './app/app-navigation';
+import { useAppSelector } from 'src/hooks';
 
 const RootStack = createNativeStackNavigator();
 
@@ -12,12 +13,12 @@ const defaultScreenOptions = {
 };
 
 const RootNavigation = () => {
-  // TODO add check if user logged in
-  const isAuthorized = true;
+  const { user } = useAppSelector(state => state.auth);
 
+  //TODO add sign in/up screens
   return (
     <RootStack.Navigator screenOptions={defaultScreenOptions}>
-      {isAuthorized ? (
+      {user ? (
         <RootStack.Screen name={AppRoute.APP} component={AppNavigation} />
       ) : (
         <>

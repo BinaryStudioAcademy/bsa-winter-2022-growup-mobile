@@ -14,9 +14,10 @@ We have certain [quality criteria](https://github.com/BinaryStudioAcademy/qualit
 
 ## Development
 
-This project is mainly focused on the Android platform. Pay attention that if we add any library, we **must** configure it for both IOS and Android platforms.
+This project is mainly focused on the Android platform. Pay attention that if we add any library, we **MUST** configure it for both IOS and Android platforms.
 
-Also please note that we use Yarn for this project.
+Also please note that we use `yarn` for this project.
+In case you install new library don't forget to run 'cd ios && pod install' or just 'npx pod-install'
 
 ## Commits
 

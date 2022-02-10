@@ -2,7 +2,7 @@ import React from 'react';
 import { View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-import Text from 'src/components/text';
+import { Text } from 'src/components';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type IHomeScreenProps = Record<string, any>;

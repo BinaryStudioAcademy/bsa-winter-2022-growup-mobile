@@ -1,28 +1,25 @@
 import React from 'react';
-import { TextStyle } from 'react-native';
 import { TextInput } from 'react-native-paper';
 
 import { AppColor } from 'src/common/enums';
 import styles from './styles';
 
-type IInputProps = {
-  label?: string;
-  placeholder?: string;
-  style?: TextStyle;
-  isRounded?: boolean;
-};
+type InputProps = React.ComponentPropsWithoutRef<typeof TextInput>;
 
-const Input: React.FC<IInputProps> = ({ label, placeholder, style }) => {
+const Input: React.FC<InputProps> = ({
+  label,
+  placeholder,
+  style,
+  ...textInputProps
+}) => {
   return (
     <TextInput
-      style={{
-        ...styles.inputContainer,
-        ...style,
-      }}
+      style={[styles.inputContainer, style]}
       label={label}
       placeholder={placeholder}
       mode="flat"
       activeUnderlineColor={AppColor.ACCENT}
+      {...textInputProps}
     />
   );
 };

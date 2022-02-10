@@ -1,7 +1,7 @@
-enum ButtonType {
+enum ButtonMode {
   TEXT = 'text',
   CONTAINED = 'contained',
   OUTLINED = 'outlined',
 }
 
-export { ButtonType };
+export { ButtonMode };

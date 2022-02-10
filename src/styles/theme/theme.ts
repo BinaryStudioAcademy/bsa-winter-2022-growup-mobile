@@ -1,27 +1,18 @@
 import { configureFonts, DefaultTheme } from 'react-native-paper';
+import { Theme } from 'react-native-paper/lib/typescript/types';
 
 import { AppColor } from 'src/common/enums';
 import fontConfig from '../fonts/font-config';
 
-declare global {
-  namespace ReactNativePaper {
-    interface ThemeColors {
-      secondary: string;
-    }
+type ThemeProps = {
+  colors: {
+    secondary: string;
+  };
+} & Theme;
 
-    interface Fonts {
-      semiBold: {
-        fontFamily: string;
-      };
-      bold: {
-        fontFamily: string;
-      };
-    }
-  }
-}
-
-const theme = {
+const theme: ThemeProps = {
   ...DefaultTheme,
+  roundness: 20,
   colors: {
     ...DefaultTheme.colors,
     primary: AppColor.PRIMARY,

@@ -1,5 +1,5 @@
-const fontConfig = {
-  android: {
+const _fontConfig = {
+  default: {
     regular: {
       fontFamily: 'NunitoSans-Regular',
     },
@@ -19,6 +19,16 @@ const fontConfig = {
       fontFamily: 'NunitoSans-Bold',
     },
   },
+};
+
+const fontConfig = {
+  ios: _fontConfig.default,
+  android: _fontConfig.default,
+  web: _fontConfig.default,
+  macos: _fontConfig.default,
+  windows: _fontConfig.default,
+  native: _fontConfig.default,
+  default: _fontConfig.default,
 };
 
 export default fontConfig;

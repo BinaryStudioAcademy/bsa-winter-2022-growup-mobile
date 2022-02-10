@@ -1,23 +1,21 @@
 import React from 'react';
-import { TextStyle } from 'react-native';
 import { Text as TextPaper } from 'react-native-paper';
 
 import { TextAppearance } from 'src/common/enums';
 import styles from './styles';
 
-type ITextProps = {
-  children: string;
+type TextProps = React.ComponentPropsWithoutRef<typeof TextPaper> & {
   appearance?: TextAppearance;
-  style?: TextStyle;
 };
 
-const Text: React.FC<ITextProps> = ({
+const Text: React.FC<TextProps> = ({
   children,
   appearance = TextAppearance.BODY,
   style,
+  ...textProps
 }) => {
   return (
-    <TextPaper style={{ ...styles[appearance], ...style }}>
+    <TextPaper style={[styles[appearance], style]} {...textProps}>
       {children}
     </TextPaper>
   );

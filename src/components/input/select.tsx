@@ -23,6 +23,7 @@ const Select: React.FC<Props> = dropDownProps => {
       visible={open}
       showDropDown={show}
       onDismiss={hide}
+      // eslint-ignore-next-line @typescript-eslint/no-explicit-any
       theme={theme as any}
       inputProps={{ style: styles.inputContainer }}
       {...dropDownProps}

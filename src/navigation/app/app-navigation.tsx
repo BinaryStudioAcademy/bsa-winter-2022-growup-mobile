@@ -16,8 +16,8 @@ import {
   HomeScreen,
   OKRScreen,
   OpportunitiesScreen,
-  ProfileScreen,
 } from 'src/screens';
+import ProfileNavigation from '../profile/profile-navigation';
 
 const Tab = createMaterialBottomTabNavigator();
 
@@ -61,7 +61,7 @@ const AppNavigation = () => {
       />
       <Tab.Screen
         name={AppRoute.PROFILE}
-        component={ProfileScreen}
+        component={ProfileNavigation}
         options={{
           tabBarIcon: ({ color }) => <AccountIcon color={color} size={25} />,
         }}

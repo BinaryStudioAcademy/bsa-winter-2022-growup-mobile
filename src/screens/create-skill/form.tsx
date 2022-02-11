@@ -1,4 +1,5 @@
 import React from 'react';
+import { View } from 'react-native';
 import * as yup from 'yup';
 
 import { ButtonMode, HeadingLevel, SkillType } from 'src/common/enums';
@@ -14,10 +15,11 @@ import {
 } from 'src/components';
 
 import { getNumericEnumValues } from 'src/common/helpers';
-import { View } from 'react-native';
+import styles from './styles';
 
 interface Props {
   onSubmit: (data: ICreateSkill) => void;
+  onCancel: () => void;
 }
 
 const skillTypeOptions = [
@@ -51,7 +53,7 @@ const validationSchema = yup.object({
     .required('Estimate must not be empty'),
 });
 
-const CreateSkillForm: React.FC<Props> = ({ onSubmit }) => {
+const CreateSkillForm: React.FC<Props> = ({ onSubmit, onCancel }) => {
   return (
     <Form<ICreateSkill>
       initialValues={{ type: SkillType.Other }}
@@ -117,13 +119,18 @@ const CreateSkillForm: React.FC<Props> = ({ onSubmit }) => {
               onChangeText={text => setFieldValue('estimate', Number(text))}
             />
           </FormField>
-          <MainButton
-            mode={ButtonMode.CONTAINED}
-            disabled={!isValid}
-            onPress={handleSubmit}
-          >
-            Save
-          </MainButton>
+          <View style={styles.buttons}>
+            <MainButton
+              mode={ButtonMode.CONTAINED}
+              disabled={!isValid}
+              onPress={handleSubmit}
+            >
+              Save
+            </MainButton>
+            <MainButton mode={ButtonMode.TEXT} onPress={onCancel}>
+              Back
+            </MainButton>
+          </View>
         </View>
       )}
     </Form>

@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { View } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import { FAB } from 'react-native-paper';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { ProfileRoute } from 'src/common/enums';
 
 import { Text } from 'src/components';
 import addActions from './add-actions';
@@ -10,27 +12,38 @@ import styles from './styles';
 type IProfileScreenProps = Record<string, never>;
 
 const ProfileScreen: React.FC<IProfileScreenProps> = () => {
+  const navigation = useNavigation();
   const [addMenuOpen, setAddMenuOpen] = useState<boolean>(false);
 
-  /*
-  const dispatch = useAppDispatch();
-
   const addFunctions: Record<string, () => void> = {
-    skill: () => ...,
-    location: () => ...,
-    education: () => ...,
-    language: () => ...,
-    careerPoint: () => ...,
-    interest: () => ...,
+    skill: () =>
+      navigation.navigate({
+        name: ProfileRoute.CREATE_SKILL as never,
+        params: {} as never,
+      }),
+    location: () => {
+      /* TODO */
+    },
+    education: () => {
+      /* TODO */
+    },
+    language: () => {
+      /* TODO */
+    },
+    careerPoint: () => {
+      /* TODO */
+    },
+    interest: () => {
+      /* TODO */
+    },
   };
-  */
 
   const handleItemPress = (name?: string) => {
     if (!name) {
       return;
     }
 
-    // addFunctions[name]();
+    addFunctions[name]();
   };
 
   const handleMenuStateChange = ({ open }: { open: boolean }) => {

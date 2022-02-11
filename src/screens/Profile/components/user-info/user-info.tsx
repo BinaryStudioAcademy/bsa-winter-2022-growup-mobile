@@ -5,7 +5,7 @@ import { Avatar } from 'react-native-paper';
 import { Heading, Text } from 'src/components';
 import { AppColor, HeadingLevel } from 'src/common/enums';
 
-import { styles } from './styles';
+import styles from './styles';
 
 const UserInfo = () => {
   return (

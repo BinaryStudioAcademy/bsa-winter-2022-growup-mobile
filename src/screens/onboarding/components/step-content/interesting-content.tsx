@@ -1,6 +1,6 @@
+import React, { useCallback } from 'react';
 import { useNavigation } from '@react-navigation/core';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import React, { useCallback } from 'react';
 import { View } from 'react-native';
 
 import { HeadingLevel, IconName, OnboardingRoute } from 'src/common/enums';
@@ -35,10 +35,7 @@ const InterestingContent: React.FC = () => {
           What languages do you speak?
         </Heading>
         <AddButton
-<<<<<<< HEAD
           onPress={handleAddLanguage}
-=======
->>>>>>> 7e14fa3 (GUM-27: interesting content button changed)
           labelStyle={styles.tabButtonLabel}
           style={styles.tagButton}
           icon={IconName.CHAT_PLUS}
@@ -49,10 +46,7 @@ const InterestingContent: React.FC = () => {
           What are your locations?
         </Heading>
         <AddButton
-<<<<<<< HEAD
           onPress={handleAddLocation}
-=======
->>>>>>> 7e14fa3 (GUM-27: interesting content button changed)
           labelStyle={styles.tabButtonLabel}
           style={styles.tagButton}
           icon={IconName.MAP_MARKER_PLUS}

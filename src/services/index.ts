@@ -6,6 +6,7 @@ import { Http } from './http';
 import { AuthApi } from './authApi';
 
 import { API_ORIGIN_URL, API_PREFIX } from 'src/common/constants';
+import { SkillApi } from './skillApi';
 
 const storage = new StorageService({
   storage: AsyncStorage,
@@ -24,4 +25,9 @@ const authApi = new AuthApi({
   apiPath: `${API_ORIGIN_URL}${API_PREFIX}`,
 });
 
-export { storage, secureStorage, authApi };
+const skillApi = new SkillApi({
+  http,
+  apiPath: `${API_ORIGIN_URL}${API_PREFIX}`,
+});
+
+export { storage, secureStorage, authApi, skillApi };

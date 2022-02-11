@@ -33,8 +33,9 @@ const ProfileScreen: React.FC<IProfileScreenProps> = () => {
     // addFunctions[name]();
   };
 
-  const handleMenuStateChange = ({ open }: { open: boolean }) =>
+  const handleMenuStateChange = ({ open }: { open: boolean }) => {
     setAddMenuOpen(open);
+  }
 
   return (
     <SafeAreaView style={styles.fullHeight}>

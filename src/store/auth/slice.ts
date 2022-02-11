@@ -5,12 +5,10 @@ import { signIn } from './actions';
 
 interface IAuthState {
   user: IUser | null;
-  isAuthorized: boolean;
 }
 
 const initialState: IAuthState = {
   user: null,
-  isAuthorized: false,
 };
 
 const slice = createSlice({
@@ -20,7 +18,6 @@ const slice = createSlice({
   extraReducers: builder => {
     builder.addCase(signIn.fulfilled, (state, { payload }) => {
       state.user = payload;
-      state.isAuthorized = Boolean(payload);
     });
   },
 });

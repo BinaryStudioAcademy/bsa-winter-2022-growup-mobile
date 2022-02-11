@@ -1,16 +1,16 @@
 import React from 'react';
 import { View } from 'react-native';
-import { Text } from 'react-native-paper';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-type IHomeScreenProps = Record<string, any>;
+import { Text } from 'src/components';
+
+type IHomeScreenProps = Record<string, never>;
 
 const HomeScreen: React.FC<IHomeScreenProps> = () => {
   return (
     <SafeAreaView>
       <View>
-        <Text>Hello there!</Text>
+        <Text>Home screen!</Text>
       </View>
     </SafeAreaView>
   );

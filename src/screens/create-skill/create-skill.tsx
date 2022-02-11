@@ -1,4 +1,5 @@
 import React from 'react';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { ICreateSkill } from 'src/common/types';
 import { useAppDispatch } from 'src/hooks';
@@ -12,7 +13,11 @@ const CreateSkill: React.FC = () => {
     dispatch(skillActions.create(data));
   };
 
-  return <CreateSkillForm onSubmit={submit} />;
+  return (
+    <SafeAreaView>
+      <CreateSkillForm onSubmit={submit} />
+    </SafeAreaView>
+  );
 };
 
 export default CreateSkill;

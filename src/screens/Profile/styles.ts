@@ -41,8 +41,11 @@ export const styles = StyleSheet.create({
   content: {
     flex: 1,
     paddingTop: 30,
-    width: '100%',
-    height: '100%',
     backgroundColor: AppColor.WHITE,
+  },
+  swipeWrapper: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });

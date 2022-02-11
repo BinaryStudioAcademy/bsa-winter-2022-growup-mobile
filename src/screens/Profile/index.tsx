@@ -4,6 +4,7 @@ import { Button, Divider } from 'react-native-paper';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { styles } from './styles';
 import { AppColor, ButtonMode } from 'src/common/enums';
+import Swiper from 'react-native-swiper';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type IProfileScreenProps = Record<string, any>;
@@ -27,6 +28,7 @@ const ProfileScreen: React.FC<IProfileScreenProps> = () => {
   const handleClick = useCallback((ind: number) => {
     setActive(ind);
   }, []);
+
   return (
     <SafeAreaView>
       <View style={styles.container}>
@@ -54,9 +56,22 @@ const ProfileScreen: React.FC<IProfileScreenProps> = () => {
         </View>
         <Divider />
         <View style={styles.content}>
-          {items.map((item, index) => {
-            return active === index ? item.route : <></>;
-          })}
+          <Swiper
+            horizontal={true}
+            loop={false}
+            showsPagination={false}
+            index={active}
+            showsButtons={false}
+            onIndexChanged={index => handleClick(index)}
+          >
+            {items.map((item, index) => {
+              return (
+                <View style={styles.swipeWrapper} key={index}>
+                  {item.route}
+                </View>
+              );
+            })}
+          </Swiper>
         </View>
       </View>
     </SafeAreaView>

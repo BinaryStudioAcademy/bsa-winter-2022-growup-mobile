@@ -1,14 +1,16 @@
 import React from 'react';
 import { SafeAreaView } from 'react-native';
 
-import { LoginFormComponent } from 'src/screens/Login/Components';
+import { LoginForm } from 'src/screens/Login/components';
 
-const LoginScreen = () => {
+type ILoginScreenProps = Record<string, never>;
+
+const LoginScreen: React.FC<ILoginScreenProps> = () => {
   return (
     <SafeAreaView>
-      <LoginFormComponent />
+      <LoginForm />
     </SafeAreaView>
   );
 };
 
-export { LoginScreen };
+export default LoginScreen;

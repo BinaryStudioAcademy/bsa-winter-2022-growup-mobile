@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+import { AppColor } from 'src/common/enums';
 
 export const styles = StyleSheet.create({
   container: {
@@ -14,14 +15,18 @@ export const styles = StyleSheet.create({
     marginBottom: 10,
   },
   title: {
+    fontFamily: 'NunitoSans-Regular',
     fontSize: 24,
     lineHeight: 32.74,
-    color: '#000',
+    color: AppColor.BLACK,
+    fontWeight: '700',
   },
   job: {
+    fontFamily: 'NunitoSans-Regular',
     fontSize: 16,
     lineHeight: 21.82,
     marginBottom: 8,
+    fontWeight: '400',
   },
   levelWrapper: {
     flexDirection: 'row',
@@ -30,7 +35,8 @@ export const styles = StyleSheet.create({
     backgroundColor: 'transparent',
   },
   levelText: {
-    color: '#000',
+    fontFamily: 'NunitoSans-SemiBold',
+    color: AppColor.BLACK,
     lineHeight: 19.1,
     fontSize: 14,
   },

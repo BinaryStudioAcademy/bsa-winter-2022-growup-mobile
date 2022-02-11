@@ -1,5 +1,5 @@
-import { useNavigation } from '@react-navigation/native';
 import React, { useCallback } from 'react';
+import { useNavigation } from '@react-navigation/native';
 import { ScrollView, View } from 'react-native';
 
 import { HeadingLevel, OnboardingRoute } from 'src/common/enums';

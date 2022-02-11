@@ -1,9 +1,9 @@
 import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
-  content: {},
-  inputContainer: {
-    padding: 20,
+  content: {
+    height: '85%',
+    width: '100%',
   },
   buttonContainer: {
     paddingLeft: 30,

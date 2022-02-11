@@ -5,7 +5,7 @@ import { AppRoute, AuthRoute } from 'src/common/enums/navigation';
 
 import AppNavigation from './app/app-navigation';
 import { useAppSelector } from 'src/hooks';
-import { HomeScreen } from 'src/screens';
+import { HomeScreen, OnboardingScreen } from 'src/screens';
 
 const RootStack = createNativeStackNavigator();
 
@@ -23,7 +23,10 @@ const RootNavigation = () => {
         <RootStack.Screen name={AppRoute.APP} component={AppNavigation} />
       ) : (
         <>
-          <RootStack.Screen name={AuthRoute.SIGN_IN} component={HomeScreen} />
+          <RootStack.Screen
+            name={AuthRoute.SIGN_IN}
+            component={OnboardingScreen}
+          />
           <RootStack.Screen name={AuthRoute.SIGN_UP} component={HomeScreen} />
         </>
       )}

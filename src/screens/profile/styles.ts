@@ -1,7 +1,11 @@
 import { StyleSheet } from 'react-native';
+
 import { AppColor } from 'src/common/enums';
 
-export const styles = StyleSheet.create({
+const styles = StyleSheet.create({
+  fullHeight: {
+    height: '100%',
+  },
   container: {
     width: '100%',
     height: '100%',
@@ -49,3 +53,5 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
   },
 });
+
+export default styles;

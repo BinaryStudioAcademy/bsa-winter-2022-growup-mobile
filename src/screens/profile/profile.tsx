@@ -1,16 +1,22 @@
-import React, { useCallback } from 'react';
-import { Text, View } from 'react-native';
+import React, { useCallback, useState } from 'react';
+import { View } from 'react-native';
 import { Button, Divider } from 'react-native-paper';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import { styles } from './styles';
-import { AppColor, ButtonMode } from 'src/common/enums';
+import { FAB } from 'react-native-paper';
 import Swiper from 'react-native-swiper';
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-type IProfileScreenProps = Record<string, any>;
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { AppColor, ButtonMode } from 'src/common/enums';
+import { Text } from 'src/components';
+import addActions from './add-actions';
+
+import styles from './styles';
+
 type State = Array<{ id: number; text: string; route: JSX.Element }>;
 
+type IProfileScreenProps = Record<string, never>;
+
 const ProfileScreen: React.FC<IProfileScreenProps> = () => {
+  const [addMenuOpen, setAddMenuOpen] = useState<boolean>(false);
   const [items] = React.useState<State>([
     { id: 0, text: 'Summary', route: <Text>Show Summary component</Text> },
     {
@@ -28,9 +34,33 @@ const ProfileScreen: React.FC<IProfileScreenProps> = () => {
   const handleClick = useCallback((ind: number) => {
     setActive(ind);
   }, []);
+  /*
+  const dispatch = useAppDispatch();
+
+  const addFunctions: Record<string, () => void> = {
+    skill: () => ...,
+    location: () => ...,
+    education: () => ...,
+    language: () => ...,
+    careerPoint: () => ...,
+    interest: () => ...,
+  };
+  */
+
+  const handleItemPress = (name?: string) => {
+    if (!name) {
+      return;
+    }
+
+    // addFunctions[name]();
+  };
+
+  const handleMenuStateChange = ({ open }: { open: boolean }) => {
+    setAddMenuOpen(open);
+  };
 
   return (
-    <SafeAreaView>
+    <SafeAreaView style={styles.fullHeight}>
       <View style={styles.container}>
         <View style={styles.navbar}>
           <Text style={styles.title}>User profile</Text>
@@ -73,6 +103,13 @@ const ProfileScreen: React.FC<IProfileScreenProps> = () => {
             })}
           </Swiper>
         </View>
+        <FAB.Group
+          open={addMenuOpen}
+          visible={true}
+          icon="plus"
+          actions={addActions(handleItemPress)}
+          onStateChange={handleMenuStateChange}
+        />
       </View>
     </SafeAreaView>
   );

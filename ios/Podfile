@@ -12,6 +12,8 @@ target 'growupmobile' do
     :hermes_enabled => false
   )
 
+  pod 'react-native-pager-view', :path => '../node_modules/react-native-pager-view'
+
   target 'growupmobileTests' do
     inherit! :complete
     # Pods for testing

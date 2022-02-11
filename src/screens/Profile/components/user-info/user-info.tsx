@@ -1,7 +1,11 @@
 import React from 'react';
-import { Text, View } from 'react-native';
+import { View } from 'react-native';
+import { Avatar } from 'react-native-paper';
+
+import { Heading, Text } from 'src/components';
+import { AppColor, HeadingLevel } from 'src/common/enums';
+
 import { styles } from './styles';
-import { Subheading, Avatar, Headline, Colors } from 'react-native-paper';
 
 const UserInfo = () => {
   return (
@@ -13,16 +17,20 @@ const UserInfo = () => {
         }}
         style={styles.avatar}
       />
-      <Headline style={styles.title}>Cristofer Westervelt</Headline>
-      <Subheading style={styles.job}>Fullstack JS Engineer</Subheading>
+      <Heading level={HeadingLevel.H4}>
+        <Text>Cristofer Westervelt</Text>
+      </Heading>
+      <Heading level={HeadingLevel.H6}>
+        <Text>Fullstack JS Engineer</Text>
+      </Heading>
       <View style={styles.levelWrapper}>
         <Avatar.Icon
           size={24}
-          color={Colors.deepPurple600}
+          color={AppColor.PRIMARY}
           style={styles.levelIcon}
           icon="shield-check"
         />
-        <Text style={styles.levelText}>Level 2</Text>
+        <Text>Level 2</Text>
       </View>
     </View>
   );

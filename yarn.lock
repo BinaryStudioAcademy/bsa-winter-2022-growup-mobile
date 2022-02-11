@@ -2444,7 +2444,7 @@ color-string@^1.6.0:
     color-name "^1.0.0"
     simple-swizzle "^0.2.2"
 
-color@^3.1.2:
+color@^3.1.2, color@^3.2.1:
   version "3.2.1"
   resolved "https://registry.npmjs.org/color/-/color-3.2.1.tgz"
   integrity sha512-aBl7dZI9ENN6fUGC7mWpMTPNHmWUSNan9tuWN6ahh5ZLNk9baLJOnSMlrQkHcrfFgz2/RigjUVAjdx36VcemKA==
@@ -6005,6 +6005,13 @@ react-native-pager-view@^5.4.9:
   version "5.4.9"
   resolved "https://registry.yarnpkg.com/react-native-pager-view/-/react-native-pager-view-5.4.9.tgz#c0d40847cfeda5a4e729b53271b0ee0fedff3eb5"
   integrity sha512-D6tzxpwMGdl6CXgtskGWhKRc5cJakCazESRGt7PkqnpyiH3N35ft1KmR82pCSQetAFlytFiToeu3a/dG5CELvA==
+
+react-native-paper-dates@^0.8.7:
+  version "0.8.7"
+  resolved "https://registry.yarnpkg.com/react-native-paper-dates/-/react-native-paper-dates-0.8.7.tgz#56ef721aab6e918f576090f20e07bba8333c2fc1"
+  integrity sha512-sHEBIaQvamZetc7QhJWVepD/m9hZxOZwI99PduzCSKvzXcf6m13qAmO+Z/5kj1VdAsiWi9WOM6YMJVm47A9Z4A==
+  dependencies:
+    color "^3.2.1"
 
 react-native-paper@^4.11.2:
   version "4.11.2"

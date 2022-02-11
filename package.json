@@ -25,6 +25,7 @@
 		"react-native-fingerprint-scanner": "^6.0.0",
     "react-native-pager-view": "^5.4.9",
     "react-native-paper": "^4.11.2",
+    "react-native-paper-dates": "^0.8.7",
     "react-native-safe-area-context": "^3.3.2",
     "react-native-screens": "^3.10.2",
     "react-native-splash-screen": "^3.3.0",

@@ -4,7 +4,7 @@ import { View, Image } from 'react-native';
 
 import { styles } from './styles';
 
-const LoginFormComponent = () => {
+const LoginForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -39,4 +39,4 @@ const LoginFormComponent = () => {
   );
 };
 
-export { LoginFormComponent };
+export { LoginForm };

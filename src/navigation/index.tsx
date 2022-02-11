@@ -1,8 +1,11 @@
 import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import { AppRoute } from 'src/common/enums/navigation';
-import HomeScreen from 'src/screens/Home';
+import { AppRoute, AuthRoute } from 'src/common/enums/navigation';
+
+import AppNavigation from './app/app-navigation';
+import { useAppSelector } from 'src/hooks';
+import { HomeScreen } from 'src/screens';
 
 const RootStack = createNativeStackNavigator();
 
@@ -11,9 +14,19 @@ const defaultScreenOptions = {
 };
 
 const RootNavigation = () => {
+  const { user } = useAppSelector(state => state.auth);
+
+  //TODO add sign in/up screens
   return (
     <RootStack.Navigator screenOptions={defaultScreenOptions}>
-      <RootStack.Screen name={AppRoute.HOME} component={HomeScreen} />
+      {user ? (
+        <RootStack.Screen name={AppRoute.APP} component={AppNavigation} />
+      ) : (
+        <>
+          <RootStack.Screen name={AuthRoute.SIGN_IN} component={HomeScreen} />
+          <RootStack.Screen name={AuthRoute.SIGN_UP} component={HomeScreen} />
+        </>
+      )}
     </RootStack.Navigator>
   );
 };

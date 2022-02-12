@@ -84,5 +84,7 @@
 		<string>SimpleLineIcons.ttf</string>
 		<string>Zocial.ttf</string>
 	</array>
+	<key>NSFaceIDUsageDescription</key>
+	<string>GrowUpMobile requires FaceID access to perform quick and secure authentication.</string>
 </dict>
 </plist>

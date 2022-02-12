@@ -17,20 +17,22 @@ const UserInfo = () => {
         }}
         style={styles.avatar}
       />
-      <Heading level={HeadingLevel.H4}>
-        <Text>Cristofer Westervelt</Text>
-      </Heading>
-      <Heading level={HeadingLevel.H6}>
-        <Text>Fullstack JS Engineer</Text>
-      </Heading>
-      <View style={styles.levelWrapper}>
-        <Avatar.Icon
-          size={24}
-          color={AppColor.PRIMARY}
-          style={styles.levelIcon}
-          icon="shield-check"
-        />
-        <Text>Level 2</Text>
+      <View style={styles.info}>
+        <Heading level={HeadingLevel.H4} style={styles.name}>
+          Cristofer Westervelt
+        </Heading>
+        <Heading level={HeadingLevel.H6} style={styles.role}>
+          Fullstack JS Engineer
+        </Heading>
+        <View style={styles.levelWrapper}>
+          <Avatar.Icon
+            size={24}
+            color={AppColor.PRIMARY}
+            style={styles.levelIcon}
+            icon="shield-check"
+          />
+          <Text>Level 2</Text>
+        </View>
       </View>
     </View>
   );

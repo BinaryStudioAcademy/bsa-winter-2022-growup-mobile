@@ -4,17 +4,16 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { Text } from 'src/components';
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-type IHomeScreenProps = Record<string, any>;
+type IOKRScreenProps = Record<string, never>;
 
-const HomeScreen: React.FC<IHomeScreenProps> = () => {
+const OKRScreen: React.FC<IOKRScreenProps> = () => {
   return (
     <SafeAreaView>
       <View>
-        <Text>Home screen!</Text>
+        <Text>OKR screen!</Text>
       </View>
     </SafeAreaView>
   );
 };
 
-export default HomeScreen;
+export default OKRScreen;

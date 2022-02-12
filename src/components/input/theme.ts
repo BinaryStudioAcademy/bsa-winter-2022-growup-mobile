@@ -1,8 +1,9 @@
-import { DefaultTheme } from 'react-native-paper';
+import { Theme } from 'react-native-paper/lib/typescript/types';
+import theme from 'src/styles/theme';
 
-const theme = {
-  ...DefaultTheme,
+const inputTheme: Theme = {
+  ...theme,
   roundness: 0,
 };
 
-export default theme;
+export default inputTheme;

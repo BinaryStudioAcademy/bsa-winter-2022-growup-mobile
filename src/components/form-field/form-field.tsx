@@ -45,7 +45,7 @@ const FormField: React.FC<Props> = ({ children, error, touched = true }) => {
   return (
     <View style={styles.field}>
       {children}
-      {firstError ? <Text style={styles.error}>{firstError}</Text> : null}
+      {firstError && <Text style={styles.error}>{firstError}</Text>}
     </View>
   );
 };

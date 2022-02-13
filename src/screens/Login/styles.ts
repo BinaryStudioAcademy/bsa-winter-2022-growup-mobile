@@ -1,5 +1,7 @@
 import { StyleSheet } from 'react-native';
 
+import { AppColor } from 'src/common/enums';
+
 const styles = StyleSheet.create({
   container: {
     marginHorizontal: 27,
@@ -7,13 +9,21 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   formField: {
-    backgroundColor: '#F6F7F9',
+    backgroundColor: AppColor.INPUT_BACKGROUND,
     height: 45,
-    marginBottom: 17,
+    marginTop: 17,
+  },
+  formFieldError: {
+    backgroundColor: AppColor.INPUT_BACKGROUND,
+    borderColor: AppColor.ACCENT,
+    borderWidth: 0.5,
+  },
+  formFieldErrorMessage: {
+    color: AppColor.ACCENT,
   },
   btnLogin: {
     borderRadius: 50,
-    backgroundColor: '#EE2A64',
+    backgroundColor: AppColor.ACCENT,
     height: 45,
     justifyContent: 'center',
     marginTop: '50%',
@@ -33,7 +43,7 @@ const styles = StyleSheet.create({
   },
   footerRedirect: {
     marginLeft: 5,
-    color: '#EE2A64',
+    color: AppColor.ACCENT,
   },
 });
 

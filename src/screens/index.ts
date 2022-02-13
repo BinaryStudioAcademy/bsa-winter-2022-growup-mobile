@@ -4,3 +4,4 @@ export * from './okr';
 export * from './opportunities';
 export * from './profile';
 export * from './login';
+export * from './register';

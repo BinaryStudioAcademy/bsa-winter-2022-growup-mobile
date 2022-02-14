@@ -8,7 +8,7 @@ import { Navbar } from 'src/screens/profile/components/navbar';
 import { Text } from 'src/components';
 import addActions from './add-actions';
 
-import styles from './styles';
+import { styles } from './styles';
 
 type IProfileScreenProps = Record<string, never>;
 
@@ -18,7 +18,7 @@ const ProfileScreen: React.FC<IProfileScreenProps> = () => {
   const refPage = useRef<PagerView>(null);
 
   const handleClick = useCallback((ind: number) => {
-    refPage.current.setPage(ind);
+    refPage.current?.setPage(ind);
     setActive(ind);
   }, []);
   /*

@@ -1,8 +1,7 @@
 import React from 'react';
 import { View } from 'react-native';
-import { Button } from 'react-native-paper';
 
-import { Text } from 'src/components';
+import { MainButton, Text } from 'src/components';
 import { AppColor, ButtonMode } from 'src/common/enums';
 
 import styles from './styles';
@@ -33,17 +32,16 @@ const Navbar = ({ active, handleClick }: Props) => {
       <View style={styles.buttons}>
         {items.map((item, index) => {
           return (
-            <Button
+            <MainButton
               key={item.text}
               style={active === index ? styles.active : styles.btn}
               mode={active === index ? ButtonMode.CONTAINED : ButtonMode.TEXT}
               color={active === index ? '' : AppColor.BLACK}
               onPress={() => handleClick(index)}
               compact={true}
-              uppercase={false}
             >
               {item.text}
-            </Button>
+            </MainButton>
           );
         })}
       </View>

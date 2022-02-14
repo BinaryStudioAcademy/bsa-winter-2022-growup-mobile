@@ -26,7 +26,6 @@ const styles = StyleSheet.create({
   },
   btn: {
     flex: 1,
-    color: AppColor.BLACK,
     borderRadius: 0,
   },
   active: {

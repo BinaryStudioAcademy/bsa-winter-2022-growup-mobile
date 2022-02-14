@@ -2,7 +2,7 @@ import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
   input: {
-    marginBottom: 10,
+    marginBottom: 20,
     width: '90%',
     alignSelf: 'center',
   },
@@ -31,6 +31,9 @@ const styles = StyleSheet.create({
   },
   tagButton: {
     width: 150,
+  },
+  tabButtonLabel: {
+    fontSize: 15,
   },
 });
 

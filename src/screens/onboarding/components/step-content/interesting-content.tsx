@@ -3,7 +3,8 @@ import { View } from 'react-native';
 import { en, registerTranslation } from 'react-native-paper-dates';
 
 import { HeadingLevel, IconName } from 'src/common/enums';
-import { Heading, TagButton } from 'src/components';
+import { Heading } from 'src/components';
+import { AddButton } from '..';
 import styles from './styles';
 
 type IInterestingContentScreenProps = Record<string, never>;
@@ -20,15 +21,23 @@ const InterestingContent: React.FC<IInterestingContentScreenProps> = () => {
         <Heading style={styles.interestingHeadings} level={HeadingLevel.H5}>
           What languages do you speak?
         </Heading>
-        <TagButton style={styles.tagButton} icon={IconName.CHAT_PLUS}>
-          Add language
-        </TagButton>
+        <AddButton
+          labelStyle={styles.tabButtonLabel}
+          style={styles.tagButton}
+          icon={IconName.CHAT_PLUS}
+        >
+          Add Language
+        </AddButton>
         <Heading style={styles.interestingHeadings} level={HeadingLevel.H5}>
           What are your locations?
         </Heading>
-        <TagButton style={styles.tagButton} icon={IconName.MAP_MARKER_PLUS}>
-          Add location
-        </TagButton>
+        <AddButton
+          labelStyle={styles.tabButtonLabel}
+          style={styles.tagButton}
+          icon={IconName.MAP_MARKER_PLUS}
+        >
+          Add Location
+        </AddButton>
       </View>
     </View>
   );

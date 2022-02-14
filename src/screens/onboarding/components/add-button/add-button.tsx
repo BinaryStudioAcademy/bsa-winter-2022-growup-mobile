@@ -1,7 +1,7 @@
 import React from 'react';
+
 import { AppColor, IconName } from 'src/common/enums';
 import { MainButton } from 'src/components';
-
 import styles from './styles';
 
 type AddButtonProps = React.ComponentPropsWithoutRef<typeof MainButton>;

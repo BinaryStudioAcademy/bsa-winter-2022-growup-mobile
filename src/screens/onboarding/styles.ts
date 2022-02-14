@@ -2,12 +2,13 @@ import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
   content: {
-    height: '85%',
+    height: '90%',
     width: '100%',
   },
   buttonContainer: {
-    paddingLeft: 30,
-    width: 150,
+    width: '100%',
+    height: '10%',
+    paddingHorizontal: 20,
   },
 });
 

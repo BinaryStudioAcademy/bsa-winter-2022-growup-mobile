@@ -7,7 +7,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 
 import { styles } from '../styles';
 import { Input, Text } from 'src/components';
-import { AuthRoute, UserValidationSchema } from 'src/common/enums';
+import { AppColor, AuthRoute, UserValidationSchema } from 'src/common/enums';
 import { ISignInPayload } from 'src/common/types';
 
 const LoginForm = () => {
@@ -40,7 +40,10 @@ const LoginForm = () => {
         }) => (
           <>
             <Input
-              style={!error ? styles.formField : styles.formFieldError}
+              style={styles.formField}
+              outlineColor={
+                !error ? AppColor.INPUT_BACKGROUND : AppColor.ACCENT
+              }
               label="Email"
               value={value}
               onChangeText={onChange}
@@ -62,7 +65,10 @@ const LoginForm = () => {
         }) => (
           <>
             <Input
-              style={!error ? styles.formField : styles.formFieldError}
+              style={styles.formField}
+              outlineColor={
+                !error ? AppColor.INPUT_BACKGROUND : AppColor.ACCENT
+              }
               label="Password"
               right={
                 <TextInput.Icon name="eye" onPress={() => setSecure(!secure)} />

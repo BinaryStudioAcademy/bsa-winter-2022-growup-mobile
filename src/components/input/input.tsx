@@ -19,7 +19,8 @@ const Input: React.FC<InputProps> = ({
       label={label}
       placeholder={placeholder}
       theme={theme}
-      mode="flat"
+      mode="outlined"
+      outlineColor="transparent"
       activeUnderlineColor={AppColor.ACCENT}
       {...textInputProps}
     />

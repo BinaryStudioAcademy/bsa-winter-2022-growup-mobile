@@ -1,5 +1,3 @@
-const theme = {
-  roundness: 0,
-};
+const theme = {};
 
 export default theme;

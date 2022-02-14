@@ -7,12 +7,12 @@ const styles = StyleSheet.create({
     backgroundColor: AppColor.WHITE,
   },
   content: {
-    height: '85%',
+    height: '80%',
     width: '100%',
   },
   buttonContainer: {
     width: '100%',
-    height: '15%',
+    height: '20%',
     paddingHorizontal: 20,
   },
 });

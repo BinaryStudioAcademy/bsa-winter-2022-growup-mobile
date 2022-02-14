@@ -27,6 +27,13 @@ const addScreenGroupOptions: NativeStackNavigationOptions = {
   presentation: 'modal',
 };
 
+const screenOptions: NativeStackNavigationOptions = {
+  headerTitleAlign: 'center',
+  headerTitleStyle: {
+    fontFamily: 'NunitoSans-SemiBold',
+  },
+};
+
 const OnboardingNavigation = () => {
   return (
     <Stack.Navigator screenOptions={screenOptions}>

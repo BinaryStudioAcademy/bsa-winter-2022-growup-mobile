@@ -8,13 +8,17 @@ type MainButtonProps = React.ComponentPropsWithoutRef<typeof Button>;
 
 const MainButton: React.FC<MainButtonProps> = ({
   children,
+  style,
   mode = ButtonMode.TEXT,
   ...buttonProps
 }) => {
   return (
     <Button
       uppercase={false}
-      style={mode === ButtonMode.OUTLINED && styles[ButtonMode.OUTLINED]}
+      style={[
+        mode === ButtonMode.OUTLINED && styles[ButtonMode.OUTLINED],
+        style,
+      ]}
       mode={mode}
       color={AppColor.ACCENT}
       {...buttonProps}

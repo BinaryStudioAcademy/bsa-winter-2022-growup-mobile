@@ -1,14 +1,24 @@
 import React from 'react';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import {
+  createNativeStackNavigator,
+  NativeStackNavigationOptions,
+} from '@react-navigation/native-stack';
 
 import { OnboardingRoute } from 'src/common/enums/navigation';
 import { HomeScreen, OnboardingScreen } from 'src/screens';
 
 const Stack = createNativeStackNavigator();
 
+const screenOptions: NativeStackNavigationOptions = {
+  headerTitleAlign: 'center',
+  headerTitleStyle: {
+    fontFamily: 'NunitoSans-SemiBold',
+  },
+};
+
 const OnboardingNavigation = () => {
   return (
-    <Stack.Navigator>
+    <Stack.Navigator screenOptions={screenOptions}>
       <Stack.Screen
         name={OnboardingRoute.ONBOARDING}
         component={OnboardingScreen}

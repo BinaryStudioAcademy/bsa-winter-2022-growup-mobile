@@ -40,6 +40,10 @@ const styles = StyleSheet.create({
   userAvatar: {
     backgroundColor: AppColor.GREY,
   },
+  imageContainer: {
+    alignSelf: 'center',
+    marginVertical: 30,
+  },
 });
 
 export default styles;

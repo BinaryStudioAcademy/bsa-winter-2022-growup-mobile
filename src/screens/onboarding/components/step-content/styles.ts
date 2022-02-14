@@ -1,25 +1,23 @@
 import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
-  inputContainer: {
-    padding: 20,
-    width: '80%',
-  },
   input: {
     marginBottom: 10,
+    width: '90%',
+    alignSelf: 'center',
   },
   content: {
-    width: '80%',
+    width: '90%',
     alignSelf: 'center',
-    margin: 20,
+    marginVertical: 20,
   },
   header: {
     alignSelf: 'center',
     fontFamily: 'NunitoSans-SemiBold',
   },
   buttonContainer: {
-    width: 100,
-    alignSelf: 'flex-end',
+    alignSelf: 'flex-start',
+    marginVertical: 20,
   },
   imageContainer: {
     alignSelf: 'center',

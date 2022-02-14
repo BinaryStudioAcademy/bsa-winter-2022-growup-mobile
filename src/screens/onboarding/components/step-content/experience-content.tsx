@@ -7,9 +7,9 @@ import { Heading } from 'src/components';
 import { AddButton } from '../';
 import styles from './styles';
 
-type IExperienceContentScreenProps = Record<string, never>;
+type ExperienceContentScreenProps = Record<string, never>;
 
-const ExperienceContent: React.FC<IExperienceContentScreenProps> = () => {
+const ExperienceContent: React.FC<ExperienceContentScreenProps> = () => {
   const navigation = useNavigation();
 
   const handleAddExperience = useCallback(() => {

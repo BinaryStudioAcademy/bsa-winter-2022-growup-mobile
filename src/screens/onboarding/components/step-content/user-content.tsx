@@ -6,9 +6,9 @@ import { HeadingLevel } from 'src/common/enums';
 import { Heading, Input } from 'src/components';
 import styles from './styles';
 
-type IUserContentScreenProps = Record<string, never>;
+type UserContentScreenProps = Record<string, never>;
 
-const UserContent: React.FC<IUserContentScreenProps> = () => {
+const UserContent: React.FC<UserContentScreenProps> = () => {
   return (
     <View style={styles.content}>
       <Heading style={styles.header} level={HeadingLevel.H4}>

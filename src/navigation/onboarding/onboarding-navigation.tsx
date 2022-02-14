@@ -16,13 +16,6 @@ import { OnboardingStackParamList } from 'src/common/types';
 
 const Stack = createNativeStackNavigator<OnboardingStackParamList>();
 
-const screenOptions: NativeStackNavigationOptions = {
-  headerTitleAlign: 'center',
-  headerTitleStyle: {
-    fontFamily: 'NunitoSans-SemiBold',
-  },
-};
-
 const addScreenGroupOptions: NativeStackNavigationOptions = {
   presentation: 'modal',
 };

@@ -7,9 +7,9 @@ import { Heading } from 'src/components';
 import { AddButton } from '..';
 import styles from './styles';
 
-type IEducationContentScreenProps = Record<string, never>;
+type EducationContentScreenProps = Record<string, never>;
 
-const EducationContent: React.FC<IEducationContentScreenProps> = () => {
+const EducationContent: React.FC<EducationContentScreenProps> = () => {
   const navigation = useNavigation();
 
   const handleAddEducation = useCallback(() => {

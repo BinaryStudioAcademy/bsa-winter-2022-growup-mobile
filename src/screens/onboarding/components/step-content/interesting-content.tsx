@@ -7,11 +7,11 @@ import { Heading } from 'src/components';
 import { AddButton } from '..';
 import styles from './styles';
 
-type IInterestingContentScreenProps = Record<string, never>;
+type InterestingContentScreenProps = Record<string, never>;
 
 registerTranslation('en', en);
 
-const InterestingContent: React.FC<IInterestingContentScreenProps> = () => {
+const InterestingContent: React.FC<InterestingContentScreenProps> = () => {
   return (
     <View style={styles.content}>
       <Heading style={styles.header} level={HeadingLevel.H4}>

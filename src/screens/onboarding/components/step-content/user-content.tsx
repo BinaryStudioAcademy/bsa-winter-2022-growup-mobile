@@ -1,8 +1,8 @@
 import React from 'react';
 import { View } from 'react-native';
 import { Avatar } from 'react-native-paper';
-import { HeadingLevel } from 'src/common/enums';
 
+import { HeadingLevel } from 'src/common/enums';
 import { Heading, Input } from 'src/components';
 import styles from './styles';
 
@@ -12,7 +12,7 @@ const UserContent: React.FC<IUserContentScreenProps> = () => {
   return (
     <View style={styles.content}>
       <Heading style={styles.header} level={HeadingLevel.H4}>
-        Tell us about yourself
+        Tell Us About Yourself
       </Heading>
       <View style={styles.imageContainer}>
         <Avatar.Image

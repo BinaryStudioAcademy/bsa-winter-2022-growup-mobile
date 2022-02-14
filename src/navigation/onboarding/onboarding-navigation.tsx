@@ -8,7 +8,8 @@ import { OnboardingRoute } from 'src/common/enums/navigation';
 import {
   AddEducationScreen,
   AddExperienceScreen,
-  HomeScreen,
+  AddLanguageScreen,
+  AddLocationScreen,
   OnboardingScreen,
 } from 'src/screens';
 
@@ -38,11 +39,11 @@ const OnboardingNavigation = () => {
       />
       <Stack.Screen
         name={OnboardingRoute.ADD_LANGUAGE}
-        component={HomeScreen}
+        component={AddLanguageScreen}
       />
       <Stack.Screen
         name={OnboardingRoute.ADD_LOCATION}
-        component={HomeScreen}
+        component={AddLocationScreen}
       />
     </Stack.Navigator>
   );

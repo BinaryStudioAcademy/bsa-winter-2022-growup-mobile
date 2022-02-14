@@ -1,11 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { create } from './actions';
+import { createSkill } from './actions';
 
 const initialState = {};
 
 const slice = createSlice({
-  name: 'skills',
+  name: 'skill',
   initialState,
   reducers: {},
 });
@@ -14,7 +14,7 @@ const { reducer } = slice;
 
 const actions = {
   ...slice.actions,
-  create,
+  createSkill,
 };
 
 export { reducer, actions };

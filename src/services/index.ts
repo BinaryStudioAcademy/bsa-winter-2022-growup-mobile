@@ -3,10 +3,10 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { StorageService } from './storage';
 import { Http } from './http';
-import { AuthApi } from './authApi';
+import { AuthApi } from './auth-api';
 
 import { API_ORIGIN_URL, API_PREFIX } from 'src/common/constants';
-import { SkillApi } from './skillApi';
+import { SkillApi } from './skill-api';
 
 const storage = new StorageService({
   storage: AsyncStorage,

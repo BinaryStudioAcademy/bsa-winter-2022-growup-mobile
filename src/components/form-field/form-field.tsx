@@ -1,53 +1,60 @@
-import React, { useCallback, useMemo } from 'react';
+import { FormikProps } from 'formik';
+import React, { useMemo } from 'react';
 import { View } from 'react-native';
-import { FormikErrors } from 'formik';
 
 import { Text } from '..';
 import styles from './styles';
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-type Error = string | string[] | FormikErrors<any> | FormikErrors<any>[];
-
-interface Props {
-  error?: Error;
-  touched?: boolean;
+interface FormFieldRecepientProps<TValue> {
+  value?: TValue;
+  handleChange: (text: string) => void;
 }
 
-const FormField: React.FC<Props> = ({ children, error, touched = true }) => {
-  const findFirstError = useCallback(
-    (currentError: Error | undefined): string | null => {
-      if (!touched || !currentError) {
-        return null;
-      }
+interface Props<TValue> {
+  name: string;
+  // eslint-ignore-next-line @typescript-eslint/no-explicit-any
+  formikProps: FormikProps<Record<string, any>>;
+  valueFromString?: (text: string) => TValue;
+  children: (props: FormFieldRecepientProps<TValue>) => JSX.Element;
+}
 
-      if (typeof currentError === 'string') {
-        return currentError;
-      }
-
-      if (Array.isArray(currentError)) {
-        if (!currentError.length) {
-          return null;
-        }
-
-        return findFirstError(currentError[0]);
-      }
-
-      return findFirstError(Object.values(currentError) as string[]);
-    },
-    [touched]
+function FormField<TValue = string>({
+  name,
+  formikProps,
+  valueFromString,
+  children,
+}: Props<TValue>) {
+  const value: TValue = useMemo(
+    () => formikProps.values[name] as TValue,
+    [formikProps.values, name]
   );
 
-  const firstError = useMemo<string | null>(
-    () => findFirstError(error),
-    [error, findFirstError]
-  );
+  const error: string | null = useMemo(() => {
+    const formikTouched = formikProps.touched[name] as boolean | undefined;
+
+    if (!formikTouched) {
+      return null;
+    }
+
+    const formikError = formikProps.errors[name] as string | undefined;
+    return formikError ?? null;
+  }, [formikProps.errors, formikProps.touched, name]);
+
+  const handleChange = (text: string) => {
+    if (valueFromString) {
+      const valueForFullObject: TValue = valueFromString(text);
+      return formikProps.setFieldValue(name, valueForFullObject);
+    }
+
+    return formikProps.setFieldValue(name, value);
+  };
 
   return (
     <View style={styles.field}>
-      {children}
-      {firstError && <Text style={styles.error}>{firstError}</Text>}
+      {children({ value, handleChange })}
+      {error && <Text style={styles.error}>{error}</Text>}
     </View>
   );
-};
+}
 
 export default FormField;

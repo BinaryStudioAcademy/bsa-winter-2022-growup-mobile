@@ -2,27 +2,27 @@ import React from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/native';
 
-import { ICreateSkill } from 'src/common/types';
+import { ICreateSkillPayload } from 'src/common/types';
 import { useAppDispatch } from 'src/hooks';
 import { skillActions } from 'src/store/actions';
-import CreateSkillForm from './form';
+import CreateSkillForm from './components/create-skill-form';
 
 const CreateSkill: React.FC = () => {
   const dispatch = useAppDispatch();
   const navigation = useNavigation();
 
-  const back = () => {
+  const handleGoBack = () => {
     navigation.goBack();
   };
 
-  const submit = (data: ICreateSkill) => {
-    dispatch(skillActions.create(data));
-    back();
+  const handleSubmit = (data: ICreateSkillPayload) => {
+    dispatch(skillActions.createSkill(data));
+    handleGoBack();
   };
 
   return (
     <SafeAreaView>
-      <CreateSkillForm onSubmit={submit} onCancel={back} />
+      <CreateSkillForm onSubmit={handleSubmit} onBack={handleGoBack} />
     </SafeAreaView>
   );
 };

@@ -1,5 +1,5 @@
 enum ActionTypes {
-  Create = 'skill/create',
+  CREATE_SKILL = 'skill/create',
 }
 
 export { ActionTypes };

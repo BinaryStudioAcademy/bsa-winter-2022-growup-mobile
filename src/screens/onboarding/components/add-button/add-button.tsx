@@ -1,5 +1,5 @@
 import React from 'react';
-import { AppColor } from 'src/common/enums';
+import { AppColor, IconName } from 'src/common/enums';
 import { MainButton } from 'src/components';
 
 import styles from './styles';
@@ -10,7 +10,7 @@ const AddButton: React.FC<AddButtonProps> = ({ children }) => {
   return (
     <MainButton
       labelStyle={styles.buttonText}
-      icon="plus-box-multiple"
+      icon={IconName.PLUS_BOX_MULTIPLE}
       mode="text"
       compact={true}
       color={AppColor.PRIMARY}

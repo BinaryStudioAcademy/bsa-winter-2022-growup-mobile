@@ -23,6 +23,15 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     marginVertical: 30,
   },
+  interestingContent: {
+    paddingVertical: 20,
+  },
+  interestingHeadings: {
+    paddingVertical: 10,
+  },
+  tagButton: {
+    width: 150,
+  },
 });
 
 export default styles;

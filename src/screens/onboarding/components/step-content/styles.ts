@@ -11,13 +11,19 @@ const styles = StyleSheet.create({
   content: {
     width: '80%',
     alignSelf: 'center',
+    margin: 20,
   },
   header: {
     alignSelf: 'center',
+    fontFamily: 'NunitoSans-SemiBold',
   },
   buttonContainer: {
     width: 100,
     alignSelf: 'flex-end',
+  },
+  imageContainer: {
+    alignSelf: 'center',
+    marginVertical: 30,
   },
 });
 

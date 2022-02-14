@@ -1,5 +1,6 @@
 import React from 'react';
 import { View } from 'react-native';
+import { Avatar } from 'react-native-paper';
 import { HeadingLevel } from 'src/common/enums';
 
 import { Heading, Input } from 'src/components';
@@ -10,9 +11,15 @@ type IUserContentScreenProps = Record<string, never>;
 const UserContent: React.FC<IUserContentScreenProps> = () => {
   return (
     <View style={styles.content}>
-      <Heading style={styles.header} level={HeadingLevel.H5}>
-        User information
+      <Heading style={styles.header} level={HeadingLevel.H4}>
+        Tell us about yourself
       </Heading>
+      <View style={styles.imageContainer}>
+        <Avatar.Image
+          size={150}
+          source={require('src/assets/images/user-icon.jpeg')}
+        />
+      </View>
       <Input
         style={styles.input}
         label="First name"

@@ -70,6 +70,12 @@ const ProfileScreen: React.FC<IProfileScreenProps> = () => {
             <View style={styles.swiperItem} collapsable={false}>
               <Text>Interests container</Text>
             </View>
+            <View style={styles.swiperItem} collapsable={false}>
+              <Text>Skills container</Text>
+            </View>
+            <View style={styles.swiperItem} collapsable={false}>
+              <Text>Education container</Text>
+            </View>
           </PagerView>
         </View>
         <FAB.Group

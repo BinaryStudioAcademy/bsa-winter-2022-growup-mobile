@@ -1,6 +1,9 @@
-import { StyleSheet } from 'react-native';
+import { Dimensions, StyleSheet } from 'react-native';
 
 import { AppColor } from 'src/common/enums';
+
+const WIDTH = Dimensions.get('screen').width * 0.8;
+const BUTTON_WIDTH = Math.ceil(WIDTH / 3);
 
 const styles = StyleSheet.create({
   navbar: {
@@ -26,9 +29,11 @@ const styles = StyleSheet.create({
   },
   btn: {
     flex: 1,
+    width: BUTTON_WIDTH,
     borderRadius: 0,
   },
   active: {
+    width: BUTTON_WIDTH,
     borderRadius: 7,
     backgroundColor: AppColor.ACCENT,
     flex: 1,

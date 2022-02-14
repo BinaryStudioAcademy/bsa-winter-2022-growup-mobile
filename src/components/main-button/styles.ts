@@ -7,6 +7,10 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: AppColor.ACCENT,
   },
+  text: {
+    fontFamily: 'NunitoSans-Bold',
+    fontSize: 16,
+  },
 });
 
 export default styles;

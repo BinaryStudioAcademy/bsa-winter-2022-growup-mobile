@@ -5,7 +5,12 @@ import {
 } from '@react-navigation/native-stack';
 
 import { OnboardingRoute } from 'src/common/enums/navigation';
-import { HomeScreen, OnboardingScreen } from 'src/screens';
+import {
+  AddEducationScreen,
+  AddExperienceScreen,
+  HomeScreen,
+  OnboardingScreen,
+} from 'src/screens';
 
 const Stack = createNativeStackNavigator();
 
@@ -25,11 +30,11 @@ const OnboardingNavigation = () => {
       />
       <Stack.Screen
         name={OnboardingRoute.ADD_EXPERIENCE}
-        component={HomeScreen}
+        component={AddExperienceScreen}
       />
       <Stack.Screen
         name={OnboardingRoute.ADD_EDUCATION}
-        component={HomeScreen}
+        component={AddEducationScreen}
       />
       <Stack.Screen
         name={OnboardingRoute.ADD_LANGUAGE}

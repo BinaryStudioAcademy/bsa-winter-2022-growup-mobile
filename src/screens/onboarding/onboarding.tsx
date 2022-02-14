@@ -2,8 +2,8 @@ import React, { useRef, useState } from 'react';
 import { View } from 'react-native';
 import PagerView from 'react-native-pager-view';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { ButtonMode } from 'src/common/enums';
 
+import { ButtonMode } from 'src/common/enums';
 import { MainButton } from 'src/components';
 import {
   EducationContent,

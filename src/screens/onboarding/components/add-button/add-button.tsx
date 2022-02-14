@@ -6,7 +6,7 @@ import styles from './styles';
 
 type AddButtonProps = React.ComponentPropsWithoutRef<typeof MainButton>;
 
-const AddButton: React.FC<AddButtonProps> = ({ children }) => {
+const AddButton: React.FC<AddButtonProps> = ({ children, ...buttonProps }) => {
   return (
     <MainButton
       labelStyle={styles.buttonText}
@@ -14,6 +14,7 @@ const AddButton: React.FC<AddButtonProps> = ({ children }) => {
       mode="text"
       compact={true}
       color={AppColor.PRIMARY}
+      {...buttonProps}
     >
       {children}
     </MainButton>

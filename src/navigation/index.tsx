@@ -4,12 +4,9 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { AppRoute, AuthRoute } from 'src/common/enums/navigation';
 import AppNavigation from './app/app-navigation';
 import { useAppSelector } from 'src/hooks';
-<<<<<<< HEAD
+
 import { HomeScreen } from 'src/screens';
 import { OnboardingNavigation } from './onboarding';
-=======
-import { HomeScreen, OnboardingScreen } from 'src/screens';
->>>>>>> 82e0938 (GUM-27: step component added)
 
 const RootStack = createNativeStackNavigator();
 

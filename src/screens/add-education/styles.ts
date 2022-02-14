@@ -1,19 +1,25 @@
 import { StyleSheet } from 'react-native';
-
 import { AppColor } from 'src/common/enums';
 
 const styles = StyleSheet.create({
   screen: {
+    padding: 20,
     backgroundColor: AppColor.WHITE,
+    justifyContent: 'space-between',
+    height: '100%',
+    flex: 1,
   },
-  content: {
-    height: '83%',
-    width: '100%',
+  inputContent: {
+    marginBottom: 30,
   },
   buttonContainer: {
-    width: '100%',
-    height: '17%',
     paddingHorizontal: 20,
+  },
+  heading: {
+    marginBottom: 10,
+  },
+  button: {
+    marginBottom: 10,
   },
 });
 

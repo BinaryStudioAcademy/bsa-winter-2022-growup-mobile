@@ -9,12 +9,14 @@ type MainButtonProps = React.ComponentPropsWithoutRef<typeof Button>;
 const MainButton: React.FC<MainButtonProps> = ({
   children,
   style,
+  labelStyle,
   mode = ButtonMode.TEXT,
   ...buttonProps
 }) => {
   return (
     <Button
       uppercase={false}
+      labelStyle={[styles.text, labelStyle]}
       style={[
         mode === ButtonMode.OUTLINED && styles[ButtonMode.OUTLINED],
         style,

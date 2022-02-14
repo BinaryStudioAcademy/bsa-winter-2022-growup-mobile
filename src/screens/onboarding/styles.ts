@@ -1,15 +1,18 @@
 import { StyleSheet } from 'react-native';
+
 import { AppColor } from 'src/common/enums';
 
 const styles = StyleSheet.create({
-  content: {
-    height: '90%',
-    width: '100%',
+  screen: {
     backgroundColor: AppColor.WHITE,
+  },
+  content: {
+    height: '85%',
+    width: '100%',
   },
   buttonContainer: {
     width: '100%',
-    height: '10%',
+    height: '15%',
     paddingHorizontal: 20,
   },
 });

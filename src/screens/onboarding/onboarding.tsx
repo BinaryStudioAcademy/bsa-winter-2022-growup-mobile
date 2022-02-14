@@ -9,6 +9,7 @@ import {
   EducationContent,
   ExperienceContent,
   InterestingContent,
+  StepDots,
   UserContent,
 } from './components';
 import styles from './styles';
@@ -21,7 +22,7 @@ const OnboardingScreen: React.FC<IOnboardingScreenProps> = () => {
 
   return (
     <SafeAreaView>
-      <View>
+      <View style={styles.screen}>
         <PagerView
           style={styles.content}
           initialPage={0}
@@ -42,6 +43,7 @@ const OnboardingScreen: React.FC<IOnboardingScreenProps> = () => {
           </View>
         </PagerView>
         <View style={styles.buttonContainer}>
+          <StepDots activeDot={currentStep} />
           {currentStep === 3 ? (
             <MainButton
               mode={ButtonMode.CONTAINED}

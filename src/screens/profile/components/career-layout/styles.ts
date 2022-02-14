@@ -20,9 +20,9 @@ const styles = StyleSheet.create({
   },
   divider: {
     width: 1,
-    height: '100%',
+    height: '95%',
     backgroundColor: LIGHTGREY,
-    marginTop: 20,
+    marginTop: 25,
   },
   card: {
     borderWidth: 1,
@@ -44,6 +44,13 @@ const styles = StyleSheet.create({
   },
   cardActions: {
     marginLeft: 15,
+    marginRight: 15,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    padding: 0,
+  },
+  actionsBtn: {
+    flexDirection: 'row',
   },
   yearWrapper: {
     position: 'relative',
@@ -59,7 +66,7 @@ const styles = StyleSheet.create({
   badge: {
     backgroundColor: AppColor.SECONDARY,
     position: 'absolute',
-    left: -20,
+    left: -19,
     top: 3,
     width: 8,
     height: 8,

@@ -17,16 +17,18 @@ const FormInput: React.FC<FormInputProps> = ({
   containerStyle,
   ...inputProps
 }) => {
-  const { values, errors, touched, handleChange, handleBlur } =
+  const { values, errors, touched, setFieldValue, handleBlur } =
     useFormikContext<FormikValues>();
 
   const error = touched[name] && errors[name];
+  const value = values[name];
+  const stringValue = value ? String(value) : '';
 
   return (
     <View style={containerStyle}>
       <Input
-        value={values[name]}
-        onChangeText={handleChange(name)}
+        value={stringValue}
+        onChangeText={text => setFieldValue(name, text)}
         onBlur={handleBlur(name)}
         {...inputProps}
       />

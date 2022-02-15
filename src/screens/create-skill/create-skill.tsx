@@ -5,7 +5,9 @@ import { useNavigation } from '@react-navigation/native';
 import { ICreateSkillPayload } from 'src/common/types';
 import { useAppDispatch } from 'src/hooks';
 import { skillActions } from 'src/store/actions';
-import CreateSkillForm from './components/create-skill-form';
+import { CreateSkillForm } from './components';
+import { ScrollView } from 'react-native';
+import styles from './styles';
 
 const CreateSkill: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -21,8 +23,10 @@ const CreateSkill: React.FC = () => {
   };
 
   return (
-    <SafeAreaView>
-      <CreateSkillForm onSubmit={handleSubmit} onBack={handleGoBack} />
+    <SafeAreaView style={styles.container}>
+      <ScrollView>
+        <CreateSkillForm onSubmit={handleSubmit} onBack={handleGoBack} />
+      </ScrollView>
     </SafeAreaView>
   );
 };

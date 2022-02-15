@@ -17,7 +17,7 @@ const FormSelect: React.FC<FormSelectProps> = ({
   containerStyle,
   ...selectProps
 }) => {
-  const { values, errors, touched, handleChange } =
+  const { values, errors, touched, setFieldValue } =
     useFormikContext<FormikValues>();
 
   const error = touched[name] && errors[name];
@@ -26,7 +26,7 @@ const FormSelect: React.FC<FormSelectProps> = ({
     <View style={containerStyle}>
       <Select
         value={values[name]}
-        setValue={handleChange(name)}
+        setValue={val => setFieldValue(name, val)}
         {...selectProps}
       />
       {Boolean(error) && <Text style={styles.error}>{error}</Text>}

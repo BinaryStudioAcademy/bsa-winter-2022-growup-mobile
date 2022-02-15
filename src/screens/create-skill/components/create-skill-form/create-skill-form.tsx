@@ -6,8 +6,13 @@ import { ButtonMode, HeadingLevel } from 'src/common/enums';
 import { ICreateSkillPayload } from 'src/common/types/skill';
 import { FormInput, FormSelect, Heading, MainButton } from 'src/components';
 import { createSkillValidationSchema } from 'src/validation-schemas';
-import { DEFAULT_CREATE_SKILL_PAYLOAD, SKILL_TYPE_OPTIONS } from '../constants';
-import styles from '../styles';
+
+import {
+  DEFAULT_CREATE_SKILL_PAYLOAD,
+  SKILL_TYPE_OPTIONS,
+} from '../../constants';
+
+import styles from '../../styles';
 
 interface Props {
   onSubmit: (data: ICreateSkillPayload) => void;
@@ -21,7 +26,6 @@ const CreateSkillForm: React.FC<Props> = ({ onSubmit, onBack }) => {
       validationSchema={createSkillValidationSchema}
       validateOnMount={true}
       validateOnChange={true}
-      validateOnBlur={true}
       onSubmit={onSubmit}
     >
       {({ isValid, handleSubmit }) => (

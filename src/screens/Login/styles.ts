@@ -12,11 +12,7 @@ const styles = StyleSheet.create({
     backgroundColor: AppColor.INPUT_BACKGROUND,
     height: 45,
     marginTop: 17,
-  },
-  formFieldError: {
-    backgroundColor: AppColor.INPUT_BACKGROUND,
-    borderColor: AppColor.ACCENT,
-    borderWidth: 0.5,
+    borderRadius: 8,
   },
   formFieldErrorMessage: {
     color: AppColor.ACCENT,

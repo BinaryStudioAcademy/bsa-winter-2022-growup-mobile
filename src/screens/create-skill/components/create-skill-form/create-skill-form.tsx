@@ -4,8 +4,8 @@ import { View } from 'react-native';
 
 import { ButtonMode, HeadingLevel } from 'src/common/enums';
 import { ICreateSkillPayload } from 'src/common/types/skill';
-import { FormInput, FormSelect, Heading, MainButton } from 'src/components';
 import { createSkillValidationSchema } from 'src/validation-schemas';
+import { FormInput, FormSelect, Heading, MainButton } from 'src/components';
 
 import {
   DEFAULT_CREATE_SKILL_PAYLOAD,
@@ -26,7 +26,9 @@ const CreateSkillForm: React.FC<Props> = ({ onSubmit, onBack }) => {
       validationSchema={createSkillValidationSchema}
       validateOnMount={true}
       validateOnChange={true}
-      onSubmit={onSubmit}
+      onSubmit={values =>
+        onSubmit({ ...values, estimate: Number(values.estimate) })
+      }
     >
       {({ isValid, handleSubmit }) => (
         <>

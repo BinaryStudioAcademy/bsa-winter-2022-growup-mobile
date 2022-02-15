@@ -15,8 +15,6 @@ const LoginForm = () => {
 
   const onLoginPressed = () => {
     // TODO authentication logic
-
-    console.log('Provided credentials: ', email, password);
   };
 
   return (

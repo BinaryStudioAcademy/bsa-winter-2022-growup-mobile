@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+import { DEFAULT_SCREEN_PADDING } from 'src/styles';
 
 import { AppColor } from 'src/common/enums';
 import { DEFAULT_SCREEN_PADDING } from 'src/styles';

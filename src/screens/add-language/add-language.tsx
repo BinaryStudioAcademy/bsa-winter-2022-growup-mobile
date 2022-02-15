@@ -23,7 +23,11 @@ const AddLanguageScreen: React.FC = () => {
         <Input placeholder="Language" />
       </View>
       <View style={styles.buttonContainer}>
-        <MainButton onPress={handleCancel} mode={ButtonMode.OUTLINED}>
+        <MainButton
+          style={styles.button}
+          onPress={handleCancel}
+          mode={ButtonMode.OUTLINED}
+        >
           Cancel
         </MainButton>
         <MainButton mode={ButtonMode.CONTAINED}>Add</MainButton>

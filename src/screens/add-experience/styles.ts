@@ -10,11 +10,12 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   content: {
-    justifyContent: 'space-between',
-    flex: 1,
+    justifyContent: 'center',
+    minHeight: '100%',
   },
   inputContent: {
     marginBottom: 30,
+    paddingHorizontal: 10,
   },
   buttonContainer: {
     paddingHorizontal: 20,

@@ -1,5 +1,5 @@
-import { useNavigation } from '@react-navigation/native';
 import React, { useCallback } from 'react';
+import { useNavigation } from '@react-navigation/native';
 import { View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 

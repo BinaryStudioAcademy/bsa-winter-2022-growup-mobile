@@ -1,6 +1,6 @@
+import React, { useCallback } from 'react';
 import { useNavigation } from '@react-navigation/core';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import React, { useCallback } from 'react';
 import { View } from 'react-native';
 
 import { HeadingLevel, IconName, OnboardingRoute } from 'src/common/enums';

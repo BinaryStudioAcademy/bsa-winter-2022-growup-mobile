@@ -6,20 +6,20 @@ import { Tag, Text } from 'src/components';
 import styles from './styles';
 
 type SkillsSectionProps = {
-  skillHeader: string;
+  header: string;
   skills: string[];
   isHintHeader?: boolean;
 };
 
 const SkillsSection: React.FC<SkillsSectionProps> = ({
-  skillHeader,
+  header,
   skills,
   isHintHeader = false,
 }) => {
   return (
     <View>
       <Text style={[styles.heading, isHintHeader && styles.hintHeader]}>
-        {skillHeader}
+        {header}
       </Text>
       <View style={styles.tagsContent}>
         {skills.map((item, index) => {
@@ -29,9 +29,8 @@ const SkillsSection: React.FC<SkillsSectionProps> = ({
               tagType={TagType.COMMON}
               key={index}
               hasIcon={true}
-            >
-              {item}
-            </Tag>
+              text={item}
+            />
           );
         })}
       </View>

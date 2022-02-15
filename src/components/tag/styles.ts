@@ -18,8 +18,7 @@ const styles = StyleSheet.create({
     borderColor: AppColor.ACCENT,
   },
   text: {
-    color: AppColor.SECONDARY,
-    opacity: 0.6,
+    color: AppColor.TAG_TEXT_COMMON,
     fontFamily: 'NunitoSans-Bold',
   },
   textAttention: {

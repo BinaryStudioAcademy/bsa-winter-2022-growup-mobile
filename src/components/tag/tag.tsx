@@ -1,4 +1,4 @@
-import React, { ReactNode, useMemo } from 'react';
+import React, { useMemo } from 'react';
 import { StyleProp, View, ViewStyle } from 'react-native';
 
 import { AppColor, TagType } from 'src/common/enums';
@@ -6,18 +6,13 @@ import { CheckIcon, Text } from '..';
 import styles from './styles';
 
 type TagProps = {
-  children: ReactNode;
-  hasIcon?: boolean;
+  text: string;
   tagType: TagType;
+  hasIcon?: boolean;
   style?: StyleProp<ViewStyle>;
 };
 
-const Tag: React.FC<TagProps> = ({
-  children,
-  hasIcon = false,
-  tagType,
-  style,
-}) => {
+const Tag: React.FC<TagProps> = ({ text, tagType, hasIcon = false, style }) => {
   const textStyle = useMemo(() => {
     if (tagType === TagType.COMMON) {
       return styles.text;
@@ -27,7 +22,7 @@ const Tag: React.FC<TagProps> = ({
 
   return (
     <View style={[styles.global, styles[tagType], style]}>
-      <Text style={[textStyle, hasIcon && styles.textMargin]}>{children}</Text>
+      <Text style={[textStyle, hasIcon && styles.textMargin]}>{text}</Text>
       {hasIcon && <CheckIcon color={AppColor.PRIMARY} size={18} />}
     </View>
   );

@@ -6,29 +6,29 @@ type IconProps = {
   size: number;
 };
 
-const HomeIcon: React.FC<IconProps> = iconProps => {
-  return <MaterialCommunityIcon name="home" {...iconProps} />;
-};
+const HomeIcon: React.FC<IconProps> = iconProps => (
+  <MaterialCommunityIcon name="home" {...iconProps} />
+);
 
-const CompassIcon: React.FC<IconProps> = iconProps => {
-  return <MaterialCommunityIcon name="compass" {...iconProps} />;
-};
+const CompassIcon: React.FC<IconProps> = iconProps => (
+  <MaterialCommunityIcon name="compass" {...iconProps} />
+);
 
-const ShieldSearchIcon: React.FC<IconProps> = iconProps => {
-  return <MaterialCommunityIcon name="shield-search" {...iconProps} />;
-};
+const ShieldSearchIcon: React.FC<IconProps> = iconProps => (
+  <MaterialCommunityIcon name="shield-search" {...iconProps} />
+);
 
-const RadarIcon: React.FC<IconProps> = iconProps => {
-  return <MaterialCommunityIcon name="radar" {...iconProps} />;
-};
+const RadarIcon: React.FC<IconProps> = iconProps => (
+  <MaterialCommunityIcon name="radar" {...iconProps} />
+);
 
-const AccountIcon: React.FC<IconProps> = iconProps => {
-  return <MaterialCommunityIcon name="account" {...iconProps} />;
-};
+const AccountIcon: React.FC<IconProps> = iconProps => (
+  <MaterialCommunityIcon name="account" {...iconProps} />
+);
 
-const CheckIcon: React.FC<IconProps> = iconProps => {
-  return <MaterialCommunityIcon name="check-circle" {...iconProps} />;
-};
+const CheckIcon: React.FC<IconProps> = iconProps => (
+  <MaterialCommunityIcon name="check-circle" {...iconProps} />
+);
 
 export {
   HomeIcon,

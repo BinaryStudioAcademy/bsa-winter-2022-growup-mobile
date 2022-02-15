@@ -26,4 +26,15 @@ const AccountIcon: React.FC<IconProps> = iconProps => {
   return <MaterialCommunityIcon name="account" {...iconProps} />;
 };
 
-export { HomeIcon, CompassIcon, ShieldSearchIcon, RadarIcon, AccountIcon };
+const CheckIcon: React.FC<IconProps> = iconProps => {
+  return <MaterialCommunityIcon name="check-circle" {...iconProps} />;
+};
+
+export {
+  HomeIcon,
+  CompassIcon,
+  ShieldSearchIcon,
+  RadarIcon,
+  AccountIcon,
+  CheckIcon,
+};

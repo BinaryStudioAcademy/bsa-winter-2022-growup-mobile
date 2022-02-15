@@ -8,6 +8,7 @@ enum AppColor {
   ERROR = '#CC0000',
   INPUT_BACKGROUND = '#F0F3F9',
   NAVIGATION_SECONDARY = '#796EFC',
+  SHADOW = '#E1DBEA',
 }
 
 export { AppColor };

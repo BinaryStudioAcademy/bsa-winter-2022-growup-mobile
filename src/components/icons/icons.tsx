@@ -26,4 +26,25 @@ const AccountIcon: React.FC<IconProps> = iconProps => {
   return <MaterialCommunityIcon name="account" {...iconProps} />;
 };
 
-export { HomeIcon, CompassIcon, ShieldSearchIcon, RadarIcon, AccountIcon };
+const CalendarIcon: React.FC<IconProps> = iconProps => {
+  return <MaterialCommunityIcon name="calendar" {...iconProps} />;
+};
+
+const PencilIcon: React.FC<IconProps> = iconProps => {
+  return <MaterialCommunityIcon name="pencil" {...iconProps} />;
+};
+
+const DeleteIcon: React.FC<IconProps> = iconProps => {
+  return <MaterialCommunityIcon name="delete" {...iconProps} />;
+};
+
+export {
+  HomeIcon,
+  CompassIcon,
+  ShieldSearchIcon,
+  RadarIcon,
+  AccountIcon,
+  CalendarIcon,
+  PencilIcon,
+  DeleteIcon,
+};

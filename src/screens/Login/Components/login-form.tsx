@@ -1,29 +1,23 @@
 import React, { useState } from 'react';
 import { Button, TextInput } from 'react-native-paper';
 import { View, Image } from 'react-native';
-import { useForm, Controller } from 'react-hook-form';
 import { useNavigation } from '@react-navigation/native';
-import { yupResolver } from '@hookform/resolvers/yup';
 
 import { styles } from '../styles';
 import { Input, Text } from 'src/components';
-import { AppColor, AuthRoute, UserValidationSchema } from 'src/common/enums';
-import { ISignInPayload } from 'src/common/types';
+import { AppColor, AuthRoute } from 'src/common/enums';
 
 const LoginForm = () => {
   const [secure, setSecure] = useState(true);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const navigation = useNavigation();
 
-  const onLoginPressed = (credentials: ISignInPayload) => {
+  const onLoginPressed = () => {
     // TODO authentication logic
 
-    console.log('Provided credentials: ', credentials);
-    navigation.navigate(AuthRoute.SIGN_UP);
+    console.log('Provided credentials: ', email, password);
   };
-
-  const { control, handleSubmit } = useForm({
-    resolver: yupResolver(UserValidationSchema),
-  });
 
   return (
     <View style={styles.container}>
@@ -31,66 +25,35 @@ const LoginForm = () => {
         source={require('src/assets/images/Logo.png')}
         style={styles.logo}
       />
-      <Controller
-        control={control}
-        name="email"
-        render={({
-          field: { value, onChange, onBlur },
-          fieldState: { error },
-        }) => (
-          <>
-            <Input
-              style={styles.formField}
-              outlineColor={
-                !error ? AppColor.INPUT_BACKGROUND : AppColor.ACCENT
-              }
-              label="Email"
-              value={value}
-              onChangeText={onChange}
-              onBlur={onBlur}
-            />
-            {error && (
-              <Text style={styles.formFieldErrorMessage}>{error.message}</Text>
-            )}
-          </>
-        )}
+
+      <Input
+        style={styles.formField}
+        outlineColor={AppColor.INPUT_BACKGROUND}
+        label="Email"
+        value={email}
+        onChangeText={text => setEmail(text)}
       />
 
-      <Controller
-        control={control}
-        name="password"
-        render={({
-          field: { value, onChange, onBlur },
-          fieldState: { error },
-        }) => (
-          <>
-            <Input
-              style={styles.formField}
-              outlineColor={
-                !error ? AppColor.INPUT_BACKGROUND : AppColor.ACCENT
-              }
-              label="Password"
-              right={
-                <TextInput.Icon name="eye" onPress={() => setSecure(!secure)} />
-              }
-              value={value}
-              onChangeText={onChange}
-              onBlur={onBlur}
-            />
-            {error && (
-              <Text style={styles.formFieldErrorMessage}>{error.message}</Text>
-            )}
-          </>
-        )}
+      <Input
+        style={styles.formField}
+        outlineColor={AppColor.INPUT_BACKGROUND}
+        label="Password"
+        value={password}
+        secureTextEntry={secure}
+        onChangeText={text => setPassword(text)}
+        right={
+          <TextInput.Icon
+            name="eye"
+            style={styles.formIcon}
+            onPress={() => setSecure(!secure)}
+          />
+        }
       />
 
-      <Button
-        mode="contained"
-        style={styles.btnLogin}
-        onPress={handleSubmit(onLoginPressed)}
-      >
+      <Button mode="contained" style={styles.btnLogin} onPress={onLoginPressed}>
         Log In
       </Button>
+
       <View style={styles.footer}>
         <Text>New to GrowUp?</Text>
         <Text

@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
     backgroundColor: AppColor.ACCENT,
     height: 45,
     justifyContent: 'center',
-    marginTop: '50%',
+    marginTop: '45%',
   },
   logo: {
     width: 163,
@@ -44,6 +44,9 @@ const styles = StyleSheet.create({
   footerRedirect: {
     marginLeft: 5,
     color: AppColor.ACCENT,
+  },
+  formIcon: {
+    marginBottom: 0,
   },
 });
 

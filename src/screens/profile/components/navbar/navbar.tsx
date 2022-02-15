@@ -54,14 +54,14 @@ const Navbar = ({ active, handleClick }: Props) => {
         <ScrollView horizontal={true} ref={scrollRef}>
           {items.map((item, index) => (
             <MainButton
-              key={item.text}
+              key={item.id}
               style={active === index ? styles.active : styles.btn}
               mode={active === index ? ButtonMode.CONTAINED : ButtonMode.TEXT}
               color={active === index ? '' : AppColor.BLACK}
               compact={true}
               onPress={() => handleClick(index)}
             >
-              {item.id}
+              {item.text}
             </MainButton>
           ))}
         </ScrollView>

@@ -1,18 +1,20 @@
 import React, { useCallback, useRef, useState } from 'react';
 import { View } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Divider, FAB } from 'react-native-paper';
 import PagerView from 'react-native-pager-view';
 
 import { Navbar } from 'src/screens/profile/components/navbar';
+import { ProfileRoute } from 'src/common/enums';
 import { Text } from 'src/components';
 import addActions from './add-actions';
-
 import styles from './styles';
 
 type IProfileScreenProps = Record<string, never>;
 
 const ProfileScreen: React.FC<IProfileScreenProps> = () => {
+  const navigation = useNavigation();
   const [addMenuOpen, setAddMenuOpen] = useState<boolean>(false);
   const [active, setActive] = React.useState<number>(0);
   const refPage = useRef<PagerView>(null);
@@ -21,25 +23,33 @@ const ProfileScreen: React.FC<IProfileScreenProps> = () => {
     refPage.current?.setPage(index);
     setActive(index);
   }, []);
-  /*
-  const dispatch = useAppDispatch();
 
   const addFunctions: Record<string, () => void> = {
-    skill: () => ...,
-    location: () => ...,
-    education: () => ...,
-    language: () => ...,
-    careerPoint: () => ...,
-    interest: () => ...,
+    skill: () => {
+      navigation.navigate({
+        name: ProfileRoute.CREATE_SKILL as never,
+        params: {} as never,
+      });
+    },
+    location: () => {
+      /* TODO */
+    },
+    education: () => {
+      /* TODO */
+    },
+    language: () => {
+      /* TODO */
+    },
+    careerPoint: () => {
+      /* TODO */
+    },
+    interest: () => {
+      /* TODO */
+    },
   };
-  */
 
-  const handleItemPress = (name?: string) => {
-    if (!name) {
-      return;
-    }
-
-    // addFunctions[name]();
+  const handleItemPress = (name: string) => {
+    addFunctions[name]();
   };
 
   const handleMenuStateChange = ({ open }: { open: boolean }) => {

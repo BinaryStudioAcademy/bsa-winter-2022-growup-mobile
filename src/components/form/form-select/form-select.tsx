@@ -22,13 +22,11 @@ const FormSelect: React.FC<FormSelectProps> = ({
 
   const error = touched[name] && errors[name];
 
+  const handleChange = (value: unknown) => setFieldValue(name, value);
+
   return (
     <View style={containerStyle}>
-      <Select
-        value={values[name]}
-        setValue={val => setFieldValue(name, val)}
-        {...selectProps}
-      />
+      <Select value={values[name]} setValue={handleChange} {...selectProps} />
       {Boolean(error) && <Text style={styles.error}>{error}</Text>}
     </View>
   );

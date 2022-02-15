@@ -14,6 +14,7 @@ const Select: React.FC<Props> = dropDownProps => {
   const [open, setOpen] = useState<boolean>(false);
 
   const handleShow = () => setOpen(true);
+
   const handleHide = () => setOpen(false);
 
   return (

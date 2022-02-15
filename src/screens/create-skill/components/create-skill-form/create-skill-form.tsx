@@ -6,12 +6,7 @@ import { ButtonMode, HeadingLevel } from 'src/common/enums';
 import { ICreateSkillPayload } from 'src/common/types/skill';
 import { createSkillValidationSchema } from 'src/validation-schemas';
 import { FormInput, FormSelect, Heading, MainButton } from 'src/components';
-
-import {
-  DEFAULT_CREATE_SKILL_PAYLOAD,
-  SKILL_TYPE_OPTIONS,
-} from '../../constants';
-
+import { defaultCreateSkillPayload, skillTypeOptions } from '../../common';
 import styles from '../../styles';
 
 interface Props {
@@ -20,15 +15,16 @@ interface Props {
 }
 
 const CreateSkillForm: React.FC<Props> = ({ onSubmit, onBack }) => {
+  const handleFormSubmit = (values: ICreateSkillPayload) => {
+    onSubmit({ ...values, estimate: Number(values.estimate) });
+  };
+
   return (
-    <Formik<ICreateSkillPayload>
-      initialValues={DEFAULT_CREATE_SKILL_PAYLOAD}
+    <Formik
+      initialValues={defaultCreateSkillPayload}
       validationSchema={createSkillValidationSchema}
       validateOnMount={true}
-      validateOnChange={true}
-      onSubmit={values =>
-        onSubmit({ ...values, estimate: Number(values.estimate) })
-      }
+      onSubmit={handleFormSubmit}
     >
       {({ isValid, handleSubmit }) => (
         <>
@@ -37,7 +33,7 @@ const CreateSkillForm: React.FC<Props> = ({ onSubmit, onBack }) => {
             name="type"
             label="Type"
             placeholder="What kind of skill is it?"
-            list={SKILL_TYPE_OPTIONS}
+            list={skillTypeOptions}
           />
           <FormInput
             name="name"

@@ -1,13 +1,13 @@
 import { SkillType } from '../../common/enums';
 
-const DEFAULT_CREATE_SKILL_PAYLOAD = {
+const defaultCreateSkillPayload = {
   type: SkillType.OTHER,
   name: '',
   description: '',
   estimate: 6.7,
 };
 
-const SKILL_TYPE_OPTIONS = [
+const skillTypeOptions = [
   {
     label: 'Hard skills',
     value: SkillType.HARD_SKILLS,
@@ -22,4 +22,4 @@ const SKILL_TYPE_OPTIONS = [
   },
 ];
 
-export { DEFAULT_CREATE_SKILL_PAYLOAD, SKILL_TYPE_OPTIONS };
+export { defaultCreateSkillPayload, skillTypeOptions };

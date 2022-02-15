@@ -22,11 +22,13 @@ const FormInput: React.FC<FormInputProps> = ({
 
   const error = touched[name] && errors[name];
 
+  const handleChange = (text: string) => setFieldValue(name, text);
+
   return (
     <View style={containerStyle}>
       <Input
         value={values[name]}
-        onChangeText={text => setFieldValue(name, text)}
+        onChangeText={handleChange}
         onBlur={handleBlur(name)}
         {...inputProps}
       />

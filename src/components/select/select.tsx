@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import DropDown from 'react-native-paper-dropdown';
 
 import { AppColor } from 'src/common/enums';
-import styles from './styles';
-import theme from './theme';
+import styles from '../shared/input-style/styles';
+import theme from '../shared/input-style/theme';
 
 type Props = Omit<
   React.ComponentPropsWithoutRef<typeof DropDown>,

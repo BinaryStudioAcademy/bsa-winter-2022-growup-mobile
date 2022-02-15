@@ -16,7 +16,7 @@ interface Props {
 
 const CreateSkillForm: React.FC<Props> = ({ onSubmit, onBack }) => {
   return (
-    <Formik
+    <Formik<ICreateSkillPayload>
       initialValues={DEFAULT_CREATE_SKILL_PAYLOAD}
       validationSchema={createSkillValidationSchema}
       validateOnMount={true}

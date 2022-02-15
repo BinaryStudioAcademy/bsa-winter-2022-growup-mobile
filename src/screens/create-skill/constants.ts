@@ -4,7 +4,7 @@ const DEFAULT_CREATE_SKILL_PAYLOAD = {
   type: SkillType.OTHER,
   name: '',
   description: '',
-  estimate: '',
+  estimate: 6.7,
 };
 
 const SKILL_TYPE_OPTIONS = [

@@ -1,7 +1,6 @@
-import { Theme } from 'react-native-paper/lib/typescript/types';
 import theme from 'src/styles/theme';
 
-const inputTheme: Theme = {
+const inputTheme: ReactNativePaper.Theme = {
   ...theme,
   roundness: 0,
 };

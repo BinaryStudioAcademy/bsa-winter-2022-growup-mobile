@@ -7,6 +7,11 @@ import theme from './theme';
 
 type InputProps = React.ComponentPropsWithoutRef<typeof TextInput>;
 
+export type InputUIProps = Omit<
+  InputProps,
+  'value' | 'onChange' | 'onChangeText'
+>;
+
 const Input: React.FC<InputProps> = ({
   label,
   placeholder,

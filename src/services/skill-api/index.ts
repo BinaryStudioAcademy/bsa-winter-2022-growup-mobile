@@ -17,7 +17,6 @@ class SkillApi {
   }
 
   public create(payload: ICreateSkillPayload): Promise<ISkill> {
-    console.log(JSON.stringify(payload));
     return this.#http.load(`${this.#apiPath}${ApiPath.SKILLS}`, {
       method: HttpMethod.POST,
       contentType: ContentType.JSON,

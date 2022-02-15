@@ -5,11 +5,11 @@ const styles = StyleSheet.create({
   card: {
     borderWidth: 1,
     borderColor: AppColor.SHADOW,
+    borderRadius: 10,
   },
   header: {
     paddingVertical: 20,
     paddingHorizontal: 27,
-    gap: 5,
   },
   footer: {
     paddingVertical: 15,
@@ -21,17 +21,25 @@ const styles = StyleSheet.create({
   },
   keyvalue: {
     flexDirection: 'row',
-    gap: 7,
+    paddingTop: 5,
     fontSize: 14,
   },
-  icons: {
-    flexDirection: 'row',
-    gap: 25,
+  key: {
+    paddingRight: 7,
   },
   date: {
     flexDirection: 'row',
-    gap: 7,
+    alignItems: 'center',
     fontSize: 12,
+  },
+  icons: {
+    flexDirection: 'row',
+  },
+  calendarIcon: {
+    paddingRight: 7,
+  },
+  editIcon: {
+    paddingRight: 25,
   },
 });
 

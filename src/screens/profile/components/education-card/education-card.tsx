@@ -26,13 +26,16 @@ const EducationCard: React.FC<Props> = ({
   onDelete,
 }) => {
   const dateString = useMemo(() => {
+    const MONTHS_IN_YEAR = 12;
+
     const startDay = dayjs(startDate);
     const endDay = dayjs(endDate);
 
-    const difference = startDay.diff(endDay);
-    const differenceDay = dayjs(difference);
+    const differenceYears = endDay.diff(startDay, 'years');
+    const extraMonths = differenceYears * MONTHS_IN_YEAR;
+    const differenceMonths = endDay.diff(startDay, 'months') - extraMonths;
 
-    return differenceDay.format('YY yr MM mo');
+    return `${differenceYears} yr ${differenceMonths} mo`;
   }, [startDate, endDate]);
 
   const handleEdit = () => {
@@ -52,21 +55,27 @@ const EducationCard: React.FC<Props> = ({
       <View style={styles.header}>
         <Heading level={HeadingLevel.H5}>{type}</Heading>
         <View style={styles.keyvalue}>
-          <Text appearance={TextAppearance.HINT}>University</Text>
+          <Text style={styles.key} appearance={TextAppearance.HINT}>
+            University
+          </Text>
           <Text>{university}</Text>
         </View>
         <View style={styles.keyvalue}>
-          <Text appearance={TextAppearance.HINT}>Degree</Text>
+          <Text style={styles.key} appearance={TextAppearance.HINT}>
+            Degree
+          </Text>
           <Text>{degree}</Text>
         </View>
       </View>
       <View style={styles.footer}>
         <View style={styles.date}>
-          <CalendarIcon color={AppColor.HINT} size={12} />
+          <View style={styles.calendarIcon}>
+            <CalendarIcon color={AppColor.HINT} size={12} />
+          </View>
           <Text appearance={TextAppearance.HINT}>{dateString}</Text>
         </View>
         <View style={styles.icons}>
-          <TouchableOpacity onPress={handleEdit}>
+          <TouchableOpacity onPress={handleEdit} style={styles.editIcon}>
             <PencilIcon color={AppColor.PRIMARY} size={14} />
           </TouchableOpacity>
           <TouchableOpacity onPress={handleDelete}>

@@ -1,9 +1,9 @@
 enum OnboardingRoute {
   ONBOARDING = 'Onboarding',
-  ADD_EXPERIENCE = 'Add experience',
-  ADD_EDUCATION = 'Add education',
-  ADD_LANGUAGE = 'Add language',
-  ADD_LOCATION = 'Add location',
+  ADD_EXPERIENCE = 'AddExperience',
+  ADD_EDUCATION = 'AddEducation',
+  ADD_LANGUAGE = 'AddLanguage',
+  ADD_LOCATION = 'AddLocation',
 }
 
 export { OnboardingRoute };

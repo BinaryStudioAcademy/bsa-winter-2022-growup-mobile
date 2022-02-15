@@ -1,22 +1,18 @@
 import { useNavigation } from '@react-navigation/native';
 import React, { useCallback, useState } from 'react';
 import { ScrollView, View } from 'react-native';
-import { en, registerTranslation } from 'react-native-paper-dates';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { ButtonMode, HeadingLevel } from 'src/common/enums';
 import { DateInput, Heading, Input, MainButton } from 'src/components';
 import styles from './styles';
-
-type AddEducationScreenProps = Record<string, never>;
 
 type Period = {
   startDate: Date | undefined;
   endDate: Date | undefined;
 };
 
-registerTranslation('en', en);
-
-const AddEducationScreen: React.FC<AddEducationScreenProps> = () => {
+const AddEducationScreen: React.FC = () => {
   const navigation = useNavigation();
   const [period, setPeriod] = useState<Period>({
     startDate: undefined,
@@ -27,8 +23,22 @@ const AddEducationScreen: React.FC<AddEducationScreenProps> = () => {
     navigation.goBack();
   }, [navigation]);
 
+  const handleStartDateChange = useCallback(
+    (date: Date | undefined) => {
+      setPeriod(curr => ({ ...curr, startDate: date }));
+    },
+    [setPeriod]
+  );
+
+  const handleEndDateChange = useCallback(
+    (date: Date | undefined) => {
+      setPeriod(curr => ({ ...curr, endDate: date }));
+    },
+    [setPeriod]
+  );
+
   return (
-    <View style={styles.screen}>
+    <SafeAreaView style={styles.screen}>
       <ScrollView showsVerticalScrollIndicator={false}>
         <View>
           <View style={styles.inputContent}>
@@ -55,15 +65,13 @@ const AddEducationScreen: React.FC<AddEducationScreenProps> = () => {
             </Heading>
             <DateInput
               label="Start Date"
-              onChange={date => setPeriod(curr => ({ ...curr, endDate: date }))}
+              onChange={handleStartDateChange}
               value={period.startDate}
               locale="en"
               inputMode="start"
             />
             <DateInput
-              onChange={date =>
-                setPeriod(curr => ({ ...curr, startDate: date }))
-              }
+              onChange={handleEndDateChange}
               value={period.endDate}
               locale="en"
               inputMode="start"
@@ -82,7 +90,7 @@ const AddEducationScreen: React.FC<AddEducationScreenProps> = () => {
           <MainButton mode={ButtonMode.CONTAINED}>Add</MainButton>
         </View>
       </ScrollView>
-    </View>
+    </SafeAreaView>
   );
 };
 

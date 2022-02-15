@@ -5,15 +5,21 @@ import { AppColor } from 'src/common/enums';
 const styles = StyleSheet.create({
   screen: {
     backgroundColor: AppColor.WHITE,
+    flex: 1,
+    justifyContent: 'space-between',
   },
   content: {
-    height: '83%',
     width: '100%',
+    height: '80%',
   },
   buttonContainer: {
     width: '100%',
-    height: '17%',
+    marginBottom: 15,
     paddingHorizontal: 20,
+  },
+  completeButton: {
+    borderWidth: 2,
+    borderColor: AppColor.ACCENT,
   },
 });
 

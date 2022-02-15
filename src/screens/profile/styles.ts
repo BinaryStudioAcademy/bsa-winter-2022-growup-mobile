@@ -2,7 +2,7 @@ import { StyleSheet } from 'react-native';
 
 import { AppColor } from 'src/common/enums';
 
-export const styles = StyleSheet.create({
+const styles = StyleSheet.create({
   fullHeight: {
     height: '100%',
   },
@@ -30,3 +30,5 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
+
+export default styles;

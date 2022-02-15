@@ -8,7 +8,7 @@ import { Navbar } from 'src/screens/profile/components/navbar';
 import { Text } from 'src/components';
 import addActions from './add-actions';
 
-import { styles } from './styles';
+import styles from './styles';
 
 type IProfileScreenProps = Record<string, never>;
 
@@ -17,9 +17,9 @@ const ProfileScreen: React.FC<IProfileScreenProps> = () => {
   const [active, setActive] = React.useState<number>(0);
   const refPage = useRef<PagerView>(null);
 
-  const handleClick = useCallback((ind: number) => {
-    refPage.current?.setPage(ind);
-    setActive(ind);
+  const handleClick = useCallback((index: number) => {
+    refPage.current?.setPage(index);
+    setActive(index);
   }, []);
   /*
   const dispatch = useAppDispatch();
@@ -58,7 +58,7 @@ const ProfileScreen: React.FC<IProfileScreenProps> = () => {
             onPageSelected={({ nativeEvent }) =>
               setActive(nativeEvent.position)
             }
-            orientation={'horizontal'}
+            orientation="horizontal"
             style={styles.swipeWrapper}
           >
             <View style={styles.swiperItem} collapsable={false}>

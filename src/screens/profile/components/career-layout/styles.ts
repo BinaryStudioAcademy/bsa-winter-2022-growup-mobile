@@ -6,21 +6,21 @@ const LIGHTGREY = '#E1DBEA';
 
 const styles = StyleSheet.create({
   careerWrapper: {
-    padding: 20,
+    margin: 20,
     flexDirection: 'row',
+    justifyContent: 'space-between',
   },
   cards: {
     flex: 1,
     marginRight: 15,
   },
   careerItem: {
-    marginTop: 20,
     marginLeft: 15,
     width: '100%',
   },
   divider: {
     width: 1,
-    height: '95%',
+    height: '90%',
     backgroundColor: LIGHTGREY,
     marginTop: 25,
   },
@@ -37,10 +37,6 @@ const styles = StyleSheet.create({
   cardTitle: {
     marginTop: 10,
     marginBottom: 10,
-    fontSize: 18,
-    lineHeight: 24,
-    fontFamily: 'NunitoSans',
-    fontWeight: '700',
   },
   cardActions: {
     marginLeft: 15,
@@ -52,37 +48,28 @@ const styles = StyleSheet.create({
   actionsBtn: {
     flexDirection: 'row',
   },
-  yearWrapper: {
-    position: 'relative',
-  },
   careerYear: {
-    paddingTop: 5,
-    lineHeight: 12,
-    paddingBottom: 5,
+    marginTop: 5,
+    lineHeight: 16,
+    marginBottom: 5,
     color: AppColor.SECONDARY,
-    fontFamily: 'NunitoSans',
-    fontWeight: 'normal',
+    fontSize: 12,
   },
   badge: {
     backgroundColor: AppColor.SECONDARY,
-    position: 'absolute',
     left: -19,
-    top: 3,
+    top: 17,
     width: 8,
     height: 8,
     borderRadius: 5,
   },
   hint: {
     color: AppColor.HINT,
-    fontFamily: 'NunitoSans',
-    fontWeight: '600',
-    lineHeight: 19,
+    marginRight: 5,
   },
   text: {
-    fontFamily: 'NunitoSans',
-    fontWeight: '600',
-    lineHeight: 19,
-    marginBottom: 5,
+    flexDirection: 'row',
+    marginBottom: 10,
   },
 });
 

@@ -7,27 +7,22 @@ import { AppColor, HeadingLevel } from 'src/common/enums';
 
 import styles from './styles';
 
-type ICareerLayoutProps = {
-  year?: string | number;
-  title: string;
-  fullName: string;
-  role: string;
-  company: string;
-  experience: string;
-  isEdit: boolean;
-};
+// type ICareerItemProps = {
+//   id: number;
+//   startDate: Date;
+//   endDate: Date | null;
+//   userId: number;
+//   position: string;
+//   company: string;
+// };
 
-//example
-const isEdit = (bool: boolean) => {
-  return bool;
-};
-
-const CareerLayout: React.FC<ICareerLayoutProps> = () => (
+// const CareerLayout: React.FC<ICareerLayoutProps> = () => (
+const CareerLayout = () => (
   <View style={styles.careerWrapper}>
     <View style={styles.divider} />
     <View style={styles.cards}>
       <View style={styles.careerItem}>
-        <View style={styles.yearWrapper}>
+        <View>
           <View style={styles.badge} />
           <Text style={styles.careerYear}>2023</Text>
         </View>
@@ -36,12 +31,14 @@ const CareerLayout: React.FC<ICareerLayoutProps> = () => (
             <Heading level={HeadingLevel.H5} style={styles.cardTitle}>
               Fullstack JS Developer
             </Heading>
-            <Text style={styles.text}>
-              <Text style={styles.hint}>Role</Text> Fullstack JS Developer
-            </Text>
-            <Text style={styles.text}>
-              <Text style={styles.hint}>Company</Text> Binary Studio
-            </Text>
+            <View style={styles.text}>
+              <Text style={styles.hint}>Role</Text>
+              <Text>Fullstack JS Developer</Text>
+            </View>
+            <View style={styles.text}>
+              <Text style={styles.hint}>Company</Text>
+              <Text>Binary Studio</Text>
+            </View>
           </Card.Content>
           <Divider />
           <Card.Actions style={styles.cardActions}>
@@ -52,25 +49,19 @@ const CareerLayout: React.FC<ICareerLayoutProps> = () => (
             >
               4 yr 5 mo
             </MainButton>
-            {isEdit(true) && (
-              <View style={styles.actionsBtn}>
-                <IconButton
-                  icon="lead-pencil"
-                  color={AppColor.PRIMARY}
-                  size={15}
-                />
-                <IconButton
-                  icon="trash-can"
-                  color={AppColor.PRIMARY}
-                  size={15}
-                />
-              </View>
-            )}
+            <View style={styles.actionsBtn}>
+              <IconButton
+                icon="lead-pencil"
+                color={AppColor.PRIMARY}
+                size={18}
+              />
+              <IconButton icon="trash-can" color={AppColor.PRIMARY} size={18} />
+            </View>
           </Card.Actions>
         </Card>
       </View>
       <View style={styles.careerItem}>
-        <View style={styles.yearWrapper}>
+        <View>
           <View style={styles.badge} />
           <Text style={styles.careerYear}>2023</Text>
         </View>
@@ -79,12 +70,14 @@ const CareerLayout: React.FC<ICareerLayoutProps> = () => (
             <Heading level={HeadingLevel.H5} style={styles.cardTitle}>
               Fullstack JS Developer
             </Heading>
-            <Text style={styles.text}>
-              <Text style={styles.hint}>Role</Text> Fullstack JS Developer
-            </Text>
-            <Text style={styles.text}>
-              <Text style={styles.hint}>Company</Text> Binary Studio
-            </Text>
+            <View style={styles.text}>
+              <Text style={styles.hint}>Role</Text>
+              <Text>Fullstack JS Developer</Text>
+            </View>
+            <View style={styles.text}>
+              <Text style={styles.hint}>Company</Text>
+              <Text>Binary Studio</Text>
+            </View>
           </Card.Content>
           <Divider />
           <Card.Actions style={styles.cardActions}>
@@ -95,20 +88,14 @@ const CareerLayout: React.FC<ICareerLayoutProps> = () => (
             >
               4 yr 5 mo
             </MainButton>
-            {isEdit(false) && (
-              <View style={styles.actionsBtn}>
-                <IconButton
-                  icon="lead-pencil"
-                  color={AppColor.PRIMARY}
-                  size={15}
-                />
-                <IconButton
-                  icon="trash-can"
-                  color={AppColor.PRIMARY}
-                  size={15}
-                />
-              </View>
-            )}
+            <View style={styles.actionsBtn}>
+              <IconButton
+                icon="lead-pencil"
+                color={AppColor.PRIMARY}
+                size={18}
+              />
+              <IconButton icon="trash-can" color={AppColor.PRIMARY} size={18} />
+            </View>
           </Card.Actions>
         </Card>
       </View>

@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-const LEVEL_COLOR = '#5C5D5F';
+import { AppColor } from 'src/common/enums';
 
 const styles = StyleSheet.create({
   container: {
@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'transparent',
   },
   levelText: {
-    color: LEVEL_COLOR,
+    color: AppColor.LEVEL_COLOR,
   },
 });
 

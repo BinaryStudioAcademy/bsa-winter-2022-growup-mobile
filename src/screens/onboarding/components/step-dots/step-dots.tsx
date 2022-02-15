@@ -4,16 +4,24 @@ import { View } from 'react-native';
 import styles from './styles';
 
 type StepDotsProps = {
-  activeDot: number;
+  activeIndex: number;
+  count: number;
 };
 
-const StepDots: React.FC<StepDotsProps> = ({ activeDot }) => {
+const StepDots: React.FC<StepDotsProps> = ({ activeIndex, count }) => {
+  const getActiveStyle = (dotIndex: number) => {
+    if (activeIndex === dotIndex) {
+      return styles.activeDot;
+    }
+
+    return {};
+  };
+
   return (
     <View style={styles.dotsContainer}>
-      <View style={[styles.dot, activeDot === 0 && styles.activeDot]} />
-      <View style={[styles.dot, activeDot === 1 && styles.activeDot]} />
-      <View style={[styles.dot, activeDot === 2 && styles.activeDot]} />
-      <View style={[styles.dot, activeDot === 3 && styles.activeDot]} />
+      {[...Array(count)].map((_, index) => (
+        <View key={index} style={[styles.dot, getActiveStyle(index)]} />
+      ))}
     </View>
   );
 };

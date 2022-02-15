@@ -1,13 +1,13 @@
 import { StyleSheet } from 'react-native';
 
 import { AppColor } from 'src/common/enums';
+import { DEFAULT_SCREEN_PADDING } from 'src/styles';
 
 const styles = StyleSheet.create({
   screen: {
-    padding: 20,
+    padding: DEFAULT_SCREEN_PADDING,
     backgroundColor: AppColor.WHITE,
     justifyContent: 'space-between',
-    height: '100%',
     flex: 1,
   },
   inputContent: {

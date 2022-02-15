@@ -1,16 +1,21 @@
 import { useNavigation } from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import React, { useCallback } from 'react';
 import { ScrollView, View } from 'react-native';
 
 import { HeadingLevel, OnboardingRoute } from 'src/common/enums';
+import { OnboardingStackParamList } from 'src/common/types';
 import { Heading } from 'src/components';
 import { AddButton } from '..';
 import styles from './styles';
 
-type EducationContentScreenProps = Record<string, never>;
+type EducationContentScreenProps = NativeStackNavigationProp<
+  OnboardingStackParamList,
+  OnboardingRoute.ADD_EXPERIENCE
+>;
 
-const EducationContent: React.FC<EducationContentScreenProps> = () => {
-  const navigation = useNavigation();
+const EducationContent: React.FC = () => {
+  const navigation = useNavigation<EducationContentScreenProps>();
 
   const handleAddEducation = useCallback(() => {
     navigation.navigate(OnboardingRoute.ADD_EDUCATION);

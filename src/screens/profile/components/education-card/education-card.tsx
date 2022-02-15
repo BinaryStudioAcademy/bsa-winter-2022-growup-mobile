@@ -1,6 +1,6 @@
 import dayjs from 'dayjs';
-import React from 'react';
-import { View } from 'react-native';
+import React, { useMemo } from 'react';
+import { TouchableOpacity, View } from 'react-native';
 
 import {
   CalendarIcon,
@@ -11,32 +11,67 @@ import {
 } from 'src/components';
 
 import { AppColor, HeadingLevel, TextAppearance } from 'src/common/enums';
+import { IEducation } from 'src/common/types';
 import styles from './styles';
 
-const EducationCard: React.FC = () => {
+interface Props {
+  education: IEducation;
+  onEdit?: () => void;
+  onDelete?: () => void;
+}
+
+const EducationCard: React.FC<Props> = ({
+  education: { type, university, degree, startDate, endDate },
+  onEdit,
+  onDelete,
+}) => {
+  const dateString = useMemo(() => {
+    const startDay = dayjs(startDate);
+    const endDay = dayjs(endDate);
+
+    const difference = startDay.diff(endDay);
+    const differenceDay = dayjs(difference);
+
+    return differenceDay.format('YY yr MM mo');
+  }, [startDate, endDate]);
+
+  const handleEdit = () => {
+    if (onEdit) {
+      onEdit();
+    }
+  };
+
+  const handleDelete = () => {
+    if (onDelete) {
+      onDelete();
+    }
+  };
+
   return (
     <View style={styles.card}>
       <View style={styles.header}>
-        <Heading level={HeadingLevel.H5}></Heading>
+        <Heading level={HeadingLevel.H5}>{type}</Heading>
         <View style={styles.keyvalue}>
           <Text appearance={TextAppearance.HINT}>University</Text>
-          <Text></Text>
+          <Text>{university}</Text>
         </View>
         <View style={styles.keyvalue}>
           <Text appearance={TextAppearance.HINT}>Degree</Text>
-          <Text></Text>
+          <Text>{degree}</Text>
         </View>
       </View>
       <View style={styles.footer}>
         <View style={styles.date}>
           <CalendarIcon color={AppColor.HINT} size={12} />
-          <Text appearance={TextAppearance.HINT}>
-            {dayjs(dayjs().diff()).format('YY yr MM mo')}
-          </Text>
+          <Text appearance={TextAppearance.HINT}>{dateString}</Text>
         </View>
         <View style={styles.icons}>
-          <PencilIcon color={AppColor.PRIMARY} size={14} />
-          <DeleteIcon color={AppColor.PRIMARY} size={14} />
+          <TouchableOpacity onPress={handleEdit}>
+            <PencilIcon color={AppColor.PRIMARY} size={14} />
+          </TouchableOpacity>
+          <TouchableOpacity onPress={handleDelete}>
+            <DeleteIcon color={AppColor.PRIMARY} size={14} />
+          </TouchableOpacity>
         </View>
       </View>
     </View>

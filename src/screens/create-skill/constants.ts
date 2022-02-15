@@ -1,8 +1,10 @@
 import { SkillType } from '../../common/enums';
-import { ICreateSkillPayload } from '../../common/types';
 
-const DEFAULT_CREATE_SKILL_PAYLOAD: Partial<ICreateSkillPayload> = {
+const DEFAULT_CREATE_SKILL_PAYLOAD = {
   type: SkillType.OTHER,
+  name: '',
+  description: '',
+  estimate: '',
 };
 
 const SKILL_TYPE_OPTIONS = [

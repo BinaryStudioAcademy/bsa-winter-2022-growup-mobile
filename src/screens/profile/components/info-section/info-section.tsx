@@ -6,20 +6,23 @@ import { Tag, Text } from 'src/components';
 import styles from './styles';
 
 type InfoSectionProps = {
-  infoHeader: string;
-  infoTags: string[];
+  header: string;
+  tags: string[];
 };
 
-const InfoSection: React.FC<InfoSectionProps> = ({ infoHeader, infoTags }) => {
+const InfoSection: React.FC<InfoSectionProps> = ({ header, tags }) => {
   return (
     <View>
-      <Text style={styles.heading}>{infoHeader}</Text>
+      <Text style={styles.heading}>{header}</Text>
       <View style={styles.tagsContent}>
-        {infoTags.map((item, index) => {
+        {tags.map((item, index) => {
           return (
-            <Tag style={styles.tag} tagType={TagType.COMMON} key={index}>
-              {item}
-            </Tag>
+            <Tag
+              style={styles.tag}
+              tagType={TagType.COMMON}
+              key={index}
+              text={item}
+            />
           );
         })}
       </View>

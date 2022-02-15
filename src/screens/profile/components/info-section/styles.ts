@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
   heading: {
     marginBottom: 10,
     marginLeft: 5,
-    fontFamily: 'NunitoSans-Bold',
+    fontWeight: '700',
   },
 });
 

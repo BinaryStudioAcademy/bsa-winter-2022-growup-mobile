@@ -2,7 +2,7 @@ import React from 'react';
 import { DatePickerInput } from 'react-native-paper-dates';
 
 import { AppColor } from 'src/common/enums';
-import styles from './styles';
+import styles from '../shared/input-style/styles';
 
 type DateInputProps = React.ComponentPropsWithoutRef<typeof DatePickerInput>;
 

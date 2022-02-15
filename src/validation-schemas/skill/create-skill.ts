@@ -3,8 +3,7 @@ import { SkillType } from 'src/common/enums';
 
 const createSkillValidationSchema = yup.object({
   type: yup
-    .number()
-    .integer()
+    .string()
     .oneOf(Object.values(SkillType))
     .required('Type must be selected'),
   name: yup.string().required('Name must not be empty'),

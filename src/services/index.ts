@@ -3,9 +3,10 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { StorageService } from './storage';
 import { Http } from './http';
-import { AuthApi } from './authApi';
+import { AuthApi } from './auth-api';
 
 import { API_ORIGIN_URL, API_PREFIX } from 'src/common/constants';
+import { SkillApi } from './skill-api';
 
 const storage = new StorageService({
   storage: AsyncStorage,
@@ -24,4 +25,9 @@ const authApi = new AuthApi({
   apiPath: `${API_ORIGIN_URL}${API_PREFIX}`,
 });
 
-export { storage, secureStorage, authApi };
+const skillApi = new SkillApi({
+  http,
+  apiPath: `${API_ORIGIN_URL}${API_PREFIX}`,
+});
+
+export { storage, secureStorage, authApi, skillApi };

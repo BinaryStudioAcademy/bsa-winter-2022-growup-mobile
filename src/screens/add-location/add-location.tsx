@@ -7,9 +7,7 @@ import { ButtonMode, HeadingLevel } from 'src/common/enums';
 import { Heading, Input, MainButton } from 'src/components';
 import styles from './styles';
 
-type AddLocationScreenProps = Record<string, never>;
-
-const AddLocationScreen: React.FC<AddLocationScreenProps> = () => {
+const AddLocationScreen: React.FC = () => {
   const navigation = useNavigation();
 
   const handleCancel = useCallback(() => {

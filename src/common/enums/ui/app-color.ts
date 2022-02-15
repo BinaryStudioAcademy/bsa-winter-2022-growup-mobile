@@ -7,6 +7,7 @@ enum AppColor {
   HINT = '#808C9C',
   INPUT_BACKGROUND = '#F0F3F9',
   NAVIGATION_SECONDARY = '#796EFC',
+  GREY = '#EBEBEB',
 }
 
 export { AppColor };

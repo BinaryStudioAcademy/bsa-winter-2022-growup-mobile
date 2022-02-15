@@ -1,4 +1,6 @@
 import { StyleSheet } from 'react-native';
+
+import { AppColor } from 'src/common/enums';
 import { DEFAULT_SCREEN_PADDING } from 'src/styles';
 
 const styles = StyleSheet.create({
@@ -34,6 +36,9 @@ const styles = StyleSheet.create({
   },
   tabButtonLabel: {
     fontSize: 15,
+  },
+  userAvatar: {
+    backgroundColor: AppColor.GREY,
   },
 });
 

@@ -1,18 +1,40 @@
 import React from 'react';
 import { View } from 'react-native';
+
 import { TagType } from 'src/common/enums';
+import { Tag, Text } from 'src/components';
+import styles from './styles';
 
-import { Tag } from 'src/components';
+type SkillsSectionProps = {
+  skillHeader: string;
+  skills: string[];
+  isHintHeader?: boolean;
+};
 
-type IOpportunitiesScreenProps = Record<string, never>;
-
-const SkillsSection: React.FC<IOpportunitiesScreenProps> = () => {
+const SkillsSection: React.FC<SkillsSectionProps> = ({
+  skillHeader,
+  skills,
+  isHintHeader = false,
+}) => {
   return (
     <View>
-      <Tag tagType={TagType.ATTENTION}>DOM manipilation</Tag>
-      <Tag hasIcon={true} tagType={TagType.COMMON}>
-        DOM manipilation
-      </Tag>
+      <Text style={[styles.heading, isHintHeader && styles.hintHeader]}>
+        {skillHeader}
+      </Text>
+      <View style={styles.tagsContent}>
+        {skills.map((item, index) => {
+          return (
+            <Tag
+              style={styles.tag}
+              tagType={TagType.COMMON}
+              key={index}
+              hasIcon={true}
+            >
+              {item}
+            </Tag>
+          );
+        })}
+      </View>
     </View>
   );
 };

@@ -1,5 +1,7 @@
 import { StyleSheet } from 'react-native';
 
+const LEVEL_COLOR = '#5C5D5F';
+
 const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
@@ -11,27 +13,23 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     marginBottom: 15,
   },
-  info: {
-    position: 'relative',
-    paddingBottom: 32,
-  },
   name: {
     marginBottom: 8,
-    fontFamily: 'NunitoSans',
-    fontWeight: '700',
   },
   role: {
-    fontFamily: 'NunitoSans',
+    fontSize: 16,
+    marginBottom: 8,
   },
   levelWrapper: {
     flexDirection: 'row',
-    position: 'absolute',
     alignItems: 'center',
-    bottom: 0,
     left: -5,
   },
   levelIcon: {
     backgroundColor: 'transparent',
+  },
+  levelText: {
+    color: LEVEL_COLOR,
   },
 });
 

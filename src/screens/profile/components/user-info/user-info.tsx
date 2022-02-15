@@ -17,13 +17,11 @@ const UserInfo = () => {
         }}
         style={styles.avatar}
       />
-      <View style={styles.info}>
+      <View>
         <Heading level={HeadingLevel.H4} style={styles.name}>
           Cristofer Westervelt
         </Heading>
-        <Heading level={HeadingLevel.H6} style={styles.role}>
-          Fullstack JS Engineer
-        </Heading>
+        <Text style={styles.role}>Fullstack JS Engineer</Text>
         <View style={styles.levelWrapper}>
           <Avatar.Icon
             size={24}
@@ -31,7 +29,7 @@ const UserInfo = () => {
             style={styles.levelIcon}
             icon="shield-check"
           />
-          <Text>Level 2</Text>
+          <Text style={styles.levelText}>Level 2</Text>
         </View>
       </View>
     </View>

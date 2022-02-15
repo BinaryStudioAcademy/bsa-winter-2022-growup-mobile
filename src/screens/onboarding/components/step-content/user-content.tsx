@@ -2,22 +2,22 @@ import React from 'react';
 import { View } from 'react-native';
 import { Avatar } from 'react-native-paper';
 
-import { HeadingLevel } from 'src/common/enums';
+import { AppColor, HeadingLevel } from 'src/common/enums';
 import { Heading, Input } from 'src/components';
 import styles from './styles';
 
-type UserContentScreenProps = Record<string, never>;
-
-const UserContent: React.FC<UserContentScreenProps> = () => {
+const UserContent: React.FC = () => {
   return (
     <View style={styles.content}>
       <Heading style={styles.header} level={HeadingLevel.H4}>
         Tell Us About Yourself
       </Heading>
       <View style={styles.imageContainer}>
-        <Avatar.Image
+        <Avatar.Icon
+          style={styles.userAvatar}
           size={150}
-          source={require('src/assets/images/user-icon.jpeg')}
+          color={AppColor.WHITE}
+          icon="account"
         />
       </View>
       <Input

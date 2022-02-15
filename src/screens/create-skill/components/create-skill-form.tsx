@@ -4,9 +4,9 @@ import { View } from 'react-native';
 
 import { ButtonMode, HeadingLevel } from 'src/common/enums';
 import { ICreateSkillPayload } from 'src/common/types/skill';
-import { FormInput, Heading, MainButton } from 'src/components';
+import { FormInput, FormSelect, Heading, MainButton } from 'src/components';
 import { createSkillValidationSchema } from 'src/validation-schemas';
-import { DEFAULT_CREATE_SKILL_PAYLOAD } from '../constants';
+import { DEFAULT_CREATE_SKILL_PAYLOAD, SKILL_TYPE_OPTIONS } from '../constants';
 import styles from '../styles';
 
 interface Props {
@@ -27,21 +27,12 @@ const CreateSkillForm: React.FC<Props> = ({ onSubmit, onBack }) => {
       {({ isValid, handleSubmit }) => (
         <>
           <Heading level={HeadingLevel.H4}>Create skill</Heading>
-          {/* <FormField<number>
+          <FormSelect
             name="type"
-            formikProps={formikProps}
-            valueFromString={str => Number(str)}
-          >
-            {({ value, handleChange }) => (
-              <Select
-                label="Type"
-                placeholder="What kind of skill is it?"
-                value={value}
-                setValue={handleChange}
-                list={SKILL_TYPE_OPTIONS}
-              />
-            )}
-          </FormField> */}
+            label="Type"
+            placeholder="What kind of skill is it?"
+            list={SKILL_TYPE_OPTIONS}
+          />
           <FormInput
             name="name"
             label="Name"

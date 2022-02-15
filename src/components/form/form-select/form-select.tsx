@@ -2,37 +2,36 @@ import React from 'react';
 import { StyleProp, View, ViewStyle } from 'react-native';
 import { FormikValues, useFormikContext } from 'formik';
 
-import { Input, Text } from 'src/components';
+import { Select, Text } from 'src/components';
 import styles from '../styles';
 
-type InputProps = React.ComponentPropsWithoutRef<typeof Input>;
+type SelectProps = React.ComponentPropsWithoutRef<typeof Select>;
 
-type FormInputProps = Omit<InputProps, 'value' | 'onChangeText' | 'onBlur'> & {
+type FormSelectProps = Omit<SelectProps, 'value' | 'setValue'> & {
   name: string;
   containerStyle?: StyleProp<ViewStyle>;
 };
 
-const FormInput: React.FC<FormInputProps> = ({
+const FormSelect: React.FC<FormSelectProps> = ({
   name,
   containerStyle,
-  ...inputProps
+  ...selectProps
 }) => {
-  const { values, errors, touched, handleChange, handleBlur } =
+  const { values, errors, touched, handleChange } =
     useFormikContext<FormikValues>();
 
   const error = touched[name] && errors[name];
 
   return (
     <View style={containerStyle}>
-      <Input
+      <Select
         value={values[name]}
-        onChangeText={handleChange(name)}
-        onBlur={handleBlur(name)}
-        {...inputProps}
+        setValue={handleChange(name)}
+        {...selectProps}
       />
       {Boolean(error) && <Text style={styles.error}>{error}</Text>}
     </View>
   );
 };
 
-export default FormInput;
+export default FormSelect;

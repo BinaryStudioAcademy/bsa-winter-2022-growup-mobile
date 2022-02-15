@@ -1,12 +1,11 @@
 import * as yup from 'yup';
 import { SkillType } from 'src/common/enums';
-import { getNumericEnumValues } from 'src/helpers';
 
 const createSkillValidationSchema = yup.object({
   type: yup
     .number()
     .integer()
-    .oneOf(getNumericEnumValues(SkillType))
+    .oneOf(Object.values(SkillType))
     .required('Type must be selected'),
   name: yup.string().required('Name must not be empty'),
   description: yup.string(),

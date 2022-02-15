@@ -12,6 +12,7 @@ const styles = StyleSheet.create({
   },
   inputContent: {
     marginBottom: 30,
+    paddingHorizontal: 10,
   },
   buttonContainer: {
     paddingHorizontal: 20,

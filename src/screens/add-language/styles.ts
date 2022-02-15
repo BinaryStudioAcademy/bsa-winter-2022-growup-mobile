@@ -14,11 +14,12 @@ const styles = StyleSheet.create({
     marginBottom: 30,
   },
   buttonContainer: {
-    height: '15%',
-    justifyContent: 'space-between',
     paddingHorizontal: 20,
   },
   heading: {
+    marginBottom: 10,
+  },
+  button: {
     marginBottom: 10,
   },
 });

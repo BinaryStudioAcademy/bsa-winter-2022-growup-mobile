@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+import { DEFAULT_SCREEN_PADDING } from 'src/styles';
 
 const styles = StyleSheet.create({
   input: {
@@ -7,9 +8,8 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
   },
   content: {
-    width: '90%',
-    alignSelf: 'center',
-    marginVertical: 20,
+    flex: 1,
+    padding: DEFAULT_SCREEN_PADDING,
   },
   header: {
     alignSelf: 'center',

@@ -1,19 +1,21 @@
 import { useNavigation } from '@react-navigation/core';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import React, { useCallback } from 'react';
 import { View } from 'react-native';
-import { en, registerTranslation } from 'react-native-paper-dates';
 
 import { HeadingLevel, IconName, OnboardingRoute } from 'src/common/enums';
+import { OnboardingStackParamList } from 'src/common/types';
 import { Heading } from 'src/components';
 import { AddButton } from '..';
 import styles from './styles';
 
-type InterestingContentScreenProps = Record<string, never>;
+type InterestingContentScreenProps = NativeStackNavigationProp<
+  OnboardingStackParamList,
+  OnboardingRoute.ADD_LANGUAGE | OnboardingRoute.ADD_LOCATION
+>;
 
-registerTranslation('en', en);
-
-const InterestingContent: React.FC<InterestingContentScreenProps> = () => {
-  const navigation = useNavigation();
+const InterestingContent: React.FC = () => {
+  const navigation = useNavigation<InterestingContentScreenProps>();
 
   const handleAddLanguage = useCallback(() => {
     navigation.navigate(OnboardingRoute.ADD_LANGUAGE);

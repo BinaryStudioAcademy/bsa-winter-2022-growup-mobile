@@ -12,14 +12,19 @@ import {
   AddLocationScreen,
   OnboardingScreen,
 } from 'src/screens';
+import { OnboardingStackParamList } from 'src/common/types';
 
-const Stack = createNativeStackNavigator();
+const Stack = createNativeStackNavigator<OnboardingStackParamList>();
 
 const screenOptions: NativeStackNavigationOptions = {
   headerTitleAlign: 'center',
   headerTitleStyle: {
     fontFamily: 'NunitoSans-SemiBold',
   },
+};
+
+const addScreenGroupOptions: NativeStackNavigationOptions = {
+  presentation: 'modal',
 };
 
 const OnboardingNavigation = () => {
@@ -29,22 +34,28 @@ const OnboardingNavigation = () => {
         name={OnboardingRoute.ONBOARDING}
         component={OnboardingScreen}
       />
-      <Stack.Screen
-        name={OnboardingRoute.ADD_EXPERIENCE}
-        component={AddExperienceScreen}
-      />
-      <Stack.Screen
-        name={OnboardingRoute.ADD_EDUCATION}
-        component={AddEducationScreen}
-      />
-      <Stack.Screen
-        name={OnboardingRoute.ADD_LANGUAGE}
-        component={AddLanguageScreen}
-      />
-      <Stack.Screen
-        name={OnboardingRoute.ADD_LOCATION}
-        component={AddLocationScreen}
-      />
+      <Stack.Group screenOptions={addScreenGroupOptions}>
+        <Stack.Screen
+          name={OnboardingRoute.ADD_EXPERIENCE}
+          component={AddExperienceScreen}
+          options={{ title: 'Add Experience' }}
+        />
+        <Stack.Screen
+          name={OnboardingRoute.ADD_EDUCATION}
+          component={AddEducationScreen}
+          options={{ title: 'Add Education' }}
+        />
+        <Stack.Screen
+          name={OnboardingRoute.ADD_LANGUAGE}
+          component={AddLanguageScreen}
+          options={{ title: 'Add Language' }}
+        />
+        <Stack.Screen
+          name={OnboardingRoute.ADD_LOCATION}
+          component={AddLocationScreen}
+          options={{ title: 'Add Location' }}
+        />
+      </Stack.Group>
     </Stack.Navigator>
   );
 };

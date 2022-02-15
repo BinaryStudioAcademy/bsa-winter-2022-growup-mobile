@@ -17,22 +17,18 @@ const AddLanguageScreen: React.FC<AddLanguageScreenProps> = () => {
   }, [navigation]);
 
   return (
-    <SafeAreaView>
-      <View style={styles.screen}>
-        <View>
-          <View style={styles.inputContent}>
-            <Heading style={styles.heading} level={HeadingLevel.H5}>
-              Language
-            </Heading>
-            <Input placeholder="Language" />
-          </View>
-        </View>
-        <View style={styles.buttonContainer}>
-          <MainButton onPress={handleCancel} mode={ButtonMode.OUTLINED}>
-            Cancel
-          </MainButton>
-          <MainButton mode={ButtonMode.CONTAINED}>Add</MainButton>
-        </View>
+    <SafeAreaView style={styles.screen}>
+      <View style={styles.inputContent}>
+        <Heading style={styles.heading} level={HeadingLevel.H5}>
+          Language
+        </Heading>
+        <Input placeholder="Language" />
+      </View>
+      <View style={styles.buttonContainer}>
+        <MainButton onPress={handleCancel} mode={ButtonMode.OUTLINED}>
+          Cancel
+        </MainButton>
+        <MainButton mode={ButtonMode.CONTAINED}>Add</MainButton>
       </View>
     </SafeAreaView>
   );

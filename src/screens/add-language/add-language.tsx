@@ -7,9 +7,7 @@ import { ButtonMode, HeadingLevel } from 'src/common/enums';
 import { Heading, Input, MainButton } from 'src/components';
 import styles from './styles';
 
-type AddLanguageScreenProps = Record<string, never>;
-
-const AddLanguageScreen: React.FC<AddLanguageScreenProps> = () => {
+const AddLanguageScreen: React.FC = () => {
   const navigation = useNavigation();
 
   const handleCancel = useCallback(() => {

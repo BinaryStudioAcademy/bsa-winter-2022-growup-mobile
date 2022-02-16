@@ -22,12 +22,13 @@ const SkillsSection: React.FC<SkillsSectionProps> = ({
         {header}
       </Text>
       <View style={styles.tagsContent}>
-        {skills.map((item, index) => {
+        {skills.map(item => {
+          // TODO add key={item.skillId} when DB is ready
           return (
             <Tag
               style={styles.tag}
               tagType={TagType.COMMON}
-              key={index}
+              key={item}
               hasIcon={true}
               text={item}
             />

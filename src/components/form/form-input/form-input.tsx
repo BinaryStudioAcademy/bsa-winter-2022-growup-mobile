@@ -3,7 +3,7 @@ import { StyleProp, View, ViewStyle } from 'react-native';
 import { FormikValues, useFormikContext } from 'formik';
 
 import { Input, Text } from 'src/components';
-import styles from './styles';
+import styles from '../styles';
 
 type InputProps = React.ComponentPropsWithoutRef<typeof Input>;
 
@@ -17,16 +17,18 @@ const FormInput: React.FC<FormInputProps> = ({
   containerStyle,
   ...inputProps
 }) => {
-  const { values, errors, touched, handleChange, handleBlur } =
+  const { values, errors, touched, setFieldValue, handleBlur } =
     useFormikContext<FormikValues>();
 
   const error = touched[name] && errors[name];
+
+  const handleChange = (text: string) => setFieldValue(name, text);
 
   return (
     <View style={containerStyle}>
       <Input
         value={values[name]}
-        onChangeText={handleChange(name)}
+        onChangeText={handleChange}
         onBlur={handleBlur(name)}
         {...inputProps}
       />

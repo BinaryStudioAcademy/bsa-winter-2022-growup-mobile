@@ -3,6 +3,7 @@ import { createMaterialBottomTabNavigator } from '@react-navigation/material-bot
 
 import { AppRoute } from 'src/common/enums/navigation';
 import { AppColor } from 'src/common/enums';
+
 import {
   AccountIcon,
   CompassIcon,
@@ -10,14 +11,16 @@ import {
   RadarIcon,
   ShieldSearchIcon,
 } from 'src/components';
-import styles from './styles';
+
 import {
   ExploreScreen,
-  HomeScreen,
+  MenteeHomeScreen,
   OKRScreen,
   OpportunitiesScreen,
-  ProfileScreen,
 } from 'src/screens';
+
+import ProfileNavigation from '../profile/profile-navigation';
+import styles from './styles';
 
 const Tab = createMaterialBottomTabNavigator();
 
@@ -31,7 +34,7 @@ const AppNavigation = () => {
     >
       <Tab.Screen
         name={AppRoute.HOME}
-        component={HomeScreen}
+        component={MenteeHomeScreen}
         options={{
           tabBarIcon: ({ color }) => <HomeIcon color={color} size={25} />,
         }}
@@ -61,7 +64,7 @@ const AppNavigation = () => {
       />
       <Tab.Screen
         name={AppRoute.PROFILE}
-        component={ProfileScreen}
+        component={ProfileNavigation}
         options={{
           tabBarIcon: ({ color }) => <AccountIcon color={color} size={25} />,
         }}

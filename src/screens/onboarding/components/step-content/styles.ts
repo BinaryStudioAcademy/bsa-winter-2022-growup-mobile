@@ -5,7 +5,7 @@ import { DEFAULT_SCREEN_PADDING } from 'src/styles';
 
 const styles = StyleSheet.create({
   input: {
-    marginBottom: 20,
+    marginVertical: 10,
     width: '90%',
     alignSelf: 'center',
   },

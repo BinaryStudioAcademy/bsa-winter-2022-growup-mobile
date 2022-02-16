@@ -1,9 +1,11 @@
 import React from 'react';
+import { Formik } from 'formik';
 import { ScrollView, View } from 'react-native';
 import { Avatar } from 'react-native-paper';
 
 import { AppColor, HeadingLevel } from 'src/common/enums';
-import { Heading, Input } from 'src/components';
+import { FormInput, Heading } from 'src/components';
+import { userInfoValidationSchema } from 'src/validation-schemas';
 import styles from './styles';
 
 const UserContent: React.FC = () => {
@@ -16,26 +18,39 @@ const UserContent: React.FC = () => {
         <View style={styles.imageContainer}>
           <Avatar.Icon
             style={styles.userAvatar}
-            size={150}
+            size={152}
             color={AppColor.WHITE}
             icon="account"
           />
         </View>
-        <Input
-          style={styles.input}
-          label="First name"
-          placeholder="Enter first name"
-        />
-        <Input
-          style={styles.input}
-          label="Last name"
-          placeholder="Enter last name"
-        />
-        <Input
-          style={styles.input}
-          label="Position"
-          placeholder="Enter your position"
-        />
+        <Formik
+          initialValues={{ firstName: '', lastName: '', position: '' }}
+          validationSchema={userInfoValidationSchema}
+          onSubmit={() => {
+            // TODO
+          }}
+        >
+          <>
+            <FormInput
+              style={styles.input}
+              label="First name"
+              placeholder="Enter first name"
+              name={'firstName'}
+            />
+            <FormInput
+              style={styles.input}
+              label="Last name"
+              placeholder="Enter last name"
+              name={'lastName'}
+            />
+            <FormInput
+              style={styles.input}
+              label="Position"
+              placeholder="Enter your position"
+              name={'position'}
+            />
+          </>
+        </Formik>
       </ScrollView>
     </View>
   );

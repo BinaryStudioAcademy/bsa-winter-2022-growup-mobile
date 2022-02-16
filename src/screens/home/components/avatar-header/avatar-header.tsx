@@ -14,7 +14,7 @@ interface Props {
 const AvatarHeader: React.FC<Props> = ({ avatarUrl, children }) => {
   return (
     <View style={styles.header}>
-      <Heading level={HeadingLevel.H6}>{children}</Heading>
+      <Heading level={HeadingLevel.H5}>{children}</Heading>
       <Avatar url={avatarUrl} />
     </View>
   );

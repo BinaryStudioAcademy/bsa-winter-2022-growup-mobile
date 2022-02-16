@@ -1,8 +1,8 @@
 import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
-  button: {
-    alignSelf: 'flex-end',
+  cardWrapper: {
+    paddingTop: 7,
   },
 });
 

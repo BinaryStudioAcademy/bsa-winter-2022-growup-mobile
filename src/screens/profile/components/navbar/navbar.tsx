@@ -1,8 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Dimensions, ScrollView, View } from 'react-native';
+import { ScrollView, View } from 'react-native';
 
 import { MainButton, Text } from 'src/components';
 import { AppColor, ButtonMode } from 'src/common/enums';
+import { BUTTON_PROFILE_NAVBAR_WIDTH } from 'src/common/constants';
 import styles from './styles';
 
 type State = Array<{ id: number; text: string }>;
@@ -12,14 +13,11 @@ interface Props {
   handleClick: (a: number) => void;
 }
 
-const WIDTH = Dimensions.get('screen').width * 0.8;
-const BUTTON_WIDTH = Math.ceil(WIDTH / 3);
-
 const Navbar = ({ active, handleClick }: Props) => {
   const scrollRef = useRef<ScrollView>(null);
 
   useEffect(() => {
-    const scrollToPosition = active * BUTTON_WIDTH;
+    const scrollToPosition = active * BUTTON_PROFILE_NAVBAR_WIDTH;
     scrollRef.current?.scrollTo({
       x: scrollToPosition,
       y: 0,

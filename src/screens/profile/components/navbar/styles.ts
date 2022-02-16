@@ -1,9 +1,10 @@
-import { Dimensions, StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native';
 
 import { AppColor } from 'src/common/enums';
-
-const WIDTH = Dimensions.get('screen').width * 0.8;
-const BUTTON_WIDTH = Math.ceil(WIDTH / 3);
+import {
+  BUTTON_PROFILE_NAVBAR_WIDTH,
+  PROFILE_NAVBAR_WIDTH,
+} from 'src/common/constants';
 
 const styles = StyleSheet.create({
   navbar: {
@@ -17,7 +18,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     backgroundColor: AppColor.WHITE,
     margin: 10,
-    width: '80%',
+    width: PROFILE_NAVBAR_WIDTH,
     alignSelf: 'center',
     borderRadius: 7,
   },
@@ -29,11 +30,11 @@ const styles = StyleSheet.create({
   },
   btn: {
     flex: 1,
-    width: BUTTON_WIDTH,
+    width: BUTTON_PROFILE_NAVBAR_WIDTH,
     borderRadius: 0,
   },
   active: {
-    width: BUTTON_WIDTH,
+    width: BUTTON_PROFILE_NAVBAR_WIDTH,
     borderRadius: 7,
     backgroundColor: AppColor.ACCENT,
     flex: 1,

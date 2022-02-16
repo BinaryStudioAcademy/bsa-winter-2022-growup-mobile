@@ -11,9 +11,9 @@ import { Text } from 'src/components';
 import addActions from './add-actions';
 import styles from './styles';
 
-type IProfileScreenProps = Record<string, never>;
+type ProfileScreenProps = Record<string, never>;
 
-const ProfileScreen: React.FC<IProfileScreenProps> = () => {
+const ProfileScreen: React.FC<ProfileScreenProps> = () => {
   const navigation = useNavigation();
   const [addMenuOpen, setAddMenuOpen] = useState<boolean>(false);
   const [active, setActive] = React.useState<number>(0);

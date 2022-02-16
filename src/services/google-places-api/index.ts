@@ -25,7 +25,7 @@ class GooglePlacesApi {
     }
 
     const response: IAutocompleteResponse = await this.#http.load(
-      `${this.#apiPath}${ApiPath.GOOGLE_PLACES_AUTOCOMPLE}`,
+      `${this.#apiPath}${ApiPath.GOOGLE_PLACES_AUTOCOMPLETE}`,
       {
         query: {
           key: this.#apiKey,

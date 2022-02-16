@@ -5,31 +5,23 @@ import { TagType } from 'src/common/enums';
 import { Tag, Text } from 'src/components';
 import styles from './styles';
 
-type SkillsSectionProps = {
+type InfoSectionProps = {
   header: string;
-  skills: string[];
-  isHintHeader?: boolean;
+  tags: string[];
 };
 
-const SkillsSection: React.FC<SkillsSectionProps> = ({
-  header,
-  skills,
-  isHintHeader = false,
-}) => {
+const InfoSection: React.FC<InfoSectionProps> = ({ header, tags }) => {
   return (
     <View>
-      <Text style={[styles.heading, isHintHeader && styles.hintHeader]}>
-        {header}
-      </Text>
+      <Text style={styles.heading}>{header}</Text>
       <View style={styles.tagsContent}>
-        {skills.map(item => {
-          // TODO add key={item.skillId} when DB is ready
+        {tags.map(item => {
+          // TODO add key={item.tagId} when DB is ready
           return (
             <Tag
               style={styles.tag}
               tagType={TagType.COMMON}
               key={item}
-              hasIcon={true}
               text={item}
             />
           );
@@ -39,4 +31,4 @@ const SkillsSection: React.FC<SkillsSectionProps> = ({
   );
 };
 
-export default SkillsSection;
+export default InfoSection;

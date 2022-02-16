@@ -10,6 +10,7 @@ import {
   Text,
 } from 'src/components';
 
+import { MONTHS_IN_YEAR } from 'src/common/constants';
 import { AppColor, HeadingLevel, TextAppearance } from 'src/common/enums';
 import { IEducation } from 'src/common/types';
 import styles from './styles';
@@ -26,8 +27,6 @@ const EducationCard: React.FC<Props> = ({
   onDelete,
 }) => {
   const dateString = useMemo(() => {
-    const MONTHS_IN_YEAR = 12;
-
     const startDay = dayjs(startDate);
     const endDay = dayjs(endDate);
 

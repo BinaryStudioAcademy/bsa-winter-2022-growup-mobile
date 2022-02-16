@@ -8,6 +8,12 @@ import { FormInput, Heading } from 'src/components';
 import { userInfoValidationSchema } from 'src/validation-schemas';
 import styles from './styles';
 
+const initialValues = {
+  firstName: '',
+  lastName: '',
+  position: '',
+};
+
 const UserContent: React.FC = () => {
   return (
     <View style={styles.content}>
@@ -24,7 +30,7 @@ const UserContent: React.FC = () => {
           />
         </View>
         <Formik
-          initialValues={{ firstName: '', lastName: '', position: '' }}
+          initialValues={initialValues}
           validationSchema={userInfoValidationSchema}
           onSubmit={() => {
             // TODO
@@ -35,19 +41,19 @@ const UserContent: React.FC = () => {
               style={styles.input}
               label="First name"
               placeholder="Enter first name"
-              name={'firstName'}
+              name="firstName"
             />
             <FormInput
               style={styles.input}
               label="Last name"
               placeholder="Enter last name"
-              name={'lastName'}
+              name="lastName"
             />
             <FormInput
               style={styles.input}
               label="Position"
               placeholder="Enter your position"
-              name={'position'}
+              name="position"
             />
           </>
         </Formik>

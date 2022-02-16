@@ -1,94 +1,93 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { ScrollView, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { Formik } from 'formik';
 
 import { ButtonMode, HeadingLevel } from 'src/common/enums';
-import { DateInput, Heading, Input, MainButton } from 'src/components';
+import { FormDate, FormInput, Heading, MainButton } from 'src/components';
 import styles from './styles';
+import { educationValidationSchema } from 'src/validation-schemas';
 
-type Period = {
-  startDate: Date | undefined;
-  endDate: Date | undefined;
+const initialValues = {
+  universityName: '',
+  courseName: '',
+  degree: '',
+  startDate: undefined,
+  endDate: undefined,
 };
 
 const AddEducationScreen: React.FC = () => {
   const navigation = useNavigation();
-  const [period, setPeriod] = useState<Period>({
-    startDate: undefined,
-    endDate: undefined,
-  });
 
   const handleCancel = useCallback(() => {
     navigation.goBack();
   }, [navigation]);
 
-  const handleStartDateChange = useCallback(
-    (date: Date | undefined) => {
-      setPeriod(curr => ({ ...curr, startDate: date }));
-    },
-    [setPeriod]
-  );
-
-  const handleEndDateChange = useCallback(
-    (date: Date | undefined) => {
-      setPeriod(curr => ({ ...curr, endDate: date }));
-    },
-    [setPeriod]
-  );
-
   return (
     <SafeAreaView style={styles.screen}>
       <ScrollView showsVerticalScrollIndicator={false}>
-        <View>
-          <View style={styles.inputContent}>
-            <Heading style={styles.heading} level={HeadingLevel.H5}>
-              University
-            </Heading>
-            <Input placeholder="University Name" />
-          </View>
-          <View style={styles.inputContent}>
-            <Heading style={styles.heading} level={HeadingLevel.H5}>
-              Course
-            </Heading>
-            <Input placeholder="Course Name" />
-          </View>
-          <View style={styles.inputContent}>
-            <Heading style={styles.heading} level={HeadingLevel.H5}>
-              Degree
-            </Heading>
-            <Input placeholder="Degree" />
-          </View>
-          <View style={styles.inputContent}>
-            <Heading style={styles.heading} level={HeadingLevel.H5}>
-              Period
-            </Heading>
-            <DateInput
-              label="Start Date"
-              onChange={handleStartDateChange}
-              value={period.startDate}
-              locale="en"
-              inputMode="start"
-            />
-            <DateInput
-              onChange={handleEndDateChange}
-              value={period.endDate}
-              locale="en"
-              inputMode="start"
-              label="End Date"
-            />
-          </View>
-        </View>
-        <View style={styles.buttonContainer}>
-          <MainButton
-            style={styles.button}
-            onPress={handleCancel}
-            mode={ButtonMode.OUTLINED}
-          >
-            Cancel
-          </MainButton>
-          <MainButton mode={ButtonMode.CONTAINED}>Add</MainButton>
-        </View>
+        <Formik
+          validationSchema={educationValidationSchema}
+          initialValues={initialValues}
+          onSubmit={() => {
+            // TODO
+          }}
+        >
+          <>
+            <View>
+              <View style={styles.inputContent}>
+                <Heading style={styles.heading} level={HeadingLevel.H5}>
+                  University
+                </Heading>
+                <FormInput
+                  placeholder="University Name"
+                  name="universityName"
+                />
+              </View>
+              <View style={styles.inputContent}>
+                <Heading style={styles.heading} level={HeadingLevel.H5}>
+                  Course
+                </Heading>
+                <FormInput placeholder="Course Name" name="courseName" />
+              </View>
+              <View style={styles.inputContent}>
+                <Heading style={styles.heading} level={HeadingLevel.H5}>
+                  Degree
+                </Heading>
+                <FormInput placeholder="Degree" name="degree" />
+              </View>
+              <View style={styles.inputContent}>
+                <Heading style={styles.heading} level={HeadingLevel.H5}>
+                  Period
+                </Heading>
+                <FormDate
+                  label="Start Date"
+                  locale="en"
+                  inputMode="start"
+                  name="startDate"
+                />
+                <FormDate
+                  style={styles.dateInput}
+                  locale="en"
+                  inputMode="start"
+                  label="End Date"
+                  name="endDate"
+                />
+              </View>
+            </View>
+            <View style={styles.buttonContainer}>
+              <MainButton
+                style={styles.button}
+                onPress={handleCancel}
+                mode={ButtonMode.OUTLINED}
+              >
+                Cancel
+              </MainButton>
+              <MainButton mode={ButtonMode.CONTAINED}>Add</MainButton>
+            </View>
+          </>
+        </Formik>
       </ScrollView>
     </SafeAreaView>
   );

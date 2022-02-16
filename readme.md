@@ -65,5 +65,5 @@ After task is completed ― create PR of your branch into `develop` and assign o
 
 1. Create and fill in **.env** file following **.env.example** file
 2. Run `yarn` at the root folder
-3. Start Metro: `npx react-native start`
-4. Start the app:`npx react-native run-android` in a new terminal
+3. Start Metro: `yarn start`
+4. Start the app:`yarn android` in a new terminal

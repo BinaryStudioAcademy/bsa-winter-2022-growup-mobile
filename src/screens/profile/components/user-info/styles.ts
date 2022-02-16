@@ -6,8 +6,7 @@ const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
     marginTop: 15,
-    height: '100%',
-    width: '100%',
+    flex: 1,
   },
   avatar: {
     alignSelf: 'center',
@@ -29,7 +28,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'transparent',
   },
   levelText: {
-    color: AppColor.LEVEL_COLOR,
+    color: AppColor.SECOND_LEVEL_COLOR,
   },
 });
 

@@ -12,7 +12,7 @@ enum AppColor {
   TAG_ATTENTION_BACKGROUND = '#FBEBF3',
   TEXT_GRAY = '#808C9C',
   TAG_TEXT_COMMON = 'rgba(41, 25, 101, 0.6)',
-  LEVEL_COLOR = '#5C5D5F',
+  SECOND_LEVEL_COLOR = '#5C5D5F',
 }
 
 export { AppColor };

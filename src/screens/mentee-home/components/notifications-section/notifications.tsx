@@ -12,7 +12,10 @@ interface Props {
   onMarkRead: (id: string) => void;
 }
 
-const Notifications: React.FC<Props> = ({ notifications, onMarkRead }) => {
+const NotificationsSection: React.FC<Props> = ({
+  notifications,
+  onMarkRead,
+}) => {
   if (!notifications.length) {
     return null;
   }
@@ -34,4 +37,4 @@ const Notifications: React.FC<Props> = ({ notifications, onMarkRead }) => {
   );
 };
 
-export default Notifications;
+export default NotificationsSection;

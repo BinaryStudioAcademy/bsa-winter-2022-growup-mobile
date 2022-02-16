@@ -11,7 +11,10 @@ interface Props {
   onDetails: (id: string) => void;
 }
 
-const Opportunities: React.FC<Props> = ({ opportunities, onDetails }) => {
+const OpportunitiesSection: React.FC<Props> = ({
+  opportunities,
+  onDetails,
+}) => {
   return (
     <View>
       <Heading level={HeadingLevel.H6}>
@@ -29,4 +32,4 @@ const Opportunities: React.FC<Props> = ({ opportunities, onDetails }) => {
   );
 };
 
-export default Opportunities;
+export default OpportunitiesSection;

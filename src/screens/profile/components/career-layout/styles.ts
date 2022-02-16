@@ -2,8 +2,6 @@ import { StyleSheet } from 'react-native';
 
 import { AppColor } from 'src/common/enums';
 
-const LIGHTGREY = '#E1DBEA';
-
 const styles = StyleSheet.create({
   careerWrapper: {
     margin: 20,
@@ -21,32 +19,34 @@ const styles = StyleSheet.create({
   divider: {
     width: 1,
     height: '90%',
-    backgroundColor: LIGHTGREY,
+    backgroundColor: AppColor.SHADOW,
     marginTop: 25,
   },
   card: {
     borderWidth: 1,
-    borderColor: LIGHTGREY,
+    borderColor: AppColor.SHADOW,
     borderRadius: 10,
   },
   cardContent: {
-    marginLeft: 15,
-    marginRight: 15,
+    marginHorizontal: 15,
     marginBottom: 10,
   },
   cardTitle: {
-    marginTop: 10,
-    marginBottom: 10,
+    marginVertical: 10,
   },
   cardActions: {
-    marginLeft: 15,
-    marginRight: 15,
+    borderTopWidth: 1,
+    borderTopColor: AppColor.SHADOW,
+    paddingHorizontal: 30,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    padding: 0,
   },
   actionsBtn: {
     flexDirection: 'row',
+    alignItems: 'center',
+  },
+  editIcon: {
+    marginLeft: 20,
   },
   careerYear: {
     marginTop: 5,

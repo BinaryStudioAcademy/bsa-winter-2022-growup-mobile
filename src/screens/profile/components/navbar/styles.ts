@@ -23,10 +23,8 @@ const styles = StyleSheet.create({
     borderRadius: 7,
   },
   title: {
-    color: AppColor.BLACK,
     fontSize: 17,
     textAlign: 'center',
-    fontFamily: 'NunitoSans-Regular',
   },
   btn: {
     flex: 1,

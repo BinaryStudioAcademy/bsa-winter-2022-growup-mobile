@@ -1,5 +1,5 @@
-import { Formik } from 'formik';
 import React from 'react';
+import { Formik } from 'formik';
 import { View } from 'react-native';
 
 import { ButtonMode, HeadingLevel } from 'src/common/enums';

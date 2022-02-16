@@ -6,4 +6,3 @@ export * from './select';
 export * from './icons';
 export * from './form';
 export * from './tag';
-export * from './tag-button';

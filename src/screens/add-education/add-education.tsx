@@ -6,8 +6,8 @@ import { Formik } from 'formik';
 
 import { ButtonMode, HeadingLevel } from 'src/common/enums';
 import { FormDate, FormInput, Heading, MainButton } from 'src/components';
-import styles from './styles';
 import { educationValidationSchema } from 'src/validation-schemas';
+import styles from './styles';
 
 const initialValues = {
   universityName: '',

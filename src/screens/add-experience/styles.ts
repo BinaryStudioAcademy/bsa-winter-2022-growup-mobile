@@ -26,6 +26,9 @@ const styles = StyleSheet.create({
   button: {
     marginBottom: 10,
   },
+  dateInput: {
+    marginTop: 15,
+  },
 });
 
 export default styles;

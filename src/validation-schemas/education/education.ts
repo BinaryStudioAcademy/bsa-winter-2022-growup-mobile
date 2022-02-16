@@ -19,7 +19,8 @@ const educationValidationSchema = yup.object({
     .required('Select end date')
     .when(
       'startDate',
-      (startDate, schema) => startDate && schema.min(startDate)
+      (startDate, schema) =>
+        startDate && schema.min(startDate, 'Start date must be before end date')
     ),
 });
 

@@ -2,10 +2,14 @@ import React from 'react';
 import { ScrollView, View } from 'react-native';
 
 import { INotification, IOpportunity } from 'src/common/types';
+import { useAppDispatch } from 'src/hooks';
+import { notificationActions } from 'src/store/notification';
 import { AvatarHeader, Notifications, Opportunities } from '..';
 import styles from './styles';
 
 const MenteeHome: React.FC = () => {
+  const dispatch = useAppDispatch();
+
   const notifications: INotification[] = [
     // TODO: useSelector
     {
@@ -32,8 +36,8 @@ const MenteeHome: React.FC = () => {
     },
   ];
 
-  const handleMarkRead = () => {
-    // TODO: redux action
+  const handleMarkRead = (id: string) => {
+    dispatch(notificationActions.markNotificationRead(id));
   };
 
   const handleOpportunityDetails = () => {

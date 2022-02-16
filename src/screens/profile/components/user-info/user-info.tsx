@@ -12,9 +12,7 @@ const UserInfo = () => {
     <View style={styles.container}>
       <Avatar.Image
         size={148}
-        source={{
-          uri: 'https://cdn.iconscout.com/icon/free/png-256/avatar-370-456322.png',
-        }}
+        source={require('src/assets/images/user_avatar.png')}
         style={styles.avatar}
       />
       <View>

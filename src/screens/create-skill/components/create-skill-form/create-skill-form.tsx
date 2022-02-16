@@ -9,12 +9,15 @@ import { FormInput, FormSelect, Heading, MainButton } from 'src/components';
 import { defaultCreateSkillPayload, skillTypeOptions } from '../../common';
 import styles from '../../styles';
 
-interface Props {
+type CreateSkillFormProps = {
   onSubmit: (data: ICreateSkillPayload) => void;
   onBack: () => void;
-}
+};
 
-const CreateSkillForm: React.FC<Props> = ({ onSubmit, onBack }) => {
+const CreateSkillForm: React.FC<CreateSkillFormProps> = ({
+  onSubmit,
+  onBack,
+}) => {
   const handleFormSubmit = (values: ICreateSkillPayload) => {
     onSubmit({ ...values, estimate: Number(values.estimate) });
   };

@@ -5,6 +5,7 @@ enum ApiPath {
   SKILLS = '/skills',
   NOTIFICATIONS = '/notifications',
   MARK_READ = '/mark-read',
+  GOOGLE_PLACES_AUTOCOMPLE = '/maps/api/place/autocomplete/json',
 }
 
 export { ApiPath };

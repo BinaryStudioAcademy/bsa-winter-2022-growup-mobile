@@ -22,12 +22,9 @@ const styles = StyleSheet.create({
   levelWrapper: {
     flexDirection: 'row',
     alignItems: 'center',
-    left: -5,
-  },
-  levelIcon: {
-    backgroundColor: 'transparent',
   },
   levelText: {
+    marginLeft: 5,
     color: AppColor.SECOND_LEVEL_COLOR,
   },
 });

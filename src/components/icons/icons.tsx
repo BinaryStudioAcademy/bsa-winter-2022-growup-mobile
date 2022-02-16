@@ -30,6 +30,10 @@ const CheckIcon: React.FC<IconProps> = iconProps => (
   <MaterialCommunityIcon name="check-circle" {...iconProps} />
 );
 
+const ShieldCheckIcon: React.FC<IconProps> = iconProps => (
+  <MaterialCommunityIcon name="shield-check" {...iconProps} />
+);
+
 export {
   HomeIcon,
   CompassIcon,
@@ -37,4 +41,5 @@ export {
   RadarIcon,
   AccountIcon,
   CheckIcon,
+  ShieldCheckIcon,
 };

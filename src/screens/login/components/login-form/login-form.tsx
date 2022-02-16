@@ -1,18 +1,22 @@
 import React, { useState } from 'react';
 import { TextInput } from 'react-native-paper';
 import { View } from 'react-native';
+import { Formik } from 'formik';
 
 import { styles } from '../../styles';
-import { Input, MainButton } from 'src/components';
+import { MainButton } from 'src/components';
 import { AppColor } from 'src/common/enums';
+import { defaultLoginPayload } from '../../common';
+import { authenticateUserValidationSchema } from 'src/validation-schemas';
+import { FormInput } from 'src/components';
+import { IAuthenticateUser } from 'src/common/types';
 
 const LoginForm: React.FC = () => {
   const [secure, setSecure] = useState(true);
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
 
-  const onLoginPressed = () => {
+  const onLoginPressed = (values: IAuthenticateUser) => {
     // TODO authentication logic
+    console.log('Received data from the form: ', values);
   };
 
   const onChangePasswordSecure = () => {
@@ -20,41 +24,47 @@ const LoginForm: React.FC = () => {
   };
 
   return (
-    <View style={styles.content}>
-      <View style={styles.container}>
-        <Input
-          style={styles.formField}
-          outlineColor={AppColor.INPUT_BACKGROUND}
-          label="Email"
-          value={email}
-          onChangeText={text => setEmail(text)}
-        />
-
-        <Input
-          style={styles.formField}
-          outlineColor={AppColor.INPUT_BACKGROUND}
-          label="Password"
-          value={password}
-          secureTextEntry={secure}
-          onChangeText={text => setPassword(text)}
-          right={
-            <TextInput.Icon
-              name="eye"
-              style={styles.formIcon}
-              onPress={onChangePasswordSecure}
+    <Formik
+      initialValues={defaultLoginPayload}
+      validationSchema={authenticateUserValidationSchema}
+      validateOnMount={true}
+      onSubmit={onLoginPressed}
+    >
+      {({ isValid, handleSubmit }) => (
+        <View style={styles.content}>
+          <View style={styles.container}>
+            <FormInput
+              name="email"
+              style={styles.formField}
+              outlineColor={AppColor.INPUT_BACKGROUND}
+              label="Email"
             />
-          }
-        />
-      </View>
-
-      <MainButton
-        mode="contained"
-        onPress={onLoginPressed}
-        style={styles.btnLogin}
-      >
-        Log In
-      </MainButton>
-    </View>
+            <FormInput
+              name="password"
+              style={styles.formField}
+              outlineColor={AppColor.INPUT_BACKGROUND}
+              label="Password"
+              secureTextEntry={secure}
+              right={
+                <TextInput.Icon
+                  name="eye"
+                  style={styles.formIcon}
+                  onPress={onChangePasswordSecure}
+                />
+              }
+            />
+          </View>
+          <MainButton
+            mode="contained"
+            onPress={handleSubmit}
+            style={styles.btnLogin}
+            disabled={!isValid}
+          >
+            Log In
+          </MainButton>
+        </View>
+      )}
+    </Formik>
   );
 };
 

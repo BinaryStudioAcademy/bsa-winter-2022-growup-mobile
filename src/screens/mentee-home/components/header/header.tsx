@@ -7,12 +7,12 @@ import { Heading } from 'src/components';
 import { Avatar } from '..';
 import styles from './styles';
 
-interface Props {
+type HeaderProps = {
   children: string;
   avatarUrl?: string;
-}
+};
 
-const AvatarHeader: React.FC<Props> = ({ avatarUrl, children }) => {
+const Header: React.FC<HeaderProps> = ({ avatarUrl, children }) => {
   const navigation = useNavigation();
 
   const handleAvatarPress = () => {
@@ -32,4 +32,4 @@ const AvatarHeader: React.FC<Props> = ({ avatarUrl, children }) => {
   );
 };
 
-export default AvatarHeader;
+export default Header;

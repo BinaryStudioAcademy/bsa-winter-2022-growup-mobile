@@ -6,7 +6,7 @@ import { useAppDispatch } from 'src/hooks';
 import { notificationActions } from 'src/store/notification';
 
 import {
-  AvatarHeader,
+  Header,
   NotificationsSection,
   OpportunitiesSection,
 } from './components';
@@ -52,7 +52,7 @@ const MenteeHome: React.FC = () => {
 
   return (
     <View>
-      <AvatarHeader>Looking for some jobs?</AvatarHeader>
+      <Header>Looking for some jobs?</Header>
       <ScrollView contentContainerStyle={styles.container}>
         <NotificationsSection
           notifications={notifications}

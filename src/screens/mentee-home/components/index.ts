@@ -1,5 +1,5 @@
 export * from './avatar';
-export * from './avatar-header';
+export * from './header';
 export * from './minor-card';
 export * from './notification-card';
 export * from './notifications-section';

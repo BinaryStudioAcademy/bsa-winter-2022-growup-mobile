@@ -3,10 +3,13 @@ import { StyleSheet } from 'react-native';
 import { AppColor } from 'src/common/enums';
 
 const styles = StyleSheet.create({
+  content: {
+    flex: 1,
+  },
   container: {
+    flex: 1,
+    marginTop: '20%',
     marginHorizontal: 27,
-    marginVertical: 22,
-    justifyContent: 'center',
   },
   formField: {
     backgroundColor: AppColor.INPUT_BACKGROUND,
@@ -18,28 +21,20 @@ const styles = StyleSheet.create({
     color: AppColor.ACCENT,
   },
   btnLogin: {
-    borderRadius: 50,
-    backgroundColor: AppColor.ACCENT,
-    height: 45,
-    justifyContent: 'center',
-    marginTop: '45%',
+    marginHorizontal: 27,
   },
   logo: {
     width: 163,
     height: 48,
     alignSelf: 'center',
     marginTop: '20%',
-    marginVertical: '20%',
   },
   footer: {
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'center',
-    marginTop: '5%',
-  },
-  footerRedirect: {
-    marginLeft: 5,
-    color: AppColor.ACCENT,
+    alignItems: 'center',
+    marginVertical: 15,
   },
   formIcon: {
     marginBottom: 0,

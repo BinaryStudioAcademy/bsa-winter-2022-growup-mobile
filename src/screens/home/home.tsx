@@ -3,9 +3,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { MenteeHome } from './components';
 
-type IHomeScreenProps = Record<string, never>;
-
-const HomeScreen: React.FC<IHomeScreenProps> = () => {
+const HomeScreen: React.FC = () => {
   return (
     <SafeAreaView>
       <MenteeHome />

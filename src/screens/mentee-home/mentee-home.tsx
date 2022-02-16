@@ -4,7 +4,7 @@ import { ScrollView, View } from 'react-native';
 import { INotification, IOpportunity } from 'src/common/types';
 import { useAppDispatch } from 'src/hooks';
 import { notificationActions } from 'src/store/notification';
-import { AvatarHeader, Notifications, Opportunities } from '..';
+import { AvatarHeader, Notifications, Opportunities } from './components';
 import styles from './styles';
 
 const MenteeHome: React.FC = () => {

@@ -5,4 +5,3 @@ export * from './notification-card';
 export * from './notifications';
 export * from './opportunity-card';
 export * from './opportunities';
-export * from './mentee-home';

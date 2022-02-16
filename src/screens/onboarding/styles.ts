@@ -9,11 +9,9 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   content: {
-    width: '100%',
-    height: '80%',
+    flex: 1,
   },
   buttonContainer: {
-    width: '100%',
     marginBottom: 15,
     paddingHorizontal: 20,
   },

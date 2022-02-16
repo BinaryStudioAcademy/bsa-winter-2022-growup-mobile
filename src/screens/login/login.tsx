@@ -5,13 +5,17 @@ import { useNavigation } from '@react-navigation/native';
 
 import { LoginForm } from 'src/screens/login/components';
 import { styles } from './styles';
-import { AuthRoute, ButtonMode } from 'src/common/enums';
+import { AppRoute, AuthRoute, ButtonMode } from 'src/common/enums';
 import { MainButton } from 'src/components';
 
 type ILoginScreenProps = Record<string, never>;
 
 const LoginScreen: React.FC<ILoginScreenProps> = () => {
   const navigation = useNavigation();
+
+  const onNavigateTo = (route: AuthRoute | AppRoute) => {
+    navigation.navigate(route);
+  };
 
   return (
     <SafeAreaView style={styles.content}>
@@ -27,7 +31,7 @@ const LoginScreen: React.FC<ILoginScreenProps> = () => {
         <Text>New to GrowUp?</Text>
         <MainButton
           mode={ButtonMode.TEXT}
-          onPress={() => navigation.navigate(AuthRoute.SIGN_UP)}
+          onPress={() => onNavigateTo(AuthRoute.SIGN_UP)}
         >
           Sign Up
         </MainButton>

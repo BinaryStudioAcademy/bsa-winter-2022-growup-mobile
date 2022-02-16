@@ -34,59 +34,67 @@ const AddEducationScreen: React.FC = () => {
             // TODO
           }}
         >
-          <>
-            <View>
-              <View style={styles.inputContent}>
-                <Heading style={styles.heading} level={HeadingLevel.H5}>
-                  University
-                </Heading>
-                <FormInput
-                  placeholder="University Name"
-                  name="universityName"
-                />
+          {({ isValid, handleSubmit }) => (
+            <>
+              <View>
+                <View style={styles.inputContent}>
+                  <Heading style={styles.heading} level={HeadingLevel.H5}>
+                    University
+                  </Heading>
+                  <FormInput
+                    placeholder="University Name"
+                    name="universityName"
+                  />
+                </View>
+                <View style={styles.inputContent}>
+                  <Heading style={styles.heading} level={HeadingLevel.H5}>
+                    Course
+                  </Heading>
+                  <FormInput placeholder="Course Name" name="courseName" />
+                </View>
+                <View style={styles.inputContent}>
+                  <Heading style={styles.heading} level={HeadingLevel.H5}>
+                    Degree
+                  </Heading>
+                  <FormInput placeholder="Degree" name="degree" />
+                </View>
+                <View style={styles.inputContent}>
+                  <Heading style={styles.heading} level={HeadingLevel.H5}>
+                    Period
+                  </Heading>
+                  <FormDate
+                    label="Start Date"
+                    locale="en"
+                    inputMode="start"
+                    name="startDate"
+                  />
+                  <FormDate
+                    style={styles.dateInput}
+                    locale="en"
+                    inputMode="start"
+                    label="End Date"
+                    name="endDate"
+                  />
+                </View>
               </View>
-              <View style={styles.inputContent}>
-                <Heading style={styles.heading} level={HeadingLevel.H5}>
-                  Course
-                </Heading>
-                <FormInput placeholder="Course Name" name="courseName" />
+              <View style={styles.buttonContainer}>
+                <MainButton
+                  style={styles.button}
+                  onPress={handleCancel}
+                  mode={ButtonMode.OUTLINED}
+                >
+                  Cancel
+                </MainButton>
+                <MainButton
+                  onPress={handleSubmit}
+                  disabled={!isValid}
+                  mode={ButtonMode.CONTAINED}
+                >
+                  Add
+                </MainButton>
               </View>
-              <View style={styles.inputContent}>
-                <Heading style={styles.heading} level={HeadingLevel.H5}>
-                  Degree
-                </Heading>
-                <FormInput placeholder="Degree" name="degree" />
-              </View>
-              <View style={styles.inputContent}>
-                <Heading style={styles.heading} level={HeadingLevel.H5}>
-                  Period
-                </Heading>
-                <FormDate
-                  label="Start Date"
-                  locale="en"
-                  inputMode="start"
-                  name="startDate"
-                />
-                <FormDate
-                  style={styles.dateInput}
-                  locale="en"
-                  inputMode="start"
-                  label="End Date"
-                  name="endDate"
-                />
-              </View>
-            </View>
-            <View style={styles.buttonContainer}>
-              <MainButton
-                style={styles.button}
-                onPress={handleCancel}
-                mode={ButtonMode.OUTLINED}
-              >
-                Cancel
-              </MainButton>
-              <MainButton mode={ButtonMode.CONTAINED}>Add</MainButton>
-            </View>
-          </>
+            </>
+          )}
         </Formik>
       </ScrollView>
     </SafeAreaView>

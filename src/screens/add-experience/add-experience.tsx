@@ -36,50 +36,58 @@ const AddExperienceScreen: React.FC = () => {
             // TODO
           }}
         >
-          <>
-            <View>
-              <View style={styles.inputContent}>
-                <Heading style={styles.heading} level={HeadingLevel.H5}>
-                  Company
-                </Heading>
-                <FormInput placeholder="Company Name" name="companyName" />
+          {({ isValid, handleSubmit }) => (
+            <>
+              <View>
+                <View style={styles.inputContent}>
+                  <Heading style={styles.heading} level={HeadingLevel.H5}>
+                    Company
+                  </Heading>
+                  <FormInput placeholder="Company Name" name="companyName" />
+                </View>
+                <View style={styles.inputContent}>
+                  <Heading style={styles.heading} level={HeadingLevel.H5}>
+                    Position
+                  </Heading>
+                  <FormInput placeholder="Position Name" name="position" />
+                </View>
+                <View style={styles.inputContent}>
+                  <Heading style={styles.heading} level={HeadingLevel.H5}>
+                    Period
+                  </Heading>
+                  <FormDate
+                    label="Start Date"
+                    locale="en"
+                    inputMode="start"
+                    name="startDate"
+                  />
+                  <FormDate
+                    style={styles.dateInput}
+                    locale="en"
+                    inputMode="start"
+                    label="End Date"
+                    name="endDate"
+                  />
+                </View>
               </View>
-              <View style={styles.inputContent}>
-                <Heading style={styles.heading} level={HeadingLevel.H5}>
-                  Position
-                </Heading>
-                <FormInput placeholder="Position Name" name="position" />
+              <View style={styles.buttonContainer}>
+                <MainButton
+                  style={styles.button}
+                  onPress={handleCancel}
+                  mode={ButtonMode.OUTLINED}
+                >
+                  Cancel
+                </MainButton>
+                <MainButton
+                  disabled={!isValid}
+                  onPress={handleSubmit}
+                  mode={ButtonMode.CONTAINED}
+                >
+                  Add
+                </MainButton>
               </View>
-              <View style={styles.inputContent}>
-                <Heading style={styles.heading} level={HeadingLevel.H5}>
-                  Period
-                </Heading>
-                <FormDate
-                  label="Start Date"
-                  locale="en"
-                  inputMode="start"
-                  name="startDate"
-                />
-                <FormDate
-                  style={styles.dateInput}
-                  locale="en"
-                  inputMode="start"
-                  label="End Date"
-                  name="endDate"
-                />
-              </View>
-            </View>
-            <View style={styles.buttonContainer}>
-              <MainButton
-                style={styles.button}
-                onPress={handleCancel}
-                mode={ButtonMode.OUTLINED}
-              >
-                Cancel
-              </MainButton>
-              <MainButton mode={ButtonMode.CONTAINED}>Add</MainButton>
-            </View>
-          </>
+            </>
+          )}
         </Formik>
       </ScrollView>
     </SafeAreaView>

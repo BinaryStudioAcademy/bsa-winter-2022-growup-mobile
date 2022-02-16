@@ -29,24 +29,32 @@ const AddLocationScreen: React.FC = () => {
           // TODO
         }}
       >
-        <>
-          <View style={styles.inputContent}>
-            <Heading style={styles.heading} level={HeadingLevel.H5}>
-              Location
-            </Heading>
-            <FormInput name="location" placeholder="Location" />
-          </View>
-          <View style={styles.buttonContainer}>
-            <MainButton
-              style={styles.button}
-              onPress={handleCancel}
-              mode={ButtonMode.OUTLINED}
-            >
-              Cancel
-            </MainButton>
-            <MainButton mode={ButtonMode.CONTAINED}>Add</MainButton>
-          </View>
-        </>
+        {({ isValid, handleSubmit }) => (
+          <>
+            <View style={styles.inputContent}>
+              <Heading style={styles.heading} level={HeadingLevel.H5}>
+                Location
+              </Heading>
+              <FormInput name="location" placeholder="Location" />
+            </View>
+            <View style={styles.buttonContainer}>
+              <MainButton
+                style={styles.button}
+                onPress={handleCancel}
+                mode={ButtonMode.OUTLINED}
+              >
+                Cancel
+              </MainButton>
+              <MainButton
+                disabled={!isValid}
+                onPress={handleSubmit}
+                mode={ButtonMode.CONTAINED}
+              >
+                Add
+              </MainButton>
+            </View>
+          </>
+        )}
       </Formik>
     </SafeAreaView>
   );

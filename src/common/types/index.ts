@@ -4,3 +4,4 @@ export * from './user';
 export * from './storage';
 export * from './skill';
 export * from './navigation';
+export * from './education';

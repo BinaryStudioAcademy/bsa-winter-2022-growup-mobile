@@ -16,8 +16,8 @@ import styles from './styles';
 
 type IOnboardingScreenProps = Record<string, never>;
 
-const numberOfDots = 4;
-const lastStepIndex = 3;
+const ONBOARDING_DOTS_COUNT = 4;
+const LAST_STEP_INDEX = ONBOARDING_DOTS_COUNT - 1;
 
 const OnboardingScreen: React.FC<IOnboardingScreenProps> = () => {
   const [currentStep, setCurrentStep] = useState(0);
@@ -27,14 +27,11 @@ const OnboardingScreen: React.FC<IOnboardingScreenProps> = () => {
     pagerRef.current?.setPage(currentStep + 1);
   };
 
-  const handlePageScroll = useCallback(
-    (e: PagerViewOnPageScrollEvent) => {
-      setCurrentStep(e.nativeEvent.position);
-    },
-    [setCurrentStep]
-  );
+  const handlePageScroll = useCallback((e: PagerViewOnPageScrollEvent) => {
+    setCurrentStep(e.nativeEvent.position);
+  }, []);
 
-  const isLastStep = currentStep === lastStepIndex;
+  const isLastStep = currentStep === LAST_STEP_INDEX;
 
   return (
     <SafeAreaView style={styles.screen}>
@@ -58,7 +55,7 @@ const OnboardingScreen: React.FC<IOnboardingScreenProps> = () => {
         </View>
       </PagerView>
       <View style={styles.buttonContainer}>
-        <StepDots activeIndex={currentStep} count={numberOfDots} />
+        <StepDots activeIndex={currentStep} count={ONBOARDING_DOTS_COUNT} />
         {isLastStep ? (
           <MainButton
             style={styles.completeButton}

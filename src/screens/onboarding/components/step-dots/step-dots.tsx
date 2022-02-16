@@ -3,12 +3,12 @@ import { View } from 'react-native';
 
 import styles from './styles';
 
-type StepDotsProps = {
+interface IStepDotsProps {
   activeIndex: number;
   count: number;
-};
+}
 
-const StepDots: React.FC<StepDotsProps> = ({ activeIndex, count }) => {
+const StepDots: React.FC<IStepDotsProps> = ({ activeIndex, count }) => {
   const getActiveStyle = (dotIndex: number) => {
     if (activeIndex === dotIndex) {
       return styles.activeDot;

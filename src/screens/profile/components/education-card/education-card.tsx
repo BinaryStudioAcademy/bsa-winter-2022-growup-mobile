@@ -16,13 +16,13 @@ import { AppColor, HeadingLevel, TextAppearance } from 'src/common/enums';
 import { IEducation } from 'src/common/types';
 import styles from './styles';
 
-interface Props {
+type EducationCardProps = {
   education: IEducation;
   onEdit?: () => void;
   onDelete?: () => void;
-}
+};
 
-const EducationCard: React.FC<Props> = ({
+const EducationCard: React.FC<EducationCardProps> = ({
   education: { type, university, degree, startDate, endDate },
   onEdit,
   onDelete,

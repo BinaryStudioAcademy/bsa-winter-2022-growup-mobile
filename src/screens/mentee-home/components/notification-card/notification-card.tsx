@@ -5,12 +5,15 @@ import { MainButton, Text } from 'src/components';
 import { MinorCard } from '..';
 import styles from './styles';
 
-interface Props {
+type NotificationCardProps = {
   notification: INotification;
   onMarkRead: () => void;
-}
+};
 
-const NotificationCard: React.FC<Props> = ({ notification, onMarkRead }) => {
+const NotificationCard: React.FC<NotificationCardProps> = ({
+  notification,
+  onMarkRead,
+}) => {
   return (
     <MinorCard>
       <Text>{notification.text}</Text>

@@ -3,11 +3,11 @@ import { Avatar as AvatarUI } from 'react-native-paper';
 
 import { SIZE } from './constants';
 
-interface Props {
+type AvatarProps = {
   url?: string;
-}
+};
 
-const Avatar: React.FC<Props> = ({ url }) => {
+const Avatar: React.FC<AvatarProps> = ({ url }) => {
   if (url) {
     return <AvatarUI.Image source={{ uri: url }} size={SIZE} />;
   }

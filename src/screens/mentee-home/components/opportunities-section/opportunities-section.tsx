@@ -6,12 +6,12 @@ import { Heading } from 'src/components';
 import { OpportunityCard } from '..';
 import styles from './styles';
 
-interface Props {
+type OpportunitiesSectionProps = {
   opportunities: IOpportunity[];
   onDetails: (id: string) => void;
-}
+};
 
-const OpportunitiesSection: React.FC<Props> = ({
+const OpportunitiesSection: React.FC<OpportunitiesSectionProps> = ({
   opportunities,
   onDetails,
 }) => {

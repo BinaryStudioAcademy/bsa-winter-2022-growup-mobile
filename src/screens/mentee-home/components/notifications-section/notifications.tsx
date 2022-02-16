@@ -7,12 +7,12 @@ import { Heading } from 'src/components';
 import { NotificationCard } from '..';
 import styles from './styles';
 
-interface Props {
+type NotificationsSectionProps = {
   notifications: INotification[];
   onMarkRead: (id: string) => void;
-}
+};
 
-const NotificationsSection: React.FC<Props> = ({
+const NotificationsSection: React.FC<NotificationsSectionProps> = ({
   notifications,
   onMarkRead,
 }) => {

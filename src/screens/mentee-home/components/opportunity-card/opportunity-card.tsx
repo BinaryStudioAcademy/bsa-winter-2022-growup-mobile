@@ -5,12 +5,15 @@ import { MainButton, Text } from 'src/components';
 import { MinorCard } from '..';
 import styles from './styles';
 
-interface Props {
+type OpportunityCardProps = {
   opportunity: IOpportunity;
   onDetails: () => void;
-}
+};
 
-const OpportunityCard: React.FC<Props> = ({ opportunity, onDetails }) => {
+const OpportunityCard: React.FC<OpportunityCardProps> = ({
+  opportunity,
+  onDetails,
+}) => {
   return (
     <MinorCard>
       <Text>

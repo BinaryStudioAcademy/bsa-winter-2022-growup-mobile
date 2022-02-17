@@ -1,16 +1,17 @@
 import { createAction, createAsyncThunk } from '@reduxjs/toolkit';
 
-import { authApi } from 'src/services';
+import { authApi, storage } from 'src/services';
 import { ISignInPayload } from 'src/common/types';
 import { ActionType } from './common';
+import { SecureStorageKey } from 'src/common/enums';
 
 const signIn = createAsyncThunk(
   ActionType.SIGN_IN,
   async (payload: ISignInPayload) => {
-    // TODO: implement login logic
-    const { user } = await authApi.signIn(payload);
+    const { token } = await authApi.signIn(payload);
+    await storage.setItem(SecureStorageKey.ACCESS_TOKEN, token);
 
-    return user;
+    return token;
   }
 );
 

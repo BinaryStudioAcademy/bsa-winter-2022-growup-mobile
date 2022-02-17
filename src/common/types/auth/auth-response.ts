@@ -1,7 +1,7 @@
 import { IUser } from '..';
 
 type AuthResponse = {
-  accessToken: string;
+  token: string;
   user: IUser;
 };
 

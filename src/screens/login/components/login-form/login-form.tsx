@@ -1,5 +1,4 @@
-import React, { useCallback, useState } from 'react';
-import { TextInput } from 'react-native-paper';
+import React, { useCallback } from 'react';
 import { View } from 'react-native';
 import { Formik } from 'formik';
 
@@ -8,13 +7,12 @@ import { MainButton } from 'src/components';
 import { AppColor } from 'src/common/enums';
 import { defaultLoginPayload } from '../../common';
 import { authenticateUserValidationSchema } from 'src/validation-schemas';
-import { FormInput } from 'src/components';
+import { FormInput, FormPasswordInput } from 'src/components';
 import { IAuthenticateUser } from 'src/common/types';
 import { useAppDispatch } from 'src/hooks';
 import { signIn } from 'src/store/auth/actions';
 
 const LoginForm: React.FC = () => {
-  const [secure, setSecure] = useState(true);
   const dispatch = useAppDispatch();
 
   const handleLogin = useCallback(
@@ -22,9 +20,7 @@ const LoginForm: React.FC = () => {
     [dispatch]
   );
 
-  const onLoginPressed = (values: IAuthenticateUser) => {
-    // TODO authentication logic
-
+  const handleLoginPressed = (values: IAuthenticateUser) => {
     handleLogin(values)
       .unwrap()
       .then(() => {
@@ -35,16 +31,12 @@ const LoginForm: React.FC = () => {
       });
   };
 
-  const onChangePasswordSecure = () => {
-    setSecure(!secure);
-  };
-
   return (
     <Formik
       initialValues={defaultLoginPayload}
       validationSchema={authenticateUserValidationSchema}
       validateOnMount={true}
-      onSubmit={onLoginPressed}
+      onSubmit={handleLoginPressed}
     >
       {({ isValid, handleSubmit }) => (
         <View style={styles.content}>
@@ -55,19 +47,11 @@ const LoginForm: React.FC = () => {
               outlineColor={AppColor.INPUT_BACKGROUND}
               label="Email"
             />
-            <FormInput
+            <FormPasswordInput
               name="password"
               style={styles.formField}
               outlineColor={AppColor.INPUT_BACKGROUND}
               label="Password"
-              secureTextEntry={secure}
-              right={
-                <TextInput.Icon
-                  name="eye"
-                  style={styles.formIcon}
-                  onPress={onChangePasswordSecure}
-                />
-              }
             />
           </View>
           <MainButton

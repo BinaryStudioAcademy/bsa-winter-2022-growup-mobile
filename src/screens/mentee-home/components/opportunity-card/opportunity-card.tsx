@@ -1,6 +1,7 @@
-import dayjs from 'dayjs';
 import React, { useState } from 'react';
+import dayjs from 'dayjs';
 import { TouchableOpacity, View } from 'react-native';
+
 import {
   AppColor,
   HeadingLevel,

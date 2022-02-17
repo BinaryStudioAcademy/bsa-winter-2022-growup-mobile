@@ -1,33 +1,22 @@
-import { useCallback, useState } from 'react';
-
-export type DebouncedTimeout = {
-  reset: () => void;
-  clear: () => void;
-};
+import { useCallback, useEffect, useState } from 'react';
 
 export const useDebouncedTimeout = (
   callback: () => void,
   thresholdMs: number
-): DebouncedTimeout => {
-  const [timeoutId, setTimeoutId] = useState<NodeJS.Timeout | null>();
+): (() => void) => {
+  const [updaterState, setUpdaterState] = useState<boolean>(false);
 
   const reset = useCallback(() => {
-    if (timeoutId) {
-      clearTimeout(timeoutId);
-    }
+    setUpdaterState(prev => !prev);
+  }, []);
 
-    setTimeoutId(setTimeout(callback, thresholdMs));
-  }, [timeoutId, callback, thresholdMs]);
+  useEffect(() => {
+    const timeoutId = setTimeout(callback, thresholdMs);
+    return () => clearTimeout(timeoutId);
 
-  const clear = useCallback(() => {
-    if (timeoutId) {
-      clearTimeout(timeoutId);
-      setTimeoutId(null);
-    }
-  }, [timeoutId]);
+    // CALLBACK AND THRESHOLD AREN'T NEEDED HERE, SO WE CAN IGNORE THE RULE
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [updaterState]);
 
-  return {
-    reset,
-    clear,
-  };
+  return reset;
 };

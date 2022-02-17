@@ -20,7 +20,7 @@ class GooglePlacesApi {
   }
 
   public async predictAutocomplete(existingText: string): Promise<string[]> {
-    if (!this.#checkKey()) {
+    if (!this.checkKey()) {
       return [];
     }
 
@@ -30,7 +30,7 @@ class GooglePlacesApi {
         query: {
           key: this.#apiKey,
           input: existingText,
-          types: 'geocode',
+          types: '(cities)',
         },
       }
     );
@@ -42,7 +42,7 @@ class GooglePlacesApi {
     return response.predictions.map(place => place.description);
   }
 
-  #checkKey() {
+  private checkKey() {
     return Boolean(this.#apiKey);
   }
 }

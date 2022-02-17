@@ -3,6 +3,7 @@ export * from './main-button';
 export * from './heading';
 export * from './input';
 export * from './select';
+export * from './autocomplete-select';
 export * from './icons';
 export * from './form';
 export * from './tag';

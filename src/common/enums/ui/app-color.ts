@@ -1,4 +1,5 @@
 enum AppColor {
+  INVISIBLE = '#0001',
   PRIMARY = '#463DA8',
   SECONDARY = '#291965',
   ACCENT = '#EE2A64',

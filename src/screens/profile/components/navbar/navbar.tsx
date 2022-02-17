@@ -3,13 +3,13 @@ import { ScrollView, View } from 'react-native';
 
 import { MainButton, Text } from 'src/components';
 import { AppColor, ButtonMode } from 'src/common/enums';
-import { NAVBAR_BUTTON_WIDTH } from 'src/screens/profile/components/navbar/constants';
+import { NAVBAR_BUTTON_WIDTH } from './constants';
 import styles from './styles';
 
 type NavbarProps = {
   activeIndex: number;
-  onClick: (index: number) => void;
   items: string[];
+  onClick: (index: number) => void;
 };
 
 const Navbar = ({ activeIndex, onClick, items }: NavbarProps) => {
@@ -30,7 +30,7 @@ const Navbar = ({ activeIndex, onClick, items }: NavbarProps) => {
       <ScrollView horizontal={true} ref={scrollViewRef}>
         {items.map((item, index) => (
           <MainButton
-            key={index}
+            key={item}
             style={[
               styles.button,
               activeIndex === index && styles.activeButton,

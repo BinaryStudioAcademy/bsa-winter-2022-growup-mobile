@@ -2,7 +2,7 @@ import { StyleSheet } from 'react-native';
 
 import { AppColor } from 'src/common/enums';
 import { DEFAULT_SCREEN_PADDING } from 'src/styles';
-import { NAVBAR_BUTTON_WIDTH } from 'src/screens/profile/components/navbar/constants';
+import { NAVBAR_BUTTON_WIDTH } from './constants';
 
 const styles = StyleSheet.create({
   navbar: {

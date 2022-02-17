@@ -7,7 +7,7 @@ import PagerView, {
   PagerViewOnPageSelectedEvent,
 } from 'react-native-pager-view';
 
-import { Navbar } from 'src/screens/profile/components/navbar';
+import { Navbar } from './components';
 import { ProfileRoute } from 'src/common/enums';
 import { Text } from 'src/components';
 import addActions from './add-actions';
@@ -15,18 +15,19 @@ import styles from './styles';
 
 type IProfileScreenProps = Record<string, never>;
 
+const NAVBAR_ITEMS = [
+  'Summary',
+  'Qualities',
+  'Interests',
+  'Skills',
+  'Education',
+];
+
 const ProfileScreen: React.FC<IProfileScreenProps> = () => {
   const navigation = useNavigation();
   const [addMenuOpen, setAddMenuOpen] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
   const pagerRef = useRef<PagerView>(null);
-  const NAVBAR_ITEMS = [
-    'Summary',
-    'Qualities',
-    'Interests',
-    'Skills',
-    'Education',
-  ];
 
   const handleClick = (index: number) => {
     pagerRef.current?.setPage(index);

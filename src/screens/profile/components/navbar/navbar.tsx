@@ -1,26 +1,22 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { ScrollView, View } from 'react-native';
 
 import { MainButton, Text } from 'src/components';
 import { AppColor, ButtonMode } from 'src/common/enums';
-import { BUTTON_PROFILE_NAVBAR_WIDTH } from 'src/common/constants';
+import { NAVBAR_BUTTON_WIDTH } from 'src/screens/profile/components/navbar/constants';
 import styles from './styles';
-
-type Item = {
-  id: number;
-  text: string;
-};
 
 type NavbarProps = {
   activeIndex: number;
   onClick: (index: number) => void;
+  items: string[];
 };
 
-const Navbar = ({ activeIndex, onClick }: NavbarProps) => {
+const Navbar = ({ activeIndex, onClick, items }: NavbarProps) => {
   const scrollViewRef = useRef<ScrollView>(null);
 
   useEffect(() => {
-    const xOffset = activeIndex * BUTTON_PROFILE_NAVBAR_WIDTH;
+    const xOffset = activeIndex * NAVBAR_BUTTON_WIDTH;
     scrollViewRef.current?.scrollTo({
       x: xOffset,
       y: 0,
@@ -28,50 +24,28 @@ const Navbar = ({ activeIndex, onClick }: NavbarProps) => {
     });
   }, [activeIndex]);
 
-  const [items] = useState<Item[]>([
-    { id: 0, text: 'Summary' },
-    {
-      id: 1,
-      text: 'Qualities',
-    },
-    {
-      id: 2,
-      text: 'Interests',
-    },
-    {
-      id: 3,
-      text: 'Skills',
-    },
-    {
-      id: 4,
-      text: 'Education',
-    },
-  ]);
-
   return (
     <View style={styles.navbar}>
       <Text style={styles.title}>User profile</Text>
-      <View style={styles.buttons}>
-        <ScrollView horizontal={true} ref={scrollViewRef}>
-          {items.map((item, index) => (
-            <MainButton
-              key={item.id}
-              style={[
-                styles.button,
-                activeIndex === index && styles.activeButton,
-              ]}
-              mode={
-                activeIndex === index ? ButtonMode.CONTAINED : ButtonMode.TEXT
-              }
-              color={activeIndex === index ? '' : AppColor.BLACK}
-              compact={true}
-              onPress={() => onClick(index)}
-            >
-              {item.text}
-            </MainButton>
-          ))}
-        </ScrollView>
-      </View>
+      <ScrollView horizontal={true} ref={scrollViewRef}>
+        {items.map((item, index) => (
+          <MainButton
+            key={index}
+            style={[
+              styles.button,
+              activeIndex === index && styles.activeButton,
+            ]}
+            mode={
+              activeIndex === index ? ButtonMode.CONTAINED : ButtonMode.TEXT
+            }
+            color={activeIndex === index ? '' : AppColor.BLACK}
+            compact={true}
+            onPress={() => onClick(index)}
+          >
+            {item}
+          </MainButton>
+        ))}
+      </ScrollView>
     </View>
   );
 };

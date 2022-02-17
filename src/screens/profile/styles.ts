@@ -8,12 +8,9 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    alignItems: 'center',
   },
   content: {
-    width: '100%',
-    height: '100%',
-    paddingTop: 15,
+    flex: 1,
     backgroundColor: AppColor.WHITE,
   },
   swiperWrapper: {

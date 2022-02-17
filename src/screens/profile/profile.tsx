@@ -19,10 +19,17 @@ const ProfileScreen: React.FC<IProfileScreenProps> = () => {
   const navigation = useNavigation();
   const [addMenuOpen, setAddMenuOpen] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
-  const refViewPage = useRef<PagerView>(null);
+  const pagerRef = useRef<PagerView>(null);
+  const NAVBAR_ITEMS = [
+    'Summary',
+    'Qualities',
+    'Interests',
+    'Skills',
+    'Education',
+  ];
 
   const handleClick = (index: number) => {
-    refViewPage.current?.setPage(index);
+    pagerRef.current?.setPage(index);
     setActiveIndex(index);
   };
 
@@ -65,12 +72,16 @@ const ProfileScreen: React.FC<IProfileScreenProps> = () => {
   return (
     <SafeAreaView style={styles.fullHeight}>
       <View style={styles.container}>
-        <Navbar activeIndex={activeIndex} onClick={handleClick} />
+        <Navbar
+          activeIndex={activeIndex}
+          onClick={handleClick}
+          items={NAVBAR_ITEMS}
+        />
         <Divider />
         <View style={styles.content}>
           <PagerView
             initialPage={0}
-            ref={refViewPage}
+            ref={pagerRef}
             onPageSelected={handlePageSelect}
             orientation="horizontal"
             style={styles.swiperWrapper}

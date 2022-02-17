@@ -1,38 +1,26 @@
 import { StyleSheet } from 'react-native';
 
 import { AppColor } from 'src/common/enums';
-import {
-  BUTTON_PROFILE_NAVBAR_WIDTH,
-  PROFILE_NAVBAR_WIDTH,
-} from 'src/common/constants';
+import { DEFAULT_SCREEN_PADDING } from 'src/styles';
+import { NAVBAR_BUTTON_WIDTH } from 'src/screens/profile/components/navbar/constants';
 
 const styles = StyleSheet.create({
   navbar: {
-    paddingTop: 10,
-    justifyContent: 'space-between',
-    width: '100%',
-    height: 93,
-    backgroundColor: AppColor.INPUT_BACKGROUND,
-  },
-  buttons: {
-    flexDirection: 'row',
-    backgroundColor: AppColor.WHITE,
-    margin: 10,
-    width: PROFILE_NAVBAR_WIDTH,
-    alignSelf: 'center',
-    borderRadius: 7,
+    backgroundColor: AppColor.GREY,
+    paddingHorizontal: DEFAULT_SCREEN_PADDING,
+    paddingVertical: 10,
   },
   title: {
     fontSize: 17,
     textAlign: 'center',
+    marginBottom: 10,
   },
   button: {
-    flex: 1,
-    width: BUTTON_PROFILE_NAVBAR_WIDTH,
-    borderRadius: 0,
+    width: NAVBAR_BUTTON_WIDTH,
+    borderRadius: 7,
+    backgroundColor: AppColor.WHITE,
   },
   activeButton: {
-    borderRadius: 7,
     backgroundColor: AppColor.ACCENT,
   },
 });

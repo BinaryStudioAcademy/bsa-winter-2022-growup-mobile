@@ -1,1 +1,1 @@
-export * from './location';
+export * from './add-location';

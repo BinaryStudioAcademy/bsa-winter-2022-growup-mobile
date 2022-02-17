@@ -1,6 +1,6 @@
 import * as yup from 'yup';
 
-const experienceValidationSchema = yup.object({
+const addExperienceValidationSchema = yup.object({
   companyName: yup
     .string()
     .required('Company name must not be empty')
@@ -20,4 +20,4 @@ const experienceValidationSchema = yup.object({
     ),
 });
 
-export { experienceValidationSchema };
+export { addExperienceValidationSchema };

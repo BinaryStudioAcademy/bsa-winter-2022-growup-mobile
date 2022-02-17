@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React from 'react';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useNavigation } from '@react-navigation/native';
 import { ScrollView, View } from 'react-native';
@@ -9,17 +9,17 @@ import { Heading } from 'src/components';
 import { AddButton } from '../';
 import styles from './styles';
 
-type ExperienceContentScreenProps = NativeStackNavigationProp<
+type ExperienceContentProps = NativeStackNavigationProp<
   OnboardingStackParamList,
   OnboardingRoute.ADD_EXPERIENCE
 >;
 
 const ExperienceContent: React.FC = () => {
-  const navigation = useNavigation<ExperienceContentScreenProps>();
+  const navigation = useNavigation<ExperienceContentProps>();
 
-  const handleAddExperience = useCallback(() => {
+  const handleAddExperience = () => {
     navigation.navigate(OnboardingRoute.ADD_EXPERIENCE);
-  }, [navigation]);
+  };
 
   return (
     <View style={styles.content}>

@@ -6,13 +6,8 @@ import { Avatar } from 'react-native-paper';
 import { AppColor, HeadingLevel } from 'src/common/enums';
 import { FormInput, Heading } from 'src/components';
 import { userInfoValidationSchema } from 'src/validation-schemas';
+import { defaultAddUserInfoPayload } from './common';
 import styles from './styles';
-
-const initialValues = {
-  firstName: '',
-  lastName: '',
-  position: '',
-};
 
 const UserContent: React.FC = () => {
   return (
@@ -30,7 +25,7 @@ const UserContent: React.FC = () => {
           />
         </View>
         <Formik
-          initialValues={initialValues}
+          initialValues={defaultAddUserInfoPayload}
           validationSchema={userInfoValidationSchema}
           onSubmit={() => {
             // TODO
@@ -38,19 +33,19 @@ const UserContent: React.FC = () => {
         >
           <>
             <FormInput
-              style={styles.input}
+              containerStyle={styles.input}
               label="First name"
               placeholder="Enter first name"
               name="firstName"
             />
             <FormInput
-              style={styles.input}
+              containerStyle={styles.input}
               label="Last name"
               placeholder="Enter last name"
               name="lastName"
             />
             <FormInput
-              style={styles.input}
+              containerStyle={styles.input}
               label="Position"
               placeholder="Enter your position"
               name="position"

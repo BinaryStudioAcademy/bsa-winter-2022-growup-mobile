@@ -1,6 +1,6 @@
 import * as yup from 'yup';
 
-const educationValidationSchema = yup.object({
+const addEducationValidationSchema = yup.object({
   universityName: yup
     .string()
     .required('University name must not be empty')
@@ -24,4 +24,4 @@ const educationValidationSchema = yup.object({
     ),
 });
 
-export { educationValidationSchema };
+export { addEducationValidationSchema };

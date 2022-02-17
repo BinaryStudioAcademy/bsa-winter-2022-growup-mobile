@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React from 'react';
 import { useNavigation } from '@react-navigation/core';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { View } from 'react-native';
@@ -9,21 +9,21 @@ import { Heading } from 'src/components';
 import { AddButton } from '..';
 import styles from './styles';
 
-type InterestingContentScreenProps = NativeStackNavigationProp<
+type InterestingContentProps = NativeStackNavigationProp<
   OnboardingStackParamList,
   OnboardingRoute.ADD_LANGUAGE | OnboardingRoute.ADD_LOCATION
 >;
 
 const InterestingContent: React.FC = () => {
-  const navigation = useNavigation<InterestingContentScreenProps>();
+  const navigation = useNavigation<InterestingContentProps>();
 
-  const handleAddLanguage = useCallback(() => {
+  const handleAddLanguage = () => {
     navigation.navigate(OnboardingRoute.ADD_LANGUAGE);
-  }, [navigation]);
+  };
 
-  const handleAddLocation = useCallback(() => {
+  const handleAddLocation = () => {
     navigation.navigate(OnboardingRoute.ADD_LOCATION);
-  }, [navigation]);
+  };
 
   return (
     <View style={styles.content}>

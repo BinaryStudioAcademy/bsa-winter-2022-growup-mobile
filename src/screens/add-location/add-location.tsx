@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -6,25 +6,22 @@ import { Formik } from 'formik';
 
 import { ButtonMode, HeadingLevel } from 'src/common/enums';
 import { FormInput, Heading, MainButton } from 'src/components';
-import { locationValidationSchema } from 'src/validation-schemas';
+import { addLocationValidationSchema } from 'src/validation-schemas';
+import { defaultAddLocationPayload } from './common';
 import styles from './styles';
-
-const initialValues = {
-  location: '',
-};
 
 const AddLocationScreen: React.FC = () => {
   const navigation = useNavigation();
 
-  const handleCancel = useCallback(() => {
+  const handleCancel = () => {
     navigation.goBack();
-  }, [navigation]);
+  };
 
   return (
     <SafeAreaView style={styles.screen}>
       <Formik
-        initialValues={initialValues}
-        validationSchema={locationValidationSchema}
+        initialValues={defaultAddLocationPayload}
+        validationSchema={addLocationValidationSchema}
         onSubmit={() => {
           // TODO
         }}

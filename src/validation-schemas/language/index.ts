@@ -1,1 +1,1 @@
-export * from './language';
+export * from './add-language';

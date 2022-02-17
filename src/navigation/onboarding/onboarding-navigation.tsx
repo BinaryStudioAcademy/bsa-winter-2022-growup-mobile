@@ -4,7 +4,7 @@ import {
   NativeStackNavigationOptions,
 } from '@react-navigation/native-stack';
 
-import { OnboardingRoute } from 'src/common/enums/navigation';
+import { OnboardingRoute, AppRoute } from 'src/common/enums/navigation';
 import {
   AddEducationScreen,
   AddExperienceScreen,
@@ -13,6 +13,7 @@ import {
   OnboardingScreen,
 } from 'src/screens';
 import { OnboardingStackParamList } from 'src/common/types';
+import AppNavigation from '../app/app-navigation';
 
 const Stack = createNativeStackNavigator<OnboardingStackParamList>();
 
@@ -56,6 +57,11 @@ const OnboardingNavigation = () => {
           options={{ title: 'Add Location' }}
         />
       </Stack.Group>
+      <Stack.Screen
+        name={AppRoute.APP}
+        component={AppNavigation}
+        options={{ headerShown: false }}
+      />
     </Stack.Navigator>
   );
 };

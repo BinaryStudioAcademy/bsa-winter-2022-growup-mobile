@@ -1,9 +1,11 @@
 import React, { useCallback, useRef, useState } from 'react';
+import { useNavigation } from '@react-navigation/native';
 import { View } from 'react-native';
 import PagerView, { PagerViewOnPageScrollEvent } from 'react-native-pager-view';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
-import { ButtonMode } from 'src/common/enums';
+import { AppRoute, ButtonMode } from 'src/common/enums';
 import { MainButton } from 'src/components';
 import {
   EducationContent,
@@ -12,16 +14,21 @@ import {
   StepDots,
   UserContent,
 } from './components';
+import { OnboardingStackParamList } from 'src/common/types';
 import styles from './styles';
 
-type IOnboardingScreenProps = Record<string, never>;
+type OnboardingScreenProps = NativeStackNavigationProp<
+  OnboardingStackParamList,
+  AppRoute.APP
+>;
 
 const ONBOARDING_DOTS_COUNT = 4;
 const LAST_STEP_INDEX = ONBOARDING_DOTS_COUNT - 1;
 
-const OnboardingScreen: React.FC<IOnboardingScreenProps> = () => {
+const OnboardingScreen: React.FC = () => {
   const [currentStep, setCurrentStep] = useState(0);
   const pagerRef = useRef<PagerView | null>(null);
+  const navigation = useNavigation<OnboardingScreenProps>();
 
   const changeCurrentPage = () => {
     pagerRef.current?.setPage(currentStep + 1);
@@ -30,6 +37,10 @@ const OnboardingScreen: React.FC<IOnboardingScreenProps> = () => {
   const handlePageScroll = useCallback((e: PagerViewOnPageScrollEvent) => {
     setCurrentStep(e.nativeEvent.position);
   }, []);
+
+  const handleComplete = () => {
+    navigation.replace(AppRoute.APP);
+  };
 
   const isLastStep = currentStep === LAST_STEP_INDEX;
 
@@ -60,7 +71,7 @@ const OnboardingScreen: React.FC<IOnboardingScreenProps> = () => {
           <MainButton
             style={styles.completeButton}
             mode={ButtonMode.CONTAINED}
-            onPress={changeCurrentPage}
+            onPress={handleComplete}
           >
             Complete
           </MainButton>

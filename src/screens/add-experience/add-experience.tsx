@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { ScrollView, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -6,22 +6,16 @@ import { Formik } from 'formik';
 
 import { ButtonMode, HeadingLevel } from 'src/common/enums';
 import { FormDate, FormInput, Heading, MainButton } from 'src/components';
-import { experienceValidationSchema } from 'src/validation-schemas';
+import { addExperienceValidationSchema } from 'src/validation-schemas';
+import { defaultAddExperiencePayload } from './common';
 import styles from './styles';
-
-const initialValues = {
-  companyName: '',
-  position: '',
-  startDate: undefined,
-  endDate: undefined,
-};
 
 const AddExperienceScreen: React.FC = () => {
   const navigation = useNavigation();
 
-  const handleCancel = useCallback(() => {
+  const handleCancel = () => {
     navigation.goBack();
-  }, [navigation]);
+  };
 
   return (
     <SafeAreaView style={styles.screen}>
@@ -30,45 +24,41 @@ const AddExperienceScreen: React.FC = () => {
         showsVerticalScrollIndicator={false}
       >
         <Formik
-          validationSchema={experienceValidationSchema}
-          initialValues={initialValues}
+          validationSchema={addExperienceValidationSchema}
+          initialValues={defaultAddExperiencePayload}
           onSubmit={() => {
             // TODO
           }}
         >
           {({ isValid, handleSubmit }) => (
             <>
-              <View>
-                <View style={styles.inputContent}>
-                  <Heading style={styles.heading} level={HeadingLevel.H5}>
-                    Company
-                  </Heading>
-                  <FormInput placeholder="Company Name" name="companyName" />
-                </View>
-                <View style={styles.inputContent}>
-                  <Heading style={styles.heading} level={HeadingLevel.H5}>
-                    Position
-                  </Heading>
-                  <FormInput placeholder="Position Name" name="position" />
-                </View>
-                <View style={styles.inputContent}>
-                  <Heading style={styles.heading} level={HeadingLevel.H5}>
-                    Period
-                  </Heading>
-                  <FormDate
-                    label="Start Date"
-                    locale="en"
-                    inputMode="start"
-                    name="startDate"
-                  />
-                  <FormDate
-                    style={styles.dateInput}
-                    locale="en"
-                    inputMode="start"
-                    label="End Date"
-                    name="endDate"
-                  />
-                </View>
+              <View style={styles.inputContent}>
+                <Heading style={styles.heading} level={HeadingLevel.H5}>
+                  Company
+                </Heading>
+                <FormInput placeholder="Company Name" name="companyName" />
+              </View>
+              <View style={styles.inputContent}>
+                <Heading style={styles.heading} level={HeadingLevel.H5}>
+                  Position
+                </Heading>
+                <FormInput placeholder="Position Name" name="position" />
+              </View>
+              <View style={styles.inputContent}>
+                <Heading style={styles.heading} level={HeadingLevel.H5}>
+                  Period
+                </Heading>
+                <FormDate
+                  label="Start Date"
+                  inputMode="start"
+                  name="startDate"
+                />
+                <FormDate
+                  style={styles.dateInput}
+                  inputMode="start"
+                  label="End Date"
+                  name="endDate"
+                />
               </View>
               <View style={styles.buttonContainer}>
                 <MainButton

@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 import { Button } from 'react-native-paper';
 
 import { AppColor, ButtonMode } from 'src/common/enums';
@@ -13,7 +13,7 @@ const MainButton: React.FC<MainButtonProps> = ({
   mode = ButtonMode.TEXT,
   ...buttonProps
 }) => {
-  const isOutlined = useMemo(() => mode === ButtonMode.OUTLINED, [mode]);
+  const isOutlined = mode === ButtonMode.OUTLINED;
 
   return (
     <Button

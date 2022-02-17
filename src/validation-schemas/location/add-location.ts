@@ -1,10 +1,10 @@
 import * as yup from 'yup';
 
-const locationValidationSchema = yup.object({
+const addLocationValidationSchema = yup.object({
   location: yup
     .string()
     .required('Location must not be empty')
     .max(100, 'Location must be less than 100 symbols'),
 });
 
-export { locationValidationSchema };
+export { addLocationValidationSchema };

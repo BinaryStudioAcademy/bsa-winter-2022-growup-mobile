@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -6,25 +6,22 @@ import { Formik } from 'formik';
 
 import { ButtonMode, HeadingLevel } from 'src/common/enums';
 import { FormInput, Heading, MainButton } from 'src/components';
-import { languageValidationSchema } from 'src/validation-schemas';
+import { addLanguageValidationSchema } from 'src/validation-schemas';
+import { defaultAddLanguagePayload } from './common';
 import styles from './styles';
-
-const initialValues = {
-  language: '',
-};
 
 const AddLanguageScreen: React.FC = () => {
   const navigation = useNavigation();
 
-  const handleCancel = useCallback(() => {
+  const handleCancel = () => {
     navigation.goBack();
-  }, [navigation]);
+  };
 
   return (
     <SafeAreaView style={styles.screen}>
       <Formik
-        initialValues={initialValues}
-        validationSchema={languageValidationSchema}
+        initialValues={defaultAddLanguagePayload}
+        validationSchema={addLanguageValidationSchema}
         onSubmit={() => {
           // TODO
         }}

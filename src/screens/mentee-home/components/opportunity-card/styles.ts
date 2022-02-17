@@ -1,11 +1,28 @@
 import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
-  highlight: {
-    fontWeight: '700',
+  infoRow: {
+    flexDirection: 'row',
+    marginBottom: 5,
+    alignItems: 'center',
   },
-  button: {
-    alignSelf: 'flex-end',
+  heading: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: 10,
+  },
+  text: {
+    marginLeft: 5,
+  },
+  tagsContainer: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    alignItems: 'flex-start',
+    marginVertical: 5,
+  },
+  tag: {
+    margin: 2,
   },
 });
 

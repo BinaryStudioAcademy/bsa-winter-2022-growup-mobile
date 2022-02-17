@@ -1,7 +1,21 @@
-import React from 'react';
-
+import dayjs from 'dayjs';
+import React, { useState } from 'react';
+import { TouchableOpacity, View } from 'react-native';
+import {
+  AppColor,
+  HeadingLevel,
+  TagType,
+  TextAppearance,
+} from 'src/common/enums';
 import { IOpportunity } from 'src/common/types';
-import { MainButton, Text } from 'src/components';
+import {
+  BookMarkIcon,
+  BookMarkOutlineIcon,
+  CalendarIcon,
+  Heading,
+  Tag,
+  Text,
+} from 'src/components';
 import { MinorCard } from '..';
 import styles from './styles';
 
@@ -10,20 +24,49 @@ type OpportunityCardProps = {
   onDetails: () => void;
 };
 
-const OpportunityCard: React.FC<OpportunityCardProps> = ({
-  opportunity,
-  onDetails,
-}) => {
+const OpportunityCard: React.FC<OpportunityCardProps> = ({ opportunity }) => {
+  const [isSaved, setIsSaved] = useState(false);
+  const { name, startDate, tags, orgGroup, type } = opportunity;
+  const startDateString = dayjs(startDate).format('MMM D, YYYY');
+
+  const handleBookmarkAction = () => {
+    setIsSaved(curr => !curr);
+  };
+
   return (
     <MinorCard>
-      <Text>
-        <Text style={styles.highlight}>{opportunity.position}</Text>
-        <Text> at </Text>
-        <Text style={styles.highlight}>{opportunity.company}</Text>
-      </Text>
-      <MainButton compact={true} style={styles.button} onPress={onDetails}>
-        Details
-      </MainButton>
+      <View style={styles.heading}>
+        <Heading level={HeadingLevel.H6}>{name}</Heading>
+        <TouchableOpacity onPress={handleBookmarkAction}>
+          {isSaved ? (
+            <BookMarkIcon color={AppColor.PRIMARY} size={24} />
+          ) : (
+            <BookMarkOutlineIcon color={AppColor.PRIMARY} size={24} />
+          )}
+        </TouchableOpacity>
+      </View>
+      <View style={styles.infoRow}>
+        <Text appearance={TextAppearance.HINT}>Org group</Text>
+        <Text style={styles.text}>{orgGroup}</Text>
+      </View>
+      <View style={styles.infoRow}>
+        <Text appearance={TextAppearance.HINT}>Type</Text>
+        <Text style={styles.text}>{type}</Text>
+      </View>
+      <View style={styles.infoRow}>
+        <CalendarIcon color={AppColor.HINT} size={16} />
+        <Text style={styles.text}>{startDateString}</Text>
+      </View>
+      <View style={styles.tagsContainer}>
+        {tags.map(item => (
+          <Tag
+            style={styles.tag}
+            text={item}
+            key={item}
+            tagType={TagType.COMMON}
+          />
+        ))}
+      </View>
     </MinorCard>
   );
 };

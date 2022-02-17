@@ -1,9 +1,11 @@
-import React, { useCallback, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Divider, FAB } from 'react-native-paper';
-import PagerView from 'react-native-pager-view';
+import PagerView, {
+  PagerViewOnPageSelectedEvent,
+} from 'react-native-pager-view';
 
 import { Navbar } from 'src/screens/profile/components/navbar';
 import { ProfileRoute } from 'src/common/enums';
@@ -11,18 +13,18 @@ import { Text } from 'src/components';
 import addActions from './add-actions';
 import styles from './styles';
 
-type ProfileScreenProps = Record<string, never>;
+type IProfileScreenProps = Record<string, never>;
 
-const ProfileScreen: React.FC<ProfileScreenProps> = () => {
+const ProfileScreen: React.FC<IProfileScreenProps> = () => {
   const navigation = useNavigation();
-  const [addMenuOpen, setAddMenuOpen] = useState<boolean>(false);
-  const [active, setActive] = React.useState<number>(0);
-  const refPage = useRef<PagerView>(null);
+  const [addMenuOpen, setAddMenuOpen] = useState(false);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const refViewPage = useRef<PagerView>(null);
 
-  const handleClick = useCallback((index: number) => {
-    refPage.current?.setPage(index);
-    setActive(index);
-  }, []);
+  const handleClick = (index: number) => {
+    refViewPage.current?.setPage(index);
+    setActiveIndex(index);
+  };
 
   const addFunctions: Record<string, () => void> = {
     skill: () => {
@@ -56,20 +58,22 @@ const ProfileScreen: React.FC<ProfileScreenProps> = () => {
     setAddMenuOpen(open);
   };
 
+  const handlePageSelect = (event: PagerViewOnPageSelectedEvent) => {
+    setActiveIndex(event.nativeEvent.position);
+  };
+
   return (
     <SafeAreaView style={styles.fullHeight}>
       <View style={styles.container}>
-        <Navbar active={active} handleClick={handleClick} />
+        <Navbar activeIndex={activeIndex} onClick={handleClick} />
         <Divider />
         <View style={styles.content}>
           <PagerView
             initialPage={0}
-            ref={refPage}
-            onPageSelected={({ nativeEvent }) =>
-              setActive(nativeEvent.position)
-            }
+            ref={refViewPage}
+            onPageSelected={handlePageSelect}
             orientation="horizontal"
-            style={styles.swipeWrapper}
+            style={styles.swiperWrapper}
           >
             <View style={styles.swiperItem} collapsable={false}>
               <Text>Summary container</Text>

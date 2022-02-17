@@ -6,26 +6,29 @@ import { AppColor, ButtonMode } from 'src/common/enums';
 import { BUTTON_PROFILE_NAVBAR_WIDTH } from 'src/common/constants';
 import styles from './styles';
 
-type State = Array<{ id: number; text: string }>;
+type Item = {
+  id: number;
+  text: string;
+};
 
-interface Props {
-  active: number;
-  handleClick: (a: number) => void;
-}
+type NavbarProps = {
+  activeIndex: number;
+  onClick: (index: number) => void;
+};
 
-const Navbar = ({ active, handleClick }: Props) => {
-  const scrollRef = useRef<ScrollView>(null);
+const Navbar = ({ activeIndex, onClick }: NavbarProps) => {
+  const scrollViewRef = useRef<ScrollView>(null);
 
   useEffect(() => {
-    const scrollToPosition = active * BUTTON_PROFILE_NAVBAR_WIDTH;
-    scrollRef.current?.scrollTo({
-      x: scrollToPosition,
+    const xOffset = activeIndex * BUTTON_PROFILE_NAVBAR_WIDTH;
+    scrollViewRef.current?.scrollTo({
+      x: xOffset,
       y: 0,
       animated: true,
     });
-  }, [active]);
+  }, [activeIndex]);
 
-  const [items] = useState<State>([
+  const [items] = useState<Item[]>([
     { id: 0, text: 'Summary' },
     {
       id: 1,
@@ -49,15 +52,19 @@ const Navbar = ({ active, handleClick }: Props) => {
     <View style={styles.navbar}>
       <Text style={styles.title}>User profile</Text>
       <View style={styles.buttons}>
-        <ScrollView horizontal={true} ref={scrollRef}>
+        <ScrollView horizontal={true} ref={scrollViewRef}>
           {items.map((item, index) => (
             <MainButton
               key={item.id}
-              style={active === index ? styles.active : styles.btn}
-              mode={active === index ? ButtonMode.CONTAINED : ButtonMode.TEXT}
-              color={active === index ? '' : AppColor.BLACK}
+              style={
+                activeIndex === index ? styles.activeButton : styles.button
+              }
+              mode={
+                activeIndex === index ? ButtonMode.CONTAINED : ButtonMode.TEXT
+              }
+              color={activeIndex === index ? '' : AppColor.BLACK}
               compact={true}
-              onPress={() => handleClick(index)}
+              onPress={() => onClick(index)}
             >
               {item.text}
             </MainButton>

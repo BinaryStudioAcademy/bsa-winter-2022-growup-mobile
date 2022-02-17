@@ -23,21 +23,19 @@ const styles = StyleSheet.create({
     borderRadius: 7,
   },
   title: {
-    color: AppColor.BLACK,
     fontSize: 17,
     textAlign: 'center',
-    fontFamily: 'NunitoSans-Regular',
   },
-  btn: {
+  button: {
     flex: 1,
     width: BUTTON_PROFILE_NAVBAR_WIDTH,
     borderRadius: 0,
   },
-  active: {
+  activeButton: {
     width: BUTTON_PROFILE_NAVBAR_WIDTH,
+    flex: 1,
     borderRadius: 7,
     backgroundColor: AppColor.ACCENT,
-    flex: 1,
   },
 });
 

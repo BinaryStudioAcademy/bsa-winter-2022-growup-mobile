@@ -5,6 +5,7 @@ enum AppRoute {
   OKR = 'OKR',
   PROFILE = 'Profile',
   APP = 'App',
+  ONBOARDING_SETUP = 'OnboardingSetup',
 }
 
 export { AppRoute };

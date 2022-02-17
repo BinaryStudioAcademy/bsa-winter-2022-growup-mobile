@@ -2,7 +2,6 @@ import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import { AppRoute, AuthRoute } from 'src/common/enums/navigation';
-
 import AppNavigation from './app/app-navigation';
 import { useAppSelector } from 'src/hooks';
 import { MenteeHomeScreen } from 'src/screens';

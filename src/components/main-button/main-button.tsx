@@ -8,13 +8,18 @@ type MainButtonProps = React.ComponentPropsWithoutRef<typeof Button>;
 
 const MainButton: React.FC<MainButtonProps> = ({
   children,
+  style,
+  labelStyle,
   mode = ButtonMode.TEXT,
   ...buttonProps
 }) => {
+  const isOutlined = mode === ButtonMode.OUTLINED;
+
   return (
     <Button
       uppercase={false}
-      style={mode === ButtonMode.OUTLINED && styles[ButtonMode.OUTLINED]}
+      labelStyle={[styles.text, labelStyle]}
+      style={[isOutlined && styles[ButtonMode.OUTLINED], style]}
       mode={mode}
       color={AppColor.ACCENT}
       {...buttonProps}

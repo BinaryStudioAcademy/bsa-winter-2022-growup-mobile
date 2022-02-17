@@ -8,13 +8,13 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
-  cards: {
-    flex: 1,
-    marginRight: 15,
-  },
   careerItem: {
     marginLeft: 15,
     width: '100%',
+  },
+  cards: {
+    flex: 1,
+    marginRight: 15,
   },
   divider: {
     width: 1,
@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
-  actionsBtn: {
+  actionButtons: {
     flexDirection: 'row',
     alignItems: 'center',
   },
@@ -63,9 +63,11 @@ const styles = StyleSheet.create({
     height: 8,
     borderRadius: 5,
   },
-  hint: {
-    color: AppColor.HINT,
+  key: {
     marginRight: 5,
+  },
+  date: {
+    marginLeft: 5,
   },
   text: {
     flexDirection: 'row',

@@ -7,3 +7,4 @@ export * from './autocomplete-select';
 export * from './icons';
 export * from './form';
 export * from './tag';
+export * from './date-input';

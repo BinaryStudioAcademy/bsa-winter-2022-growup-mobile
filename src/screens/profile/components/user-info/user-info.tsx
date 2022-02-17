@@ -10,11 +10,7 @@ import styles from './styles';
 const UserInfo = () => {
   return (
     <View style={styles.container}>
-      <Avatar.Image
-        size={148}
-        source={require('src/assets/images/user_avatar.png')}
-        style={styles.avatar}
-      />
+      <Avatar.Icon size={152} icon="account" style={styles.avatar} />
       <View>
         <Heading level={HeadingLevel.H4} style={styles.name}>
           Cristofer Westervelt

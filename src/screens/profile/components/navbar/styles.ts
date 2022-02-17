@@ -32,8 +32,6 @@ const styles = StyleSheet.create({
     borderRadius: 0,
   },
   activeButton: {
-    width: BUTTON_PROFILE_NAVBAR_WIDTH,
-    flex: 1,
     borderRadius: 7,
     backgroundColor: AppColor.ACCENT,
   },

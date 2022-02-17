@@ -56,9 +56,10 @@ const Navbar = ({ activeIndex, onClick }: NavbarProps) => {
           {items.map((item, index) => (
             <MainButton
               key={item.id}
-              style={
-                activeIndex === index ? styles.activeButton : styles.button
-              }
+              style={[
+                styles.button,
+                activeIndex === index && styles.activeButton,
+              ]}
               mode={
                 activeIndex === index ? ButtonMode.CONTAINED : ButtonMode.TEXT
               }

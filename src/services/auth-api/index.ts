@@ -26,9 +26,13 @@ class AuthApi {
     });
   }
 
-  public getCurrentUser(): Promise<IUser> {
+  public getCurrentUser(payload: string): Promise<IUser> {
     return this.#http.load(`${this.#apiPath}${ApiPath.CURRENT_USER}`, {
       method: HttpMethod.GET,
+      hasAuth: true,
+      query: {
+        Authorization: payload,
+      },
     });
   }
 }

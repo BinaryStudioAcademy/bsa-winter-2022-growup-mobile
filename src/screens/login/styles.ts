@@ -17,9 +17,6 @@ const styles = StyleSheet.create({
     marginTop: 17,
     borderRadius: 8,
   },
-  formFieldErrorMessage: {
-    color: AppColor.ACCENT,
-  },
   btnLogin: {
     marginHorizontal: 27,
   },
@@ -35,9 +32,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     marginVertical: 15,
-  },
-  formIcon: {
-    marginBottom: 0,
   },
 });
 

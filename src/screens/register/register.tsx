@@ -11,7 +11,7 @@ type IRegisterScreenProps = Record<string, never>;
 const RegisterScreen: React.FC<IRegisterScreenProps> = () => {
   const navigation = useNavigation();
 
-  const onNavigateTo = (route: AuthRoute) => {
+  const handleNavigateTo = (route: AuthRoute) => {
     navigation.navigate(route);
   };
 
@@ -21,7 +21,7 @@ const RegisterScreen: React.FC<IRegisterScreenProps> = () => {
         <Text>Register screen</Text>
         <MainButton
           mode={ButtonMode.TEXT}
-          onPress={() => onNavigateTo(AuthRoute.SIGN_IN)}
+          onPress={() => handleNavigateTo(AuthRoute.SIGN_IN)}
         >
           Sign in
         </MainButton>

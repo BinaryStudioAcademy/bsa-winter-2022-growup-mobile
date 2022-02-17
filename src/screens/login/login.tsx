@@ -8,12 +8,10 @@ import { styles } from './styles';
 import { AppRoute, AuthRoute, ButtonMode } from 'src/common/enums';
 import { MainButton } from 'src/components';
 
-type ILoginScreenProps = Record<string, never>;
-
-const LoginScreen: React.FC<ILoginScreenProps> = () => {
+const LoginScreen: React.FC = () => {
   const navigation = useNavigation();
 
-  const onNavigateTo = (route: AuthRoute | AppRoute) => {
+  const handleNavigateTo = (route: AuthRoute | AppRoute) => {
     navigation.navigate(route);
   };
 
@@ -31,7 +29,7 @@ const LoginScreen: React.FC<ILoginScreenProps> = () => {
         <Text>New to GrowUp?</Text>
         <MainButton
           mode={ButtonMode.TEXT}
-          onPress={() => onNavigateTo(AuthRoute.SIGN_UP)}
+          onPress={() => handleNavigateTo(AuthRoute.SIGN_UP)}
         >
           Sign Up
         </MainButton>

@@ -6,7 +6,7 @@ const authenticateUserValidationSchema = yup.object({
     .required()
     .min(4, 'Email is too short')
     .max(50, 'Email is too long')
-    .email('Invalid email format'),
+    .email('Must be a valid email'),
   password: yup
     .string()
     .required()

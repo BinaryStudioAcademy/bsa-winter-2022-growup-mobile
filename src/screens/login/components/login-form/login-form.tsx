@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { TextInput } from 'react-native-paper';
 import { View } from 'react-native';
 import { Formik } from 'formik';
@@ -10,13 +10,29 @@ import { defaultLoginPayload } from '../../common';
 import { authenticateUserValidationSchema } from 'src/validation-schemas';
 import { FormInput } from 'src/components';
 import { IAuthenticateUser } from 'src/common/types';
+import { useAppDispatch } from 'src/hooks';
+import { signIn } from 'src/store/auth/actions';
 
 const LoginForm: React.FC = () => {
   const [secure, setSecure] = useState(true);
+  const dispatch = useAppDispatch();
+
+  const handleLogin = useCallback(
+    loginPayload => dispatch(signIn(loginPayload)),
+    [dispatch]
+  );
 
   const onLoginPressed = (values: IAuthenticateUser) => {
     // TODO authentication logic
-    console.log('Received data from the form: ', values);
+
+    handleLogin(values)
+      .unwrap()
+      .then(() => {
+        console.log('User successfully authorized!');
+      })
+      .catch((err: Error) => {
+        console.log(err);
+      });
   };
 
   const onChangePasswordSecure = () => {

@@ -5,9 +5,16 @@ import { StorageService } from './storage';
 import { Http } from './http';
 import { AuthApi } from './auth-api';
 
-import { API_ORIGIN_URL, API_PREFIX } from 'src/common/constants';
+import {
+  API_ORIGIN_URL,
+  API_PREFIX,
+  GOOGLE_API_KEY,
+  GOOGLE_MAPS_API_ORIGIN_URL,
+} from 'src/common/constants';
+
 import { SkillApi } from './skill-api';
 import { NotificationApi } from './notification-api';
+import { GooglePlacesApi } from './google-places-api';
 
 const apiPath = `${API_ORIGIN_URL}${API_PREFIX}`;
 
@@ -38,4 +45,17 @@ const notificationApi = new NotificationApi({
   apiPath: `${API_ORIGIN_URL}${API_PREFIX}`,
 });
 
-export { storage, secureStorage, authApi, skillApi, notificationApi };
+const googlePlacesApi = new GooglePlacesApi({
+  http,
+  apiPath: GOOGLE_MAPS_API_ORIGIN_URL,
+  apiKey: GOOGLE_API_KEY,
+});
+
+export {
+  storage,
+  secureStorage,
+  authApi,
+  skillApi,
+  notificationApi,
+  googlePlacesApi,
+};

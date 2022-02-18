@@ -42,6 +42,18 @@ const CheckIcon: React.FC<IconProps> = iconProps => (
   <MaterialCommunityIcon name="check-circle" {...iconProps} />
 );
 
+const MapMarkerIcon: React.FC<IconProps> = iconProps => (
+  <MaterialCommunityIcon name="map-marker" {...iconProps} />
+);
+
+const BookMarkIcon: React.FC<IconProps> = iconProps => (
+  <MaterialCommunityIcon name="bookmark" {...iconProps} />
+);
+
+const BookMarkOutlineIcon: React.FC<IconProps> = iconProps => (
+  <MaterialCommunityIcon name="bookmark-outline" {...iconProps} />
+);
+
 export {
   HomeIcon,
   CompassIcon,
@@ -52,4 +64,7 @@ export {
   PencilIcon,
   DeleteIcon,
   CheckIcon,
+  MapMarkerIcon,
+  BookMarkIcon,
+  BookMarkOutlineIcon,
 };

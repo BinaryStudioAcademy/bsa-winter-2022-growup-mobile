@@ -5,7 +5,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { Formik } from 'formik';
 
 import { ButtonMode, HeadingLevel } from 'src/common/enums';
-import { FormInput, Heading, MainButton } from 'src/components';
+import { Heading, MainButton, FormGoogleLocationSelect } from 'src/components';
 import { addLocationValidationSchema } from 'src/validation-schemas';
 import { defaultAddLocationPayload } from './common';
 import styles from './styles';
@@ -32,7 +32,10 @@ const AddLocationScreen: React.FC = () => {
               <Heading style={styles.heading} level={HeadingLevel.H5}>
                 Location
               </Heading>
-              <FormInput name="location" placeholder="Location" />
+              <FormGoogleLocationSelect
+                name="location"
+                placeholder="Location"
+              />
             </View>
             <View style={styles.buttonContainer}>
               <MainButton

@@ -6,4 +6,5 @@ export * from './skill';
 export * from './notification';
 export * from './opportunity';
 export * from './education';
+export * from './google-places';
 export * from './navigation';

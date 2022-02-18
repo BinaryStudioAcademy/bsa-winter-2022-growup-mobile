@@ -1,5 +1,5 @@
 import dayjs from 'dayjs';
-import _ from 'lodash';
+import { isFunction } from 'lodash-es';
 import React, { useMemo } from 'react';
 import { TouchableOpacity, View } from 'react-native';
 
@@ -39,13 +39,13 @@ const EducationCard: React.FC<EducationCardProps> = ({
   }, [startDate, endDate]);
 
   const handleEdit = () => {
-    if (_.isFunction(onEdit)) {
+    if (isFunction(onEdit)) {
       onEdit();
     }
   };
 
   const handleDelete = () => {
-    if (_.isFunction(onDelete)) {
+    if (isFunction(onDelete)) {
       onDelete();
     }
   };

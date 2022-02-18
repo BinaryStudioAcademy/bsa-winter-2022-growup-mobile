@@ -3,7 +3,7 @@ import { ScrollView, View } from 'react-native';
 
 import { INotification, IOpportunity } from 'src/common/types';
 import { useAppDispatch } from 'src/hooks';
-import { notificationActions } from 'src/store/notification';
+import { notificationActions } from 'src/store/actions';
 
 import {
   Header,
@@ -32,13 +32,19 @@ const MenteeHome: React.FC = () => {
     // TODO: useSelector
     {
       id: '1',
-      position: 'Senior PHP Developer',
-      company: 'Binary Studio',
+      name: 'Senior PHP Developer',
+      orgGroup: 'Binary Studio',
+      tags: ['Kyiv', 'Remote'],
+      type: 'Project',
+      startDate: new Date('2022-02-23'),
     },
     {
       id: '2',
-      position: 'Designer',
-      company: 'Super Designers',
+      name: 'Designer',
+      orgGroup: 'Super Designers',
+      type: 'Project',
+      startDate: new Date('2022-03-01'),
+      tags: ['Lviv'],
     },
   ];
 

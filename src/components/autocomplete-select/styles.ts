@@ -24,8 +24,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
   },
   fill: {
-    width: '100%',
-    height: '100%',
+    flex: 1,
   },
   touchablePosition: {
     width: '100%',

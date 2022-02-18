@@ -1,5 +1,5 @@
 import React, { useCallback } from 'react';
-import { View } from 'react-native';
+import { Alert, View } from 'react-native';
 import { Formik } from 'formik';
 
 import { styles } from '../../styles';
@@ -23,11 +23,12 @@ const LoginForm: React.FC = () => {
   const handleLoginPressed = (values: IAuthenticateUser) => {
     handleLogin(values)
       .unwrap()
-      .then(() => {
-        console.log('User successfully authorized!');
+      .then(token => {
+        // TODO update store.auth.log with returned user object
+        console.log(token);
       })
       .catch((err: Error) => {
-        console.log(err);
+        Alert.alert(`${err.message}`);
       });
   };
 

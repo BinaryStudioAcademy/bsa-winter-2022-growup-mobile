@@ -21,10 +21,10 @@ const styles = StyleSheet.create({
     marginHorizontal: 27,
   },
   logo: {
-    width: 163,
     height: 48,
     alignSelf: 'center',
     marginTop: '20%',
+    resizeMode: 'contain',
   },
   footer: {
     flexDirection: 'row',

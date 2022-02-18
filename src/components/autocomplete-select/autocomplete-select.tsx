@@ -11,7 +11,7 @@ import {
 } from 'react-native';
 
 import { Portal, TouchableRipple } from 'react-native-paper';
-import _ from 'lodash';
+import { isFunction } from 'lodash-es';
 
 import { AppColor } from 'src/common/enums';
 import { Input, Text } from '..';
@@ -71,7 +71,7 @@ const AutocompleteSelect: React.FC<AutocompleteSelectProps> = ({
   };
 
   const handleChange = (text: string) => {
-    if (_.isFunction(onChangeText)) {
+    if (isFunction(onChangeText)) {
       onChangeText(text);
     }
   };
@@ -81,7 +81,7 @@ const AutocompleteSelect: React.FC<AutocompleteSelectProps> = ({
       return;
     }
 
-    if (_.isFunction(onChangeText)) {
+    if (isFunction(onChangeText)) {
       onChangeText(newValue);
     }
   };

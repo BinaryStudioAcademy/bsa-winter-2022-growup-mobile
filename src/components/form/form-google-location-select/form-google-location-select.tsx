@@ -50,8 +50,11 @@ const FormGoogleLocationSelect: React.FC<FormGoogleLocationSelectProps> = ({
     }
 
     setOptionsLoading(true);
-    setOptions(await googlePlacesApi.predictAutocomplete(values[name]));
+
+    const newOptions = await googlePlacesApi.predictAutocomplete(values[name]);
+    setOptions(newOptions);
     setLastOptionsLoadingValue(values[name]);
+
     setOptionsLoading(false);
   };
 

@@ -4,23 +4,22 @@ import { AppColor } from 'src/common/enums';
 
 const styles = StyleSheet.create({
   careerWrapper: {
-    margin: 20,
     flexDirection: 'row',
     justifyContent: 'space-between',
+    paddingBottom: 60,
   },
   careerItem: {
     marginLeft: 15,
-    width: '100%',
   },
   cards: {
     flex: 1,
-    marginRight: 15,
   },
   divider: {
     width: 1,
-    height: '90%',
+    height: '95%',
     backgroundColor: AppColor.SHADOW,
     marginTop: 25,
+    marginLeft: 5,
   },
   card: {
     borderWidth: 1,

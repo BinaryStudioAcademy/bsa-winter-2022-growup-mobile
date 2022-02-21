@@ -1,16 +1,50 @@
 import React from 'react';
 import { View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { IOkr } from 'src/common/types';
 
-import { Text } from 'src/components';
+import { OKRList } from './components';
 
-type IOKRScreenProps = Record<string, never>;
+const OKRScreen: React.FC = () => {
+  const okrs: IOkr[] = [
+    {
+      id: '1',
+      name: 'Improve JS Skills',
+      type: 'Strategic',
+      year: 2020,
+      inProgress: true,
+      objectives: [
+        {
+          name: 'Take React JS advanced course',
+          points: 84,
+          maxPoints: 100,
+        },
+        {
+          name: 'Read "You Don\'t Know JS"',
+          points: 51,
+          maxPoints: 100,
+        },
+        {
+          name: 'Learn Vue JS + PHP',
+          points: 26,
+          maxPoints: 100,
+        },
+      ],
+    },
+    {
+      id: '2',
+      name: 'Improve Team Cooperation Skills',
+      type: 'Strategic',
+      year: 2020,
+      inProgress: false,
+      objectives: [],
+    },
+  ];
 
-const OKRScreen: React.FC<IOKRScreenProps> = () => {
   return (
     <SafeAreaView>
       <View>
-        <Text>OKR screen!</Text>
+        <OKRList data={okrs} />
       </View>
     </SafeAreaView>
   );

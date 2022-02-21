@@ -4,9 +4,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { Text } from 'src/components';
 
-type IExploreScreenProps = Record<string, never>;
-
-const ExploreScreen: React.FC<IExploreScreenProps> = () => {
+const ExploreScreen: React.FC = () => {
   return (
     <SafeAreaView>
       <View>

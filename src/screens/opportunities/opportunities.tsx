@@ -4,9 +4,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { Text } from 'src/components';
 
-type IOpportunitiesScreenProps = Record<string, never>;
-
-const OpportunitiesScreen: React.FC<IOpportunitiesScreenProps> = () => {
+const OpportunitiesScreen: React.FC = () => {
   return (
     <SafeAreaView>
       <View>

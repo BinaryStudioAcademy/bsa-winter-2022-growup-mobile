@@ -1,4 +1,3 @@
-//TODO: move to common/
 interface ICareer {
   position: string;
   company: string;

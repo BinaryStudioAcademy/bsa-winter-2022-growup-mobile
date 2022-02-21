@@ -1,4 +1,4 @@
 export * from './education-card';
 export * from './skills-section';
 export * from './info-section';
-export * from './career-layout';
+export * from './career-card';

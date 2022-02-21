@@ -13,11 +13,14 @@ import {
   Text,
   AddButton,
 } from 'src/components';
-import { createOKRValidationSchema } from 'src/validation-schemas';
+import {
+  createOKRValidationSchema,
+  createTeamOKRValidationSchema,
+} from 'src/validation-schemas';
 import { defaultAddOKRPayload } from './common';
 import { IKeyResult, OKRStackParamList } from 'src/common/types';
-import styles from './styles';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import styles from './styles';
 
 const MOCK_TEAM_NAMES = [
   {
@@ -98,7 +101,11 @@ const AddOKRScreen: React.FC = () => {
       <ScrollView showsVerticalScrollIndicator={false}>
         <Formik
           initialValues={defaultAddOKRPayload}
-          validationSchema={createOKRValidationSchema}
+          validationSchema={
+            isTeamOKR
+              ? createTeamOKRValidationSchema
+              : createOKRValidationSchema
+          }
           onSubmit={() => {
             // TODO
           }}
@@ -164,7 +171,7 @@ const AddOKRScreen: React.FC = () => {
                 {keyResults.map(item => (
                   <View style={styles.keyResult} key={item.name}>
                     <Text>{item.name}</Text>
-                    <Text>{item.level}/100</Text>
+                    <Text>{item.points}/100</Text>
                   </View>
                 ))}
               </View>

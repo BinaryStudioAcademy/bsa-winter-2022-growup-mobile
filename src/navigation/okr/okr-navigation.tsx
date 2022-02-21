@@ -20,7 +20,11 @@ const screenOptions: NativeStackNavigationOptions = {
 const OKRNavigation = () => {
   return (
     <Stack.Navigator screenOptions={screenOptions}>
-      <Stack.Screen name={OKRRoute.OKR} component={OKRScreen} />
+      <Stack.Screen
+        name={OKRRoute.OKR}
+        component={OKRScreen}
+        options={{ headerShown: false }}
+      />
       <Stack.Screen
         name={OKRRoute.ADD_OKR}
         component={AddOKRScreen}

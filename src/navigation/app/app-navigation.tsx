@@ -3,7 +3,6 @@ import { createMaterialBottomTabNavigator } from '@react-navigation/material-bot
 
 import { AppRoute } from 'src/common/enums/navigation';
 import { AppColor } from 'src/common/enums';
-
 import {
   AccountIcon,
   CompassIcon,
@@ -11,15 +10,13 @@ import {
   RadarIcon,
   ShieldSearchIcon,
 } from 'src/components';
-
 import {
   ExploreScreen,
   MenteeHomeScreen,
-  OKRScreen,
   OpportunitiesScreen,
 } from 'src/screens';
-
 import ProfileNavigation from '../profile/profile-navigation';
+import { OKRNavigation } from '../okr';
 import styles from './styles';
 
 const Tab = createMaterialBottomTabNavigator();
@@ -57,7 +54,7 @@ const AppNavigation = () => {
       />
       <Tab.Screen
         name={AppRoute.OKR}
-        component={OKRScreen}
+        component={OKRNavigation}
         options={{
           tabBarIcon: ({ color }) => <RadarIcon color={color} size={25} />,
         }}

@@ -1,5 +1,5 @@
 enum OKRRoute {
-  OKR = 'OKR',
+  OKR = 'OKRScreen',
   ADD_OKR = 'AddOKR',
   ADD_KEY_RESULT = 'AddKeyResult',
 }

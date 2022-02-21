@@ -8,9 +8,9 @@ import { AppColor, ButtonMode, HeadingLevel, OKRRoute } from 'src/common/enums';
 import { FormInput, Heading, MainButton, Text } from 'src/components';
 import { addKeyResultValidationSchema } from 'src/validation-schemas';
 import { defaultAddLanguagePayload } from './common';
-import styles from './styles';
 import Slider from '@react-native-community/slider';
 import { OKRStackParamList } from 'src/common/types';
+import styles from './styles';
 
 type ProfileScreenRouteProp = RouteProp<
   OKRStackParamList,
@@ -34,7 +34,7 @@ const AddKeyResultScreen: React.FC = () => {
         onSubmit={payload => {
           route.params.onAddKeyResult({
             name: payload.name,
-            level: currentLevel,
+            points: currentLevel,
           });
           navigation.goBack();
         }}

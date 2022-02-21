@@ -5,6 +5,7 @@ import { TextInput } from 'react-native-paper';
 
 import { Input, Text } from 'src/components';
 import styles from '../styles';
+import { AppColor } from 'src/common/enums';
 
 type InputProps = React.ComponentPropsWithoutRef<typeof Input>;
 
@@ -41,6 +42,7 @@ const FormPasswordInput: React.FC<FormPasswordInputProps> = ({
         onChangeText={handleChange}
         onBlur={handleBlur(name)}
         secureTextEntry={secure}
+        outlineColor={!error ? AppColor.INPUT_BACKGROUND : AppColor.ERROR}
         right={
           <TextInput.Icon
             name="eye"

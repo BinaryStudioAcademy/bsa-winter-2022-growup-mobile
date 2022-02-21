@@ -57,8 +57,11 @@ class Http {
     }
 
     if (hasAuth) {
+      console.log('TOKEN REQUIRED!');
       const token = await this.#storage.getItem(SecureStorageKey.ACCESS_TOKEN);
-      headers.append(HttpHeader.AUTHORIZATION, `Bearer ${token}`);
+      console.log('TOKEN: ', token);
+
+      headers.append(HttpHeader.AUTHORIZATION, `${token}`);
     }
 
     return headers;

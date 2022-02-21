@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 import { IUser } from 'src/common/types';
-import { signIn } from './actions';
+import { setCurrentUser, signIn } from './actions';
 
 interface IAuthState {
   user: IUser | null;
@@ -16,8 +16,10 @@ const slice = createSlice({
   initialState,
   reducers: {},
   extraReducers: builder => {
-    builder.addCase(signIn.fulfilled, (state, { payload }) => {
+    // builder.addCase(signIn.fulfilled, () => {});
+    builder.addCase(setCurrentUser.fulfilled, (state, { payload }) => {
       state.user = payload;
+      console.log('Updated user state: ', state.user);
     });
   },
 });

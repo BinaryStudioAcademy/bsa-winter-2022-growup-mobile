@@ -5,6 +5,9 @@
 # Env
 .env
 
+# VScode
+.vscode
+
 # Xcode
 #
 build/

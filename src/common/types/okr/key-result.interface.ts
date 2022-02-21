@@ -1,6 +1,6 @@
 interface IKeyResult {
   name: string;
-  level: number;
+  points: number;
 }
 
 export type { IKeyResult };

@@ -8,4 +8,5 @@ export * from './icons';
 export * from './form';
 export * from './tag';
 export * from './date-input';
+export * from './avatar';
 export * from './add-button';

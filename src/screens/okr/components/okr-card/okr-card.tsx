@@ -1,13 +1,13 @@
 import React, { useMemo } from 'react';
 import { View } from 'react-native';
-import { Avatar } from 'react-native-paper';
 
 import { HeadingLevel, TextAppearance } from 'src/common/enums';
 import { IOkr } from 'src/common/types';
-import { Heading, Text } from 'src/components';
+import { Heading, Text, Avatar } from 'src/components';
+import { Objective } from '..';
 import styles from './styles';
 
-const objectivesShowLimit = 2;
+const OBJECTIVES_SHOW_LIMIT = 2;
 
 type OKRCardProps = {
   okr: IOkr;
@@ -15,24 +15,25 @@ type OKRCardProps = {
 
 const OKRCard: React.FC<OKRCardProps> = ({ okr }) => {
   const shownObjectives = useMemo(
-    () => okr.objectives.slice(0, objectivesShowLimit),
+    () => okr.objectives.slice(0, OBJECTIVES_SHOW_LIMIT),
     [okr.objectives]
   );
 
   const moreObjectives = useMemo(
-    () => okr.objectives.length - objectivesShowLimit,
+    () => okr.objectives.length - OBJECTIVES_SHOW_LIMIT,
     [okr.objectives]
+  );
+
+  const hasOverflowedObjectives = useMemo(
+    () => moreObjectives > 0,
+    [moreObjectives]
   );
 
   return (
     <View style={styles.card}>
       <View style={styles.header}>
         <View style={styles.user}>
-          {okr.avatarUrl ? (
-            <Avatar.Image size={36} source={{ uri: okr.avatarUrl }} />
-          ) : (
-            <Avatar.Text size={36} label="" />
-          )}
+          <Avatar url={okr.avatarUrl} size={36} />
           <View style={styles.texts}>
             <Heading level={HeadingLevel.H6} style={styles.spaceVert}>
               {okr.name}
@@ -49,15 +50,10 @@ const OKRCard: React.FC<OKRCardProps> = ({ okr }) => {
           ]}
         />
       </View>
-      {shownObjectives.map(({ name, points, maxPoints }) => (
-        <View style={styles.objective} key={name}>
-          <Text>{name}</Text>
-          <Text>
-            {points}/{maxPoints}
-          </Text>
-        </View>
+      {shownObjectives.map(objective => (
+        <Objective key={objective.name} objective={objective} />
       ))}
-      {moreObjectives > 0 ? (
+      {hasOverflowedObjectives ? (
         <Text>+ {moreObjectives} more Key Results</Text>
       ) : null}
     </View>

@@ -41,10 +41,6 @@ const styles = StyleSheet.create({
   inactive: {
     backgroundColor: AppColor.ERROR,
   },
-  objective: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-  },
 });
 
 export default styles;

@@ -6,7 +6,7 @@ import { IOkr } from 'src/common/types';
 import { OKRList } from './components';
 
 const OKRScreen: React.FC = () => {
-  const okrs: IOkr[] = [
+  const MOCK_okrs: IOkr[] = [
     {
       id: '1',
       name: 'Improve JS Skills',
@@ -44,7 +44,7 @@ const OKRScreen: React.FC = () => {
   return (
     <SafeAreaView>
       <View>
-        <OKRList data={okrs} />
+        <OKRList data={MOCK_okrs} />
       </View>
     </SafeAreaView>
   );

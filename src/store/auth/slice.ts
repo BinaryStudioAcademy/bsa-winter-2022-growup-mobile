@@ -16,10 +16,6 @@ const slice = createSlice({
   initialState,
   reducers: {},
   extraReducers: builder => {
-    builder.addCase(signIn.fulfilled, (state, { payload }) => {
-      state.user = payload;
-    });
-
     builder.addCase(signOut, state => {
       state.user = null;
     });

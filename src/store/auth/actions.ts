@@ -9,18 +9,8 @@ const signIn = createAsyncThunk(
   ActionType.SIGN_IN,
   async (payload: ISignInPayload) => {
     const { token } = await authApi.signIn(payload);
-    await storage.setItem(SecureStorageKey.ACCESS_TOKEN, token);
 
-    // const { id, firstName, lastName, email } = await authApi.getCurrentUser(
-    //   token
-    // );
-    // const user = {
-    //   id,
-    //   firstName,
-    //   lastName,
-    //   email,
-    // };
-    // return user;
+    await storage.setItem(SecureStorageKey.ACCESS_TOKEN, token);
 
     return token;
   }

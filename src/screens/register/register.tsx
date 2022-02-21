@@ -23,7 +23,7 @@ const RegisterScreen: React.FC<IRegisterScreenProps> = () => {
           mode={ButtonMode.TEXT}
           onPress={() => handleNavigateTo(AuthRoute.SIGN_IN)}
         >
-          Sign in
+          Sign up
         </MainButton>
       </View>
     </SafeAreaView>

@@ -4,13 +4,12 @@ import { Formik } from 'formik';
 
 import { styles } from '../../styles';
 import { MainButton } from 'src/components';
-import { AppColor } from 'src/common/enums';
 import { defaultLoginPayload } from '../../common';
 import { authenticateUserValidationSchema } from 'src/validation-schemas';
 import { FormInput, FormPasswordInput } from 'src/components';
 import { IAuthenticateUser } from 'src/common/types';
 import { useAppDispatch } from 'src/hooks';
-import { signIn } from 'src/store/auth/actions';
+import { setCurrentUser, signIn } from 'src/store/auth/actions';
 
 const LoginForm: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -20,13 +19,20 @@ const LoginForm: React.FC = () => {
     [dispatch]
   );
 
+  const handleAuthorizedUserData = useCallback(
+    () => dispatch(setCurrentUser()),
+    [dispatch]
+  );
+
   const handleLoginPressed = (values: IAuthenticateUser) => {
     handleLogin(values)
       .unwrap()
-      .then(token => {
-        // TODO update store.auth.log with returned user object
-        console.log(token);
-      })
+      .catch((err: Error) => {
+        // Use react alers/toaster notifications
+        Alert.alert(`${err.message}`);
+      });
+    handleAuthorizedUserData()
+      .unwrap()
       .catch((err: Error) => {
         Alert.alert(`${err.message}`);
       });
@@ -42,16 +48,10 @@ const LoginForm: React.FC = () => {
       {({ isValid, handleSubmit }) => (
         <View style={styles.content}>
           <View style={styles.container}>
-            <FormInput
-              name="email"
-              style={styles.formField}
-              outlineColor={AppColor.INPUT_BACKGROUND}
-              label="Email"
-            />
+            <FormInput name="email" style={styles.formField} label="Email" />
             <FormPasswordInput
               name="password"
               style={styles.formField}
-              outlineColor={AppColor.INPUT_BACKGROUND}
               label="Password"
             />
           </View>

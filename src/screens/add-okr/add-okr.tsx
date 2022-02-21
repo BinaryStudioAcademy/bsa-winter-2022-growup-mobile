@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { ScrollView, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -13,7 +13,7 @@ import {
   Text,
   AddButton,
 } from 'src/components';
-import { addLocationValidationSchema } from 'src/validation-schemas';
+import { createOKRValidationSchema } from 'src/validation-schemas';
 import { defaultAddOKRPayload } from './common';
 import { IKeyResult, OKRStackParamList } from 'src/common/types';
 import styles from './styles';
@@ -83,9 +83,9 @@ const AddOKRScreen: React.FC = () => {
     navigation.goBack();
   };
 
-  const handleAddKeyResult = (keyResult: IKeyResult) => {
+  const handleAddKeyResult = useCallback((keyResult: IKeyResult) => {
     setKeyResults(currentKRs => [...currentKRs, keyResult]);
-  };
+  }, []);
 
   const handleNavigateToAddKeyResult = () => {
     navigation.navigate(OKRRoute.ADD_KEY_RESULT, {
@@ -98,7 +98,7 @@ const AddOKRScreen: React.FC = () => {
       <ScrollView showsVerticalScrollIndicator={false}>
         <Formik
           initialValues={defaultAddOKRPayload}
-          validationSchema={addLocationValidationSchema}
+          validationSchema={createOKRValidationSchema}
           onSubmit={() => {
             // TODO
           }}
@@ -156,6 +156,11 @@ const AddOKRScreen: React.FC = () => {
                 >
                   Add Key Result
                 </AddButton>
+                {keyResults.length === 0 && (
+                  <Text style={styles.error}>
+                    At least one key result must be added
+                  </Text>
+                )}
                 {keyResults.map(item => (
                   <View style={styles.keyResult} key={item.name}>
                     <Text>{item.name}</Text>
@@ -172,7 +177,7 @@ const AddOKRScreen: React.FC = () => {
                   Cancel
                 </MainButton>
                 <MainButton
-                  disabled={!isValid}
+                  disabled={!isValid || keyResults.length === 0}
                   onPress={handleSubmit}
                   mode={ButtonMode.CONTAINED}
                 >

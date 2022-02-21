@@ -26,14 +26,20 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   keyResultContent: {
-    marginBottom: 80,
+    marginBottom: 50,
     paddingHorizontal: 10,
     alignItems: 'flex-start',
   },
   keyResult: {
-    display: 'flex',
+    flexDirection: 'row',
+    width: '100%',
     justifyContent: 'space-between',
     alignItems: 'center',
+    marginHorizontal: 10,
+    marginVertical: 5,
+  },
+  error: {
+    color: AppColor.ERROR,
   },
 });
 

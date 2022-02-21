@@ -1,6 +1,6 @@
 interface IKeyResult {
   name: string;
-  level: string;
+  level: number;
 }
 
 export type { IKeyResult };

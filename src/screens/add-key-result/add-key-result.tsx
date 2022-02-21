@@ -1,18 +1,25 @@
 import React, { useState } from 'react';
-import { useNavigation } from '@react-navigation/native';
+import { RouteProp, useNavigation, useRoute } from '@react-navigation/native';
 import { View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Formik } from 'formik';
 
-import { AppColor, ButtonMode, HeadingLevel } from 'src/common/enums';
+import { AppColor, ButtonMode, HeadingLevel, OKRRoute } from 'src/common/enums';
 import { FormInput, Heading, MainButton, Text } from 'src/components';
-import { addLanguageValidationSchema } from 'src/validation-schemas';
+import { addKeyResultValidationSchema } from 'src/validation-schemas';
 import { defaultAddLanguagePayload } from './common';
 import styles from './styles';
 import Slider from '@react-native-community/slider';
+import { OKRStackParamList } from 'src/common/types';
+
+type ProfileScreenRouteProp = RouteProp<
+  OKRStackParamList,
+  OKRRoute.ADD_KEY_RESULT
+>;
 
 const AddKeyResultScreen: React.FC = () => {
   const [currentLevel, setCurrentLevel] = useState(0);
+  const route = useRoute<ProfileScreenRouteProp>();
   const navigation = useNavigation();
 
   const handleCancel = () => {
@@ -23,9 +30,13 @@ const AddKeyResultScreen: React.FC = () => {
     <SafeAreaView style={styles.screen}>
       <Formik
         initialValues={defaultAddLanguagePayload}
-        validationSchema={addLanguageValidationSchema}
-        onSubmit={() => {
-          // TODO
+        validationSchema={addKeyResultValidationSchema}
+        onSubmit={payload => {
+          route.params.onAddKeyResult({
+            name: payload.name,
+            level: currentLevel,
+          });
+          navigation.goBack();
         }}
       >
         {({ isValid, handleSubmit }) => (

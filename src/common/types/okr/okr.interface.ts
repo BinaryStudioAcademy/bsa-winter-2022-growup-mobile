@@ -1,13 +1,14 @@
-import { IObjective } from './objective.interface';
+import { OKRStatus } from 'src/common/enums';
+import { IKeyResult } from '.';
 
 interface IOkr {
   id: string;
-  avatarUrl?: string;
+  userId: string;
   name: string;
   type: string;
   year: number;
-  inProgress: boolean;
-  objectives: IObjective[];
+  status: OKRStatus;
+  keyResults: IKeyResult[];
 }
 
 export type { IOkr };

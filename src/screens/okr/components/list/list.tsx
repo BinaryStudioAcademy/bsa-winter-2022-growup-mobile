@@ -10,17 +10,11 @@ type OKRListProps = {
 };
 
 const OKRList: React.FC<OKRListProps> = ({ data }) => {
-  const renderOkr = ({ item }: { item: IOkr }) => (
-    <View style={styles.cardWrapper}>
-      <OKRCard okr={item} />
-    </View>
-  );
-
   return (
     <FlatList
-      style={styles.list}
       data={data}
-      renderItem={renderOkr}
+      ItemSeparatorComponent={() => <View style={styles.cardDivider} />}
+      renderItem={({ item }) => <OKRCard okr={item} />}
       keyExtractor={({ id }) => id}
     />
   );

@@ -1,7 +1,7 @@
 import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
-  objective: {
+  keyResult: {
     flexDirection: 'row',
     justifyContent: 'space-between',
   },

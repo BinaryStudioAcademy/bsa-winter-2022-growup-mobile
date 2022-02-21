@@ -1,6 +1,7 @@
 import React from 'react';
 import { View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { OKRStatus } from 'src/common/enums';
 import { IOkr } from 'src/common/types';
 
 import { OKRList } from './components';
@@ -9,35 +10,34 @@ const OKRScreen: React.FC = () => {
   const MOCK_okrs: IOkr[] = [
     {
       id: '1',
+      userId: 'u1',
       name: 'Improve JS Skills',
       type: 'Strategic',
       year: 2020,
-      inProgress: true,
-      objectives: [
+      status: OKRStatus.InProgress,
+      keyResults: [
         {
           name: 'Take React JS advanced course',
           points: 84,
-          maxPoints: 100,
         },
         {
           name: 'Read "You Don\'t Know JS"',
           points: 51,
-          maxPoints: 100,
         },
         {
           name: 'Learn Vue JS + PHP',
           points: 26,
-          maxPoints: 100,
         },
       ],
     },
     {
       id: '2',
+      userId: 'u2',
       name: 'Improve Team Cooperation Skills',
       type: 'Strategic',
       year: 2020,
-      inProgress: false,
-      objectives: [],
+      status: OKRStatus.Finished,
+      keyResults: [],
     },
   ];
 

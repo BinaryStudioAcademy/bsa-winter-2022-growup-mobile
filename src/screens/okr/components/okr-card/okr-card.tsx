@@ -1,62 +1,66 @@
 import React, { useMemo } from 'react';
 import { View } from 'react-native';
+import { Card } from 'react-native-paper';
 
-import { HeadingLevel, TextAppearance } from 'src/common/enums';
+import { OKRStatus, TextAppearance } from 'src/common/enums';
 import { IOkr } from 'src/common/types';
-import { Heading, Text, Avatar } from 'src/components';
-import { Objective } from '..';
+import { Text, Avatar } from 'src/components';
+import { KeyResult } from '..';
 import styles from './styles';
 
-const OBJECTIVES_SHOW_LIMIT = 2;
+const KeyResultS_SHOW_LIMIT = 2;
 
 type OKRCardProps = {
   okr: IOkr;
 };
 
 const OKRCard: React.FC<OKRCardProps> = ({ okr }) => {
-  const shownObjectives = useMemo(
-    () => okr.objectives.slice(0, OBJECTIVES_SHOW_LIMIT),
-    [okr.objectives]
+  const shownKeyResults = useMemo(
+    () => okr.keyResults.slice(0, KeyResultS_SHOW_LIMIT),
+    [okr.keyResults]
   );
 
-  const moreObjectives = useMemo(
-    () => okr.objectives.length - OBJECTIVES_SHOW_LIMIT,
-    [okr.objectives]
+  const moreKeyResults = useMemo(
+    () => okr.keyResults.length - KeyResultS_SHOW_LIMIT,
+    [okr.keyResults]
   );
 
-  const hasOverflowedObjectives = useMemo(
-    () => moreObjectives > 0,
-    [moreObjectives]
+  const hasOverflowedKeyResults = useMemo(
+    () => moreKeyResults > 0,
+    [moreKeyResults]
+  );
+
+  const isActive = useMemo(
+    () => okr.status === OKRStatus.InProgress,
+    [okr.status]
   );
 
   return (
-    <View style={styles.card}>
-      <View style={styles.header}>
-        <View style={styles.user}>
-          <Avatar url={okr.avatarUrl} size={36} />
-          <View style={styles.texts}>
-            <Heading level={HeadingLevel.H6} style={styles.spaceVert}>
-              {okr.name}
-            </Heading>
-            <Text appearance={TextAppearance.HINT}>
-              {okr.type} {okr.year}
-            </Text>
-          </View>
-        </View>
-        <View
-          style={[
-            styles.indicator,
-            okr.inProgress ? styles.active : styles.inactive,
-          ]}
-        />
-      </View>
-      {shownObjectives.map(objective => (
-        <Objective key={objective.name} objective={objective} />
-      ))}
-      {hasOverflowedObjectives ? (
-        <Text>+ {moreObjectives} more Key Results</Text>
-      ) : null}
-    </View>
+    <Card>
+      <Card.Title
+        title={okr.name}
+        subtitle={`${okr.type} ${okr.year}`}
+        left={() => <Avatar size={36} />}
+        right={() => (
+          <View
+            style={[
+              styles.indicator,
+              isActive ? styles.active : styles.inactive,
+            ]}
+          />
+        )}
+      />
+      <Card.Content>
+        {shownKeyResults.map(keyResult => (
+          <KeyResult key={keyResult.name} keyResult={keyResult} />
+        ))}
+        {hasOverflowedKeyResults ? (
+          <Text appearance={TextAppearance.HINT}>
+            + {moreKeyResults} more Key Results
+          </Text>
+        ) : null}
+      </Card.Content>
+    </Card>
   );
 };
 

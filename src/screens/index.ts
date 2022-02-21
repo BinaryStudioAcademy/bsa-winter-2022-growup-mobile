@@ -10,3 +10,4 @@ export * from './add-education';
 export * from './add-language';
 export * from './add-location';
 export * from './add-okr';
+export * from './add-key-result';

@@ -4,7 +4,7 @@ import { ScrollView, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Formik } from 'formik';
 
-import { ButtonMode, HeadingLevel } from 'src/common/enums';
+import { ButtonMode, HeadingLevel, OKRRoute } from 'src/common/enums';
 import {
   Heading,
   MainButton,
@@ -15,10 +15,11 @@ import {
 } from 'src/components';
 import { addLocationValidationSchema } from 'src/validation-schemas';
 import { defaultAddOKRPayload } from './common';
-import { IKeyResult } from 'src/common/types';
+import { IKeyResult, OKRStackParamList } from 'src/common/types';
 import styles from './styles';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
-const teamNames = [
+const MOCK_TEAM_NAMES = [
   {
     label: 'Team 1',
     value: 'team1',
@@ -33,7 +34,7 @@ const teamNames = [
   },
 ];
 
-const parentObj = [
+const MOCK_PARENT_OBJ = [
   {
     label: 'Objective 1',
     value: 'objective1',
@@ -48,7 +49,7 @@ const parentObj = [
   },
 ];
 
-const objectiveCycle = [
+const MOCK_OBJ_CYCLE = [
   {
     label: 'ObjectiveCycle 1',
     value: 'objectiveCycle1',
@@ -63,10 +64,15 @@ const objectiveCycle = [
   },
 ];
 
-const AddOKRScreen: React.FC = () => {
-  const [keyResults] = useState<IKeyResult[]>([]);
+type AddOKRScreenProps = NativeStackNavigationProp<
+  OKRStackParamList,
+  OKRRoute.ADD_KEY_RESULT
+>;
 
-  const navigation = useNavigation();
+const AddOKRScreen: React.FC = () => {
+  const [keyResults, setKeyResults] = useState<IKeyResult[]>([]);
+
+  const navigation = useNavigation<AddOKRScreenProps>();
   // const route = useRoute();
 
   // const { isTeamOKR } = route.params;
@@ -77,12 +83,19 @@ const AddOKRScreen: React.FC = () => {
     navigation.goBack();
   };
 
+  const handleAddKeyResult = (keyResult: IKeyResult) => {
+    setKeyResults(currentKRs => [...currentKRs, keyResult]);
+  };
+
+  const handleNavigateToAddKeyResult = () => {
+    navigation.navigate(OKRRoute.ADD_KEY_RESULT, {
+      onAddKeyResult: handleAddKeyResult,
+    });
+  };
+
   return (
     <SafeAreaView style={styles.screen}>
-      <ScrollView
-        contentContainerStyle={styles.content}
-        showsVerticalScrollIndicator={false}
-      >
+      <ScrollView showsVerticalScrollIndicator={false}>
         <Formik
           initialValues={defaultAddOKRPayload}
           validationSchema={addLocationValidationSchema}
@@ -92,62 +105,63 @@ const AddOKRScreen: React.FC = () => {
         >
           {({ isValid, handleSubmit }) => (
             <>
-              <View>
+              <View style={styles.inputContent}>
+                <Heading style={styles.heading} level={HeadingLevel.H5}>
+                  Inspirational Objective
+                </Heading>
+                <FormInput
+                  name="inspirationalObjective"
+                  placeholder="E. g., Achieve record revenue and profitability"
+                />
+              </View>
+              <View style={styles.inputContent}>
+                <Heading style={styles.heading} level={HeadingLevel.H5}>
+                  Objective Cycle
+                </Heading>
+                <FormSelect
+                  name="objectiveCycle"
+                  placeholder="Select Objective cycle"
+                  list={MOCK_OBJ_CYCLE}
+                />
+              </View>
+              <View style={styles.inputContent}>
+                <Heading style={styles.heading} level={HeadingLevel.H5}>
+                  Parent Objective
+                </Heading>
+                <FormSelect
+                  name="parentObjective"
+                  placeholder="Select Parent Objective"
+                  list={MOCK_PARENT_OBJ}
+                />
+              </View>
+              {isTeamOKR && (
                 <View style={styles.inputContent}>
                   <Heading style={styles.heading} level={HeadingLevel.H5}>
-                    Inspirational Objective
-                  </Heading>
-                  <FormInput
-                    name="inspirationalObjective"
-                    placeholder="E. g., Achieve record revenue and profitability"
-                  />
-                </View>
-                <View style={styles.inputContent}>
-                  <Heading style={styles.heading} level={HeadingLevel.H5}>
-                    Objective Cycle
+                    Team Name
                   </Heading>
                   <FormSelect
-                    name="objectiveCycle"
-                    placeholder="Select Objective cycle"
-                    list={objectiveCycle}
+                    name="teamName"
+                    placeholder="Select Team Name"
+                    list={MOCK_TEAM_NAMES}
                   />
                 </View>
-                <View style={styles.inputContent}>
-                  <Heading style={styles.heading} level={HeadingLevel.H5}>
-                    Parent Objective
-                  </Heading>
-                  <FormSelect
-                    name="parentObjective"
-                    placeholder="Select Parent Objective"
-                    list={parentObj}
-                  />
-                </View>
-                {isTeamOKR && (
-                  <View style={styles.inputContent}>
-                    <Heading style={styles.heading} level={HeadingLevel.H5}>
-                      Team Name
-                    </Heading>
-                    <FormSelect
-                      name="teamName"
-                      placeholder="Select Team Name"
-                      list={teamNames}
-                    />
+              )}
+              <View style={styles.keyResultContent}>
+                <Heading style={styles.heading} level={HeadingLevel.H5}>
+                  Key Results
+                </Heading>
+                <AddButton
+                  onPress={handleNavigateToAddKeyResult}
+                  labelStyle={styles.button}
+                >
+                  Add Key Result
+                </AddButton>
+                {keyResults.map(item => (
+                  <View style={styles.keyResult} key={item.name}>
+                    <Text>{item.name}</Text>
+                    <Text>{item.level}/100</Text>
                   </View>
-                )}
-                <View style={styles.keyResultContent}>
-                  <Heading style={styles.heading} level={HeadingLevel.H5}>
-                    Key Results
-                  </Heading>
-                  <AddButton labelStyle={styles.button}>
-                    Add Key Result
-                  </AddButton>
-                  {keyResults.map(item => (
-                    <View style={styles.keyResult} key={item.name}>
-                      <Text>{item.name}</Text>
-                      <Text>{item.level}/100</Text>
-                    </View>
-                  ))}
-                </View>
+                ))}
               </View>
               <View style={styles.buttonContainer}>
                 <MainButton

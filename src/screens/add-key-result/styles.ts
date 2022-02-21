@@ -7,11 +7,11 @@ const styles = StyleSheet.create({
   screen: {
     padding: DEFAULT_SCREEN_PADDING,
     backgroundColor: AppColor.WHITE,
-    flex: 1,
+    justifyContent: 'space-between',
+    height: '100%',
   },
   inputContent: {
     marginBottom: 30,
-    paddingHorizontal: 10,
   },
   buttonContainer: {
     paddingHorizontal: 20,
@@ -22,16 +22,8 @@ const styles = StyleSheet.create({
   button: {
     marginBottom: 10,
   },
-  addButton: {
-    fontSize: 16,
-  },
-  keyResultContent: {
-    marginBottom: 80,
-    paddingHorizontal: 10,
-    alignItems: 'flex-start',
-  },
-  keyResult: {
-    display: 'flex',
+  levelValues: {
+    flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
   },

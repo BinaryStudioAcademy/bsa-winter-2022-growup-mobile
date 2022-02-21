@@ -1,4 +1,4 @@
-import { createAsyncThunk } from '@reduxjs/toolkit';
+import { createAction, createAsyncThunk } from '@reduxjs/toolkit';
 
 import { authApi } from 'src/services';
 import { ISignInPayload } from 'src/common/types';
@@ -14,4 +14,6 @@ const signIn = createAsyncThunk(
   }
 );
 
-export { signIn };
+const signOut = createAction(ActionType.SIGN_OUT);
+
+export { signIn, signOut };

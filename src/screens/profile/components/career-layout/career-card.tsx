@@ -41,14 +41,12 @@ const CareerCard: React.FC<CareerProps> = ({ item, onEdit, onDelete }) => {
     if (isFunction(onEdit)) {
       onEdit();
     }
-    console.log('edit button clicked');
   };
 
   const handleDelete = () => {
     if (isFunction(onDelete)) {
       onDelete();
     }
-    console.log('delete button clicked');
   };
 
   return (

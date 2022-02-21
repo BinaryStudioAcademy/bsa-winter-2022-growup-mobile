@@ -1,4 +1,9 @@
-import { HttpHeader, HttpMethod, SecureStorageKey } from 'src/common/enums';
+import {
+  HttpCode,
+  HttpHeader,
+  HttpMethod,
+  SecureStorageKey,
+} from 'src/common/enums';
 import { GetHeadersParams, HttpOptions } from 'src/common/types';
 import { HttpError } from 'src/exceptions';
 import { getStringifiedQuery } from 'src/helpers';
@@ -87,7 +92,7 @@ class Http {
   }
 
   private isUnauthorized(response: Response): boolean {
-    return response.status === 401;
+    return response.status === HttpCode.UNAUTHORIZED;
   }
 
   private refreshToken(): void {

@@ -17,6 +17,10 @@ const screenOptions: NativeStackNavigationOptions = {
   },
 };
 
+const addScreenGroupOptions: NativeStackNavigationOptions = {
+  presentation: 'modal',
+};
+
 const OKRNavigation = () => {
   return (
     <Stack.Navigator screenOptions={screenOptions}>
@@ -25,16 +29,18 @@ const OKRNavigation = () => {
         component={OKRScreen}
         options={{ headerShown: false }}
       />
-      <Stack.Screen
-        name={OKRRoute.ADD_OKR}
-        component={AddOKRScreen}
-        options={{ title: 'Add New Objective' }}
-      />
-      <Stack.Screen
-        name={OKRRoute.ADD_KEY_RESULT}
-        component={AddKeyResultScreen}
-        options={{ title: 'Add Key Result' }}
-      />
+      <Stack.Group screenOptions={addScreenGroupOptions}>
+        <Stack.Screen
+          name={OKRRoute.ADD_OKR}
+          component={AddOKRScreen}
+          options={{ title: 'Add New Objective' }}
+        />
+        <Stack.Screen
+          name={OKRRoute.ADD_KEY_RESULT}
+          component={AddKeyResultScreen}
+          options={{ title: 'Add Key Result' }}
+        />
+      </Stack.Group>
     </Stack.Navigator>
   );
 };

@@ -21,6 +21,7 @@ const slice = createSlice({
   extraReducers: builder => {
     builder.addCase(createOKR.fulfilled, (state, { payload }) => {
       state.objectives.push(payload);
+      state.currentKeyResults = [];
     });
     builder.addCase(addKeyResult, (state, { payload }) => {
       state.currentKeyResults.push(payload);

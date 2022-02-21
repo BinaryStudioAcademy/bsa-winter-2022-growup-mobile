@@ -3,15 +3,15 @@ import { useNavigation } from '@react-navigation/native';
 import { View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Formik } from 'formik';
+import Slider from '@react-native-community/slider';
 
 import { AppColor, ButtonMode, HeadingLevel } from 'src/common/enums';
 import { FormInput, Heading, MainButton, Text } from 'src/components';
 import { addKeyResultValidationSchema } from 'src/validation-schemas';
 import { defaultAddKeyResultPayload } from './common';
-import Slider from '@react-native-community/slider';
-import styles from './styles';
 import { useAppDispatch } from 'src/hooks';
 import { okrActions } from 'src/store/okr';
+import styles from './styles';
 
 const AddKeyResultScreen: React.FC = () => {
   const [currentLevel, setCurrentLevel] = useState(0);

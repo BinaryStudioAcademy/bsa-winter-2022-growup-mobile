@@ -1,7 +1,8 @@
 import React from 'react';
-import { useNavigation } from '@react-navigation/native';
+import { RouteProp, useNavigation, useRoute } from '@react-navigation/native';
 import { ScrollView, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { Formik } from 'formik';
 
 import { ButtonMode, HeadingLevel, OKRRoute } from 'src/common/enums';
@@ -19,11 +20,10 @@ import {
 } from 'src/validation-schemas';
 import { defaultAddOKRPayload } from './common';
 import { OKRStackParamList } from 'src/common/types';
-import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import styles from './styles';
 import { useAppDispatch, useAppSelector } from 'src/hooks';
 import { okrActions } from 'src/store/okr';
 import { IAddOkr } from 'src/common/types/okr/add-okr.interface';
+import styles from './styles';
 
 const MOCK_TEAM_NAMES = [
   {
@@ -42,49 +42,45 @@ const MOCK_TEAM_NAMES = [
 
 const MOCK_PARENT_OBJ = [
   {
-    label: 'Objective 1',
-    value: 'objective1',
+    label: 'Improve JS Skills',
+    value: 'Improve JS Skills',
   },
   {
-    label: 'Objective 2',
-    value: 'objective2',
-  },
-  {
-    label: 'Objective 3',
-    value: 'objective3',
+    label: 'Improve Team Coop',
+    value: 'Improve Team Coop',
   },
 ];
 
 const MOCK_OBJ_CYCLE = [
   {
-    label: 'ObjectiveCycle 1',
-    value: 'objectiveCycle1',
+    label: 'Strategic 2020',
+    value: 'Strategic 2020',
   },
   {
-    label: 'ObjectiveCycle 2',
-    value: 'objectiveCycle2',
+    label: 'Strategic 2021',
+    value: 'Strategic 2021',
   },
   {
-    label: 'ObjectiveCycle 3',
-    value: 'objectiveCycle3',
+    label: 'Strategic 2022',
+    value: 'Strategic 2022',
   },
 ];
 
-type AddOKRScreenProps = NativeStackNavigationProp<
+type AddOKRNavigateProps = NativeStackNavigationProp<
   OKRStackParamList,
   OKRRoute.ADD_KEY_RESULT
 >;
+
+type AddOKRRouteProps = RouteProp<OKRStackParamList, OKRRoute.ADD_OKR>;
 
 const AddOKRScreen: React.FC = () => {
   const dispatch = useAppDispatch();
   const { currentKeyResults } = useAppSelector(state => state.okr);
 
-  const navigation = useNavigation<AddOKRScreenProps>();
-  // const route = useRoute();
+  const navigation = useNavigation<AddOKRNavigateProps>();
+  const route = useRoute<AddOKRRouteProps>();
 
-  // const { isTeamOKR } = route.params;
-
-  const isTeamOKR = false;
+  const isTeamOKR = route.params.isTeamOkr;
 
   const handleCancel = () => {
     navigation.goBack();
@@ -104,6 +100,7 @@ const AddOKRScreen: React.FC = () => {
         teamName: payload.teamName,
       })
     );
+    navigation.goBack();
   };
 
   return (

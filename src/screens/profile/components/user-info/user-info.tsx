@@ -7,7 +7,7 @@ import { AppColor, HeadingLevel } from 'src/common/enums';
 
 import styles from './styles';
 
-const UserInfo = () => {
+const UserInfo: React.FC = () => {
   return (
     <View style={styles.container}>
       <Avatar.Icon size={152} icon="account" style={styles.avatar} />

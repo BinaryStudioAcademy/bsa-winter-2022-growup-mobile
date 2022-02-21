@@ -5,7 +5,6 @@ import { AppColor } from 'src/common/enums';
 const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
-    marginTop: 15,
     flex: 1,
   },
   avatar: {

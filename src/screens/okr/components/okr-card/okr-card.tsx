@@ -8,7 +8,7 @@ import { Text, Avatar } from 'src/components';
 import { KeyResult } from '..';
 import styles from './styles';
 
-const KeyResultS_SHOW_LIMIT = 2;
+const KEY_RESULTS_SHOW_LIMIT = 2;
 
 type OKRCardProps = {
   okr: IOkr;
@@ -16,12 +16,12 @@ type OKRCardProps = {
 
 const OKRCard: React.FC<OKRCardProps> = ({ okr }) => {
   const shownKeyResults = useMemo(
-    () => okr.keyResults.slice(0, KeyResultS_SHOW_LIMIT),
+    () => okr.keyResults.slice(0, KEY_RESULTS_SHOW_LIMIT),
     [okr.keyResults]
   );
 
   const moreKeyResults = useMemo(
-    () => okr.keyResults.length - KeyResultS_SHOW_LIMIT,
+    () => okr.keyResults.length - KEY_RESULTS_SHOW_LIMIT,
     [okr.keyResults]
   );
 
@@ -35,30 +35,31 @@ const OKRCard: React.FC<OKRCardProps> = ({ okr }) => {
     [okr.status]
   );
 
+  const renderCardLeft = () => <Avatar size={36} />;
+
+  const renderCardRight = () => (
+    <View
+      style={[styles.indicator, isActive ? styles.active : styles.inactive]}
+    />
+  );
+
   return (
     <Card>
       <Card.Title
         title={okr.name}
         subtitle={`${okr.type} ${okr.year}`}
-        left={() => <Avatar size={36} />}
-        right={() => (
-          <View
-            style={[
-              styles.indicator,
-              isActive ? styles.active : styles.inactive,
-            ]}
-          />
-        )}
+        left={renderCardLeft}
+        right={renderCardRight}
       />
       <Card.Content>
         {shownKeyResults.map(keyResult => (
-          <KeyResult key={keyResult.name} keyResult={keyResult} />
+          <KeyResult key={keyResult.name} {...keyResult} />
         ))}
-        {hasOverflowedKeyResults ? (
+        {hasOverflowedKeyResults && (
           <Text appearance={TextAppearance.HINT}>
             + {moreKeyResults} more Key Results
           </Text>
-        ) : null}
+        )}
       </Card.Content>
     </Card>
   );

@@ -1,8 +1,15 @@
-import { HttpHeader, HttpMethod, SecureStorageKey } from 'src/common/enums';
+import {
+  HttpCode,
+  HttpHeader,
+  HttpMethod,
+  SecureStorageKey,
+} from 'src/common/enums';
 import { GetHeadersParams, HttpOptions } from 'src/common/types';
 import { HttpError } from 'src/exceptions';
 import { getStringifiedQuery } from 'src/helpers';
 import { secureStorage as secureStorageService } from 'src/services';
+import { store } from 'src/store';
+import { authActions } from 'src/store/actions';
 
 type Constructor = {
   storage: typeof secureStorageService;
@@ -66,6 +73,11 @@ class Http {
 
   private async checkStatus(response: Response): Promise<Response> {
     if (!response.ok) {
+      if (this.isUnauthorized(response)) {
+        this.refreshToken();
+        return response;
+      }
+
       const parsedException = await response.json().catch(() => ({
         message: response.statusText,
       }));
@@ -77,6 +89,15 @@ class Http {
     }
 
     return response;
+  }
+
+  private isUnauthorized(response: Response): boolean {
+    return response.status === HttpCode.UNAUTHORIZED;
+  }
+
+  private refreshToken(): void {
+    this.#storage.removeItem(SecureStorageKey.ACCESS_TOKEN);
+    store.dispatch(authActions.signOut());
   }
 
   private parseJSON<T>(response: Response): Promise<T> {

@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { ScrollView, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -18,9 +18,12 @@ import {
   createTeamOKRValidationSchema,
 } from 'src/validation-schemas';
 import { defaultAddOKRPayload } from './common';
-import { IKeyResult, OKRStackParamList } from 'src/common/types';
+import { OKRStackParamList } from 'src/common/types';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import styles from './styles';
+import { useAppDispatch, useAppSelector } from 'src/hooks';
+import { okrActions } from 'src/store/okr';
+import { IAddOkr } from 'src/common/types/okr/add-okr.interface';
 
 const MOCK_TEAM_NAMES = [
   {
@@ -73,7 +76,8 @@ type AddOKRScreenProps = NativeStackNavigationProp<
 >;
 
 const AddOKRScreen: React.FC = () => {
-  const [keyResults, setKeyResults] = useState<IKeyResult[]>([]);
+  const dispatch = useAppDispatch();
+  const { currentKeyResults } = useAppSelector(state => state.okr);
 
   const navigation = useNavigation<AddOKRScreenProps>();
   // const route = useRoute();
@@ -86,14 +90,20 @@ const AddOKRScreen: React.FC = () => {
     navigation.goBack();
   };
 
-  const handleAddKeyResult = useCallback((keyResult: IKeyResult) => {
-    setKeyResults(currentKRs => [...currentKRs, keyResult]);
-  }, []);
+  const handleAddKeyResult = () => {
+    navigation.navigate(OKRRoute.ADD_KEY_RESULT);
+  };
 
-  const handleNavigateToAddKeyResult = () => {
-    navigation.navigate(OKRRoute.ADD_KEY_RESULT, {
-      onAddKeyResult: handleAddKeyResult,
-    });
+  const handleCreateOKR = (payload: IAddOkr) => {
+    dispatch(
+      okrActions.createOKR({
+        name: payload.name,
+        parent: payload.parent,
+        cycle: payload.cycle,
+        keyResults: currentKeyResults,
+        teamName: payload.teamName,
+      })
+    );
   };
 
   return (
@@ -106,8 +116,8 @@ const AddOKRScreen: React.FC = () => {
               ? createTeamOKRValidationSchema
               : createOKRValidationSchema
           }
-          onSubmit={() => {
-            // TODO
+          onSubmit={values => {
+            handleCreateOKR(values);
           }}
         >
           {({ isValid, handleSubmit }) => (
@@ -117,7 +127,7 @@ const AddOKRScreen: React.FC = () => {
                   Inspirational Objective
                 </Heading>
                 <FormInput
-                  name="inspirationalObjective"
+                  name="name"
                   placeholder="E. g., Achieve record revenue and profitability"
                 />
               </View>
@@ -126,7 +136,7 @@ const AddOKRScreen: React.FC = () => {
                   Objective Cycle
                 </Heading>
                 <FormSelect
-                  name="objectiveCycle"
+                  name="cycle"
                   placeholder="Select Objective cycle"
                   list={MOCK_OBJ_CYCLE}
                 />
@@ -136,7 +146,7 @@ const AddOKRScreen: React.FC = () => {
                   Parent Objective
                 </Heading>
                 <FormSelect
-                  name="parentObjective"
+                  name="parent"
                   placeholder="Select Parent Objective"
                   list={MOCK_PARENT_OBJ}
                 />
@@ -158,17 +168,17 @@ const AddOKRScreen: React.FC = () => {
                   Key Results
                 </Heading>
                 <AddButton
-                  onPress={handleNavigateToAddKeyResult}
+                  onPress={handleAddKeyResult}
                   labelStyle={styles.button}
                 >
                   Add Key Result
                 </AddButton>
-                {keyResults.length === 0 && (
+                {currentKeyResults.length === 0 && (
                   <Text style={styles.error}>
                     At least one key result must be added
                   </Text>
                 )}
-                {keyResults.map(item => (
+                {currentKeyResults.map(item => (
                   <View style={styles.keyResult} key={item.name}>
                     <Text>{item.name}</Text>
                     <Text>{item.points}/100</Text>
@@ -184,7 +194,7 @@ const AddOKRScreen: React.FC = () => {
                   Cancel
                 </MainButton>
                 <MainButton
-                  disabled={!isValid || keyResults.length === 0}
+                  disabled={!isValid || currentKeyResults.length === 0}
                   onPress={handleSubmit}
                   mode={ButtonMode.CONTAINED}
                 >

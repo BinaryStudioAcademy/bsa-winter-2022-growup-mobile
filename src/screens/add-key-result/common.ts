@@ -1,5 +1,5 @@
-const defaultAddLanguagePayload = {
+const defaultAddKeyResultPayload = {
   name: '',
 };
 
-export { defaultAddLanguagePayload };
+export { defaultAddKeyResultPayload };

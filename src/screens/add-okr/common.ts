@@ -1,7 +1,7 @@
 const defaultAddOKRPayload = {
-  inspirationalObjective: '',
-  objectiveCycle: '',
-  parentObjective: '',
+  name: '',
+  cycle: '',
+  parent: '',
   keyResults: [],
   teamName: '',
 };

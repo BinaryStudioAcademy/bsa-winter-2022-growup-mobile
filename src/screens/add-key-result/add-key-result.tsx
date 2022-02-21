@@ -1,43 +1,43 @@
 import React, { useState } from 'react';
-import { RouteProp, useNavigation, useRoute } from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 import { View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Formik } from 'formik';
 
-import { AppColor, ButtonMode, HeadingLevel, OKRRoute } from 'src/common/enums';
+import { AppColor, ButtonMode, HeadingLevel } from 'src/common/enums';
 import { FormInput, Heading, MainButton, Text } from 'src/components';
 import { addKeyResultValidationSchema } from 'src/validation-schemas';
-import { defaultAddLanguagePayload } from './common';
+import { defaultAddKeyResultPayload } from './common';
 import Slider from '@react-native-community/slider';
-import { OKRStackParamList } from 'src/common/types';
 import styles from './styles';
-
-type ProfileScreenRouteProp = RouteProp<
-  OKRStackParamList,
-  OKRRoute.ADD_KEY_RESULT
->;
+import { useAppDispatch } from 'src/hooks';
+import { okrActions } from 'src/store/okr';
 
 const AddKeyResultScreen: React.FC = () => {
   const [currentLevel, setCurrentLevel] = useState(0);
-  const route = useRoute<ProfileScreenRouteProp>();
   const navigation = useNavigation();
+  const dispatch = useAppDispatch();
 
   const handleCancel = () => {
+    navigation.goBack();
+  };
+
+  const handleAddKeyResult = (payload: { name: string }) => {
+    dispatch(
+      okrActions.addKeyResult({
+        name: payload.name,
+        points: currentLevel,
+      })
+    );
     navigation.goBack();
   };
 
   return (
     <SafeAreaView style={styles.screen}>
       <Formik
-        initialValues={defaultAddLanguagePayload}
+        initialValues={defaultAddKeyResultPayload}
         validationSchema={addKeyResultValidationSchema}
-        onSubmit={payload => {
-          route.params.onAddKeyResult({
-            name: payload.name,
-            points: currentLevel,
-          });
-          navigation.goBack();
-        }}
+        onSubmit={handleAddKeyResult}
       >
         {({ isValid, handleSubmit }) => (
           <>

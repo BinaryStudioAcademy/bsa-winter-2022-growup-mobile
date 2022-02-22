@@ -1,5 +1,4 @@
-import React, { Ref } from 'react';
-import { TextInput as RNTextInput } from 'react-native';
+import React from 'react';
 import { TextInput } from 'react-native-paper';
 
 import { AppColor } from 'src/common/enums';

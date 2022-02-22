@@ -1,6 +1,6 @@
 import * as yup from 'yup';
 
-const authenticateUserValidationSchema = yup.object({
+const loginValidationSchema = yup.object({
   email: yup
     .string()
     .required('Email is a required field')
@@ -14,4 +14,4 @@ const authenticateUserValidationSchema = yup.object({
     .max(50, 'Password is too long'),
 });
 
-export { authenticateUserValidationSchema };
+export { loginValidationSchema };

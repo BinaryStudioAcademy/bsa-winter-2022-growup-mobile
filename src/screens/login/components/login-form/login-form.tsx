@@ -1,39 +1,24 @@
-import React, { useCallback } from 'react';
+import React from 'react';
 import { Alert, View } from 'react-native';
 import { Formik } from 'formik';
 
 import { styles } from '../../styles';
 import { MainButton } from 'src/components';
 import { defaultLoginPayload } from '../../common';
-import { authenticateUserValidationSchema } from 'src/validation-schemas';
+import { loginValidationSchema } from 'src/validation-schemas';
 import { FormInput, FormPasswordInput } from 'src/components';
-import { IAuthenticateUser } from 'src/common/types';
+import { ISignInPayload } from 'src/common/types';
 import { useAppDispatch } from 'src/hooks';
-import { setCurrentUser, signIn } from 'src/store/auth/actions';
+import { authActions } from 'src/store/actions';
 
 const LoginForm: React.FC = () => {
   const dispatch = useAppDispatch();
 
-  const handleLogin = useCallback(
-    loginPayload => dispatch(signIn(loginPayload)),
-    [dispatch]
-  );
-
-  const handleAuthorizedUserData = useCallback(
-    () => dispatch(setCurrentUser()),
-    [dispatch]
-  );
-
-  const handleLoginPressed = (values: IAuthenticateUser) => {
-    handleLogin(values)
+  const handleLogin = (values: ISignInPayload) => {
+    dispatch(authActions.signIn(values))
       .unwrap()
       .catch((err: Error) => {
-        // Use react alers/toaster notifications
-        Alert.alert(`${err.message}`);
-      });
-    handleAuthorizedUserData()
-      .unwrap()
-      .catch((err: Error) => {
+        // Use react alerts/toaster notifications
         Alert.alert(`${err.message}`);
       });
   };
@@ -41,9 +26,9 @@ const LoginForm: React.FC = () => {
   return (
     <Formik
       initialValues={defaultLoginPayload}
-      validationSchema={authenticateUserValidationSchema}
+      validationSchema={loginValidationSchema}
       validateOnMount={true}
-      onSubmit={handleLoginPressed}
+      onSubmit={handleLogin}
     >
       {({ isValid, handleSubmit }) => (
         <View style={styles.content}>

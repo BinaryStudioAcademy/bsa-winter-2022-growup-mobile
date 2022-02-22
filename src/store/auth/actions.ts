@@ -1,40 +1,33 @@
 import { createAction, createAsyncThunk } from '@reduxjs/toolkit';
 
-import { authApi, storage, secureStorage } from 'src/services';
+import { authApi, secureStorage } from 'src/services';
 import { ISignInPayload } from 'src/common/types';
 import { ActionType } from './common';
 import { SecureStorageKey } from 'src/common/enums';
 
 const signIn = createAsyncThunk(
   ActionType.SIGN_IN,
-  async (payload: ISignInPayload) => {
+  async (payload: ISignInPayload, { dispatch }) => {
     const { token } = await authApi.signIn(payload);
 
-    await storage.setItem(SecureStorageKey.ACCESS_TOKEN, token);
-
-    return token;
+    await secureStorage.setItem(SecureStorageKey.ACCESS_TOKEN, token);
+    dispatch(loadCurrentUser());
   }
 );
 
 const signOut = createAction(ActionType.SIGN_OUT);
 
-const setCurrentUser = createAsyncThunk(ActionType.SET_USER, async () => {
-  const token = await secureStorage.getItem(SecureStorageKey.ACCESS_TOKEN);
-  console.log('Token in the action setCurrentUser: ', token);
+const loadCurrentUser = createAsyncThunk(
+  ActionType.LOAD_CURRENT_USER,
+  async () => {
+    const token = await secureStorage.getItem(SecureStorageKey.ACCESS_TOKEN);
 
-  if (!token) {
-    return null;
+    if (!token) {
+      return null;
+    }
+
+    return await authApi.getCurrentUser();
   }
+);
 
-  const { id, firstName, lastName, email } = await authApi.getCurrentUser();
-
-  const user = {
-    id,
-    firstName,
-    lastName,
-    email,
-  };
-  return user;
-});
-
-export { signIn, setCurrentUser, signOut };
+export { signIn, loadCurrentUser, signOut };

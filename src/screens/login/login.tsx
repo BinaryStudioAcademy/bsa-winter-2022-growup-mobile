@@ -5,14 +5,17 @@ import { useNavigation } from '@react-navigation/native';
 
 import { LoginForm } from 'src/screens/login/components';
 import { styles } from './styles';
-import { AppRoute, AuthRoute, ButtonMode } from 'src/common/enums';
+import { AuthRoute, ButtonMode } from 'src/common/enums';
 import { MainButton } from 'src/components';
 
 const LoginScreen: React.FC = () => {
   const navigation = useNavigation();
 
-  const handleNavigateTo = (route: AuthRoute | AppRoute) => {
-    navigation.navigate(route);
+  const handleSignUpPress = () => {
+    navigation.navigate({
+      name: AuthRoute.SIGN_UP as never,
+      params: {} as never,
+    });
   };
 
   return (
@@ -27,10 +30,7 @@ const LoginScreen: React.FC = () => {
 
       <View style={styles.footer}>
         <Text>New to GrowUp?</Text>
-        <MainButton
-          mode={ButtonMode.TEXT}
-          onPress={() => handleNavigateTo(AuthRoute.SIGN_UP)}
-        >
+        <MainButton mode={ButtonMode.TEXT} onPress={() => handleSignUpPress}>
           Sign Up
         </MainButton>
       </View>

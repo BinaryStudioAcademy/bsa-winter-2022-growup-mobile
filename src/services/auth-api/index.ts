@@ -1,6 +1,9 @@
+import { Asset } from 'react-native-image-picker';
+
 import { ApiPath, ContentType, HttpMethod } from 'src/common/enums';
 import { ISignInPayload, IUser } from 'src/common/types';
 import { AuthResponse } from 'src/common/types/auth';
+import { assetToMultipartFile } from 'src/helpers/image-capture';
 import { Http } from '../http';
 
 type Constructor = {
@@ -23,6 +26,17 @@ class AuthApi {
       contentType: ContentType.JSON,
       payload: JSON.stringify(payload),
       hasAuth: false,
+    });
+  }
+
+  public uploadAvatar(image: Asset): Promise<IUser> {
+    const payload = new FormData();
+    payload.append('avatar', assetToMultipartFile(image));
+
+    return this.#http.load(`${this.#apiPath}${ApiPath.USER_AVATAR}`, {
+      method: HttpMethod.PUT,
+      contentType: ContentType.MULTIPART,
+      payload,
     });
   }
 

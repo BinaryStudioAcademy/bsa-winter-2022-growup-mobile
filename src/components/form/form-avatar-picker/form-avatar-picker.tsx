@@ -1,6 +1,7 @@
 import { useFormikContext } from 'formik';
 import React from 'react';
 import { Asset } from 'react-native-image-picker';
+
 import { AvatarPicker } from 'src/components';
 
 type FormAvatarPickerProps = {

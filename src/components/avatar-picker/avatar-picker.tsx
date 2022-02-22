@@ -1,6 +1,7 @@
 import React from 'react';
 import { View } from 'react-native';
 import { Asset } from 'react-native-image-picker';
+
 import { ButtonMode, HeadingLevel } from 'src/common/enums';
 import { captureSingleImage, selectSingleImageFromGallery } from 'src/helpers';
 import { Heading, MainButton } from '..';

@@ -13,8 +13,6 @@ import { Text } from 'src/components';
 import addActions from './add-actions';
 import styles from './styles';
 
-type IProfileScreenProps = Record<string, never>;
-
 const NAVBAR_ITEMS = [
   'Summary',
   'Qualities',
@@ -23,7 +21,7 @@ const NAVBAR_ITEMS = [
   'Education',
 ];
 
-const ProfileScreen: React.FC<IProfileScreenProps> = () => {
+const ProfileScreen: React.FC = () => {
   const navigation = useNavigation();
   const [addMenuOpen, setAddMenuOpen] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);

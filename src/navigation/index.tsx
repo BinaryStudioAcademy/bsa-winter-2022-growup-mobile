@@ -2,10 +2,10 @@ import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import { AppRoute, AuthRoute } from 'src/common/enums/navigation';
-import AppNavigation from './app-tabs/app-tabs-navigation';
 import { useAppSelector } from 'src/hooks';
 import { MenteeHomeScreen } from 'src/screens';
 import { RootStackParamList } from 'src/common/types';
+import { AppNavigation } from './app';
 
 const RootStack = createNativeStackNavigator<RootStackParamList>();
 
@@ -19,7 +19,7 @@ const RootNavigation = () => {
   //TODO add sign in/up screens
   return (
     <RootStack.Navigator screenOptions={defaultScreenOptions}>
-      {!user ? (
+      {user ? (
         <RootStack.Screen name={AppRoute.APP} component={AppNavigation} />
       ) : (
         <>

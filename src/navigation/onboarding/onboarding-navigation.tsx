@@ -13,7 +13,7 @@ import {
   OnboardingScreen,
 } from 'src/screens';
 import { OnboardingStackParamList } from 'src/common/types';
-import AppNavigation from '../app/app-navigation';
+import { AppNavigation } from '../app';
 
 const Stack = createNativeStackNavigator<OnboardingStackParamList>();
 

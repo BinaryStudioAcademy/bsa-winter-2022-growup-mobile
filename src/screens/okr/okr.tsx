@@ -11,8 +11,8 @@ import { AppRoute, OKRStatus } from 'src/common/enums';
 import { IOkr, AppStackParamList } from 'src/common/types';
 import addActions from './add-actions';
 import { OKRList } from './components';
-import styles from './styles';
 import { RootStackParamList } from 'src/common/types/navigation/root-stack-param';
+import styles from './styles';
 
 const MOCK_okrs: IOkr[] = [
   {
@@ -53,8 +53,6 @@ type OKRNavigationProps = CompositeNavigationProp<
   NativeStackNavigationProp<AppStackParamList>
 >;
 
-// type OKRNavigationProps = NativeStackNavigationProp<AppStackParamList>;
-
 const OKRScreen: React.FC = () => {
   const [addMenuOpen, setAddMenuOpen] = useState<boolean>(false);
   const navigation = useNavigation<OKRNavigationProps>();
@@ -67,7 +65,6 @@ const OKRScreen: React.FC = () => {
           isTeamOkr: false,
         },
       });
-      // navigation.navigate(AppRoute.ADD_OKR, { isTeamOkr: false });
     },
     teamOKR: () => {
       navigation.navigate(AppRoute.APP, {

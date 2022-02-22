@@ -9,7 +9,9 @@ const styles = StyleSheet.create({
     backgroundColor: AppColor.GREY,
     paddingHorizontal: DEFAULT_SCREEN_PADDING,
     paddingVertical: 10,
-    flexDirection: 'row',
+  },
+  contentContainer: {
+    flex: 1,
   },
   button: {
     flex: 1,

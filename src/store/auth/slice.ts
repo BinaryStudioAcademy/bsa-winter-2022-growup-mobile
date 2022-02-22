@@ -18,10 +18,10 @@ const { reducer, actions } = createSlice({
   extraReducers: builder => {
     builder.addCase(signOut, state => {
       state.user = null;
-    }),
-      builder.addCase(loadCurrentUser.fulfilled, (state, { payload }) => {
-        state.user = payload;
-      });
+    });
+    builder.addCase(loadCurrentUser.fulfilled, (state, { payload }) => {
+      state.user = payload;
+    });
   },
 });
 

@@ -9,14 +9,11 @@ const styles = StyleSheet.create({
     backgroundColor: AppColor.GREY,
     paddingHorizontal: DEFAULT_SCREEN_PADDING,
     paddingVertical: 10,
-  },
-  title: {
-    fontSize: 17,
-    textAlign: 'center',
-    marginBottom: 10,
+    flexDirection: 'row',
   },
   button: {
-    width: NAVBAR_BUTTON_WIDTH,
+    flex: 1,
+    minWidth: NAVBAR_BUTTON_WIDTH,
     borderRadius: 7,
     backgroundColor: AppColor.WHITE,
   },

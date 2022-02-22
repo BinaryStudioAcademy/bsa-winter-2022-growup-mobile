@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { ScrollView, View } from 'react-native';
 
-import { MainButton, Text } from 'src/components';
+import { MainButton } from 'src/components';
 import { AppColor, ButtonMode } from 'src/common/enums';
 import { NAVBAR_BUTTON_WIDTH } from './constants';
 import styles from './styles';
@@ -11,6 +11,8 @@ type NavbarProps = {
   items: string[];
   onClick: (index: number) => void;
 };
+
+const INDEX_START_SCROLL = 3;
 
 const Navbar = ({ activeIndex, onClick, items }: NavbarProps) => {
   const scrollViewRef = useRef<ScrollView>(null);
@@ -24,28 +26,32 @@ const Navbar = ({ activeIndex, onClick, items }: NavbarProps) => {
     });
   }, [activeIndex]);
 
+  const navButtons = (
+    <>
+      {items.map((item, index) => (
+        <MainButton
+          key={item}
+          style={[styles.button, activeIndex === index && styles.activeButton]}
+          mode={activeIndex === index ? ButtonMode.CONTAINED : ButtonMode.TEXT}
+          color={activeIndex === index ? '' : AppColor.BLACK}
+          compact={true}
+          onPress={() => onClick(index)}
+        >
+          {item}
+        </MainButton>
+      ))}
+    </>
+  );
+
   return (
     <View style={styles.navbar}>
-      <Text style={styles.title}>User profile</Text>
-      <ScrollView horizontal={true} ref={scrollViewRef}>
-        {items.map((item, index) => (
-          <MainButton
-            key={item}
-            style={[
-              styles.button,
-              activeIndex === index && styles.activeButton,
-            ]}
-            mode={
-              activeIndex === index ? ButtonMode.CONTAINED : ButtonMode.TEXT
-            }
-            color={activeIndex === index ? '' : AppColor.BLACK}
-            compact={true}
-            onPress={() => onClick(index)}
-          >
-            {item}
-          </MainButton>
-        ))}
-      </ScrollView>
+      {items.length > INDEX_START_SCROLL ? (
+        <ScrollView horizontal={true} ref={scrollViewRef}>
+          {navButtons}
+        </ScrollView>
+      ) : (
+        <>{navButtons}</>
+      )}
     </View>
   );
 };

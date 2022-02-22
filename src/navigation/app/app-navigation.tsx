@@ -1,72 +1,42 @@
 import React from 'react';
-import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
+import {
+  createNativeStackNavigator,
+  NativeStackNavigationOptions,
+} from '@react-navigation/native-stack';
 
 import { AppRoute } from 'src/common/enums/navigation';
-import { AppColor } from 'src/common/enums';
-import {
-  AccountIcon,
-  CompassIcon,
-  HomeIcon,
-  RadarIcon,
-  ShieldSearchIcon,
-} from 'src/components';
-import {
-  ExploreScreen,
-  MenteeHomeScreen,
-  OpportunitiesScreen,
-} from 'src/screens';
-import ProfileNavigation from '../profile/profile-navigation';
-import { OKRNavigation } from '../okr';
-import styles from './styles';
+import { AddKeyResultScreen, AddOKRScreen } from 'src/screens';
+import { AppTabsNavigation } from '../app-tabs';
+import { AppStackParamList } from 'src/common/types';
 
-const Tab = createMaterialBottomTabNavigator();
+const Stack = createNativeStackNavigator<AppStackParamList>();
+
+const screenOptions: NativeStackNavigationOptions = {
+  headerTitleAlign: 'center',
+  headerTitleStyle: {
+    fontFamily: 'NunitoSans-SemiBold',
+  },
+};
 
 const AppNavigation = () => {
   return (
-    <Tab.Navigator
-      shifting={false}
-      initialRouteName={AppRoute.HOME}
-      barStyle={styles.barStyle}
-      inactiveColor={AppColor.NAVIGATION_SECONDARY}
-    >
-      <Tab.Screen
-        name={AppRoute.HOME}
-        component={MenteeHomeScreen}
-        options={{
-          tabBarIcon: ({ color }) => <HomeIcon color={color} size={25} />,
-        }}
+    <Stack.Navigator screenOptions={screenOptions}>
+      <Stack.Screen
+        name={AppRoute.APP_TUBS}
+        component={AppTabsNavigation}
+        options={{ headerShown: false }}
       />
-      <Tab.Screen
-        name={AppRoute.EXPLORE}
-        component={ExploreScreen}
-        options={{
-          tabBarIcon: ({ color }) => <CompassIcon color={color} size={25} />,
-        }}
+      <Stack.Screen
+        name={AppRoute.ADD_OKR}
+        component={AddOKRScreen}
+        options={{ title: 'Add New Objective' }}
       />
-      <Tab.Screen
-        name={AppRoute.OPPORTUNITIES}
-        component={OpportunitiesScreen}
-        options={{
-          tabBarIcon: ({ color }) => (
-            <ShieldSearchIcon color={color} size={25} />
-          ),
-        }}
+      <Stack.Screen
+        name={AppRoute.ADD_KEY_RESULT}
+        component={AddKeyResultScreen}
+        options={{ title: 'Add Key Result' }}
       />
-      <Tab.Screen
-        name={AppRoute.OKR}
-        component={OKRNavigation}
-        options={{
-          tabBarIcon: ({ color }) => <RadarIcon color={color} size={25} />,
-        }}
-      />
-      <Tab.Screen
-        name={AppRoute.PROFILE}
-        component={ProfileNavigation}
-        options={{
-          tabBarIcon: ({ color }) => <AccountIcon color={color} size={25} />,
-        }}
-      />
-    </Tab.Navigator>
+    </Stack.Navigator>
   );
 };
 

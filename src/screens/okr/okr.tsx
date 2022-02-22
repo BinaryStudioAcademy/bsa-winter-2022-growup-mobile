@@ -1,14 +1,18 @@
 import React, { useState } from 'react';
-import { useNavigation } from '@react-navigation/native';
+import {
+  useNavigation,
+  CompositeNavigationProp,
+} from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { FAB } from 'react-native-paper';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-import { OKRRoute, OKRStatus } from 'src/common/enums';
-import { IOkr, OKRStackParamList } from 'src/common/types';
+import { AppRoute, OKRStatus } from 'src/common/enums';
+import { IOkr, AppStackParamList } from 'src/common/types';
 import addActions from './add-actions';
 import { OKRList } from './components';
 import styles from './styles';
+import { RootStackParamList } from 'src/common/types/navigation/root-stack-param';
 
 const MOCK_okrs: IOkr[] = [
   {
@@ -44,10 +48,12 @@ const MOCK_okrs: IOkr[] = [
   },
 ];
 
-type OKRNavigationProps = NativeStackNavigationProp<
-  OKRStackParamList,
-  OKRRoute.ADD_OKR
+type OKRNavigationProps = CompositeNavigationProp<
+  NativeStackNavigationProp<RootStackParamList>,
+  NativeStackNavigationProp<AppStackParamList>
 >;
+
+// type OKRNavigationProps = NativeStackNavigationProp<AppStackParamList>;
 
 const OKRScreen: React.FC = () => {
   const [addMenuOpen, setAddMenuOpen] = useState<boolean>(false);
@@ -55,13 +61,20 @@ const OKRScreen: React.FC = () => {
 
   const addFunctions: Record<string, () => void> = {
     ownOKR: () => {
-      navigation.navigate(OKRRoute.ADD_OKR, {
-        isTeamOkr: false,
+      navigation.navigate(AppRoute.APP, {
+        screen: AppRoute.ADD_OKR,
+        params: {
+          isTeamOkr: false,
+        },
       });
+      // navigation.navigate(AppRoute.ADD_OKR, { isTeamOkr: false });
     },
     teamOKR: () => {
-      navigation.navigate(OKRRoute.ADD_OKR, {
-        isTeamOkr: true,
+      navigation.navigate(AppRoute.APP, {
+        screen: AppRoute.ADD_OKR,
+        params: {
+          isTeamOkr: true,
+        },
       });
     },
   };

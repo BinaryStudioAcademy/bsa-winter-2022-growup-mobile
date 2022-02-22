@@ -5,7 +5,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { Formik } from 'formik';
 
-import { ButtonMode, HeadingLevel, OKRRoute } from 'src/common/enums';
+import { AppRoute, ButtonMode, HeadingLevel } from 'src/common/enums';
 import {
   Heading,
   MainButton,
@@ -19,7 +19,7 @@ import {
   createTeamOKRValidationSchema,
 } from 'src/validation-schemas';
 import { defaultAddOKRPayload } from './common';
-import { OKRStackParamList } from 'src/common/types';
+import { AppStackParamList } from 'src/common/types';
 import { useAppDispatch, useAppSelector } from 'src/hooks';
 import { okrActions } from 'src/store/okr';
 import { IAddOkr } from 'src/common/types/okr/add-okr.interface';
@@ -67,11 +67,11 @@ const MOCK_OBJ_CYCLE = [
 ];
 
 type AddOKRNavigateProps = NativeStackNavigationProp<
-  OKRStackParamList,
-  OKRRoute.ADD_KEY_RESULT
+  AppStackParamList,
+  AppRoute.ADD_KEY_RESULT
 >;
 
-type AddOKRRouteProps = RouteProp<OKRStackParamList, OKRRoute.ADD_OKR>;
+type AddOKRRouteProps = RouteProp<AppStackParamList, AppRoute.ADD_OKR>;
 
 const AddOKRScreen: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -87,7 +87,7 @@ const AddOKRScreen: React.FC = () => {
   };
 
   const handleAddKeyResult = () => {
-    navigation.navigate(OKRRoute.ADD_KEY_RESULT);
+    navigation.navigate(AppRoute.ADD_KEY_RESULT);
   };
 
   const handleCreateOKR = (payload: IAddOkr) => {

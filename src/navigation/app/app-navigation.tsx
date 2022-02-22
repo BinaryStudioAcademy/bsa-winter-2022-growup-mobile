@@ -22,7 +22,7 @@ const AppNavigation = () => {
   return (
     <Stack.Navigator screenOptions={screenOptions}>
       <Stack.Screen
-        name={AppRoute.APP_TUBS}
+        name={AppRoute.APP_TABS}
         component={AppTabsNavigation}
         options={{ headerShown: false }}
       />

@@ -4,7 +4,7 @@ import { AppRoute } from 'src/common/enums';
 import { AppTabsParamList } from '.';
 
 type AppStackParamList = {
-  [AppRoute.APP_TUBS]: NavigatorScreenParams<AppTabsParamList>;
+  [AppRoute.APP_TABS]: NavigatorScreenParams<AppTabsParamList>;
   [AppRoute.ADD_OKR]: {
     isTeamOkr: boolean;
   };

@@ -1,1 +1,1 @@
-export * from './roor-navigation-props';
+export * from './root-navigation-props';

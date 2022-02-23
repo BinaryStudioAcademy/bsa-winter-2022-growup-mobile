@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { RouteProp, useNavigation, useRoute } from '@react-navigation/native';
 import { ScrollView, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -75,12 +75,10 @@ type AddOKRRouteProps = RouteProp<AppStackParamList, AppRoute.ADD_OKR>;
 
 const AddOKRScreen: React.FC = () => {
   const dispatch = useAppDispatch();
-  const { currentKeyResults } = useAppSelector(state => state.okr);
+  const { current } = useAppSelector(state => state.okr);
 
   const navigation = useNavigation<AddOKRNavigateProps>();
   const route = useRoute<AddOKRRouteProps>();
-
-  const isTeamOKR = route.params.isTeamOkr;
 
   const handleCancel = () => {
     navigation.goBack();
@@ -96,26 +94,31 @@ const AddOKRScreen: React.FC = () => {
         name: payload.name,
         parent: payload.parent,
         cycle: payload.cycle,
-        keyResults: currentKeyResults,
+        keyResults: current.keyResults,
         teamName: payload.teamName,
       })
     );
     navigation.goBack();
   };
 
+  const isTeamOKR = route.params.isTeamOkr;
+  const isKeyResultsEmpty = current.keyResults.length === 0;
+
+  const validationSchema = useMemo(() => {
+    if (isTeamOKR) {
+      return createTeamOKRValidationSchema;
+    } else {
+      return createOKRValidationSchema;
+    }
+  }, [isTeamOKR]);
+
   return (
     <SafeAreaView style={styles.screen}>
       <ScrollView showsVerticalScrollIndicator={false}>
         <Formik
           initialValues={defaultAddOKRPayload}
-          validationSchema={
-            isTeamOKR
-              ? createTeamOKRValidationSchema
-              : createOKRValidationSchema
-          }
-          onSubmit={values => {
-            handleCreateOKR(values);
-          }}
+          validationSchema={validationSchema}
+          onSubmit={handleCreateOKR}
         >
           {({ isValid, handleSubmit }) => (
             <>
@@ -170,12 +173,12 @@ const AddOKRScreen: React.FC = () => {
                 >
                   Add Key Result
                 </AddButton>
-                {currentKeyResults.length === 0 && (
+                {isKeyResultsEmpty && (
                   <Text style={styles.error}>
                     At least one key result must be added
                   </Text>
                 )}
-                {currentKeyResults.map(item => (
+                {current.keyResults.map(item => (
                   <View style={styles.keyResult} key={item.name}>
                     <Text>{item.name}</Text>
                     <Text>{item.points}/100</Text>
@@ -191,7 +194,7 @@ const AddOKRScreen: React.FC = () => {
                   Cancel
                 </MainButton>
                 <MainButton
-                  disabled={!isValid || currentKeyResults.length === 0}
+                  disabled={!isValid || isKeyResultsEmpty}
                   onPress={handleSubmit}
                   mode={ButtonMode.CONTAINED}
                 >

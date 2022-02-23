@@ -1,16 +1,15 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { IKeyResult } from 'src/common/types';
 
 import { IAddOkr } from 'src/common/types/okr/add-okr.interface';
 import { createOKR, addKeyResult } from './actions';
 
 interface IOKRState {
-  currentKeyResults: IKeyResult[]; // create OKR key results
+  current: IAddOkr; // create OKR key results
   objectives: IAddOkr[]; // TODO change to IOKR
 }
 
 const initialState: IOKRState = {
-  currentKeyResults: [],
+  current: { name: '', cycle: '', parent: '', teamName: '', keyResults: [] },
   objectives: [],
 };
 
@@ -21,10 +20,14 @@ const slice = createSlice({
   extraReducers: builder => {
     builder.addCase(createOKR.fulfilled, (state, { payload }) => {
       state.objectives.push(payload);
-      state.currentKeyResults = [];
+      state.current.keyResults = [];
+      state.current.name = '';
+      state.current.parent = '';
+      state.current.cycle = '';
+      state.current.teamName = '';
     });
     builder.addCase(addKeyResult, (state, { payload }) => {
-      state.currentKeyResults.push(payload);
+      state.current.keyResults.push(payload);
     });
   },
 });

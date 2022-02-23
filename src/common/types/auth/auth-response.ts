@@ -1,8 +1,5 @@
-import { IUser } from '..';
-
 type AuthResponse = {
-  accessToken: string;
-  user: IUser;
+  token: string;
 };
 
 export type { AuthResponse };

@@ -20,7 +20,7 @@ const RootNavigation = () => {
   //TODO add sign in/up screens
   return (
     <RootStack.Navigator screenOptions={defaultScreenOptions}>
-      {!user ? (
+      {user ? (
         <RootStack.Screen name={AppRoute.APP} component={AppNavigation} />
       ) : (
         <>

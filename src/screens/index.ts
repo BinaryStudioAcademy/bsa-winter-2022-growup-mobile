@@ -6,3 +6,8 @@ export * from './profile';
 export * from './login';
 export * from './register';
 export * from './create-skill';
+export * from './onboarding';
+export * from './add-experience';
+export * from './add-education';
+export * from './add-language';
+export * from './add-location';

@@ -6,11 +6,7 @@ import styles from '../styles';
 
 type FormInputProps = React.ComponentPropsWithoutRef<typeof FormInput>;
 
-type FormPasswordInputProps = Omit<FormInputProps, 'right'>;
-
-const FormPasswordInput: React.FC<FormPasswordInputProps> = ({
-  ...inputProps
-}) => {
+const FormPasswordInput: React.FC<FormInputProps> = inputProps => {
   const [secure, setSecure] = useState(true);
 
   const handleChangePasswordSecure = () => {
@@ -23,7 +19,7 @@ const FormPasswordInput: React.FC<FormPasswordInputProps> = ({
       secureTextEntry={secure}
       right={
         <TextInput.Icon
-          name="eye"
+          name={secure ? 'eye' : 'eye-off'}
           style={styles.formIcon}
           onPress={handleChangePasswordSecure}
         />

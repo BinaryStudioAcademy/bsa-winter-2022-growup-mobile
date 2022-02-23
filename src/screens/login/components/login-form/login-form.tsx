@@ -2,14 +2,13 @@ import React from 'react';
 import { Alert, View } from 'react-native';
 import { Formik } from 'formik';
 
-import { styles } from '../../styles';
-import { MainButton } from 'src/components';
-import { defaultLoginPayload } from '../../common';
 import { loginValidationSchema } from 'src/validation-schemas';
-import { FormInput, FormPasswordInput } from 'src/components';
+import { FormInput, FormPasswordInput, MainButton } from 'src/components';
 import { ISignInPayload } from 'src/common/types';
 import { useAppDispatch } from 'src/hooks';
 import { authActions } from 'src/store/actions';
+import { defaultLoginPayload } from '../../common';
+import { styles } from './styles';
 
 const LoginForm: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -43,7 +42,6 @@ const LoginForm: React.FC = () => {
           <MainButton
             mode="contained"
             onPress={handleSubmit}
-            style={styles.btnLogin}
             disabled={!isValid}
           >
             Log In

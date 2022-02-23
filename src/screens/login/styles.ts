@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-import { AppColor } from 'src/common/enums';
+import { DEFAULT_SCREEN_PADDING } from 'src/styles';
 
 const styles = StyleSheet.create({
   content: {
@@ -8,30 +8,21 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    marginTop: '20%',
-    marginHorizontal: 27,
-  },
-  formField: {
-    backgroundColor: AppColor.INPUT_BACKGROUND,
-    height: 45,
-    marginTop: 17,
-    borderRadius: 8,
-  },
-  btnLogin: {
-    marginHorizontal: 27,
+    paddingTop: DEFAULT_SCREEN_PADDING,
+    paddingHorizontal: DEFAULT_SCREEN_PADDING,
   },
   logo: {
     height: 48,
     alignSelf: 'center',
-    marginTop: '20%',
+    marginVertical: DEFAULT_SCREEN_PADDING * 4,
     resizeMode: 'contain',
   },
   footer: {
+    padding: DEFAULT_SCREEN_PADDING,
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'center',
     alignItems: 'center',
-    marginVertical: 15,
   },
 });
 

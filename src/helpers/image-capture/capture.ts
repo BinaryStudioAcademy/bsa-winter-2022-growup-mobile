@@ -1,7 +1,7 @@
 import { PermissionsAndroid } from 'react-native';
 import { Asset, CameraType, launchCamera } from 'react-native-image-picker';
 
-const requestCameraPermission = async (): Promise<boolean> => {
+const requestCameraPermissionAndroid = async (): Promise<boolean> => {
   try {
     const permission = await PermissionsAndroid.request(
       PermissionsAndroid.PERMISSIONS.CAMERA,
@@ -22,9 +22,11 @@ const requestCameraPermission = async (): Promise<boolean> => {
 };
 
 const captureSingleImage = async (
-  type?: CameraType
+  type: CameraType = 'back'
 ): Promise<Asset | undefined> => {
-  if (!(await requestCameraPermission())) {
+  const hasPermission = await requestCameraPermissionAndroid();
+
+  if (!hasPermission) {
     return;
   }
 

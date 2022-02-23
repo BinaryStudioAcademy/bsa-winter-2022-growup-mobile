@@ -3,7 +3,6 @@ import DropDown from 'react-native-paper-dropdown';
 
 import { AppColor } from 'src/common/enums';
 import styles from '../shared/input-style/styles';
-import theme from '../shared/input-style/theme';
 
 type Props = Omit<
   React.ComponentPropsWithoutRef<typeof DropDown>,
@@ -24,7 +23,6 @@ const Select: React.FC<Props> = dropDownProps => {
       visible={open}
       showDropDown={handleShow}
       onDismiss={handleHide}
-      theme={theme}
       inputProps={{ style: styles.inputContainer }}
       {...dropDownProps}
     />

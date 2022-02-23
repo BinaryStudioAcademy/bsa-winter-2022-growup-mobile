@@ -89,7 +89,7 @@ const ProfileScreen: React.FC = () => {
               <Text>Summary container</Text>
             </View>
             <View style={styles.swiperItem} collapsable={false}>
-              <Text>Quality container</Text>
+              <Text>Qualities container</Text>
             </View>
             <View style={styles.swiperItem} collapsable={false}>
               <Text>Interests container</Text>

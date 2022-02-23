@@ -9,3 +9,4 @@ export * from './education';
 export * from './google-places';
 export * from './navigation';
 export * from './okr';
+export * from './career';

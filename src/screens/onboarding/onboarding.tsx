@@ -32,7 +32,12 @@ const OnboardingScreen: React.FC = () => {
   }, []);
 
   const handleComplete = () => {
-    navigation.replace(AppRoute.HOME);
+    navigation.replace(AppRoute.APP, {
+      screen: AppRoute.APP_TABS,
+      params: {
+        screen: AppRoute.HOME,
+      },
+    });
   };
 
   const isLastStep = currentStep === LAST_STEP_INDEX;

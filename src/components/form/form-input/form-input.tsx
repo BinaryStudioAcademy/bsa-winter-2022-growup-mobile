@@ -4,6 +4,7 @@ import { FormikValues, useFormikContext } from 'formik';
 
 import { Input, Text } from 'src/components';
 import styles from '../styles';
+import { AppColor } from 'src/common/enums';
 
 type InputProps = React.ComponentPropsWithoutRef<typeof Input>;
 
@@ -30,6 +31,7 @@ const FormInput: React.FC<FormInputProps> = ({
         value={values[name]}
         onChangeText={handleChange}
         onBlur={handleBlur(name)}
+        outlineColor={!error ? AppColor.INPUT_BACKGROUND : AppColor.ERROR}
         {...inputProps}
       />
       {Boolean(error) && <Text style={styles.error}>{error}</Text>}

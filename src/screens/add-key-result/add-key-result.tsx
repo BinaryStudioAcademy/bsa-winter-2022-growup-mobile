@@ -1,5 +1,4 @@
 import React from 'react';
-import { useNavigation } from '@react-navigation/native';
 import { View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Formik } from 'formik';
@@ -13,14 +12,14 @@ import {
   Text,
 } from 'src/components';
 import { addKeyResultValidationSchema } from 'src/validation-schemas';
-import { useAppDispatch } from 'src/hooks';
+import { useAppDispatch, useAppNavigation } from 'src/hooks';
 import { okrActions } from 'src/store/okr';
 import { IKeyResult } from 'src/common/types';
 import { defaultAddKeyResultPayload } from './common';
 import styles from './styles';
 
 const AddKeyResultScreen: React.FC = () => {
-  const navigation = useNavigation();
+  const navigation = useAppNavigation();
   const dispatch = useAppDispatch();
 
   const handleCancel = () => {

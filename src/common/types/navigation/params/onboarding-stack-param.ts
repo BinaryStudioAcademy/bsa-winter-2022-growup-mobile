@@ -1,4 +1,4 @@
-import { AppRoute, OnboardingRoute } from 'src/common/enums';
+import { OnboardingRoute } from 'src/common/enums';
 
 type OnboardingStackParamList = {
   [OnboardingRoute.ONBOARDING]: undefined;
@@ -6,7 +6,6 @@ type OnboardingStackParamList = {
   [OnboardingRoute.ADD_EXPERIENCE]: undefined;
   [OnboardingRoute.ADD_LANGUAGE]: undefined;
   [OnboardingRoute.ADD_LOCATION]: undefined;
-  [AppRoute.APP]: undefined;
 };
 
 export type { OnboardingStackParamList };

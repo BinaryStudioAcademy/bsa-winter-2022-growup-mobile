@@ -5,18 +5,25 @@ import {
   AppStackParamList,
   AppTabsParamList,
   OnboardingStackParamList,
+  ProfileStackParamList,
   RootStackParamList,
 } from '..';
 
 type RootNavigationProps = CompositeNavigationProp<
+  NativeStackNavigationProp<RootStackParamList>,
   CompositeNavigationProp<
-    NativeStackNavigationProp<RootStackParamList>,
     CompositeNavigationProp<
       NativeStackNavigationProp<AppStackParamList>,
-      NativeStackNavigationProp<AppTabsParamList>
+      NativeStackNavigationProp<OnboardingStackParamList>
+    >,
+    CompositeNavigationProp<
+      NativeStackNavigationProp<AppStackParamList>,
+      CompositeNavigationProp<
+        NativeStackNavigationProp<AppTabsParamList>,
+        NativeStackNavigationProp<ProfileStackParamList>
+      >
     >
-  >,
-  NativeStackNavigationProp<OnboardingStackParamList>
+  >
 >;
 
 export type { RootNavigationProps };

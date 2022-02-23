@@ -42,7 +42,9 @@ const Navbar = ({ activeIndex, onClick, items }: NavbarProps) => {
             mode={
               activeIndex === index ? ButtonMode.CONTAINED : ButtonMode.TEXT
             }
-            labelStyle={{ color: activeIndex === index ? AppColor.WHITE : AppColor.BLACK }}
+            labelStyle={{
+              color: activeIndex === index ? AppColor.WHITE : AppColor.BLACK,
+            }}
             compact={true}
             onPress={() => onClick(index)}
           >

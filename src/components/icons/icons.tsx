@@ -54,6 +54,10 @@ const BookMarkOutlineIcon: React.FC<IconProps> = iconProps => (
   <MaterialCommunityIcon name="bookmark-outline" {...iconProps} />
 );
 
+const ShieldCheckIcon: React.FC<IconProps> = iconProps => (
+  <MaterialCommunityIcon name="shield-check" {...iconProps} />
+);
+
 export {
   HomeIcon,
   CompassIcon,
@@ -67,4 +71,5 @@ export {
   MapMarkerIcon,
   BookMarkIcon,
   BookMarkOutlineIcon,
+  ShieldCheckIcon,
 };

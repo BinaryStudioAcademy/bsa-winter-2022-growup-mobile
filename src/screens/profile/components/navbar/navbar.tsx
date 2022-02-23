@@ -23,7 +23,7 @@ const Navbar = ({ activeIndex, onClick, items }: NavbarProps) => {
       y: 0,
       animated: true,
     });
-  }, [activeIndex]);
+  }, [activeIndex, scrollViewRef]);
 
   return (
     <View style={styles.navbar}>
@@ -42,7 +42,7 @@ const Navbar = ({ activeIndex, onClick, items }: NavbarProps) => {
             mode={
               activeIndex === index ? ButtonMode.CONTAINED : ButtonMode.TEXT
             }
-            color={activeIndex === index ? '' : AppColor.BLACK}
+            labelStyle={{ color: activeIndex === index ? AppColor.WHITE : AppColor.BLACK }}
             compact={true}
             onPress={() => onClick(index)}
           >

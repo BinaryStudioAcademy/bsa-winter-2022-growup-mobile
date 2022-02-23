@@ -8,10 +8,9 @@ import { FAB } from 'react-native-paper';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { AppRoute, OKRStatus } from 'src/common/enums';
-import { IOkr, AppStackParamList } from 'src/common/types';
+import { IOkr, AppStackParamList, RootStackParamList } from 'src/common/types';
 import addActions from './add-actions';
 import { OKRList } from './components';
-import { RootStackParamList } from 'src/common/types/navigation/root-stack-param';
 import styles from './styles';
 
 const MOCK_okrs: IOkr[] = [

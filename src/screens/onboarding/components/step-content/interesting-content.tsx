@@ -5,8 +5,7 @@ import { View } from 'react-native';
 
 import { HeadingLevel, IconName, OnboardingRoute } from 'src/common/enums';
 import { OnboardingStackParamList } from 'src/common/types';
-import { Heading } from 'src/components';
-import { AddButton } from '..';
+import { Heading, AddButton } from 'src/components';
 import styles from './styles';
 
 type InterestingContentProps = NativeStackNavigationProp<

@@ -3,9 +3,9 @@ import { TouchableOpacity, View } from 'react-native';
 
 import { AppRoute, HeadingLevel } from 'src/common/enums';
 import { Heading } from 'src/components';
+import { useAppNavigation } from 'src/hooks';
 import { Avatar } from '..';
 import styles from './styles';
-import { useAppNavigation } from 'src/hooks';
 
 type HeaderProps = {
   children: string;

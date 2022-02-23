@@ -6,9 +6,7 @@ import { MainButton } from 'src/components';
 import { AuthRoute, ButtonMode } from 'src/common/enums';
 import { useAppNavigation } from 'src/hooks';
 
-type IRegisterScreenProps = Record<string, never>;
-
-const RegisterScreen: React.FC<IRegisterScreenProps> = () => {
+const RegisterScreen: React.FC = () => {
   const navigation = useAppNavigation();
 
   const handleSignInPress = () => {

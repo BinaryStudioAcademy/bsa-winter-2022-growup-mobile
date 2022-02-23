@@ -5,8 +5,8 @@ import { View, Image, Text } from 'react-native';
 import { LoginForm } from 'src/screens/login/components';
 import { AuthRoute, ButtonMode } from 'src/common/enums';
 import { MainButton } from 'src/components';
-import { styles } from './styles';
 import { useAppNavigation } from 'src/hooks';
+import { styles } from './styles';
 
 const LoginScreen: React.FC = () => {
   const navigation = useAppNavigation();

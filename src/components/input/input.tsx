@@ -4,7 +4,6 @@ import { TextInput } from 'react-native-paper';
 
 import { AppColor } from 'src/common/enums';
 import styles from '../shared/input-style/styles';
-import theme from '../shared/input-style/theme';
 
 type InputProps = React.ComponentPropsWithoutRef<typeof TextInput> & {
   ref?: Ref<RNTextInput>;
@@ -18,8 +17,7 @@ const Input: React.FC<InputProps> = React.forwardRef(
         style={[styles.inputContainer, style]}
         label={label}
         placeholder={placeholder}
-        theme={theme}
-        mode="flat"
+        mode="outlined"
         activeUnderlineColor={AppColor.ACCENT}
         {...textInputProps}
       />

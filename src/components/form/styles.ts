@@ -7,6 +7,9 @@ const styles = StyleSheet.create({
     paddingTop: 4,
     color: AppColor.ERROR,
   },
+  formIcon: {
+    marginBottom: 0,
+  },
 });
 
 export default styles;

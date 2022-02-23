@@ -65,7 +65,8 @@ class Http {
 
     if (hasAuth) {
       const token = await this.#storage.getItem(SecureStorageKey.ACCESS_TOKEN);
-      headers.append(HttpHeader.AUTHORIZATION, `Bearer ${token}`);
+
+      headers.append(HttpHeader.AUTHORIZATION, token || '');
     }
 
     return headers;

@@ -11,23 +11,28 @@ import {
   PencilIcon,
   Text,
 } from 'src/components';
-import { AppColor, HeadingLevel, TextAppearance } from 'src/common/enums';
+import {
+  AppColor,
+  DateFormat,
+  HeadingLevel,
+  TextAppearance,
+} from 'src/common/enums';
 import { MONTHS_IN_YEAR } from 'src/common/constants';
 import { ICareer } from 'src/common/types';
 import styles from './styles';
 
-type CareerProps = {
+interface ICareerProps {
   item: ICareer;
   onEdit?: () => void;
   onDelete?: () => void;
-};
+}
 
-const CareerCard: React.FC<CareerProps> = ({ item, onEdit, onDelete }) => {
+const CareerCard: React.FC<ICareerProps> = ({ item, onEdit, onDelete }) => {
   const { position, company, startDate, endDate } = item;
 
   const dateString = useMemo(() => {
-    const startDay = dayjs(startDate);
-    const endDay = dayjs(endDate);
+    const startDay = dayjs(startDate, DateFormat.DATE_ONLY);
+    const endDay = dayjs(endDate, DateFormat.DATE_ONLY);
 
     const differenceYears = endDay.diff(startDay, 'years');
     const extraMonths = differenceYears * MONTHS_IN_YEAR;

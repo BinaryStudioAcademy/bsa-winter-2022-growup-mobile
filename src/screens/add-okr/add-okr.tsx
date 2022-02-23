@@ -18,11 +18,11 @@ import {
   createOKRValidationSchema,
   createTeamOKRValidationSchema,
 } from 'src/validation-schemas';
-import { defaultAddOKRPayload } from './common';
 import { AppStackParamList } from 'src/common/types';
 import { useAppDispatch, useAppSelector } from 'src/hooks';
 import { okrActions } from 'src/store/okr';
 import { IAddOkr } from 'src/common/types/okr/add-okr.interface';
+import { defaultAddOKRPayload } from './common';
 import styles from './styles';
 
 const MOCK_TEAM_NAMES = [

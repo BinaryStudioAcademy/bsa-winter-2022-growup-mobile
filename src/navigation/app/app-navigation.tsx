@@ -6,8 +6,8 @@ import {
 
 import { AppRoute } from 'src/common/enums/navigation';
 import { AddKeyResultScreen, AddOKRScreen } from 'src/screens';
-import { AppTabsNavigation } from '../app-tabs';
 import { AppStackParamList } from 'src/common/types';
+import { AppTabsNavigation } from '../app-tabs';
 
 const Stack = createNativeStackNavigator<AppStackParamList>();
 

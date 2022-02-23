@@ -2,12 +2,11 @@ import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import { AppRoute, AuthRoute } from 'src/common/enums/navigation';
-
-import AppNavigation from './app/app-navigation';
 import { useAppSelector } from 'src/hooks';
 import { LoginScreen } from 'src/screens';
 import { RegisterScreen } from 'src/screens';
 import { RootStackParamList } from 'src/common/types';
+import AppNavigation from './app/app-navigation';
 
 const RootStack = createNativeStackNavigator<RootStackParamList>();
 

@@ -1,8 +1,7 @@
 import React from 'react';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 
-import { AppRoute } from 'src/common/enums/navigation';
-import { AppColor } from 'src/common/enums';
+import { AppColor, AppRoute } from 'src/common/enums';
 import {
   AccountIcon,
   CompassIcon,
@@ -16,9 +15,9 @@ import {
   OKRScreen,
   OpportunitiesScreen,
 } from 'src/screens';
+import { AppTabsParamList } from 'src/common/types';
 import ProfileNavigation from '../profile/profile-navigation';
 import styles from './styles';
-import { AppTabsParamList } from 'src/common/types';
 
 const Tab = createMaterialBottomTabNavigator<AppTabsParamList>();
 

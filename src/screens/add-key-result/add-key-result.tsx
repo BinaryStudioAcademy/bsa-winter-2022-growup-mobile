@@ -1,20 +1,25 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Formik } from 'formik';
-import Slider from '@react-native-community/slider';
 
-import { AppColor, ButtonMode, HeadingLevel } from 'src/common/enums';
-import { FormInput, Heading, MainButton, Text } from 'src/components';
+import { ButtonMode, HeadingLevel } from 'src/common/enums';
+import {
+  FormInput,
+  FormSlider,
+  Heading,
+  MainButton,
+  Text,
+} from 'src/components';
 import { addKeyResultValidationSchema } from 'src/validation-schemas';
-import { defaultAddKeyResultPayload } from './common';
 import { useAppDispatch } from 'src/hooks';
 import { okrActions } from 'src/store/okr';
+import { IKeyResult } from 'src/common/types';
+import { defaultAddKeyResultPayload } from './common';
 import styles from './styles';
 
 const AddKeyResultScreen: React.FC = () => {
-  const [currentLevel, setCurrentLevel] = useState(0);
   const navigation = useNavigation();
   const dispatch = useAppDispatch();
 
@@ -22,11 +27,11 @@ const AddKeyResultScreen: React.FC = () => {
     navigation.goBack();
   };
 
-  const handleAddKeyResult = (payload: { name: string }) => {
+  const handleAddKeyResult = (payload: IKeyResult) => {
     dispatch(
       okrActions.addKeyResult({
         name: payload.name,
-        points: currentLevel,
+        points: payload.points,
       })
     );
     navigation.goBack();
@@ -39,7 +44,7 @@ const AddKeyResultScreen: React.FC = () => {
         validationSchema={addKeyResultValidationSchema}
         onSubmit={handleAddKeyResult}
       >
-        {({ isValid, handleSubmit }) => (
+        {({ isValid, values, handleSubmit }) => (
           <>
             <View>
               <View style={styles.inputContent}>
@@ -56,18 +61,14 @@ const AddKeyResultScreen: React.FC = () => {
                   Current Level
                 </Heading>
                 <View style={styles.levelValues}>
-                  <Text>{currentLevel}</Text>
+                  <Text>{values.points}</Text>
                   <Text>100</Text>
                 </View>
-                <Slider
-                  onValueChange={setCurrentLevel}
-                  value={currentLevel}
+                <FormSlider
+                  name="points"
                   minimumValue={0}
                   step={1}
                   maximumValue={100}
-                  minimumTrackTintColor={AppColor.PRIMARY}
-                  maximumTrackTintColor={AppColor.PRIMARY}
-                  thumbTintColor={AppColor.PRIMARY}
                 />
               </View>
             </View>

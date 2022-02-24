@@ -15,6 +15,16 @@ const signIn = createAsyncThunk(
   }
 );
 
+const signInFingerprint = createAsyncThunk(
+  ActionType.SIGN_IN_FINGERPRINT,
+  async ({ email }: { email: string }, { dispatch }) => {
+    const { token } = await authApi.signInFingerprint(email);
+
+    await secureStorage.setItem(SecureStorageKey.ACCESS_TOKEN, token);
+    dispatch(loadCurrentUser());
+  }
+);
+
 const signOut = createAction(ActionType.SIGN_OUT);
 
 const loadCurrentUser = createAsyncThunk(
@@ -30,4 +40,4 @@ const loadCurrentUser = createAsyncThunk(
   }
 );
 
-export { signIn, loadCurrentUser, signOut };
+export { signIn, signInFingerprint, loadCurrentUser, signOut };

@@ -19,8 +19,8 @@ const LoginScreen: React.FC = () => {
     dispatch(authActions.signIn(data));
   };
 
-  const handleFingerprint = (_email: string) => {
-    // TODO: dispatch
+  const handleFingerprint = (email: string) => {
+    dispatch(authActions.signInFingerprint({ email }));
   };
 
   const handleSignUpPress = () => {

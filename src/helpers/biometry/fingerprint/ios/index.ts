@@ -1,6 +1,6 @@
 import FingerprintScanner from 'react-native-fingerprint-scanner';
 
-export const captureFingerprintIOS = (): Promise<boolean> => {
+const captureFingerprintIOS = (): Promise<boolean> => {
   return new Promise<boolean>(resolve => {
     FingerprintScanner.authenticate({
       description: 'Authenticate with fingerprint',
@@ -9,3 +9,5 @@ export const captureFingerprintIOS = (): Promise<boolean> => {
       .catch(() => resolve(false));
   });
 };
+
+export { captureFingerprintIOS };

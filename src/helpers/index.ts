@@ -1,8 +1,4 @@
-export { getStringifiedQuery } from './http';
-export { captureFingerprint } from './biometry';
-
-export {
-  selectSingleImageFromGallery,
-  selectImagesFromGallery,
-  captureSingleImage,
-} from './image-capture';
+export * from './http';
+export * from './biometry';
+export * from './image-capture';
+export * from './crypto';

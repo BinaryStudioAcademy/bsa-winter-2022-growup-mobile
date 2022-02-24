@@ -3,10 +3,10 @@ import FingerprintScanner from 'react-native-fingerprint-scanner';
 import { captureFingerprintAndroid } from './android';
 import { captureFingerprintIOS } from './ios';
 
-interface FingerprintResult {
+type FingerprintResult = {
   done: boolean;
   authenticated: boolean;
-}
+};
 
 const acceptedBioTypes = ['Biometrics', 'Touch ID'];
 
@@ -15,13 +15,19 @@ const internal = Platform.select<() => Promise<boolean>>({
   ios: captureFingerprintIOS,
 });
 
-export const captureFingerprint = async (): Promise<FingerprintResult> => {
+const checkBiometry = async () => {
+  const biometryType = await FingerprintScanner.isSensorAvailable();
+  const hasBiometry = acceptedBioTypes.includes(biometryType);
+
+  return hasBiometry;
+};
+
+const captureFingerprint = async (): Promise<FingerprintResult> => {
   if (!internal) {
     return { done: false, authenticated: false };
   }
 
-  const biometryType = await FingerprintScanner.isSensorAvailable();
-  const hasBiometry = acceptedBioTypes.includes(biometryType);
+  const hasBiometry = await checkBiometry();
 
   if (!hasBiometry) {
     return { done: false, authenticated: false };
@@ -32,3 +38,5 @@ export const captureFingerprint = async (): Promise<FingerprintResult> => {
     authenticated: await internal(),
   };
 };
+
+export { checkBiometry, captureFingerprint };

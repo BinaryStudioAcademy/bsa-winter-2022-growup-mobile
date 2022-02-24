@@ -21,7 +21,7 @@ const capture = (): Promise<boolean> => {
   });
 };
 
-export const captureFingerprintAndroid = (): Promise<boolean> => {
+const captureFingerprintAndroid = (): Promise<boolean> => {
   const requiresLegacy = Platform.Version < 23;
 
   if (requiresLegacy) {
@@ -30,3 +30,5 @@ export const captureFingerprintAndroid = (): Promise<boolean> => {
 
   return capture();
 };
+
+export { captureFingerprintAndroid };

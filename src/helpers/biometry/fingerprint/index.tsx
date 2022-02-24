@@ -16,10 +16,14 @@ const internal = Platform.select<() => Promise<boolean>>({
 });
 
 const checkBiometry = async () => {
-  const biometryType = await FingerprintScanner.isSensorAvailable();
-  const hasBiometry = acceptedBioTypes.includes(biometryType);
+  try {
+    const biometryType = await FingerprintScanner.isSensorAvailable();
+    const hasBiometry = acceptedBioTypes.includes(biometryType);
 
-  return hasBiometry;
+    return hasBiometry;
+  } catch (err) {
+    return false;
+  }
 };
 
 const captureFingerprint = async (): Promise<FingerprintResult> => {

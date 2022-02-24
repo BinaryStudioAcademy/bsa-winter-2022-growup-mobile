@@ -3,13 +3,25 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { View, Image, Text } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
-import { LoginForm } from 'src/screens/login/components';
 import { AuthRoute, ButtonMode } from 'src/common/enums';
 import { MainButton } from 'src/components';
+import { LoginForm } from './components';
 import { styles } from './styles';
+import { useAppDispatch } from 'src/hooks';
+import { authActions } from 'src/store/actions';
+import { ISignInPayload } from 'src/common/types';
 
 const LoginScreen: React.FC = () => {
   const navigation = useNavigation();
+  const dispatch = useAppDispatch();
+
+  const handleLogin = (data: ISignInPayload) => {
+    dispatch(authActions.signIn(data));
+  };
+
+  const handleFingerprint = (_email: string) => {
+    // TODO: dispatch
+  };
 
   const handleSignUpPress = () => {
     navigation.navigate({
@@ -25,12 +37,14 @@ const LoginScreen: React.FC = () => {
           source={require('src/assets/images/Logo.png')}
           style={styles.logo}
         />
-        <LoginForm />
+        <LoginForm
+          onSubmit={handleLogin}
+          onSubmitFingerprint={handleFingerprint}
+        />
       </View>
-
       <View style={styles.footer}>
         <Text>New to GrowUp?</Text>
-        <MainButton mode={ButtonMode.TEXT} onPress={() => handleSignUpPress}>
+        <MainButton mode={ButtonMode.TEXT} onPress={handleSignUpPress}>
           Sign Up
         </MainButton>
       </View>

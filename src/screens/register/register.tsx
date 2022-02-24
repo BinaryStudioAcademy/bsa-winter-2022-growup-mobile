@@ -6,9 +6,7 @@ import { useNavigation } from '@react-navigation/native';
 import { MainButton } from 'src/components';
 import { AuthRoute, ButtonMode } from 'src/common/enums';
 
-type IRegisterScreenProps = Record<string, never>;
-
-const RegisterScreen: React.FC<IRegisterScreenProps> = () => {
+const RegisterScreen: React.FC = () => {
   const navigation = useNavigation();
 
   const handleSignInPress = () => {
@@ -22,7 +20,7 @@ const RegisterScreen: React.FC<IRegisterScreenProps> = () => {
     <SafeAreaView>
       <View>
         <Text>Register screen</Text>
-        <MainButton mode={ButtonMode.TEXT} onPress={() => handleSignInPress}>
+        <MainButton mode={ButtonMode.TEXT} onPress={handleSignInPress}>
           Sign up
         </MainButton>
       </View>

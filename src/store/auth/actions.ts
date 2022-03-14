@@ -8,9 +8,13 @@ import { SecureStorageKey } from 'src/common/enums';
 const signIn = createAsyncThunk(
   ActionType.SIGN_IN,
   async (payload: ISignInPayload, { dispatch }) => {
-    const { token } = await authApi.signIn(payload);
+    const response = await authApi.signIn(payload);
 
-    await secureStorage.setItem(SecureStorageKey.ACCESS_TOKEN, token);
+    if (!response) {
+      return;
+    }
+
+    await secureStorage.setItem(SecureStorageKey.ACCESS_TOKEN, response.token);
     dispatch(loadCurrentUser());
   }
 );

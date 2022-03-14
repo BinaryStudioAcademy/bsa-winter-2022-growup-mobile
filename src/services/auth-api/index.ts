@@ -3,7 +3,7 @@ import { Asset } from 'react-native-image-picker';
 import { ApiPath, ContentType, HttpMethod } from 'src/common/enums';
 import { ISignInPayload, IUser } from 'src/common/types';
 import { AuthResponse } from 'src/common/types/auth';
-import { showToast } from 'src/helpers';
+import { showErrorToast } from 'src/helpers';
 import { assetToMultipartFile } from 'src/helpers/image-capture';
 import { Http } from '../http';
 
@@ -32,7 +32,7 @@ class AuthApi {
         hasAuth: false,
       });
     } catch (err: any) {
-      showToast(err?.message ?? 'Failed to log in');
+      showErrorToast(err?.message ?? 'Failed to log in');
     }
   }
 
@@ -47,7 +47,7 @@ class AuthApi {
         payload,
       });
     } catch (err: any) {
-      showToast(err?.message ?? 'Failed to upload avatar');
+      showErrorToast(err?.message ?? 'Failed to upload avatar');
     }
   }
 

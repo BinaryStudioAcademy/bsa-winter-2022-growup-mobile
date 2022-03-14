@@ -1,6 +1,6 @@
 import { ApiPath, ContentType, HttpMethod } from 'src/common/enums';
 import { ICreateSkillPayload, ISkill } from 'src/common/types';
-import { showToast } from 'src/helpers';
+import { showErrorToast } from 'src/helpers';
 import { Http } from '../http';
 
 type Constructor = {
@@ -27,7 +27,7 @@ class SkillApi {
         payload: JSON.stringify(payload),
       });
     } catch (err: any) {
-      showToast(err?.message ?? 'Failed to create skill');
+      showErrorToast(err?.message ?? 'Failed to create skill');
     }
   }
 }

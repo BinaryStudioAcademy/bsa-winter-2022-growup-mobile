@@ -1,5 +1,5 @@
 import { ApiPath, ContentType, HttpMethod } from 'src/common/enums';
-import { showToast } from 'src/helpers';
+import { showErrorToast } from 'src/helpers';
 import { Http } from '../http';
 
 type Constructor = {
@@ -26,7 +26,7 @@ class NotificationApi {
         }
       );
     } catch (err: any) {
-      showToast(err?.message ?? 'Failed to mark notification as read');
+      showErrorToast(err?.message ?? 'Failed to mark notification as read');
     }
   }
 }

@@ -1,6 +1,6 @@
 export { getStringifiedQuery } from './http';
 export { captureFingerprint } from './biometry';
-export { showToast } from './notifications';
+export { showErrorToast } from './notifications';
 
 export {
   selectSingleImageFromGallery,

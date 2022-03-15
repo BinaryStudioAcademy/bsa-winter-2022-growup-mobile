@@ -1,0 +1,29 @@
+import { ApiPath, ContentType, HttpMethod } from 'src/common/enums';
+import { ICareer } from 'src/common/types';
+import { Http } from '../http';
+
+type Constructor = {
+  http: Http;
+  apiPath: string;
+};
+
+class CareerApi {
+  #http: Http;
+  #apiPath: string;
+
+  constructor({ http, apiPath }: Constructor) {
+    this.#http = http;
+    this.#apiPath = apiPath;
+  }
+
+  public addCareer(payload: ICareer): Promise<ICareer> {
+    return this.#http.load(`${this.#apiPath}${ApiPath.USER_CAREER}`, {
+      method: HttpMethod.POST,
+      contentType: ContentType.JSON,
+      payload: JSON.stringify(payload),
+      hasAuth: true,
+    });
+  }
+}
+
+export { CareerApi };

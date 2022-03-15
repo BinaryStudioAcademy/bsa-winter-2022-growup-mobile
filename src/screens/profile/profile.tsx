@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -12,6 +12,8 @@ import { ProfileRoute } from 'src/common/enums';
 import { Text } from 'src/components';
 import addActions from './add-actions';
 import styles from './styles';
+import { useAppDispatch } from 'src/hooks';
+import { experienceActions } from 'src/store/experience';
 
 const NAVBAR_ITEMS = [
   'Summary',
@@ -23,6 +25,7 @@ const NAVBAR_ITEMS = [
 
 const ProfileScreen: React.FC = () => {
   const navigation = useNavigation();
+  const dispatch = useAppDispatch();
   const [addMenuOpen, setAddMenuOpen] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
   const pagerRef = useRef<PagerView>(null);
@@ -70,6 +73,10 @@ const ProfileScreen: React.FC = () => {
   const handlePageSelect = (event: PagerViewOnPageSelectedEvent) => {
     setActiveIndex(event.nativeEvent.position);
   };
+
+  useEffect(() => {
+    dispatch(experienceActions.getCareerExperience());
+  }, [dispatch]);
 
   return (
     <SafeAreaView style={styles.fullHeight}>

@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { ICareer } from 'src/common/types';
 
-import { addCareerExperience } from './actions';
+import { addCareerExperience, getCareerExperience } from './actions';
 
 interface ICareerState {
   careerExperience: ICareer[];
@@ -19,6 +19,9 @@ const slice = createSlice({
     builder.addCase(addCareerExperience.fulfilled, (state, { payload }) => {
       state.careerExperience.push(payload);
     });
+    builder.addCase(getCareerExperience.fulfilled, (state, { payload }) => {
+      state.careerExperience.push(...payload);
+    });
   },
 });
 
@@ -27,6 +30,7 @@ const { reducer } = slice;
 const actions = {
   ...slice.actions,
   addCareerExperience,
+  getCareerExperience,
 };
 
 export { reducer, actions };

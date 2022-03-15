@@ -16,6 +16,13 @@ class CareerApi {
     this.#apiPath = apiPath;
   }
 
+  public getCareers(): Promise<ICareer[]> {
+    return this.#http.load(`${this.#apiPath}${ApiPath.USER_CAREER}`, {
+      method: HttpMethod.GET,
+      hasAuth: true,
+    });
+  }
+
   public addCareer(payload: ICareer): Promise<ICareer> {
     return this.#http.load(`${this.#apiPath}${ApiPath.USER_CAREER}`, {
       method: HttpMethod.POST,

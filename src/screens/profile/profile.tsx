@@ -49,7 +49,10 @@ const ProfileScreen: React.FC = () => {
       /* TODO */
     },
     careerPoint: () => {
-      /* TODO */
+      navigation.navigate({
+        name: ProfileRoute.ADD_CAREER_EXPERIENCE as never,
+        params: {} as never,
+      });
     },
     interest: () => {
       /* TODO */

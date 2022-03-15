@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { View } from 'react-native';
+import { ScrollView, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Divider, FAB } from 'react-native-paper';
@@ -7,12 +7,12 @@ import PagerView, {
   PagerViewOnPageSelectedEvent,
 } from 'react-native-pager-view';
 
-import { Navbar } from './components';
+import { CareerCard, Navbar } from './components';
 import { ProfileRoute } from 'src/common/enums';
 import { Text } from 'src/components';
 import addActions from './add-actions';
 import styles from './styles';
-import { useAppDispatch } from 'src/hooks';
+import { useAppDispatch, useAppSelector } from 'src/hooks';
 import { experienceActions } from 'src/store/experience';
 
 const NAVBAR_ITEMS = [
@@ -62,6 +62,8 @@ const ProfileScreen: React.FC = () => {
     },
   };
 
+  const { careerExperience } = useAppSelector(state => state.experience);
+
   const handleItemPress = (name: string) => {
     addFunctions[name]();
   };
@@ -97,6 +99,11 @@ const ProfileScreen: React.FC = () => {
           >
             <View style={styles.swiperItem} collapsable={false}>
               <Text>Summary container</Text>
+              <ScrollView>
+                {careerExperience.map((item, index) => (
+                  <CareerCard item={item} key={index} />
+                ))}
+              </ScrollView>
             </View>
             <View style={styles.swiperItem} collapsable={false}>
               <Text>Qualities container</Text>

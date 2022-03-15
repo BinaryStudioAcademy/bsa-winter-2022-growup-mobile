@@ -20,7 +20,7 @@ const slice = createSlice({
       state.careerExperience.push(payload);
     });
     builder.addCase(getCareerExperience.fulfilled, (state, { payload }) => {
-      state.careerExperience.push(...payload);
+      state.careerExperience = payload;
     });
   },
 });

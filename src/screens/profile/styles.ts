@@ -1,6 +1,7 @@
 import { StyleSheet } from 'react-native';
 
 import { AppColor } from 'src/common/enums';
+import { DEFAULT_SCREEN_PADDING } from 'src/styles';
 
 const styles = StyleSheet.create({
   fullHeight: {
@@ -20,8 +21,7 @@ const styles = StyleSheet.create({
   },
   swiperItem: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
+    padding: DEFAULT_SCREEN_PADDING,
   },
 });
 

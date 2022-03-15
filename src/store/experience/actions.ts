@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-import { ICareer } from 'src/common/types';
+import { IAddCareer } from 'src/common/types';
 import { careerApi } from 'src/services';
 import { ActionTypes } from './common';
 
@@ -14,7 +14,7 @@ const getCareerExperience = createAsyncThunk(
 
 const addCareerExperience = createAsyncThunk(
   ActionTypes.ADD_CAREER_EXPERIENCE,
-  async (payload: ICareer) => {
+  async (payload: IAddCareer) => {
     const careerExperience = await careerApi.addCareer(payload);
     return careerExperience;
   }

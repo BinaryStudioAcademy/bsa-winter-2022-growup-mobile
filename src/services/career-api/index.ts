@@ -1,5 +1,5 @@
 import { ApiPath, ContentType, HttpMethod } from 'src/common/enums';
-import { ICareer } from 'src/common/types';
+import { IAddCareer, ICareer } from 'src/common/types';
 import { Http } from '../http';
 
 type Constructor = {
@@ -23,7 +23,7 @@ class CareerApi {
     });
   }
 
-  public addCareer(payload: ICareer): Promise<ICareer> {
+  public addCareer(payload: IAddCareer): Promise<ICareer> {
     return this.#http.load(`${this.#apiPath}${ApiPath.USER_CAREER}`, {
       method: HttpMethod.POST,
       contentType: ContentType.JSON,

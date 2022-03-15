@@ -99,7 +99,7 @@ const ProfileScreen: React.FC = () => {
           >
             <View style={styles.swiperItem} collapsable={false}>
               <Text>Summary container</Text>
-              <ScrollView>
+              <ScrollView showsVerticalScrollIndicator={false}>
                 {careerExperience.map((item, index) => (
                   <CareerCard item={item} key={index} />
                 ))}

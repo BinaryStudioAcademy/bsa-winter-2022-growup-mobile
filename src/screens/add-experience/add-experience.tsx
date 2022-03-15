@@ -7,13 +7,30 @@ import { Formik } from 'formik';
 import { ButtonMode, HeadingLevel } from 'src/common/enums';
 import { FormDate, FormInput, Heading, MainButton } from 'src/components';
 import { addExperienceValidationSchema } from 'src/validation-schemas';
+import { experienceActions } from 'src/store/experience';
+import { ICareer } from 'src/common/types';
+import { useAppDispatch } from 'src/hooks';
 import { defaultAddExperiencePayload } from './common';
 import styles from './styles';
 
 const AddExperienceScreen: React.FC = () => {
+  const dispatch = useAppDispatch();
   const navigation = useNavigation();
 
   const handleCancel = () => {
+    navigation.goBack();
+  };
+
+  const handleAddExperience = (values: ICareer) => {
+    dispatch(
+      experienceActions.addCareerExperience({
+        position: values.position,
+        company: values.company,
+        startDate: values.startDate,
+        endDate: values.endDate,
+      })
+    );
+
     navigation.goBack();
   };
 
@@ -26,9 +43,7 @@ const AddExperienceScreen: React.FC = () => {
         <Formik
           validationSchema={addExperienceValidationSchema}
           initialValues={defaultAddExperiencePayload}
-          onSubmit={() => {
-            // TODO
-          }}
+          onSubmit={handleAddExperience}
         >
           {({ isValid, handleSubmit }) => (
             <>
@@ -36,7 +51,7 @@ const AddExperienceScreen: React.FC = () => {
                 <Heading style={styles.heading} level={HeadingLevel.H5}>
                   Company
                 </Heading>
-                <FormInput placeholder="Company Name" name="companyName" />
+                <FormInput placeholder="Company Name" name="company" />
               </View>
               <View style={styles.inputContent}>
                 <Heading style={styles.heading} level={HeadingLevel.H5}>

@@ -1,5 +1,6 @@
 import PushNotification from 'react-native-push-notification';
 import PushNotificationIOS from '@react-native-community/push-notification-ios';
+import pushHandlers from 'src/push-handlers';
 
 type PushNotificationArgs = {
   title: string;
@@ -12,6 +13,14 @@ class PushNotificationsApi {
   constructor() {
     PushNotification.configure({
       onNotification: notification => {
+        const handlersToCall = pushHandlers.filter(handler =>
+          handler.types.includes(notification.data.type)
+        );
+
+        handlersToCall.forEach(handler =>
+          handler.action(notification.data.type, notification.data.payload)
+        );
+
         notification.finish(PushNotificationIOS.FetchResult.NoData);
       },
       permissions: {

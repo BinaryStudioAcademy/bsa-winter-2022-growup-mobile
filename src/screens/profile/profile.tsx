@@ -10,10 +10,10 @@ import PagerView, {
 import { CareerCard, Navbar } from './components';
 import { HeadingLevel, ProfileRoute } from 'src/common/enums';
 import { Heading, Text } from 'src/components';
-import addActions from './add-actions';
-import styles from './styles';
 import { useAppDispatch, useAppSelector } from 'src/hooks';
 import { experienceActions } from 'src/store/experience';
+import addActions from './add-actions';
+import styles from './styles';
 
 const NAVBAR_ITEMS = [
   'Summary',

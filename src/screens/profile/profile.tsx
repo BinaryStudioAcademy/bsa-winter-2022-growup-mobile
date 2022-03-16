@@ -7,11 +7,12 @@ import PagerView, {
   PagerViewOnPageSelectedEvent,
 } from 'react-native-pager-view';
 
-import { CareerCard, Navbar } from './components';
 import { HeadingLevel, ProfileRoute } from 'src/common/enums';
+import { ICareer } from 'src/common/types';
 import { Heading, Text } from 'src/components';
 import { useAppDispatch, useAppSelector } from 'src/hooks';
 import { experienceActions } from 'src/store/experience';
+import { CareerCard, Navbar } from './components';
 import addActions from './add-actions';
 import styles from './styles';
 
@@ -84,6 +85,19 @@ const ProfileScreen: React.FC = () => {
     [dispatch]
   );
 
+  const handleEditCareer = useCallback(
+    (career: ICareer) => {
+      navigation.navigate({
+        name: ProfileRoute.ADD_CAREER_EXPERIENCE as never,
+        params: {
+          isEdit: true,
+          career,
+        } as never,
+      });
+    },
+    [navigation]
+  );
+
   useEffect(() => {
     dispatch(experienceActions.getCareerExperience());
   }, [dispatch]);
@@ -124,7 +138,11 @@ const ProfileScreen: React.FC = () => {
               <ScrollView showsVerticalScrollIndicator={false}>
                 {careerExperience.map(item => (
                   <View key={item.id} style={styles.card}>
-                    <CareerCard onDelete={handleDeleteCareer} item={item} />
+                    <CareerCard
+                      onEdit={handleEditCareer}
+                      onDelete={handleDeleteCareer}
+                      item={item}
+                    />
                   </View>
                 ))}
               </ScrollView>

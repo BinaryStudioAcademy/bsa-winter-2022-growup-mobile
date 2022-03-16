@@ -1,38 +1,67 @@
 import React from 'react';
-import { useNavigation } from '@react-navigation/native';
+import { RouteProp, useNavigation, useRoute } from '@react-navigation/native';
 import { ScrollView, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Formik } from 'formik';
 
-import { ButtonMode, HeadingLevel } from 'src/common/enums';
+import { ButtonMode, HeadingLevel, ProfileRoute } from 'src/common/enums';
 import { FormDate, FormInput, Heading, MainButton } from 'src/components';
 import { addExperienceValidationSchema } from 'src/validation-schemas';
 import { experienceActions } from 'src/store/experience';
-import { IAddCareer } from 'src/common/types';
+import { IAddCareer, ProfileParamList } from 'src/common/types';
 import { useAppDispatch } from 'src/hooks';
 import { defaultAddExperiencePayload } from './common';
 import styles from './styles';
 
+type AddExperienceRouteProps = RouteProp<
+  ProfileParamList,
+  ProfileRoute.ADD_CAREER_EXPERIENCE
+>;
+
 const AddExperienceScreen: React.FC = () => {
   const dispatch = useAppDispatch();
   const navigation = useNavigation();
+  const route = useRoute<AddExperienceRouteProps>();
+  const { isEdit, career } = route.params;
 
   const handleCancel = () => {
     navigation.goBack();
   };
 
   const handleAddExperience = (values: IAddCareer) => {
-    dispatch(
-      experienceActions.addCareerExperience({
-        position: values.position,
-        company: values.company,
-        startDate: values.startDate,
-        endDate: values.endDate,
-      })
-    );
+    if (isEdit) {
+      dispatch(
+        experienceActions.editCareerExperience({
+          id: career.id,
+          position: values.position,
+          company: values.company,
+          startDate: values.startDate,
+          endDate: values.endDate,
+        })
+      );
+    } else {
+      dispatch(
+        experienceActions.addCareerExperience({
+          position: values.position,
+          company: values.company,
+          startDate: values.startDate,
+          endDate: values.endDate,
+        })
+      );
+    }
 
     navigation.goBack();
   };
+
+  let initialValues: IAddCareer = defaultAddExperiencePayload;
+  if (isEdit) {
+    initialValues = {
+      company: career.company,
+      position: career.position,
+      startDate: new Date(career.startDate),
+      endDate: career.endDate ? new Date(career.endDate) : undefined,
+    };
+  }
 
   return (
     <SafeAreaView style={styles.screen}>
@@ -42,7 +71,7 @@ const AddExperienceScreen: React.FC = () => {
       >
         <Formik
           validationSchema={addExperienceValidationSchema}
-          initialValues={defaultAddExperiencePayload}
+          initialValues={initialValues}
           onSubmit={handleAddExperience}
         >
           {({ isValid, handleSubmit }) => (
@@ -88,7 +117,7 @@ const AddExperienceScreen: React.FC = () => {
                   onPress={handleSubmit}
                   mode={ButtonMode.CONTAINED}
                 >
-                  Add
+                  {isEdit ? 'Edit' : 'Add'}
                 </MainButton>
               </View>
             </>

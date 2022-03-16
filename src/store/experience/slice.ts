@@ -5,6 +5,7 @@ import {
   addCareerExperience,
   getCareerExperience,
   deleteCareerExperience,
+  editCareerExperience,
 } from './actions';
 
 interface ICareerState {
@@ -32,6 +33,12 @@ const slice = createSlice({
       );
       state.careerExperience.splice(deleteIndex, 1);
     });
+    builder.addCase(editCareerExperience.fulfilled, (state, { payload }) => {
+      const updateIndex = state.careerExperience.findIndex(
+        item => item.id === payload.id
+      );
+      state.careerExperience[updateIndex] = payload;
+    });
   },
 });
 
@@ -42,6 +49,7 @@ const actions = {
   addCareerExperience,
   getCareerExperience,
   deleteCareerExperience,
+  editCareerExperience,
 };
 
 export { reducer, actions };

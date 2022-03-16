@@ -38,6 +38,18 @@ class CareerApi {
       hasAuth: true,
     });
   }
+
+  public editCareer(payload: ICareer): Promise<ICareer> {
+    return this.#http.load(
+      `${this.#apiPath}${ApiPath.USER_CAREER}/${payload.id}`,
+      {
+        method: HttpMethod.PUT,
+        contentType: ContentType.JSON,
+        payload: JSON.stringify(payload),
+        hasAuth: true,
+      }
+    );
+  }
 }
 
 export { CareerApi };

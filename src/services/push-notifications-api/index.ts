@@ -1,6 +1,8 @@
 import PushNotification from 'react-native-push-notification';
 import PushNotificationIOS from '@react-native-community/push-notification-ios';
+
 import pushHandlers from 'src/push-handlers';
+import { PUSH_CHANNEL_NAME, PUSH_ICON_FILENAME } from 'src/common/constants';
 
 type PushNotificationArgs = {
   title: string;
@@ -42,8 +44,8 @@ class PushNotificationsApi {
     PushNotification.localNotification({
       title,
       message: body,
-      smallIcon: 'ic_notification',
-      channelId: 'growup_push_notifications',
+      smallIcon: PUSH_ICON_FILENAME,
+      channelId: PUSH_CHANNEL_NAME,
       userInfo: { type, payload },
     });
   }

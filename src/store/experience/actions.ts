@@ -20,4 +20,12 @@ const addCareerExperience = createAsyncThunk(
   }
 );
 
-export { addCareerExperience, getCareerExperience };
+const deleteCareerExperience = createAsyncThunk(
+  ActionTypes.DELETE_CAREER_EXPERIENCE,
+  async (id: string) => {
+    await careerApi.deleteCareer(id);
+    return id;
+  }
+);
+
+export { addCareerExperience, getCareerExperience, deleteCareerExperience };

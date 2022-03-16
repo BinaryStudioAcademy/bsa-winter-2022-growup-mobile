@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { ScrollView, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -77,6 +77,13 @@ const ProfileScreen: React.FC = () => {
     setActiveIndex(event.nativeEvent.position);
   };
 
+  const handleDeleteCareer = useCallback(
+    (id: string) => {
+      dispatch(experienceActions.deleteCareerExperience(id));
+    },
+    [dispatch]
+  );
+
   useEffect(() => {
     dispatch(experienceActions.getCareerExperience());
   }, [dispatch]);
@@ -117,7 +124,7 @@ const ProfileScreen: React.FC = () => {
               <ScrollView showsVerticalScrollIndicator={false}>
                 {careerExperience.map(item => (
                   <View key={item.id} style={styles.card}>
-                    <CareerCard item={item} />
+                    <CareerCard onDelete={handleDeleteCareer} item={item} />
                   </View>
                 ))}
               </ScrollView>

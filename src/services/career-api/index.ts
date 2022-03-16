@@ -31,6 +31,13 @@ class CareerApi {
       hasAuth: true,
     });
   }
+
+  public deleteCareer(id: string) {
+    return this.#http.load(`${this.#apiPath}${ApiPath.USER_CAREER}/${id}`, {
+      method: HttpMethod.DELETE,
+      hasAuth: true,
+    });
+  }
 }
 
 export { CareerApi };

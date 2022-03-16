@@ -23,6 +23,12 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: DEFAULT_SCREEN_PADDING,
   },
+  containerHeader: {
+    color: AppColor.PRIMARY,
+  },
+  card: {
+    marginVertical: 10,
+  },
 });
 
 export default styles;

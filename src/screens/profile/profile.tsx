@@ -8,8 +8,8 @@ import PagerView, {
 } from 'react-native-pager-view';
 
 import { CareerCard, Navbar } from './components';
-import { ProfileRoute } from 'src/common/enums';
-import { Text } from 'src/components';
+import { HeadingLevel, ProfileRoute } from 'src/common/enums';
+import { Heading, Text } from 'src/components';
 import addActions from './add-actions';
 import styles from './styles';
 import { useAppDispatch, useAppSelector } from 'src/hooks';
@@ -20,6 +20,7 @@ const NAVBAR_ITEMS = [
   'Qualities',
   'Interests',
   'Skills',
+  'Experience',
   'Education',
 ];
 
@@ -99,11 +100,6 @@ const ProfileScreen: React.FC = () => {
           >
             <View style={styles.swiperItem} collapsable={false}>
               <Text>Summary container</Text>
-              <ScrollView showsVerticalScrollIndicator={false}>
-                {careerExperience.map(item => (
-                  <CareerCard item={item} key={item.id} />
-                ))}
-              </ScrollView>
             </View>
             <View style={styles.swiperItem} collapsable={false}>
               <Text>Qualities container</Text>
@@ -113,6 +109,18 @@ const ProfileScreen: React.FC = () => {
             </View>
             <View style={styles.swiperItem} collapsable={false}>
               <Text>Skills container</Text>
+            </View>
+            <View style={styles.swiperItem} collapsable={false}>
+              <Heading level={HeadingLevel.H5} style={styles.containerHeader}>
+                Career journey
+              </Heading>
+              <ScrollView showsVerticalScrollIndicator={false}>
+                {careerExperience.map(item => (
+                  <View key={item.id} style={styles.card}>
+                    <CareerCard item={item} />
+                  </View>
+                ))}
+              </ScrollView>
             </View>
             <View style={styles.swiperItem} collapsable={false}>
               <Text>Education container</Text>

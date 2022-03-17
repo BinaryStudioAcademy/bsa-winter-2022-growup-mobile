@@ -1,7 +1,7 @@
 import * as yup from 'yup';
 
 const addExperienceValidationSchema = yup.object({
-  companyName: yup
+  company: yup
     .string()
     .required('Company name must not be empty')
     .max(100, 'Company name must be less than 100 symbols'),
@@ -12,7 +12,6 @@ const addExperienceValidationSchema = yup.object({
   startDate: yup.date().required('Select start date'),
   endDate: yup
     .date()
-    .required('Select end date')
     .when(
       'startDate',
       (startDate, schema) =>

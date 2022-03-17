@@ -38,6 +38,10 @@ const CareerCard: React.FC<ICareerProps> = ({ item, onEdit, onDelete }) => {
     const extraMonths = differenceYears * MONTHS_IN_YEAR;
     const differenceMonths = endDay.diff(startDay, 'months') - extraMonths;
 
+    if (!endDate) {
+      return `${startDay.format('MM/YYYY')} - now`;
+    }
+
     return `${differenceYears} yr ${differenceMonths} mo`;
   }, [startDate, endDate]);
 

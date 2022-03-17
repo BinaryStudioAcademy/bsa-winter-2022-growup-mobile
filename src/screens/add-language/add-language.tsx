@@ -1,5 +1,4 @@
 import React from 'react';
-import { useNavigation } from '@react-navigation/native';
 import { View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Formik } from 'formik';
@@ -7,11 +6,12 @@ import { Formik } from 'formik';
 import { ButtonMode, HeadingLevel } from 'src/common/enums';
 import { FormInput, Heading, MainButton } from 'src/components';
 import { addLanguageValidationSchema } from 'src/validation-schemas';
+import { useAppNavigation } from 'src/hooks';
 import { defaultAddLanguagePayload } from './common';
 import styles from './styles';
 
 const AddLanguageScreen: React.FC = () => {
-  const navigation = useNavigation();
+  const navigation = useAppNavigation();
 
   const handleCancel = () => {
     navigation.goBack();

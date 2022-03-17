@@ -3,6 +3,7 @@ import { StyleProp, View, ViewStyle } from 'react-native';
 import { FormikValues, useFormikContext } from 'formik';
 
 import { DateInput, Text } from 'src/components';
+import { AppColor } from 'src/common/enums';
 import styles from '../styles';
 
 type DateInputProps = React.ComponentPropsWithoutRef<typeof DateInput>;
@@ -27,8 +28,9 @@ const FormDate: React.FC<FormDateProps> = ({
   return (
     <View style={containerStyle}>
       <DateInput
-        value={values[name]}
+        value={values[name] ? new Date(values[name]) : undefined}
         onChange={handleChange}
+        outlineColor={!error ? AppColor.INPUT_BACKGROUND : AppColor.ERROR}
         onBlur={handleBlur(name)}
         {...inputProps}
       />

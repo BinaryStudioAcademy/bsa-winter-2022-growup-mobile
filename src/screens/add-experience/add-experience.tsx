@@ -1,5 +1,4 @@
 import React from 'react';
-import { useNavigation } from '@react-navigation/native';
 import { ScrollView, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Formik } from 'formik';
@@ -7,13 +6,30 @@ import { Formik } from 'formik';
 import { ButtonMode, HeadingLevel } from 'src/common/enums';
 import { FormDate, FormInput, Heading, MainButton } from 'src/components';
 import { addExperienceValidationSchema } from 'src/validation-schemas';
+import { actions as experienceActions } from 'src/store/experience';
+import { IAddCareerPayload } from 'src/common/types';
+import { useAppDispatch, useAppNavigation } from 'src/hooks';
 import { defaultAddExperiencePayload } from './common';
 import styles from './styles';
 
 const AddExperienceScreen: React.FC = () => {
-  const navigation = useNavigation();
+  const navigation = useAppNavigation();
+  const dispatch = useAppDispatch();
 
   const handleCancel = () => {
+    navigation.goBack();
+  };
+
+  const handleAddExperience = (values: IAddCareerPayload) => {
+    dispatch(
+      experienceActions.addCareerExperience({
+        position: values.position,
+        company: values.company,
+        startDate: values.startDate,
+        endDate: values.endDate,
+      })
+    );
+
     navigation.goBack();
   };
 
@@ -26,9 +42,7 @@ const AddExperienceScreen: React.FC = () => {
         <Formik
           validationSchema={addExperienceValidationSchema}
           initialValues={defaultAddExperiencePayload}
-          onSubmit={() => {
-            // TODO
-          }}
+          onSubmit={handleAddExperience}
         >
           {({ isValid, handleSubmit }) => (
             <>
@@ -36,7 +50,7 @@ const AddExperienceScreen: React.FC = () => {
                 <Heading style={styles.heading} level={HeadingLevel.H5}>
                   Company
                 </Heading>
-                <FormInput placeholder="Company Name" name="companyName" />
+                <FormInput placeholder="Company Name" name="company" />
               </View>
               <View style={styles.inputContent}>
                 <Heading style={styles.heading} level={HeadingLevel.H5}>

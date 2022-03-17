@@ -1,5 +1,4 @@
 import React from 'react';
-import { useNavigation } from '@react-navigation/native';
 import { ScrollView, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Formik } from 'formik';
@@ -7,11 +6,12 @@ import { Formik } from 'formik';
 import { ButtonMode, HeadingLevel } from 'src/common/enums';
 import { FormDate, FormInput, Heading, MainButton } from 'src/components';
 import { addExperienceValidationSchema } from 'src/validation-schemas';
+import { useAppNavigation } from 'src/hooks';
 import { defaultAddExperiencePayload } from './common';
 import styles from './styles';
 
 const AddExperienceScreen: React.FC = () => {
-  const navigation = useNavigation();
+  const navigation = useAppNavigation();
 
   const handleCancel = () => {
     navigation.goBack();

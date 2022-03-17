@@ -1,8 +1,7 @@
 import React, { useMemo } from 'react';
-import { RouteProp, useNavigation, useRoute } from '@react-navigation/native';
+import { RouteProp, useRoute } from '@react-navigation/native';
 import { ScrollView, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { Formik } from 'formik';
 
 import { AppRoute, ButtonMode, HeadingLevel } from 'src/common/enums';
@@ -19,7 +18,7 @@ import {
   createTeamOKRValidationSchema,
 } from 'src/validation-schemas';
 import { AppStackParamList } from 'src/common/types';
-import { useAppDispatch, useAppSelector } from 'src/hooks';
+import { useAppDispatch, useAppNavigation, useAppSelector } from 'src/hooks';
 import { okrActions } from 'src/store/okr';
 import { IAddOkr } from 'src/common/types/okr/add-okr.interface';
 import { defaultAddOKRPayload } from './common';
@@ -66,18 +65,13 @@ const MOCK_OBJ_CYCLE = [
   },
 ];
 
-type AddOKRNavigateProps = NativeStackNavigationProp<
-  AppStackParamList,
-  AppRoute.ADD_KEY_RESULT
->;
-
 type AddOKRRouteProps = RouteProp<AppStackParamList, AppRoute.ADD_OKR>;
 
 const AddOKRScreen: React.FC = () => {
   const dispatch = useAppDispatch();
   const { current } = useAppSelector(state => state.okr);
 
-  const navigation = useNavigation<AddOKRNavigateProps>();
+  const navigation = useAppNavigation();
   const route = useRoute<AddOKRRouteProps>();
 
   const handleCancel = () => {

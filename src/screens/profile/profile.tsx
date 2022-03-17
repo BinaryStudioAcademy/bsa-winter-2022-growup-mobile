@@ -1,6 +1,5 @@
 import React, { useRef, useState } from 'react';
 import { View } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Divider, FAB } from 'react-native-paper';
 import PagerView, {
@@ -10,6 +9,7 @@ import PagerView, {
 import { Navbar } from './components';
 import { ProfileRoute } from 'src/common/enums';
 import { Text } from 'src/components';
+import { useAppNavigation } from 'src/hooks';
 import addActions from './add-actions';
 import styles from './styles';
 
@@ -22,7 +22,7 @@ const NAVBAR_ITEMS = [
 ];
 
 const ProfileScreen: React.FC = () => {
-  const navigation = useNavigation();
+  const navigation = useAppNavigation();
   const [addMenuOpen, setAddMenuOpen] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
   const pagerRef = useRef<PagerView>(null);
@@ -34,10 +34,7 @@ const ProfileScreen: React.FC = () => {
 
   const addFunctions: Record<string, () => void> = {
     skill: () => {
-      navigation.navigate({
-        name: ProfileRoute.CREATE_SKILL as never,
-        params: {} as never,
-      });
+      navigation.navigate(ProfileRoute.CREATE_SKILL);
     },
     location: () => {
       /* TODO */

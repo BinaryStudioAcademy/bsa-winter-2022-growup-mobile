@@ -11,6 +11,7 @@
 		06A943DDD68C48DA88AFF908 /* NunitoSans-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 94AE1161E60C48F38197F622 /* NunitoSans-ExtraLight.ttf */; };
 		0811098AE19043B69246C2C5 /* NunitoSans-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4DFE27FB4D7C488FBBC62C1F /* NunitoSans-Black.ttf */; };
 		0A53C89427B5701B00BFF352 /* libReactNativeFingerprintScanner.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A53C89327B56FF200BFF352 /* libReactNativeFingerprintScanner.a */; };
+		0AA59FA227E0F194003DC407 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = 0AA59FA127E0F194003DC407 /* FirebaseMessaging */; };
 		1326C9493C784E74A115D1DF /* MaterialCommunityIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AE3FF22B929E4B0EB3AFF8C6 /* MaterialCommunityIcons.ttf */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
@@ -128,6 +129,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0AA59FA227E0F194003DC407 /* FirebaseMessaging in Frameworks */,
 				0A53C89427B5701B00BFF352 /* libReactNativeFingerprintScanner.a in Frameworks */,
 				6172F2D35A4C3AA820D92908 /* libPods-growupmobile.a in Frameworks */,
 			);
@@ -307,6 +309,9 @@
 			dependencies = (
 			);
 			name = growupmobile;
+			packageProductDependencies = (
+				0AA59FA127E0F194003DC407 /* FirebaseMessaging */,
+			);
 			productName = growupmobile;
 			productReference = 13B07F961A680F5B00A75B9A /* growupmobile.app */;
 			productType = "com.apple.product-type.application";
@@ -337,6 +342,9 @@
 				Base,
 			);
 			mainGroup = 83CBB9F61A601CBA00E9B192;
+			packageReferences = (
+				0AA59FA027E0F194003DC407 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			productRefGroup = 83CBBA001A601CBA00E9B192 /* Products */;
 			projectDirPath = "";
 			projectReferences = (
@@ -844,6 +852,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		0AA59FA027E0F194003DC407 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 8.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		0AA59FA127E0F194003DC407 /* FirebaseMessaging */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0AA59FA027E0F194003DC407 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseMessaging;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 83CBB9F71A601CBA00E9B192 /* Project object */;
 }

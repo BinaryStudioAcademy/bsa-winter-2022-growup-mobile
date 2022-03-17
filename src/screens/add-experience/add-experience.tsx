@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { RouteProp, useRoute } from '@react-navigation/native';
 import { ScrollView, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -29,39 +29,39 @@ const AddExperienceScreen: React.FC = () => {
   };
 
   const handleAddExperience = (values: IAddCareerPayload) => {
-    if (isEdit) {
+    const commonPayload = {
+      position: values.position,
+      company: values.company,
+      startDate: values.startDate,
+      endDate: values.endDate,
+    };
+
+    if (isEdit && career) {
       dispatch(
         experienceActions.editCareerExperience({
           id: career.id,
-          position: values.position,
-          company: values.company,
-          startDate: values.startDate,
-          endDate: values.endDate,
+          ...commonPayload,
         })
       );
     } else {
-      dispatch(
-        experienceActions.addCareerExperience({
-          position: values.position,
-          company: values.company,
-          startDate: values.startDate,
-          endDate: values.endDate,
-        })
-      );
+      dispatch(experienceActions.addCareerExperience(commonPayload));
     }
 
     navigation.goBack();
   };
 
-  let initialValues: IAddCareerPayload = defaultAddExperiencePayload;
-  if (isEdit) {
-    initialValues = {
-      company: career.company,
-      position: career.position,
-      startDate: career.startDate,
-      endDate: career.endDate,
-    };
-  }
+  const initialValues: IAddCareerPayload = useMemo(() => {
+    if (isEdit && career) {
+      return {
+        company: career.company,
+        position: career.position,
+        startDate: career.startDate,
+        endDate: career.endDate,
+      };
+    } else {
+      return defaultAddExperiencePayload;
+    }
+  }, [isEdit, career]);
 
   return (
     <SafeAreaView style={styles.screen}>

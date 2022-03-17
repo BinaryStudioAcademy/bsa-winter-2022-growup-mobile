@@ -50,7 +50,13 @@ const ProfileScreen: React.FC = () => {
       /* TODO */
     },
     careerPoint: () => {
-      navigation.navigate(ProfileRoute.ADD_CAREER_EXPERIENCE);
+      navigation.navigate({
+        name: ProfileRoute.ADD_CAREER_EXPERIENCE,
+        params: {
+          isEdit: false,
+          career: undefined,
+        },
+      });
     },
     interest: () => {
       /* TODO */
@@ -81,11 +87,11 @@ const ProfileScreen: React.FC = () => {
   const handleEditCareer = useCallback(
     (career: ICareer) => {
       navigation.navigate({
-        name: ProfileRoute.ADD_CAREER_EXPERIENCE as never,
+        name: ProfileRoute.ADD_CAREER_EXPERIENCE,
         params: {
           isEdit: true,
           career,
-        } as never,
+        },
       });
     },
     [navigation]

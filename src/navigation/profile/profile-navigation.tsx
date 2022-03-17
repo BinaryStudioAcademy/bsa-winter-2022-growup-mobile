@@ -7,8 +7,9 @@ import {
   ProfileScreen,
 } from 'src/screens';
 import { ProfileRoute } from 'src/common/enums';
+import { ProfileStackParamList } from 'src/common/types';
 
-const ProfileStack = createNativeStackNavigator();
+const ProfileStack = createNativeStackNavigator<ProfileStackParamList>();
 
 const ProfileNavigation: React.FC = () => {
   return (

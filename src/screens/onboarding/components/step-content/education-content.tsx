@@ -1,20 +1,13 @@
 import React from 'react';
-import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { useNavigation } from '@react-navigation/native';
 import { ScrollView, View } from 'react-native';
 
 import { HeadingLevel, OnboardingRoute } from 'src/common/enums';
-import { OnboardingStackParamList } from 'src/common/types';
 import { Heading, AddButton } from 'src/components';
+import { useAppNavigation } from 'src/hooks';
 import styles from './styles';
 
-type EducationContentProps = NativeStackNavigationProp<
-  OnboardingStackParamList,
-  OnboardingRoute.ADD_EXPERIENCE
->;
-
 const EducationContent: React.FC = () => {
-  const navigation = useNavigation<EducationContentProps>();
+  const navigation = useAppNavigation();
 
   const handleAddEducation = () => {
     navigation.navigate(OnboardingRoute.ADD_EDUCATION);

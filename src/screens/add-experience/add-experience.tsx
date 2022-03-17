@@ -1,5 +1,4 @@
 import React from 'react';
-import { useNavigation } from '@react-navigation/native';
 import { ScrollView, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Formik } from 'formik';
@@ -9,13 +8,13 @@ import { FormDate, FormInput, Heading, MainButton } from 'src/components';
 import { addExperienceValidationSchema } from 'src/validation-schemas';
 import { experienceActions } from 'src/store/experience';
 import { IAddCareer } from 'src/common/types';
-import { useAppDispatch } from 'src/hooks';
+import { useAppDispatch, useAppNavigation } from 'src/hooks';
 import { defaultAddExperiencePayload } from './common';
 import styles from './styles';
 
 const AddExperienceScreen: React.FC = () => {
+  const navigation = useAppNavigation();
   const dispatch = useAppDispatch();
-  const navigation = useNavigation();
 
   const handleCancel = () => {
     navigation.goBack();

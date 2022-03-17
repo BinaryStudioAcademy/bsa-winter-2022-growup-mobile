@@ -1,9 +1,8 @@
 import React from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { useNavigation } from '@react-navigation/native';
 
 import { ICreateSkillPayload } from 'src/common/types';
-import { useAppDispatch } from 'src/hooks';
+import { useAppDispatch, useAppNavigation } from 'src/hooks';
 import { skillActions } from 'src/store/actions';
 import { CreateSkillForm } from './components';
 import { ScrollView } from 'react-native';
@@ -11,7 +10,7 @@ import styles from './styles';
 
 const CreateSkill: React.FC = () => {
   const dispatch = useAppDispatch();
-  const navigation = useNavigation();
+  const navigation = useAppNavigation();
 
   const handleGoBack = () => {
     navigation.goBack();

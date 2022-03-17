@@ -16,6 +16,7 @@ import { PushNotificationsApi } from './push-notifications-api';
 import { StorageService } from './storage';
 import { Http } from './http';
 import { AuthApi } from './auth-api';
+import { EducationApi } from './education-api';
 
 const apiPath = `${API_ORIGIN_URL}${API_PREFIX}`;
 
@@ -57,6 +58,11 @@ const okrApi = new OKRApi({
   apiPath: `${API_ORIGIN_URL}${API_PREFIX}`,
 });
 
+const educationApi = new EducationApi({
+  http,
+  apiPath: `${API_ORIGIN_URL}${API_PREFIX}`,
+});
+
 const careerApi = new CareerApi({
   http,
   apiPath: `${API_ORIGIN_URL}${API_PREFIX}`,
@@ -74,4 +80,5 @@ export {
   okrApi,
   careerApi,
   pushNotificationApi,
+  educationApi,
 };

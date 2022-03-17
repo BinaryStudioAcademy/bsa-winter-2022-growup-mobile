@@ -9,12 +9,12 @@ import { FormDate, FormInput, Heading, MainButton } from 'src/components';
 import { addExperienceValidationSchema } from 'src/validation-schemas';
 import { actions as experienceActions } from 'src/store/experience';
 import { useAppDispatch, useAppNavigation } from 'src/hooks';
+import { IAddCareerPayload, ProfileStackParamList } from 'src/common/types';
 import { defaultAddExperiencePayload } from './common';
 import styles from './styles';
-import { IAddCareerPayload } from 'src/common/types';
 
 type AddExperienceRouteProps = RouteProp<
-  ProfileParamList,
+  ProfileStackParamList,
   ProfileRoute.ADD_CAREER_EXPERIENCE
 >;
 
@@ -53,13 +53,13 @@ const AddExperienceScreen: React.FC = () => {
     navigation.goBack();
   };
 
-  let initialValues: IAddCareer = defaultAddExperiencePayload;
+  let initialValues: IAddCareerPayload = defaultAddExperiencePayload;
   if (isEdit) {
     initialValues = {
       company: career.company,
       position: career.position,
-      startDate: new Date(career.startDate),
-      endDate: career.endDate ? new Date(career.endDate) : undefined,
+      startDate: career.startDate,
+      endDate: career.endDate,
     };
   }
 

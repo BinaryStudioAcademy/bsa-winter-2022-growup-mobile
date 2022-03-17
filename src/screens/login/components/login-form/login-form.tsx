@@ -1,5 +1,5 @@
 import React from 'react';
-import { Alert, View } from 'react-native';
+import { View } from 'react-native';
 import { Formik } from 'formik';
 
 import { loginValidationSchema } from 'src/validation-schemas';
@@ -14,12 +14,7 @@ const LoginForm: React.FC = () => {
   const dispatch = useAppDispatch();
 
   const handleLogin = (values: ISignInPayload) => {
-    dispatch(authActions.signIn(values))
-      .unwrap()
-      .catch((err: Error) => {
-        // Use react alerts/toaster notifications
-        Alert.alert(`${err.message}`);
-      });
+    dispatch(authActions.signIn(values));
   };
 
   return (

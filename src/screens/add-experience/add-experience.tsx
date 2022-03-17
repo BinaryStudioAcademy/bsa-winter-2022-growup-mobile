@@ -6,8 +6,8 @@ import { Formik } from 'formik';
 import { ButtonMode, HeadingLevel } from 'src/common/enums';
 import { FormDate, FormInput, Heading, MainButton } from 'src/components';
 import { addExperienceValidationSchema } from 'src/validation-schemas';
-import { experienceActions } from 'src/store/experience';
-import { IAddCareer } from 'src/common/types';
+import { actions as experienceActions } from 'src/store/experience';
+import { IAddCareerPayload } from 'src/common/types';
 import { useAppDispatch, useAppNavigation } from 'src/hooks';
 import { defaultAddExperiencePayload } from './common';
 import styles from './styles';
@@ -20,7 +20,7 @@ const AddExperienceScreen: React.FC = () => {
     navigation.goBack();
   };
 
-  const handleAddExperience = (values: IAddCareer) => {
+  const handleAddExperience = (values: IAddCareerPayload) => {
     dispatch(
       experienceActions.addCareerExperience({
         position: values.position,

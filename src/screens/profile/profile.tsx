@@ -10,7 +10,7 @@ import { CareerCard, Navbar } from './components';
 import { HeadingLevel, ProfileRoute } from 'src/common/enums';
 import { Heading, Text } from 'src/components';
 import { useAppDispatch, useAppSelector, useAppNavigation } from 'src/hooks';
-import { experienceActions } from 'src/store/experience';
+import { actions as experienceActions } from 'src/store/experience';
 import addActions from './add-actions';
 import styles from './styles';
 
@@ -74,7 +74,7 @@ const ProfileScreen: React.FC = () => {
   };
 
   useEffect(() => {
-    dispatch(experienceActions.getCareerExperience());
+    dispatch(experienceActions.loadCareerExperience());
   }, [dispatch]);
 
   return (

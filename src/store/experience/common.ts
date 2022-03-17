@@ -1,6 +1,6 @@
 enum ActionTypes {
   ADD_CAREER_EXPERIENCE = 'career/create',
-  GET_CAREER_EXPERIENCE = 'career/get-list',
+  LOAD_CAREER_EXPERIENCE = 'career/load-list',
 }
 
 export { ActionTypes };

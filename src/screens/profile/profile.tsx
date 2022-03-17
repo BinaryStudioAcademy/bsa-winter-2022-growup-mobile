@@ -50,10 +50,7 @@ const ProfileScreen: React.FC = () => {
       /* TODO */
     },
     careerPoint: () => {
-      navigation.navigate({
-        name: ProfileRoute.ADD_CAREER_EXPERIENCE as never,
-        params: {} as never,
-      });
+      navigation.navigate(ProfileRoute.ADD_CAREER_EXPERIENCE);
     },
     interest: () => {
       /* TODO */

@@ -27,7 +27,7 @@ const FormDate: React.FC<FormDateProps> = ({
   return (
     <View style={containerStyle}>
       <DateInput
-        value={values[name]}
+        value={values[name] ? new Date(values[name]) : undefined}
         onChange={handleChange}
         onBlur={handleBlur(name)}
         {...inputProps}

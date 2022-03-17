@@ -1,7 +1,11 @@
 import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import { CreateSkillScreen, ProfileScreen } from 'src/screens';
+import {
+  AddEducationScreen,
+  CreateSkillScreen,
+  ProfileScreen,
+} from 'src/screens';
 import { ProfileRoute } from 'src/common/enums';
 
 const ProfileStack = createNativeStackNavigator();
@@ -19,6 +23,10 @@ const ProfileNavigation: React.FC = () => {
       <ProfileStack.Screen
         name={ProfileRoute.CREATE_SKILL}
         component={CreateSkillScreen}
+      />
+      <ProfileStack.Screen
+        name={ProfileRoute.ADD_EDUCATION}
+        component={AddEducationScreen}
       />
     </ProfileStack.Navigator>
   );

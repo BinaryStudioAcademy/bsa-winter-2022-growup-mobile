@@ -4,16 +4,33 @@ import { ScrollView, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Formik } from 'formik';
 
-import { ButtonMode, HeadingLevel } from 'src/common/enums';
+import { IAddEducationPayload } from 'src/common/types/education/add-education.interface';
 import { FormDate, FormInput, Heading, MainButton } from 'src/components';
 import { addEducationValidationSchema } from 'src/validation-schemas';
+import { actions as educationActions } from 'src/store/education';
+import { ButtonMode, HeadingLevel } from 'src/common/enums';
+import { useAppDispatch } from 'src/hooks';
 import { defaultAddEducationPayload } from './common';
 import styles from './styles';
 
 const AddEducationScreen: React.FC = () => {
   const navigation = useNavigation();
+  const dispatch = useAppDispatch();
 
   const handleCancel = () => {
+    navigation.goBack();
+  };
+
+  const handleAddEducation = (values: IAddEducationPayload) => {
+    dispatch(
+      educationActions.addEducation({
+        university: values.university,
+        specialization: values.specialization,
+        degree: values.degree,
+        startDate: values.startDate,
+        endDate: values.endDate,
+      })
+    );
     navigation.goBack();
   };
 
@@ -23,9 +40,7 @@ const AddEducationScreen: React.FC = () => {
         <Formik
           validationSchema={addEducationValidationSchema}
           initialValues={defaultAddEducationPayload}
-          onSubmit={() => {
-            // TODO
-          }}
+          onSubmit={handleAddEducation}
         >
           {({ isValid, handleSubmit }) => (
             <>
@@ -33,16 +48,13 @@ const AddEducationScreen: React.FC = () => {
                 <Heading style={styles.heading} level={HeadingLevel.H5}>
                   University
                 </Heading>
-                <FormInput
-                  placeholder="University Name"
-                  name="universityName"
-                />
+                <FormInput placeholder="University Name" name="university" />
               </View>
               <View style={styles.inputContent}>
                 <Heading style={styles.heading} level={HeadingLevel.H5}>
-                  Course
+                  Specialization
                 </Heading>
-                <FormInput placeholder="Course Name" name="courseName" />
+                <FormInput placeholder="Specialization" name="specialization" />
               </View>
               <View style={styles.inputContent}>
                 <Heading style={styles.heading} level={HeadingLevel.H5}>

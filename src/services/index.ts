@@ -16,6 +16,7 @@ import { SkillApi } from './skill-api';
 import { NotificationApi } from './notification-api';
 import { GooglePlacesApi } from './google-places-api';
 import { OKRApi } from './okr-api';
+import { EducationApi } from './education-api';
 
 const apiPath = `${API_ORIGIN_URL}${API_PREFIX}`;
 
@@ -57,6 +58,11 @@ const okrApi = new OKRApi({
   apiPath: `${API_ORIGIN_URL}${API_PREFIX}`,
 });
 
+const educationApi = new EducationApi({
+  http,
+  apiPath: `${API_ORIGIN_URL}${API_PREFIX}`,
+});
+
 export {
   storage,
   secureStorage,
@@ -65,4 +71,5 @@ export {
   notificationApi,
   googlePlacesApi,
   okrApi,
+  educationApi,
 };

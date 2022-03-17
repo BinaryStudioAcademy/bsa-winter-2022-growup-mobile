@@ -7,6 +7,7 @@ enum ApiPath {
   MARK_READ = '/mark-read',
   GOOGLE_PLACES_AUTOCOMPLETE = '/place/autocomplete/json',
   USER_AVATAR = '/user/avatar',
+  USER_EDUCATION = '/user/education',
 }
 
 export { ApiPath };

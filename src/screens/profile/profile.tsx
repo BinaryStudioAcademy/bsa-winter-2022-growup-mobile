@@ -43,7 +43,10 @@ const ProfileScreen: React.FC = () => {
       /* TODO */
     },
     education: () => {
-      /* TODO */
+      navigation.navigate({
+        name: ProfileRoute.ADD_EDUCATION as never,
+        params: {} as never,
+      });
     },
     language: () => {
       /* TODO */

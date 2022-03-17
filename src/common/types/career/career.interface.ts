@@ -2,8 +2,8 @@ interface ICareer {
   id: string;
   position: string;
   company: string;
-  startDate: Date;
-  endDate?: Date;
+  startDate: string;
+  endDate?: string;
 }
 
 export type { ICareer };

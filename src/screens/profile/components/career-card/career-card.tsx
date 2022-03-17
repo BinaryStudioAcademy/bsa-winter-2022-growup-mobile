@@ -23,8 +23,8 @@ import styles from './styles';
 
 interface ICareerProps {
   item: ICareer;
-  onEdit?: () => void;
-  onDelete?: () => void;
+  onEdit?: (career: ICareer) => void;
+  onDelete?: (id: string) => void;
 }
 
 const CareerCard: React.FC<ICareerProps> = ({ item, onEdit, onDelete }) => {
@@ -47,13 +47,13 @@ const CareerCard: React.FC<ICareerProps> = ({ item, onEdit, onDelete }) => {
 
   const handleEdit = () => {
     if (isFunction(onEdit)) {
-      onEdit();
+      onEdit(item);
     }
   };
 
   const handleDelete = () => {
     if (isFunction(onDelete)) {
-      onDelete();
+      onDelete(item.id);
     }
   };
 

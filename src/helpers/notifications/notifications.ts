@@ -1,11 +1,15 @@
-import Toast from 'react-native-simple-toast';
+import Toast from 'react-native-toast-message';
 
 function showInfoToast(text: string) {
-  Toast.showWithGravity(text, Toast.SHORT, Toast.BOTTOM);
+  Toast.show({ type: 'info', text1: 'Information', text2: text });
+}
+
+function showSuccessToast(text: string) {
+  Toast.show({ type: 'success', text1: 'Success!', text2: text });
 }
 
 function showErrorToast(text: string) {
-  Toast.showWithGravity(text, Toast.LONG, Toast.TOP);
+  Toast.show({ type: 'error', text1: 'Error', text2: text });
 }
 
-export { showInfoToast, showErrorToast };
+export { showInfoToast, showSuccessToast, showErrorToast };

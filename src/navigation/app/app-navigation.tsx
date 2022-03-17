@@ -8,6 +8,7 @@ import { AppRoute } from 'src/common/enums/navigation';
 import { AddKeyResultScreen, AddOKRScreen } from 'src/screens';
 import { AppStackParamList } from 'src/common/types';
 import { AppTabsNavigation } from '../app-tabs';
+import { OnboardingNavigation } from '../onboarding';
 
 const Stack = createNativeStackNavigator<AppStackParamList>();
 
@@ -19,8 +20,12 @@ const screenOptions: NativeStackNavigationOptions = {
 };
 
 const AppNavigation = () => {
+  //TODO add check for initial route when Onboarding is needed
   return (
-    <Stack.Navigator screenOptions={screenOptions}>
+    <Stack.Navigator
+      initialRouteName={AppRoute.APP_TABS}
+      screenOptions={screenOptions}
+    >
       <Stack.Screen
         name={AppRoute.APP_TABS}
         component={AppTabsNavigation}
@@ -35,6 +40,11 @@ const AppNavigation = () => {
         name={AppRoute.ADD_KEY_RESULT}
         component={AddKeyResultScreen}
         options={{ title: 'Add Key Result' }}
+      />
+      <Stack.Screen
+        name={AppRoute.ONBOARDING_SETUP}
+        component={OnboardingNavigation}
+        options={{ headerShown: false }}
       />
     </Stack.Navigator>
   );

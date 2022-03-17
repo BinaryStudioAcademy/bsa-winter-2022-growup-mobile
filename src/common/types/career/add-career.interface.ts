@@ -1,8 +1,8 @@
-interface IAddCareer {
+interface IAddCareerPayload {
   position: string;
   company: string;
-  startDate: Date;
-  endDate?: Date;
+  startDate: string;
+  endDate?: string;
 }
 
-export type { IAddCareer };
+export type { IAddCareerPayload };

@@ -1,14 +1,11 @@
 import React, { useState } from 'react';
-import {
-  useNavigation,
-  CompositeNavigationProp,
-} from '@react-navigation/native';
-import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+
 import { FAB } from 'react-native-paper';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { AppRoute, OKRStatus } from 'src/common/enums';
-import { IOkr, AppStackParamList, RootStackParamList } from 'src/common/types';
+import { useAppNavigation } from 'src/hooks';
+import { IOkr } from 'src/common/types';
 import addActions from './add-actions';
 import { OKRList } from './components';
 import styles from './styles';
@@ -47,14 +44,9 @@ const MOCK_okrs: IOkr[] = [
   },
 ];
 
-type OKRNavigationProps = CompositeNavigationProp<
-  NativeStackNavigationProp<RootStackParamList>,
-  NativeStackNavigationProp<AppStackParamList>
->;
-
 const OKRScreen: React.FC = () => {
   const [addMenuOpen, setAddMenuOpen] = useState<boolean>(false);
-  const navigation = useNavigation<OKRNavigationProps>();
+  const navigation = useAppNavigation();
 
   const addFunctions: Record<string, () => void> = {
     ownOKR: () => {

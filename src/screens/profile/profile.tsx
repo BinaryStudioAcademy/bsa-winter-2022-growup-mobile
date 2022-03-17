@@ -1,6 +1,5 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { ScrollView, View } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Divider, FAB } from 'react-native-paper';
 import PagerView, {
@@ -10,10 +9,10 @@ import PagerView, {
 import { HeadingLevel, ProfileRoute } from 'src/common/enums';
 import { ICareer } from 'src/common/types';
 import { Heading, Text } from 'src/components';
-import { useAppDispatch, useAppSelector } from 'src/hooks';
-import { experienceActions } from 'src/store/experience';
-import { CareerCard, Navbar } from './components';
+import { useAppDispatch, useAppSelector, useAppNavigation } from 'src/hooks';
+import { actions as experienceActions } from 'src/store/experience';
 import addActions from './add-actions';
+import { CareerCard, Navbar } from './components';
 import styles from './styles';
 
 const NAVBAR_ITEMS = [
@@ -26,7 +25,7 @@ const NAVBAR_ITEMS = [
 ];
 
 const ProfileScreen: React.FC = () => {
-  const navigation = useNavigation();
+  const navigation = useAppNavigation();
   const dispatch = useAppDispatch();
   const [addMenuOpen, setAddMenuOpen] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
@@ -39,10 +38,7 @@ const ProfileScreen: React.FC = () => {
 
   const addFunctions: Record<string, () => void> = {
     skill: () => {
-      navigation.navigate({
-        name: ProfileRoute.CREATE_SKILL as never,
-        params: {} as never,
-      });
+      navigation.navigate(ProfileRoute.CREATE_SKILL);
     },
     location: () => {
       /* TODO */
@@ -99,7 +95,7 @@ const ProfileScreen: React.FC = () => {
   );
 
   useEffect(() => {
-    dispatch(experienceActions.getCareerExperience());
+    dispatch(experienceActions.loadCareerExperience());
   }, [dispatch]);
 
   return (

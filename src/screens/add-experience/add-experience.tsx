@@ -1,5 +1,5 @@
 import React from 'react';
-import { RouteProp, useNavigation, useRoute } from '@react-navigation/native';
+import { RouteProp, useRoute } from '@react-navigation/native';
 import { ScrollView, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Formik } from 'formik';
@@ -7,11 +7,11 @@ import { Formik } from 'formik';
 import { ButtonMode, HeadingLevel, ProfileRoute } from 'src/common/enums';
 import { FormDate, FormInput, Heading, MainButton } from 'src/components';
 import { addExperienceValidationSchema } from 'src/validation-schemas';
-import { experienceActions } from 'src/store/experience';
-import { IAddCareer, ProfileParamList } from 'src/common/types';
-import { useAppDispatch } from 'src/hooks';
+import { actions as experienceActions } from 'src/store/experience';
+import { useAppDispatch, useAppNavigation } from 'src/hooks';
 import { defaultAddExperiencePayload } from './common';
 import styles from './styles';
+import { IAddCareerPayload } from 'src/common/types';
 
 type AddExperienceRouteProps = RouteProp<
   ProfileParamList,
@@ -19,16 +19,16 @@ type AddExperienceRouteProps = RouteProp<
 >;
 
 const AddExperienceScreen: React.FC = () => {
-  const dispatch = useAppDispatch();
-  const navigation = useNavigation();
+  const navigation = useAppNavigation();
   const route = useRoute<AddExperienceRouteProps>();
+  const dispatch = useAppDispatch();
   const { isEdit, career } = route.params;
 
   const handleCancel = () => {
     navigation.goBack();
   };
 
-  const handleAddExperience = (values: IAddCareer) => {
+  const handleAddExperience = (values: IAddCareerPayload) => {
     if (isEdit) {
       dispatch(
         experienceActions.editCareerExperience({

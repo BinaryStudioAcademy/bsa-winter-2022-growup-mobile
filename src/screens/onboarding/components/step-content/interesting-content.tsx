@@ -1,20 +1,13 @@
 import React from 'react';
-import { useNavigation } from '@react-navigation/core';
-import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { View } from 'react-native';
 
 import { HeadingLevel, IconName, OnboardingRoute } from 'src/common/enums';
-import { OnboardingStackParamList } from 'src/common/types';
 import { Heading, AddButton } from 'src/components';
+import { useAppNavigation } from 'src/hooks';
 import styles from './styles';
 
-type InterestingContentProps = NativeStackNavigationProp<
-  OnboardingStackParamList,
-  OnboardingRoute.ADD_LANGUAGE | OnboardingRoute.ADD_LOCATION
->;
-
 const InterestingContent: React.FC = () => {
-  const navigation = useNavigation<InterestingContentProps>();
+  const navigation = useAppNavigation();
 
   const handleAddLanguage = () => {
     navigation.navigate(OnboardingRoute.ADD_LANGUAGE);

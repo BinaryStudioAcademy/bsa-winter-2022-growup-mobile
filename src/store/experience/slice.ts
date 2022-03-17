@@ -3,7 +3,7 @@ import { ICareer } from 'src/common/types';
 
 import {
   addCareerExperience,
-  getCareerExperience,
+  loadCareerExperience,
   deleteCareerExperience,
   editCareerExperience,
 } from './actions';
@@ -16,7 +16,7 @@ const initialState: ICareerState = {
   careerExperience: [],
 };
 
-const slice = createSlice({
+const { reducer, actions } = createSlice({
   name: 'career',
   initialState,
   reducers: {},
@@ -24,7 +24,7 @@ const slice = createSlice({
     builder.addCase(addCareerExperience.fulfilled, (state, { payload }) => {
       state.careerExperience.push(payload);
     });
-    builder.addCase(getCareerExperience.fulfilled, (state, { payload }) => {
+    builder.addCase(loadCareerExperience.fulfilled, (state, { payload }) => {
       state.careerExperience = payload;
     });
     builder.addCase(deleteCareerExperience.fulfilled, (state, { payload }) => {
@@ -41,15 +41,5 @@ const slice = createSlice({
     });
   },
 });
-
-const { reducer } = slice;
-
-const actions = {
-  ...slice.actions,
-  addCareerExperience,
-  getCareerExperience,
-  deleteCareerExperience,
-  editCareerExperience,
-};
 
 export { reducer, actions };

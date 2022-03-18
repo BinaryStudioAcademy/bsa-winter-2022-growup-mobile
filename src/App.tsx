@@ -9,6 +9,10 @@ import { store } from 'src/store';
 import RootNavigation from 'src/navigation';
 import theme from 'src/styles/theme';
 
+import { pushNotificationApi } from 'src/services';
+
+pushNotificationApi.pushNotification;
+
 registerTranslation('en', en);
 
 const App = () => {

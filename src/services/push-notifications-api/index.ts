@@ -2,32 +2,34 @@ import PushNotification from 'react-native-push-notification';
 import PushNotificationIOS from '@react-native-community/push-notification-ios';
 
 import pushHandlers from 'src/push-handlers';
-
-import {
-  PUSH_TITLE,
-  PUSH_CHANNEL_NAME,
-  PUSH_ICON_FILENAME,
-} from 'src/common/constants';
+import { PUSH_CHANNEL_NAME, PUSH_ICON_FILENAME } from 'src/common/constants';
 
 type PushNotificationArgs = {
+  title?: string;
   body: string;
   type: string;
   payload?: any;
 };
 
 class PushNotificationsApi {
-  constructor() {
-    this.startup();
-  }
-
-  public pushNotification({ body, type, payload }: PushNotificationArgs) {
+  public pushNotification({
+    title,
+    body,
+    type,
+    payload,
+  }: PushNotificationArgs) {
     PushNotification.localNotification({
-      title: PUSH_TITLE,
+      title,
       message: body,
       smallIcon: PUSH_ICON_FILENAME,
       channelId: PUSH_CHANNEL_NAME,
       userInfo: { type, payload },
     });
+  }
+
+  public async init() {
+    await this.createChannelIfNotExists();
+    this.configureNotifications();
   }
 
   private createChannelIfNotExists(): Promise<void> {
@@ -44,7 +46,7 @@ class PushNotificationsApi {
 
   private configureNotifications() {
     PushNotification.configure({
-      onNotification: notification => {
+      onNotification: (notification: any) => {
         if (notification.userInteraction) {
           const handlersToCall = pushHandlers.filter(handler =>
             handler.types.includes(notification.data.type)
@@ -55,6 +57,7 @@ class PushNotificationsApi {
           );
         } else {
           this.pushNotification({
+            title: notification.title || undefined,
             body: notification.message.toString(),
             type: notification.data.type,
             payload: notification.data.payload,
@@ -71,11 +74,6 @@ class PushNotificationsApi {
       popInitialNotification: true,
       requestPermissions: true,
     });
-  }
-
-  private async startup() {
-    await this.createChannelIfNotExists();
-    this.configureNotifications();
   }
 }
 

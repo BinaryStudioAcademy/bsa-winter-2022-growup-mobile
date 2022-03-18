@@ -17,6 +17,32 @@ type PushNotificationArgs = {
 
 class PushNotificationsApi {
   constructor() {
+    this.startup();
+  }
+
+  public pushNotification({ body, type, payload }: PushNotificationArgs) {
+    PushNotification.localNotification({
+      title: PUSH_TITLE,
+      message: body,
+      smallIcon: PUSH_ICON_FILENAME,
+      channelId: PUSH_CHANNEL_NAME,
+      userInfo: { type, payload },
+    });
+  }
+
+  private createChannelIfNotExists(): Promise<void> {
+    return new Promise(resolve => {
+      PushNotification.createChannel(
+        {
+          channelId: PUSH_CHANNEL_NAME,
+          channelName: PUSH_CHANNEL_NAME,
+        },
+        () => resolve()
+      );
+    });
+  }
+
+  private configureNotifications() {
     PushNotification.configure({
       onNotification: notification => {
         if (notification.userInteraction) {
@@ -47,14 +73,9 @@ class PushNotificationsApi {
     });
   }
 
-  public pushNotification({ body, type, payload }: PushNotificationArgs) {
-    PushNotification.localNotification({
-      title: PUSH_TITLE,
-      message: body,
-      smallIcon: PUSH_ICON_FILENAME,
-      channelId: PUSH_CHANNEL_NAME,
-      userInfo: { type, payload },
-    });
+  private async startup() {
+    await this.createChannelIfNotExists();
+    this.configureNotifications();
   }
 }
 

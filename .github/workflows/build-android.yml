@@ -15,7 +15,15 @@ jobs:
       - name: Setup Android SDK
         uses: android-actions/setup-android@v2
       - name: Add SDK path to settings
-        run: 'echo "sdk.dir = /usr/local/lib/android/sdk" > ./local.properties'
+        run: 'echo "sdk.dir = /usr/local/lib/android/sdk" > ./android/local.properties'
+      - name: Add Android google-services.json file
+        env:
+          ANDROID_GOOGLE_SERVICES_FILE: ${{ secrets.ANDROID_GOOGLE_SERVICES_FILE }}
+        run: 'echo $ANDROID_GOOGLE_SERVICES_FILE > ./android/app/google-services.json'
+      - name: Add IOS GoogleService-Info.plist file
+        env:
+          IOS_GOOGLE_SERVICES_FILE: ${{ secrets.IOS_GOOGLE_SERVICES_FILE }}
+        run: 'echo $IOS_GOOGLE_SERVICES_FILE > ./ios/growupmobile/GoogleService-Info.plist'
       - name: Build
         run: cd ./android && ./gradlew clean assembleRelease
       - name: Notify failure in Slack channel (if failed)

@@ -9,6 +9,7 @@ type AppStackParamList = {
     isTeamOkr: boolean;
   };
   [AppRoute.ADD_KEY_RESULT]: undefined;
+  [AppRoute.ONBOARDING_SETUP]: undefined;
 };
 
 export type { AppStackParamList };

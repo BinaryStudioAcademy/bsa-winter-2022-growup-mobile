@@ -1,5 +1,4 @@
 import React from 'react';
-import { useNavigation } from '@react-navigation/native';
 import { ScrollView, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Formik } from 'formik';
@@ -10,12 +9,13 @@ import { addEducationValidationSchema } from 'src/validation-schemas';
 import { actions as educationActions } from 'src/store/education';
 import { ButtonMode, HeadingLevel } from 'src/common/enums';
 import { useAppDispatch } from 'src/hooks';
+import { useAppNavigation } from 'src/hooks';
 import { defaultAddEducationPayload } from './common';
 import styles from './styles';
 
 const AddEducationScreen: React.FC = () => {
-  const navigation = useNavigation();
   const dispatch = useAppDispatch();
+  const navigation = useAppNavigation();
 
   const handleCancel = () => {
     navigation.goBack();

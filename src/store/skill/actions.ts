@@ -7,8 +7,7 @@ import { ActionTypes } from './common';
 const createSkill = createAsyncThunk(
   ActionTypes.CREATE_SKILL,
   async (payload: ICreateSkillPayload) => {
-    const skill = await skillApi.create(payload);
-    return skill;
+    return await skillApi.create(payload);
   }
 );
 

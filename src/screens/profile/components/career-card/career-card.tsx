@@ -23,8 +23,8 @@ import styles from './styles';
 
 interface ICareerProps {
   item: ICareer;
-  onEdit?: () => void;
-  onDelete?: () => void;
+  onEdit?: (career: ICareer) => void;
+  onDelete?: (id: string) => void;
 }
 
 const CareerCard: React.FC<ICareerProps> = ({ item, onEdit, onDelete }) => {
@@ -38,18 +38,22 @@ const CareerCard: React.FC<ICareerProps> = ({ item, onEdit, onDelete }) => {
     const extraMonths = differenceYears * MONTHS_IN_YEAR;
     const differenceMonths = endDay.diff(startDay, 'months') - extraMonths;
 
+    if (!endDate) {
+      return `${startDay.format('MM/YYYY')} - now`;
+    }
+
     return `${differenceYears} yr ${differenceMonths} mo`;
   }, [startDate, endDate]);
 
   const handleEdit = () => {
     if (isFunction(onEdit)) {
-      onEdit();
+      onEdit(item);
     }
   };
 
   const handleDelete = () => {
     if (isFunction(onDelete)) {
-      onDelete();
+      onDelete(item.id);
     }
   };
 

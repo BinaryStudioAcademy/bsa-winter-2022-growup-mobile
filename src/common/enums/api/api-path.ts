@@ -8,6 +8,7 @@ enum ApiPath {
   GOOGLE_PLACES_AUTOCOMPLETE = '/place/autocomplete/json',
   USER_AVATAR = '/user/avatar',
   USER_EDUCATION = '/user/education',
+  USER_CAREER = '/user/career-journey',
 }
 
 export { ApiPath };

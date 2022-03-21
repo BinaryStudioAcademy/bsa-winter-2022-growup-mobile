@@ -19,7 +19,7 @@ class OpportunitiesApi {
 
   public async getOpportunities(): Promise<IOpportunity[]> {
     try {
-      return this.#http.load(`${this.#apiPath}${ApiPath.OPPORTUNITIES}`);
+      return await this.#http.load(`${this.#apiPath}${ApiPath.OPPORTUNITIES}`);
     } catch (err) {
       showErrorToast(
         (err as Error | undefined)?.message ?? 'Failed to load opportunities'

@@ -6,9 +6,9 @@ import PagerView, {
   PagerViewOnPageSelectedEvent,
 } from 'react-native-pager-view';
 
-import { HeadingLevel, ProfileRoute } from 'src/common/enums';
+import { AppRoute, HeadingLevel, ProfileRoute } from 'src/common/enums';
 import { ICareer } from 'src/common/types';
-import { Heading, Text } from 'src/components';
+import { Heading, MainButton, Text } from 'src/components';
 import { useAppDispatch, useAppSelector, useAppNavigation } from 'src/hooks';
 import { actions as experienceActions } from 'src/store/experience';
 import addActions from './add-actions';
@@ -119,7 +119,13 @@ const ProfileScreen: React.FC = () => {
             style={styles.swiperWrapper}
           >
             <View style={styles.swiperItem} collapsable={false}>
-              <Text>Summary container</Text>
+              <MainButton
+                onPress={() => {
+                  navigation.navigate(AppRoute.QUIZ);
+                }}
+              >
+                Complete quiz
+              </MainButton>
             </View>
             <View style={styles.swiperItem} collapsable={false}>
               <Text>Qualities container</Text>

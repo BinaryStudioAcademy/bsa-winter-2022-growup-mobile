@@ -16,6 +16,7 @@ import { PushNotificationsApi } from './push-notifications-api';
 import { StorageService } from './storage';
 import { Http } from './http';
 import { AuthApi } from './auth-api';
+import { QuizApi } from './quiz-api';
 
 const apiPath = `${API_ORIGIN_URL}${API_PREFIX}`;
 
@@ -62,6 +63,11 @@ const careerApi = new CareerApi({
   apiPath: `${API_ORIGIN_URL}${API_PREFIX}`,
 });
 
+const quizApi = new QuizApi({
+  http,
+  apiPath: `${API_ORIGIN_URL}${API_PREFIX}`,
+});
+
 const pushNotificationApi = new PushNotificationsApi();
 
 export {
@@ -74,4 +80,5 @@ export {
   okrApi,
   careerApi,
   pushNotificationApi,
+  quizApi,
 };

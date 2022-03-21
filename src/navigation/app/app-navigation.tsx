@@ -5,7 +5,7 @@ import {
 } from '@react-navigation/native-stack';
 
 import { AppRoute } from 'src/common/enums/navigation';
-import { AddKeyResultScreen, AddOKRScreen } from 'src/screens';
+import { AddKeyResultScreen, AddOKRScreen, QuizScreen } from 'src/screens';
 import { AppStackParamList } from 'src/common/types';
 import { AppTabsNavigation } from '../app-tabs';
 import { OnboardingNavigation } from '../onboarding';
@@ -46,6 +46,7 @@ const AppNavigation = () => {
         component={OnboardingNavigation}
         options={{ headerShown: false }}
       />
+      <Stack.Screen name={AppRoute.QUIZ} component={QuizScreen} />
     </Stack.Navigator>
   );
 };

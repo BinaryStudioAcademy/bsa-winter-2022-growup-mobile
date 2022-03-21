@@ -17,11 +17,15 @@ class OpportunitiesApi {
     this.#apiPath = apiPath;
   }
 
-  public async getOpportunities(): Promise<IOpportunity[] | undefined> {
+  public async getOpportunities(): Promise<IOpportunity[]> {
     try {
       return this.#http.load(`${this.#apiPath}${ApiPath.OPPORTUNITIES}`);
-    } catch (err: any) {
-      showErrorToast(err?.message ?? 'Failed to load opportunities');
+    } catch (err) {
+      showErrorToast(
+        (err as Error | undefined)?.message ?? 'Failed to load opportunities'
+      );
+
+      return [];
     }
   }
 }

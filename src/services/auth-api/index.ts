@@ -31,8 +31,8 @@ class AuthApi {
         payload: JSON.stringify(payload),
         hasAuth: false,
       });
-    } catch (err: any) {
-      showErrorToast(err?.message ?? 'Failed to log in');
+    } catch (err) {
+      showErrorToast((err as Error | undefined)?.message ?? 'Failed to log in');
     }
   }
 
@@ -46,8 +46,10 @@ class AuthApi {
         contentType: ContentType.MULTIPART,
         payload,
       });
-    } catch (err: any) {
-      showErrorToast(err?.message ?? 'Failed to upload avatar');
+    } catch (err) {
+      showErrorToast(
+        (err as Error | undefined)?.message ?? 'Failed to upload avatar'
+      );
     }
   }
 

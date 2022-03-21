@@ -26,8 +26,10 @@ class SkillApi {
         contentType: ContentType.JSON,
         payload: JSON.stringify(payload),
       });
-    } catch (err: any) {
-      showErrorToast(err?.message ?? 'Failed to create skill');
+    } catch (err) {
+      showErrorToast(
+        (err as Error | undefined)?.message ?? 'Failed to create skill'
+      );
     }
   }
 }

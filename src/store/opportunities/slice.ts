@@ -4,12 +4,12 @@ import { IOpportunity } from 'src/common/types';
 import { loadOpportunities } from './actions';
 
 interface IOpportunityState {
-  opportunitiesLoaded: boolean;
+  opportunitiesLoading: boolean;
   opportunities?: IOpportunity[];
 }
 
 const initialState: IOpportunityState = {
-  opportunitiesLoaded: true,
+  opportunitiesLoading: false,
 };
 
 const { reducer, actions } = createSlice({
@@ -17,6 +17,10 @@ const { reducer, actions } = createSlice({
   initialState,
   reducers: {},
   extraReducers: builder => {
+    builder.addCase(loadOpportunities.pending, state => {
+      state.opportunitiesLoading = true;
+    });
+
     builder.addCase(loadOpportunities.fulfilled, (state, { payload }) => {
       state.opportunities = payload;
     });
@@ -24,7 +28,7 @@ const { reducer, actions } = createSlice({
     builder.addMatcher(
       isAnyOf(loadOpportunities.fulfilled, loadOpportunities.rejected),
       state => {
-        state.opportunitiesLoaded = true;
+        state.opportunitiesLoading = false;
       }
     );
   },

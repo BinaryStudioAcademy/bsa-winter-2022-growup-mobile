@@ -3,28 +3,29 @@ import { View } from 'react-native';
 import { RadioButton } from 'react-native-paper';
 
 import { HeadingLevel } from 'src/common/enums';
-import { IQuizAnswer, IQuizQuestion } from 'src/common/types';
+import { IQuizQuestion } from 'src/common/types';
 import { Heading, Text } from 'src/components';
 import styles from './styles';
 
 interface IQuizItemProps {
   item: IQuizQuestion;
+  onChangeQuestionAnswer: (question: IQuizQuestion) => void;
 }
 
-const QuizItem: React.FC<IQuizItemProps> = ({ item }) => {
+const QuizItem: React.FC<IQuizItemProps> = ({
+  item,
+  onChangeQuestionAnswer,
+}) => {
   const [value, setValue] = useState('0');
   const answers = useMemo(() => {
-    const answersArr: IQuizAnswer[] = [];
-    item.answers.forEach((answer, index) => {
-      answersArr.push({ ...answer, isSelected: index === 0 ? true : false });
-    });
-    return answersArr;
+    return item.answers;
   }, [item]);
 
   const handleChangeAnswer = (answerIndex: string) => {
     answers[+value].isSelected = false;
     setValue(answerIndex);
     answers[+answerIndex].isSelected = true;
+    onChangeQuestionAnswer({ ...item, answers });
   };
 
   return (

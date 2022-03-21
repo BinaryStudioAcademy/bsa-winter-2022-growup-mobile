@@ -1,4 +1,4 @@
-import { createAsyncThunk } from '@reduxjs/toolkit';
+import { createAction, createAsyncThunk } from '@reduxjs/toolkit';
 
 import { IQuizQuestion } from 'src/common/types';
 import { quizApi } from 'src/services';
@@ -28,4 +28,8 @@ const loadQuizResults = createAsyncThunk(
   }
 );
 
-export { loadQuizQuestions, sendQuizResults, loadQuizResults };
+const saveQuizAnswers = createAction<IQuizQuestion>(
+  ActionTypes.SAVE_QUIZ_ANSWERS
+);
+
+export { loadQuizQuestions, sendQuizResults, loadQuizResults, saveQuizAnswers };

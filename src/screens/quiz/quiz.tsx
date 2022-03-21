@@ -4,6 +4,7 @@ import PagerView, { PagerViewOnPageScrollEvent } from 'react-native-pager-view';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { ButtonMode } from 'src/common/enums';
+import { IQuizQuestion } from 'src/common/types';
 import { MainButton, Text } from 'src/components';
 import { useAppDispatch, useAppSelector } from 'src/hooks';
 import { actions } from 'src/store/quiz';
@@ -15,12 +16,22 @@ const QuizScreen: React.FC = () => {
   const { quizQuestions } = useAppSelector(state => state.quiz);
   const pagerRef = useRef<PagerView | null>(null);
   const [currentStep, setCurrentStep] = useState(0);
+  const [currentQuestion, setCurrentQuestion] = useState(quizQuestions[0]);
 
   const isLastStep = currentStep === quizQuestions.length - 1;
 
+  const saveAnswer = () => {
+    dispatch(actions.saveQuizAnswers(currentQuestion));
+  };
+
   const changeCurrentPage = () => {
+    saveAnswer();
     pagerRef.current?.setPage(currentStep + 1);
   };
+
+  const handleChangeQuestionAnswer = useCallback((question: IQuizQuestion) => {
+    setCurrentQuestion(question);
+  }, []);
 
   const handlePageScroll = useCallback((e: PagerViewOnPageScrollEvent) => {
     setCurrentStep(e.nativeEvent.position);
@@ -44,7 +55,10 @@ const QuizScreen: React.FC = () => {
             <Text style={styles.questionCount}>
               Question {index + 1}/{quizQuestions.length}
             </Text>
-            <QuizItem item={item} />
+            <QuizItem
+              onChangeQuestionAnswer={handleChangeQuestionAnswer}
+              item={item}
+            />
           </View>
         ))}
       </PagerView>

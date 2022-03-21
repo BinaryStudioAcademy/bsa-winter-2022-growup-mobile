@@ -20,7 +20,7 @@ const { reducer, actions } = createSlice({
       state.user = null;
     });
     builder.addCase(loadCurrentUser.fulfilled, (state, { payload }) => {
-      state.user = payload;
+      state.user = payload ?? null;
     });
   },
 });

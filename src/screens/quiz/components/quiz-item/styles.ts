@@ -6,6 +6,7 @@ const styles = StyleSheet.create({
   question: {
     color: AppColor.PRIMARY,
     marginLeft: 10,
+    fontSize: 20,
   },
   answersContainer: {
     marginVertical: 10,
@@ -13,7 +14,7 @@ const styles = StyleSheet.create({
   answerContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    margin: 5,
+    margin: 10,
   },
   answerText: {
     flex: 1,

@@ -8,7 +8,7 @@ import {
   TagType,
   TextAppearance,
 } from 'src/common/enums';
-import { IOpportunity } from 'src/common/types';
+
 import {
   BookMarkIcon,
   BookMarkOutlineIcon,
@@ -17,7 +17,9 @@ import {
   Tag,
   Text,
 } from 'src/components';
-import { MinorCard } from '..';
+
+import { IOpportunity } from 'src/common/types';
+import { MinorCard } from '../../screens/mentee-home/components';
 import styles from './styles';
 
 type OpportunityCardProps = {
@@ -27,7 +29,7 @@ type OpportunityCardProps = {
 
 const OpportunityCard: React.FC<OpportunityCardProps> = ({ opportunity }) => {
   const [isSaved, setIsSaved] = useState(false);
-  const { name, startDate, tags, orgGroup, type } = opportunity;
+  const { name, startDate, tags, organization, type } = opportunity;
   const startDateString = dayjs(startDate).format('MMM D, YYYY');
 
   const handleBookmarkAction = () => {
@@ -48,7 +50,7 @@ const OpportunityCard: React.FC<OpportunityCardProps> = ({ opportunity }) => {
       </View>
       <View style={styles.infoRow}>
         <Text appearance={TextAppearance.HINT}>Org group</Text>
-        <Text style={styles.text}>{orgGroup}</Text>
+        <Text style={styles.text}>{organization}</Text>
       </View>
       <View style={styles.infoRow}>
         <Text appearance={TextAppearance.HINT}>Type</Text>

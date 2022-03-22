@@ -4,11 +4,14 @@ import { Provider as PaperProvider } from 'react-native-paper';
 import SplashScreen from 'react-native-splash-screen';
 import { Provider as StoreProvider } from 'react-redux';
 import { en, registerTranslation } from 'react-native-paper-dates';
+import Toast from 'react-native-toast-message';
 
 import { store } from 'src/store';
 import RootNavigation from 'src/navigation';
 import theme from 'src/styles/theme';
+import { pushNotificationApi } from 'src/services';
 
+pushNotificationApi.init();
 registerTranslation('en', en);
 
 const App = () => {
@@ -17,13 +20,16 @@ const App = () => {
   }, []);
 
   return (
-    <StoreProvider store={store}>
-      <PaperProvider theme={theme}>
-        <NavigationContainer>
-          <RootNavigation />
-        </NavigationContainer>
-      </PaperProvider>
-    </StoreProvider>
+    <>
+      <StoreProvider store={store}>
+        <PaperProvider theme={theme}>
+          <NavigationContainer>
+            <RootNavigation />
+          </NavigationContainer>
+        </PaperProvider>
+      </StoreProvider>
+      <Toast />
+    </>
   );
 };
 

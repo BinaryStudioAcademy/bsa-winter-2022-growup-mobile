@@ -1,7 +1,7 @@
 const defaultAddExperiencePayload = {
-  companyName: '',
+  company: '',
   position: '',
-  startDate: undefined,
+  startDate: new Date().toISOString(),
   endDate: undefined,
 };
 

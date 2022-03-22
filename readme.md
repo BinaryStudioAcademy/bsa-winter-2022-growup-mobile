@@ -64,6 +64,7 @@ After task is completed ― create PR of your branch into `develop` and assign o
 ## How to start the app
 
 1. Create and fill in **.env** file following **.env.example** file
-2. Run `yarn` at the root folder
-3. Start Metro: `yarn start`
-4. Start the app:`yarn android` in a new terminal
+1. If you want, create firebase project add both ios and android apps follow the instructions to save google-services key files.
+1. Run `yarn` at the root folder
+1. Start Metro: `yarn start`
+1. Start the app:`yarn android` in a new terminal

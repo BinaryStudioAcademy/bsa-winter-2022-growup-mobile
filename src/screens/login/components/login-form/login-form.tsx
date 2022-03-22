@@ -5,20 +5,15 @@ import { Formik } from 'formik';
 import { loginValidationSchema } from 'src/validation-schemas';
 import { FormInput, FormPasswordInput, MainButton } from 'src/components';
 import { ISignInPayload } from 'src/common/types';
-import { defaultLoginPayload } from '../../common';
 import { ButtonMode } from 'src/common/enums';
 import { captureFingerprint, checkBiometry } from 'src/helpers';
 import { styles } from './styles';
+import { useAppDispatch } from 'src/hooks';
+import { authActions } from 'src/store/actions';
+import { defaultLoginPayload } from '../../common';
 
-type LoginFormProps = {
-  onSubmit: (data: ISignInPayload) => void;
-  onSubmitFingerprint: (email: string) => void;
-};
-
-const LoginForm: React.FC<LoginFormProps> = ({
-  onSubmit,
-  onSubmitFingerprint,
-}) => {
+const LoginForm: React.FC = () => {
+  const dispatch = useAppDispatch();
   const [hasBiometry, setHasBiometry] = useState<boolean>(false);
 
   useEffect(() => {
@@ -35,14 +30,14 @@ const LoginForm: React.FC<LoginFormProps> = ({
   };
 
   const handleLogin = (values: ISignInPayload) => {
-    onSubmit(values);
+    dispatch(authActions.signIn(values));
   };
 
-  const handleFingerprint = async (values: ISignInPayload) => {
+  const handleFingerprint = async ({ email }: ISignInPayload) => {
     const authenticated = await authenticateWithFinger();
 
     if (authenticated) {
-      onSubmitFingerprint(values.email);
+      dispatch(authActions.signInFingerprint({ email }));
     }
   };
 

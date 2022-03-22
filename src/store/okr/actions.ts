@@ -8,8 +8,7 @@ import { ActionTypes } from './common';
 const createOKR = createAsyncThunk(
   ActionTypes.CREATE_OKR,
   async (payload: IAddOkr) => {
-    const objective = await okrApi.createOKR(payload);
-    return objective;
+    return await okrApi.createOKR(payload);
   }
 );
 

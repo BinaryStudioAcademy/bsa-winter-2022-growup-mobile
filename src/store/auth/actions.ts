@@ -2,33 +2,41 @@ import { createAction, createAsyncThunk } from '@reduxjs/toolkit';
 
 import { authApi, secureStorage } from 'src/services';
 import { ISignInPayload } from 'src/common/types';
-import { ActionType } from './common';
+import { ActionTypes } from './common';
 import { SecureStorageKey } from 'src/common/enums';
 
 const signIn = createAsyncThunk(
-  ActionType.SIGN_IN,
+  ActionTypes.SIGN_IN,
   async (payload: ISignInPayload, { dispatch }) => {
-    const { token } = await authApi.signIn(payload);
+    const response = await authApi.signIn(payload);
 
-    await secureStorage.setItem(SecureStorageKey.ACCESS_TOKEN, token);
+    if (!response) {
+      return;
+    }
+
+    await secureStorage.setItem(SecureStorageKey.ACCESS_TOKEN, response.token);
     dispatch(loadCurrentUser());
   }
 );
 
 const signInFingerprint = createAsyncThunk(
-  ActionType.SIGN_IN_FINGERPRINT,
+  ActionTypes.SIGN_IN_FINGERPRINT,
   async ({ email }: { email: string }, { dispatch }) => {
-    const { token } = await authApi.signInFingerprint(email);
+    const response = await authApi.signInFingerprint(email);
 
-    await secureStorage.setItem(SecureStorageKey.ACCESS_TOKEN, token);
+    if (!response) {
+      return;
+    }
+
+    await secureStorage.setItem(SecureStorageKey.ACCESS_TOKEN, response.token);
     dispatch(loadCurrentUser());
   }
 );
 
-const signOut = createAction(ActionType.SIGN_OUT);
+const signOut = createAction(ActionTypes.SIGN_OUT);
 
 const loadCurrentUser = createAsyncThunk(
-  ActionType.LOAD_CURRENT_USER,
+  ActionTypes.LOAD_CURRENT_USER,
   async () => {
     const token = await secureStorage.getItem(SecureStorageKey.ACCESS_TOKEN);
 

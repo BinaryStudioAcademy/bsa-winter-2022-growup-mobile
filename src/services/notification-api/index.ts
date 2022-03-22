@@ -1,4 +1,5 @@
 import { ApiPath, ContentType, HttpMethod } from 'src/common/enums';
+import { showErrorToast } from 'src/helpers';
 import { Http } from '../http';
 
 type Constructor = {
@@ -16,13 +17,20 @@ class NotificationApi {
   }
 
   public async markRead(id: string): Promise<void> {
-    await this.#http.load(
-      `${this.#apiPath}${ApiPath.NOTIFICATIONS}${ApiPath.MARK_READ}/${id}`,
-      {
-        method: HttpMethod.POST,
-        contentType: ContentType.JSON,
-      }
-    );
+    try {
+      await this.#http.load(
+        `${this.#apiPath}${ApiPath.NOTIFICATIONS}${ApiPath.MARK_READ}/${id}`,
+        {
+          method: HttpMethod.POST,
+          contentType: ContentType.JSON,
+        }
+      );
+    } catch (err) {
+      showErrorToast(
+        (err as Error | undefined)?.message ??
+          'Failed to mark notification as read'
+      );
+    }
   }
 }
 

@@ -1,9 +1,7 @@
 import React, { useCallback, useRef, useState } from 'react';
-import { useNavigation } from '@react-navigation/native';
 import { View } from 'react-native';
 import PagerView, { PagerViewOnPageScrollEvent } from 'react-native-pager-view';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
 import { AppRoute, ButtonMode } from 'src/common/enums';
 import { MainButton } from 'src/components';
@@ -14,13 +12,8 @@ import {
   StepDots,
   UserContent,
 } from './components';
-import { OnboardingStackParamList } from 'src/common/types';
 import styles from './styles';
-
-type OnboardingScreenProps = NativeStackNavigationProp<
-  OnboardingStackParamList,
-  AppRoute.APP
->;
+import { useAppNavigation } from 'src/hooks';
 
 const ONBOARDING_DOTS_COUNT = 4;
 const LAST_STEP_INDEX = ONBOARDING_DOTS_COUNT - 1;
@@ -28,7 +21,7 @@ const LAST_STEP_INDEX = ONBOARDING_DOTS_COUNT - 1;
 const OnboardingScreen: React.FC = () => {
   const [currentStep, setCurrentStep] = useState(0);
   const pagerRef = useRef<PagerView | null>(null);
-  const navigation = useNavigation<OnboardingScreenProps>();
+  const navigation = useAppNavigation();
 
   const changeCurrentPage = () => {
     pagerRef.current?.setPage(currentStep + 1);
@@ -39,7 +32,12 @@ const OnboardingScreen: React.FC = () => {
   }, []);
 
   const handleComplete = () => {
-    navigation.replace(AppRoute.APP);
+    navigation.replace(AppRoute.APP, {
+      screen: AppRoute.APP_TABS,
+      params: {
+        screen: AppRoute.HOME,
+      },
+    });
   };
 
   const isLastStep = currentStep === LAST_STEP_INDEX;

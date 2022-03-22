@@ -14,7 +14,7 @@ const DateInput: React.FC<DateInputProps> = ({ style, ...textInputProps }) => {
   return (
     <DatePickerInput
       style={[styles.inputContainer, style]}
-      mode="flat"
+      mode="outlined"
       locale="en"
       activeUnderlineColor={AppColor.ACCENT}
       {...textInputProps}

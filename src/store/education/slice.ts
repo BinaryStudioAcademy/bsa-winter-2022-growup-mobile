@@ -4,11 +4,11 @@ import { IEducation } from 'src/common/types';
 import { addEducation } from './actions';
 
 interface IEducationState {
-  education: IEducation[];
+  educationExperience: IEducation[];
 }
 
 const initialState: IEducationState = {
-  education: [],
+  educationExperience: [],
 };
 
 const { reducer, actions } = createSlice({
@@ -17,7 +17,7 @@ const { reducer, actions } = createSlice({
   reducers: {},
   extraReducers: builder => {
     builder.addCase(addEducation.fulfilled, (state, { payload }) => {
-      state.education.push(payload);
+      state.educationExperience.push(payload);
     });
   },
 });

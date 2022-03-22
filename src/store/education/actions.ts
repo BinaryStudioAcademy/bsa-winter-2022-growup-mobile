@@ -6,9 +6,8 @@ import { ActionTypes } from './common';
 
 const addEducation = createAsyncThunk(
   ActionTypes.ADD_EDUCATION,
-  async (payload: IAddEducationPayload) => {
-    const education = await educationApi.addEducation(payload);
-    return education;
+  (payload: IAddEducationPayload) => {
+    return educationApi.addEducation(payload);
   }
 );
 

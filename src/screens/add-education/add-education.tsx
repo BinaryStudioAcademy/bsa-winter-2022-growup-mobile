@@ -3,7 +3,7 @@ import { ScrollView, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Formik } from 'formik';
 
-import { IAddEducationPayload } from 'src/common/types/education/add-education.interface';
+import { IAddEducationPayload } from 'src/common/types';
 import { FormDate, FormInput, Heading, MainButton } from 'src/components';
 import { addEducationValidationSchema } from 'src/validation-schemas';
 import { useAppNavigation, useAppDispatch } from 'src/hooks';

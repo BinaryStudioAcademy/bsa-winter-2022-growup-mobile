@@ -60,7 +60,7 @@ const okrApi = new OKRApi({
 
 const educationApi = new EducationApi({
   http,
-  apiPath: `${API_ORIGIN_URL}${API_PREFIX}`,
+  apiPath,
 });
 
 const careerApi = new CareerApi({

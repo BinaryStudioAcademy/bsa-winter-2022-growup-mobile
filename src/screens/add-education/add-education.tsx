@@ -13,8 +13,8 @@ import { defaultAddEducationPayload } from './common';
 import styles from './styles';
 
 const AddEducationScreen: React.FC = () => {
-  const navigation = useAppNavigation();
   const dispatch = useAppDispatch();
+  const navigation = useAppNavigation();
 
   const handleCancel = () => {
     navigation.goBack();

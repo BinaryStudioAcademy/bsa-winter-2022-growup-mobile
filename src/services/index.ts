@@ -11,12 +11,12 @@ import { SkillApi } from './skill-api';
 import { NotificationApi } from './notification-api';
 import { GooglePlacesApi } from './google-places-api';
 import { OKRApi } from './okr-api';
+import { EducationApi } from './education-api';
 import { CareerApi } from './career-api';
 import { PushNotificationsApi } from './push-notifications-api';
 import { StorageService } from './storage';
 import { Http } from './http';
 import { AuthApi } from './auth-api';
-import { EducationApi } from './education-api';
 
 const apiPath = `${API_ORIGIN_URL}${API_PREFIX}`;
 
@@ -78,7 +78,7 @@ export {
   notificationApi,
   googlePlacesApi,
   okrApi,
+  educationApi,
   careerApi,
   pushNotificationApi,
-  educationApi,
 };

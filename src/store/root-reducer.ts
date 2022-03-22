@@ -10,6 +10,6 @@ export const rootReducer = {
   skill,
   notification,
   okr,
-  experience,
   education,
+  experience,
 };

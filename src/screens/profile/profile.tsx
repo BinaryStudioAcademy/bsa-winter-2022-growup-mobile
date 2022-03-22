@@ -12,7 +12,7 @@ import { Heading, Text } from 'src/components';
 import { useAppDispatch, useAppSelector, useAppNavigation } from 'src/hooks';
 import { actions as experienceActions } from 'src/store/experience';
 import addActions from './add-actions';
-import { CareerCard, Navbar } from './components';
+import { CareerCard, EducationCard, Navbar } from './components';
 import styles from './styles';
 
 const NAVBAR_ITEMS = [
@@ -67,6 +67,7 @@ const ProfileScreen: React.FC = () => {
   };
 
   const { careerExperience } = useAppSelector(state => state.experience);
+  const { educationExperience } = useAppSelector(state => state.education);
 
   const handleItemPress = (name: string) => {
     addFunctions[name]();
@@ -150,7 +151,16 @@ const ProfileScreen: React.FC = () => {
               </ScrollView>
             </View>
             <View style={styles.swiperItem} collapsable={false}>
-              <Text>Education container</Text>
+              <Heading level={HeadingLevel.H5} style={styles.containerHeader}>
+                Education
+              </Heading>
+              <ScrollView showsVerticalScrollIndicator={false}>
+                {educationExperience.map(item => (
+                  <View key={item.id} style={styles.card}>
+                    <EducationCard education={item} />
+                  </View>
+                ))}
+              </ScrollView>
             </View>
           </PagerView>
         </View>

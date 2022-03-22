@@ -1,4 +1,5 @@
 interface IEducation {
+  id: string;
   type: string;
   university: string;
   degree: string;

@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React, { useState } from 'react';
 import { View } from 'react-native';
 import { RadioButton } from 'react-native-paper';
 
@@ -9,7 +9,11 @@ import styles from './styles';
 
 interface IQuizItemProps {
   item: IQuizQuestion;
-  onChangeQuestionAnswer: (question: IQuizQuestion) => void;
+  onChangeQuestionAnswer: (
+    questionId: string,
+    answerId: string,
+    prevAnswerId: string
+  ) => void;
 }
 
 const QuizItem: React.FC<IQuizItemProps> = ({
@@ -17,15 +21,12 @@ const QuizItem: React.FC<IQuizItemProps> = ({
   onChangeQuestionAnswer,
 }) => {
   const [value, setValue] = useState('0');
-  const answers = useMemo(() => {
-    return item.answers;
-  }, [item]);
 
   const handleChangeAnswer = (answerIndex: string) => {
-    answers[+value].isSelected = false;
-    setValue(answerIndex);
-    answers[+answerIndex].isSelected = true;
-    onChangeQuestionAnswer({ ...item, answers });
+    if (answerIndex !== value) {
+      onChangeQuestionAnswer(item.id, answerIndex, value);
+      setValue(answerIndex);
+    }
   };
 
   return (

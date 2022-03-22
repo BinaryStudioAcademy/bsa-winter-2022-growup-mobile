@@ -3,35 +3,43 @@ import { View } from 'react-native';
 import PagerView, { PagerViewOnPageScrollEvent } from 'react-native-pager-view';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-import { ButtonMode } from 'src/common/enums';
-import { IQuizQuestion } from 'src/common/types';
+import { AppRoute, ButtonMode } from 'src/common/enums';
 import { MainButton, Text } from 'src/components';
-import { useAppDispatch, useAppSelector } from 'src/hooks';
+import { useAppDispatch, useAppNavigation, useAppSelector } from 'src/hooks';
 import { actions } from 'src/store/quiz';
 import { QuizItem } from './components';
 import styles from './styles';
 
 const QuizScreen: React.FC = () => {
   const dispatch = useAppDispatch();
+  const navigation = useAppNavigation();
   const { quizQuestions } = useAppSelector(state => state.quiz);
   const pagerRef = useRef<PagerView | null>(null);
   const [currentStep, setCurrentStep] = useState(0);
-  const [currentQuestion, setCurrentQuestion] = useState(quizQuestions[0]);
 
   const isLastStep = currentStep === quizQuestions.length - 1;
 
-  const saveAnswer = () => {
-    dispatch(actions.saveQuizAnswers(currentQuestion));
+  const saveAnswer = (
+    questionId: string,
+    answerId: string,
+    prevAnswerId: string
+  ) => {
+    dispatch(actions.saveQuizAnswers({ questionId, answerId, prevAnswerId }));
   };
 
   const changeCurrentPage = () => {
-    saveAnswer();
     pagerRef.current?.setPage(currentStep + 1);
   };
 
-  const handleChangeQuestionAnswer = useCallback((question: IQuizQuestion) => {
-    setCurrentQuestion(question);
-  }, []);
+  const handleCompleteQuiz = () => {
+    dispatch(actions.sendQuizResults(quizQuestions));
+    navigation.navigate(AppRoute.APP, {
+      screen: AppRoute.APP_TABS,
+      params: {
+        screen: AppRoute.PROFILE,
+      },
+    });
+  };
 
   const handlePageScroll = useCallback((e: PagerViewOnPageScrollEvent) => {
     setCurrentStep(e.nativeEvent.position);
@@ -55,10 +63,7 @@ const QuizScreen: React.FC = () => {
             <Text style={styles.questionCount}>
               Question {index + 1}/{quizQuestions.length}
             </Text>
-            <QuizItem
-              onChangeQuestionAnswer={handleChangeQuestionAnswer}
-              item={item}
-            />
+            <QuizItem onChangeQuestionAnswer={saveAnswer} item={item} />
           </View>
         ))}
       </PagerView>
@@ -66,9 +71,7 @@ const QuizScreen: React.FC = () => {
         <MainButton
           style={styles.completeButton}
           mode={ButtonMode.CONTAINED}
-          onPress={() => {
-            console.log(quizQuestions);
-          }}
+          onPress={handleCompleteQuiz}
         >
           Complete
         </MainButton>

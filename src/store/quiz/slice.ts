@@ -41,10 +41,13 @@ const { reducer, actions } = createSlice({
       state.quizResults = payload;
     });
     builder.addCase(saveQuizAnswers, (state, { payload }) => {
+      const { questionId, answerId, prevAnswerId } = payload;
       const questionIndex = state.quizQuestions.findIndex(
-        item => item.id === payload.id
+        item => item.id === questionId
       );
-      state.quizQuestions[questionIndex] = payload;
+      state.quizQuestions[questionIndex].answers[+prevAnswerId].isSelected =
+        false;
+      state.quizQuestions[questionIndex].answers[+answerId].isSelected = true;
     });
   },
 });

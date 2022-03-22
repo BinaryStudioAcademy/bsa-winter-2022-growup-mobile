@@ -1,6 +1,6 @@
 import { createAction, createAsyncThunk } from '@reduxjs/toolkit';
 
-import { IQuizQuestion } from 'src/common/types';
+import { IQuizQuestion, IQuizSaveAnswerPayload } from 'src/common/types';
 import { quizApi } from 'src/services';
 import { ActionTypes } from './common';
 
@@ -28,7 +28,7 @@ const loadQuizResults = createAsyncThunk(
   }
 );
 
-const saveQuizAnswers = createAction<IQuizQuestion>(
+const saveQuizAnswers = createAction<IQuizSaveAnswerPayload>(
   ActionTypes.SAVE_QUIZ_ANSWERS
 );
 

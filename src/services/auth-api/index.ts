@@ -25,14 +25,14 @@ class AuthApi {
     payload: ISignInPayload
   ): Promise<AuthResponse | undefined> {
     try {
-      return this.#http.load(`${this.#apiPath}${ApiPath.SIGN_IN}`, {
+      return await this.#http.load(`${this.#apiPath}${ApiPath.SIGN_IN}`, {
         method: HttpMethod.POST,
         contentType: ContentType.JSON,
         payload: JSON.stringify(payload),
         hasAuth: false,
       });
-    } catch (err: any) {
-      showErrorToast(err?.message ?? 'Failed to log in');
+    } catch (err) {
+      showErrorToast((err as Error | undefined)?.message ?? 'Failed to log in');
     }
   }
 
@@ -41,19 +41,21 @@ class AuthApi {
     payload.append('avatar', assetToMultipartFile(image));
 
     try {
-      return this.#http.load(`${this.#apiPath}${ApiPath.USER_AVATAR}`, {
+      return await this.#http.load(`${this.#apiPath}${ApiPath.USER_AVATAR}`, {
         method: HttpMethod.PUT,
         contentType: ContentType.MULTIPART,
         payload,
       });
-    } catch (err: any) {
-      showErrorToast(err?.message ?? 'Failed to upload avatar');
+    } catch (err) {
+      showErrorToast(
+        (err as Error | undefined)?.message ?? 'Failed to upload avatar'
+      );
     }
   }
 
   public async getCurrentUser(): Promise<IUser | undefined> {
     try {
-      return this.#http.load(`${this.#apiPath}${ApiPath.CURRENT_USER}`);
+      return await this.#http.load(`${this.#apiPath}${ApiPath.CURRENT_USER}`);
     } catch {
       // ignore
     }

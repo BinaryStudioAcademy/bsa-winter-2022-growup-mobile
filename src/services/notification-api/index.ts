@@ -25,8 +25,11 @@ class NotificationApi {
           contentType: ContentType.JSON,
         }
       );
-    } catch (err: any) {
-      showErrorToast(err?.message ?? 'Failed to mark notification as read');
+    } catch (err) {
+      showErrorToast(
+        (err as Error | undefined)?.message ??
+          'Failed to mark notification as read'
+      );
     }
   }
 }

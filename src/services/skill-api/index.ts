@@ -21,13 +21,15 @@ class SkillApi {
     payload: ICreateSkillPayload
   ): Promise<ISkill | undefined> {
     try {
-      return this.#http.load(`${this.#apiPath}${ApiPath.SKILLS}`, {
+      return await this.#http.load(`${this.#apiPath}${ApiPath.SKILLS}`, {
         method: HttpMethod.POST,
         contentType: ContentType.JSON,
         payload: JSON.stringify(payload),
       });
-    } catch (err: any) {
-      showErrorToast(err?.message ?? 'Failed to create skill');
+    } catch (err) {
+      showErrorToast(
+        (err as Error | undefined)?.message ?? 'Failed to create skill'
+      );
     }
   }
 }

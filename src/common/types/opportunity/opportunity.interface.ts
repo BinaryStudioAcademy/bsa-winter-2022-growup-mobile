@@ -1,10 +1,17 @@
+import { OpportunityType } from 'src/common/enums';
+
 interface IOpportunity {
   id: string;
   name: string;
-  orgGroup: string;
-  type: string;
-  startDate: Date;
-  tags: string[]; // is it location ?
+  tags: string[];
+  type: OpportunityType;
+  user: string;
+  company: string;
+  organization: string;
+  startDate: string;
+  createdAt: string;
+  updatedAt: string;
+  deletedAt: string | null;
 }
 
 export type { IOpportunity };

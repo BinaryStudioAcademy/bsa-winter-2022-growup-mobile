@@ -1,9 +1,9 @@
 import React from 'react';
 import { View } from 'react-native';
+
 import { HeadingLevel } from 'src/common/enums';
 import { IOpportunity } from 'src/common/types';
-import { Heading } from 'src/components';
-import { OpportunityCard } from '..';
+import { Heading, OpportunityCard } from 'src/components';
 import styles from './styles';
 
 type OpportunitiesSectionProps = {

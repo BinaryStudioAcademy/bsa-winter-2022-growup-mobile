@@ -1,8 +1,9 @@
-import { reducer as auth } from './auth';
-import { reducer as skill } from './skill';
+import { authReducer as auth } from './auth';
+import { skillReducer as skill } from './skill';
 import { okrReducer as okr } from './okr';
 import { notificationReducer as notification } from './notification';
-import { reducer as experience } from './experience';
+import { experienceReducer as experience } from './experience';
+import { opportunityReducer as opportunity } from './opportunities';
 import { reducer as quiz } from './quiz';
 
 export const rootReducer = {
@@ -11,5 +12,6 @@ export const rootReducer = {
   notification,
   okr,
   experience,
+  opportunity,
   quiz,
 };

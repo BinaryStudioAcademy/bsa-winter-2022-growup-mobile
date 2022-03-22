@@ -11,4 +11,11 @@ const addEducation = createAsyncThunk(
   }
 );
 
-export { addEducation };
+const loadEducationExperience = createAsyncThunk(
+  ActionTypes.LOAD_EDUCATION,
+  async () => {
+    return await educationApi.loadEducations();
+  }
+);
+
+export { addEducation, loadEducationExperience };

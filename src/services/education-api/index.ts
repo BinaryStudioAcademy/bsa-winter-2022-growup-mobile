@@ -1,5 +1,5 @@
 import { ApiPath, ContentType, HttpMethod } from 'src/common/enums';
-import { IAddEducationPayload } from 'src/common/types';
+import { IAddEducationPayload, IEducation } from 'src/common/types';
 import { Http } from '../http';
 
 type Constructor = {
@@ -21,6 +21,12 @@ class EducationApi {
       method: HttpMethod.POST,
       contentType: ContentType.JSON,
       payload: JSON.stringify(payload),
+    });
+  }
+
+  public loadEducations(): Promise<IEducation[]> {
+    return this.#http.load(`${this.#apiPath}${ApiPath.USER_EDUCATION}`, {
+      method: HttpMethod.GET,
     });
   }
 }

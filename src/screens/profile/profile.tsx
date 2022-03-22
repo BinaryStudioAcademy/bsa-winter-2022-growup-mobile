@@ -14,6 +14,7 @@ import { actions as experienceActions } from 'src/store/experience';
 import addActions from './add-actions';
 import { CareerCard, EducationCard, Navbar } from './components';
 import styles from './styles';
+import { educationActions } from 'src/store/actions';
 
 const NAVBAR_ITEMS = [
   'Summary',
@@ -103,6 +104,7 @@ const ProfileScreen: React.FC = () => {
 
   useEffect(() => {
     dispatch(experienceActions.loadCareerExperience());
+    dispatch(educationActions.loadEducationExperience());
   }, [dispatch]);
 
   return (

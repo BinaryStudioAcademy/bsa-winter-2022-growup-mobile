@@ -6,7 +6,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { AppRoute, ButtonMode } from 'src/common/enums';
 import { MainButton, Text } from 'src/components';
 import { useAppDispatch, useAppNavigation, useAppSelector } from 'src/hooks';
-import { actions } from 'src/store/quiz';
+import { quizActions } from 'src/store/quiz';
 import { QuizItem } from './components';
 import styles from './styles';
 
@@ -24,7 +24,9 @@ const QuizScreen: React.FC = () => {
     answerId: string,
     prevAnswerId: string
   ) => {
-    dispatch(actions.saveQuizAnswers({ questionId, answerId, prevAnswerId }));
+    dispatch(
+      quizActions.saveQuizAnswers({ questionId, answerId, prevAnswerId })
+    );
   };
 
   const changeCurrentPage = () => {
@@ -32,7 +34,7 @@ const QuizScreen: React.FC = () => {
   };
 
   const handleCompleteQuiz = () => {
-    dispatch(actions.sendQuizResults(quizQuestions));
+    dispatch(quizActions.sendQuizResults(quizQuestions));
     navigation.navigate(AppRoute.APP, {
       screen: AppRoute.APP_TABS,
       params: {
@@ -46,7 +48,7 @@ const QuizScreen: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    dispatch(actions.loadQuizQuestions());
+    dispatch(quizActions.loadQuizQuestions());
   }, [dispatch]);
 
   return (

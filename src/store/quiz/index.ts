@@ -6,4 +6,4 @@ const actions = {
   ...asyncActions,
 };
 
-export { reducer, actions };
+export { reducer as quizReducer, actions as quizActions };

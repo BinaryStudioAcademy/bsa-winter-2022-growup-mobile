@@ -4,7 +4,7 @@ import { okrReducer as okr } from './okr';
 import { notificationReducer as notification } from './notification';
 import { experienceReducer as experience } from './experience';
 import { opportunityReducer as opportunity } from './opportunities';
-import { reducer as quiz } from './quiz';
+import { quizReducer as quiz } from './quiz';
 
 export const rootReducer = {
   auth,

@@ -1,5 +1,6 @@
 import { ApiPath, ContentType, HttpMethod } from 'src/common/enums';
 import { IQuizQuestion, IQuizResult } from 'src/common/types';
+import { showErrorToast } from 'src/helpers';
 import { Http } from '../http';
 
 type Constructor = {
@@ -16,27 +17,53 @@ class QuizApi {
     this.#apiPath = apiPath;
   }
 
-  public loadQuizQuestions(): Promise<IQuizQuestion[]> {
-    return this.#http.load(`${this.#apiPath}${ApiPath.QUIZ_QUESTION}`, {
-      method: HttpMethod.GET,
-      hasAuth: true,
-    });
+  public async loadQuizQuestions(): Promise<IQuizQuestion[]> {
+    try {
+      return await this.#http.load(`${this.#apiPath}${ApiPath.QUIZ_QUESTION}`, {
+        method: HttpMethod.GET,
+        hasAuth: true,
+      });
+    } catch (err) {
+      showErrorToast(
+        (err as Error | undefined)?.message ?? 'Failed to load questions'
+      );
+
+      return [];
+    }
   }
 
-  public sendQuizResults(payload: IQuizQuestion[]): Promise<IQuizResult[]> {
-    return this.#http.load(`${this.#apiPath}${ApiPath.QUIZ_RESULT}`, {
-      method: HttpMethod.POST,
-      contentType: ContentType.JSON,
-      payload: JSON.stringify(payload),
-      hasAuth: true,
-    });
+  public async sendQuizResults(
+    payload: IQuizQuestion[]
+  ): Promise<IQuizResult[]> {
+    try {
+      return await this.#http.load(`${this.#apiPath}${ApiPath.QUIZ_RESULT}`, {
+        method: HttpMethod.POST,
+        contentType: ContentType.JSON,
+        payload: JSON.stringify(payload),
+        hasAuth: true,
+      });
+    } catch (err) {
+      showErrorToast(
+        (err as Error | undefined)?.message ?? 'Failed to load questions'
+      );
+
+      return [];
+    }
   }
 
-  public loadQuizResults(): Promise<IQuizResult[]> {
-    return this.#http.load(`${this.#apiPath}${ApiPath.QUIZ_RESULT}`, {
-      method: HttpMethod.GET,
-      hasAuth: true,
-    });
+  public async loadQuizResults(): Promise<IQuizResult[]> {
+    try {
+      return await this.#http.load(`${this.#apiPath}${ApiPath.QUIZ_RESULT}`, {
+        method: HttpMethod.GET,
+        hasAuth: true,
+      });
+    } catch (err) {
+      showErrorToast(
+        (err as Error | undefined)?.message ?? 'Failed to load questions'
+      );
+
+      return [];
+    }
   }
 }
 

@@ -6,11 +6,17 @@ import PagerView, {
   PagerViewOnPageSelectedEvent,
 } from 'react-native-pager-view';
 
-import { AppRoute, HeadingLevel, ProfileRoute } from 'src/common/enums';
+import {
+  AppRoute,
+  ButtonMode,
+  HeadingLevel,
+  ProfileRoute,
+} from 'src/common/enums';
 import { ICareer } from 'src/common/types';
+import { COMPLETE_QUIZ } from 'src/common/constants';
 import { Heading, MainButton, Text } from 'src/components';
 import { useAppDispatch, useAppSelector, useAppNavigation } from 'src/hooks';
-import { actions as experienceActions } from 'src/store/experience';
+import { experienceActions } from 'src/store/experience';
 import addActions from './add-actions';
 import { CareerCard, Navbar } from './components';
 import styles from './styles';
@@ -64,6 +70,7 @@ const ProfileScreen: React.FC = () => {
   };
 
   const { careerExperience } = useAppSelector(state => state.experience);
+  const { user } = useAppSelector(state => state.auth);
 
   const handleItemPress = (name: string) => {
     addFunctions[name]();
@@ -101,6 +108,24 @@ const ProfileScreen: React.FC = () => {
     dispatch(experienceActions.loadCareerExperience());
   }, [dispatch]);
 
+  if (!user?.isCompleteTest) {
+    return (
+      <SafeAreaView style={styles.quizContent}>
+        <Heading style={styles.quizHeader} level={HeadingLevel.H5}>
+          {COMPLETE_QUIZ}
+        </Heading>
+        <MainButton
+          mode={ButtonMode.CONTAINED}
+          onPress={() => {
+            navigation.navigate(AppRoute.QUIZ);
+          }}
+        >
+          Complete quiz
+        </MainButton>
+      </SafeAreaView>
+    );
+  }
+
   return (
     <SafeAreaView style={styles.fullHeight}>
       <View style={styles.container}>
@@ -119,13 +144,7 @@ const ProfileScreen: React.FC = () => {
             style={styles.swiperWrapper}
           >
             <View style={styles.swiperItem} collapsable={false}>
-              <MainButton
-                onPress={() => {
-                  navigation.navigate(AppRoute.QUIZ);
-                }}
-              >
-                Complete quiz
-              </MainButton>
+              <Text>Summary container</Text>
             </View>
             <View style={styles.swiperItem} collapsable={false}>
               <Text>Qualities container</Text>

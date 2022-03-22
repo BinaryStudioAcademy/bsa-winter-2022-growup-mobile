@@ -3,6 +3,7 @@ interface IUser {
   firstName: string;
   lastName: string;
   email: string;
+  isCompleteTest: boolean;
 }
 
 export type { IUser };

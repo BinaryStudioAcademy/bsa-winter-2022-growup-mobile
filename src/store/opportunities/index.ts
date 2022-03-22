@@ -6,4 +6,4 @@ const actions = {
   ...asyncActions,
 };
 
-export { reducer as okrReducer, actions as okrActions };
+export { reducer as opportunityReducer, actions as opportunityActions };

@@ -8,6 +8,7 @@ type PushNotificationArgs = {
   title?: string;
   body: string;
   type: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   payload?: any;
 };
 
@@ -46,6 +47,7 @@ class PushNotificationsApi {
 
   private configureNotifications() {
     PushNotification.configure({
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       onNotification: (notification: any) => {
         if (notification.userInteraction) {
           const handlersToCall = pushHandlers.filter(handler =>

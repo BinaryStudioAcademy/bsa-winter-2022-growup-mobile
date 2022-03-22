@@ -2,11 +2,11 @@ import { createAction, createAsyncThunk } from '@reduxjs/toolkit';
 
 import { authApi, secureStorage } from 'src/services';
 import { ISignInPayload } from 'src/common/types';
-import { ActionType } from './common';
+import { ActionTypes } from './common';
 import { SecureStorageKey } from 'src/common/enums';
 
 const signIn = createAsyncThunk(
-  ActionType.SIGN_IN,
+  ActionTypes.SIGN_IN,
   async (payload: ISignInPayload, { dispatch }) => {
     const response = await authApi.signIn(payload);
 
@@ -19,10 +19,10 @@ const signIn = createAsyncThunk(
   }
 );
 
-const signOut = createAction(ActionType.SIGN_OUT);
+const signOut = createAction(ActionTypes.SIGN_OUT);
 
 const loadCurrentUser = createAsyncThunk(
-  ActionType.LOAD_CURRENT_USER,
+  ActionTypes.LOAD_CURRENT_USER,
   async () => {
     const token = await secureStorage.getItem(SecureStorageKey.ACCESS_TOKEN);
 

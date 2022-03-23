@@ -1,15 +1,9 @@
 import { Asset } from 'react-native-image-picker';
 
 import { ISignInPayload, IUser, AuthResponse } from 'src/common/types';
-import {
-  ApiPath,
-  ContentType,
-  HttpMethod,
-  SecureStorageKey,
-} from 'src/common/enums';
+import { ApiPath, ContentType, HttpMethod } from 'src/common/enums';
 import { showErrorToast, assetToMultipartFile } from 'src/helpers';
 import { Http } from '../http';
-import { secureStorage } from '..';
 
 type Constructor = {
   http: Http;
@@ -59,7 +53,6 @@ class AuthApi {
 
   public async getCurrentUser(): Promise<IUser | undefined> {
     try {
-      await secureStorage.removeItem(SecureStorageKey.ACCESS_TOKEN);
       return await this.#http.load(`${this.#apiPath}${ApiPath.CURRENT_USER}`);
     } catch {
       // ignore

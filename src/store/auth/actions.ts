@@ -2,8 +2,8 @@ import { createAction, createAsyncThunk } from '@reduxjs/toolkit';
 
 import { authApi, secureStorage } from 'src/services';
 import { ISignInPayload } from 'src/common/types';
-import { ActionTypes } from './common';
 import { SecureStorageKey } from 'src/common/enums';
+import { ActionTypes } from './common';
 
 import {
   hasBiometry,
@@ -17,6 +17,7 @@ const signIn = createAsyncThunk(
     const response = await authApi.signIn(payload);
 
     if (!response) {
+      await revokeBiometricCredentials();
       return;
     }
 
@@ -55,6 +56,7 @@ const loadCurrentUser = createAsyncThunk(
     const token = await secureStorage.getItem(SecureStorageKey.ACCESS_TOKEN);
 
     if (!token) {
+      await revokeBiometricCredentials();
       return null;
     }
 

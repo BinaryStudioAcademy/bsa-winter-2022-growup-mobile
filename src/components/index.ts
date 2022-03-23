@@ -11,4 +11,6 @@ export * from './date-input';
 export * from './avatar';
 export * from './avatar-picker';
 export * from './add-button';
+export * from './minor-card';
 export * from './opportunity-card';
+export * from './paper-provider';

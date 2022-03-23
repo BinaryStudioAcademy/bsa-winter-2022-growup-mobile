@@ -1,9 +1,8 @@
 import React from 'react';
 
 import { INotification } from 'src/common/types';
-import { MainButton, Text } from 'src/components';
-import { MinorCard } from '..';
-import styles from './styles';
+import { MinorCard, MainButton, Text } from 'src/components';
+import useStyles from './styles';
 
 type NotificationCardProps = {
   notification: INotification;
@@ -14,6 +13,8 @@ const NotificationCard: React.FC<NotificationCardProps> = ({
   notification,
   onMarkRead,
 }) => {
+  const styles = useStyles();
+
   return (
     <MinorCard>
       <Text>{notification.text}</Text>

@@ -3,13 +3,15 @@ import { FlatList, View } from 'react-native';
 
 import { IOkr } from 'src/common/types';
 import { OKRCard } from '..';
-import styles from './styles';
+import useStyles from './styles';
 
 type OKRListProps = {
   data: IOkr[];
 };
 
 const OKRList: React.FC<OKRListProps> = ({ data }) => {
+  const styles = useStyles();
+
   return (
     <FlatList
       data={data}

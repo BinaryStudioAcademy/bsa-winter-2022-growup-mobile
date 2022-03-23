@@ -8,9 +8,11 @@ import { ISignInPayload } from 'src/common/types';
 import { useAppDispatch } from 'src/hooks';
 import { authActions } from 'src/store/actions';
 import { defaultLoginPayload } from '../../common';
-import { styles } from './styles';
+import useStyles from './styles';
 
 const LoginForm: React.FC = () => {
+  const styles = useStyles();
+
   const dispatch = useAppDispatch();
 
   const handleLogin = (values: ISignInPayload) => {

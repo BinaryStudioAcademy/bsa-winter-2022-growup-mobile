@@ -1,19 +1,29 @@
+import { useMemo } from 'react';
 import { StyleSheet } from 'react-native';
 
-import { AppColor } from 'src/common/enums';
+import { useColor } from 'src/hooks';
 
-const styles = StyleSheet.create({
-  indicator: {
-    width: 16,
-    height: 16,
-    borderRadius: 8,
-  },
-  active: {
-    backgroundColor: AppColor.SUCCESS,
-  },
-  inactive: {
-    backgroundColor: AppColor.ERROR,
-  },
-});
+const useStyles = () => {
+  const success = useColor('SUCCESS');
+  const error = useColor('ERROR');
 
-export default styles;
+  return useMemo(
+    () =>
+      StyleSheet.create({
+        indicator: {
+          width: 16,
+          height: 16,
+          borderRadius: 8,
+        },
+        active: {
+          backgroundColor: success,
+        },
+        inactive: {
+          backgroundColor: error,
+        },
+      }),
+    [success, error]
+  );
+};
+
+export default useStyles;

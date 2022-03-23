@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import DropDown from 'react-native-paper-dropdown';
 
-import { AppColor } from 'src/common/enums';
-import styles from '../shared/input-style/styles';
+import { useColor } from 'src/hooks';
+import useStyles from '../shared/input-style/styles';
 
 type Props = Omit<
   React.ComponentPropsWithoutRef<typeof DropDown>,
@@ -10,16 +10,18 @@ type Props = Omit<
 >;
 
 const Select: React.FC<Props> = dropDownProps => {
+  const styles = useStyles();
+  const colorAccent = useColor('ACCENT');
+
   const [open, setOpen] = useState<boolean>(false);
 
   const handleShow = () => setOpen(true);
-
   const handleHide = () => setOpen(false);
 
   return (
     <DropDown
       mode="flat"
-      activeColor={AppColor.ACCENT}
+      activeColor={colorAccent}
       visible={open}
       showDropDown={handleShow}
       onDismiss={handleHide}

@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { ScrollView, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Divider, FAB } from 'react-native-paper';
+
 import PagerView, {
   PagerViewOnPageSelectedEvent,
 } from 'react-native-pager-view';
@@ -10,10 +11,10 @@ import { HeadingLevel, ProfileRoute } from 'src/common/enums';
 import { ICareer } from 'src/common/types';
 import { Heading, Text } from 'src/components';
 import { useAppDispatch, useAppSelector, useAppNavigation } from 'src/hooks';
-import { actions as experienceActions } from 'src/store/experience';
+import { experienceActions } from 'src/store/experience';
 import addActions from './add-actions';
 import { CareerCard, Navbar } from './components';
-import styles from './styles';
+import useStyles from './styles';
 
 const NAVBAR_ITEMS = [
   'Summary',
@@ -25,6 +26,8 @@ const NAVBAR_ITEMS = [
 ];
 
 const ProfileScreen: React.FC = () => {
+  const styles = useStyles();
+
   const navigation = useAppNavigation();
   const dispatch = useAppDispatch();
   const [addMenuOpen, setAddMenuOpen] = useState(false);
@@ -103,7 +106,7 @@ const ProfileScreen: React.FC = () => {
 
   return (
     <SafeAreaView style={styles.fullHeight}>
-      <View style={styles.container}>
+      <View style={styles.screen}>
         <Navbar
           activeIndex={activeIndex}
           onClick={handleClick}

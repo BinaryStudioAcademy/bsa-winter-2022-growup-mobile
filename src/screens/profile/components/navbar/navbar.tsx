@@ -2,9 +2,10 @@ import React, { useEffect, useRef } from 'react';
 import { ScrollView, View } from 'react-native';
 
 import { MainButton } from 'src/components';
-import { AppColor, ButtonMode } from 'src/common/enums';
+import { ButtonMode } from 'src/common/enums';
 import { NAVBAR_BUTTON_WIDTH } from './constants';
-import styles from './styles';
+import useStyles from './styles';
+import { useColor } from 'src/hooks';
 
 type NavbarProps = {
   activeIndex: number;
@@ -13,6 +14,10 @@ type NavbarProps = {
 };
 
 const Navbar = ({ activeIndex, onClick, items }: NavbarProps) => {
+  const styles = useStyles();
+  const colorWhite = useColor('WHITE');
+  const colorBlack = useColor('BLACK');
+
   const scrollViewRef = useRef<ScrollView>(null);
   const isButtonsScrolling = items.length < 4;
 
@@ -43,7 +48,7 @@ const Navbar = ({ activeIndex, onClick, items }: NavbarProps) => {
               activeIndex === index ? ButtonMode.CONTAINED : ButtonMode.TEXT
             }
             labelStyle={{
-              color: activeIndex === index ? AppColor.WHITE : AppColor.BLACK,
+              color: activeIndex === index ? colorWhite : colorBlack,
             }}
             compact={true}
             onPress={() => onClick(index)}

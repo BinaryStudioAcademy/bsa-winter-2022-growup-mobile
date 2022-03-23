@@ -6,9 +6,11 @@ import { LoginForm } from 'src/screens/login/components';
 import { AuthRoute, ButtonMode } from 'src/common/enums';
 import { MainButton } from 'src/components';
 import { useAppNavigation } from 'src/hooks';
-import { styles } from './styles';
+import useStyles from './styles';
 
 const LoginScreen: React.FC = () => {
+  const styles = useStyles();
+
   const navigation = useAppNavigation();
 
   const handleSignUpPress = () => {
@@ -16,15 +18,14 @@ const LoginScreen: React.FC = () => {
   };
 
   return (
-    <SafeAreaView style={styles.content}>
-      <View style={styles.container}>
+    <SafeAreaView style={styles.screen}>
+      <View style={styles.content}>
         <Image
           source={require('src/assets/images/Logo.png')}
           style={styles.logo}
         />
         <LoginForm />
       </View>
-
       <View style={styles.footer}>
         <Text>New to GrowUp?</Text>
         <MainButton mode={ButtonMode.TEXT} onPress={() => handleSignUpPress}>

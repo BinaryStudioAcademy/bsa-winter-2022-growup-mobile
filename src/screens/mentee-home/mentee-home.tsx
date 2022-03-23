@@ -1,6 +1,8 @@
 import React from 'react';
 import { ScrollView, View } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
+import { OpportunityType } from 'src/common/enums';
 import { INotification, IOpportunity } from 'src/common/types';
 import { useAppDispatch } from 'src/hooks';
 import { notificationActions } from 'src/store/actions';
@@ -11,9 +13,11 @@ import {
   OpportunitiesSection,
 } from './components';
 
-import styles from './styles';
+import useStyles from './styles';
 
 const MenteeHome: React.FC = () => {
+  const styles = useStyles();
+
   const dispatch = useAppDispatch();
 
   const notifications: INotification[] = [
@@ -33,18 +37,28 @@ const MenteeHome: React.FC = () => {
     {
       id: '1',
       name: 'Senior PHP Developer',
-      orgGroup: 'Binary Studio',
+      organization: 'Binary Studio',
       tags: ['Kyiv', 'Remote'],
-      type: 'Project',
-      startDate: new Date('2022-02-23'),
+      type: OpportunityType.Project,
+      startDate: '2022-02-23',
+      user: '1',
+      company: '1',
+      createdAt: 'date',
+      updatedAt: 'date',
+      deletedAt: null,
     },
     {
       id: '2',
       name: 'Designer',
-      orgGroup: 'Super Designers',
-      type: 'Project',
-      startDate: new Date('2022-03-01'),
+      organization: 'Super Designers',
+      type: OpportunityType.Project,
+      startDate: '2022-03-01',
       tags: ['Lviv'],
+      user: '1',
+      company: '1',
+      createdAt: 'date',
+      updatedAt: 'date',
+      deletedAt: null,
     },
   ];
 
@@ -57,19 +71,21 @@ const MenteeHome: React.FC = () => {
   };
 
   return (
-    <View>
-      <Header>Looking for some jobs?</Header>
-      <ScrollView contentContainerStyle={styles.container}>
-        <NotificationsSection
-          notifications={notifications}
-          onMarkRead={handleMarkRead}
-        />
-        <OpportunitiesSection
-          opportunities={opportunities}
-          onDetails={handleOpportunityDetails}
-        />
-      </ScrollView>
-    </View>
+    <SafeAreaView>
+      <View>
+        <Header>Looking for some jobs?</Header>
+        <ScrollView contentContainerStyle={styles.screen}>
+          <NotificationsSection
+            notifications={notifications}
+            onMarkRead={handleMarkRead}
+          />
+          <OpportunitiesSection
+            opportunities={opportunities}
+            onDetails={handleOpportunityDetails}
+          />
+        </ScrollView>
+      </View>
+    </SafeAreaView>
   );
 };
 

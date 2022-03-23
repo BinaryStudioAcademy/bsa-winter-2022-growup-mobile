@@ -1,7 +1,8 @@
 import React from 'react';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 
-import { AppColor, AppRoute } from 'src/common/enums';
+import { AppRoute } from 'src/common/enums';
+
 import {
   AccountIcon,
   CompassIcon,
@@ -9,25 +10,31 @@ import {
   RadarIcon,
   ShieldSearchIcon,
 } from 'src/components';
+
 import {
   ExploreScreen,
   MenteeHomeScreen,
   OKRScreen,
   OpportunitiesScreen,
 } from 'src/screens';
+
 import { AppTabsParamList } from 'src/common/types';
 import ProfileNavigation from '../profile/profile-navigation';
-import styles from './styles';
+import useStyles from './styles';
+import { useColor } from 'src/hooks';
 
 const Tab = createMaterialBottomTabNavigator<AppTabsParamList>();
 
 const AppTabsNavigation = () => {
+  const styles = useStyles();
+  const colorNavSecondary = useColor('NAVIGATION_SECONDARY');
+
   return (
     <Tab.Navigator
       shifting={false}
       initialRouteName={AppRoute.HOME}
       barStyle={styles.barStyle}
-      inactiveColor={AppColor.NAVIGATION_SECONDARY}
+      inactiveColor={colorNavSecondary}
     >
       <Tab.Screen
         name={AppRoute.HOME}

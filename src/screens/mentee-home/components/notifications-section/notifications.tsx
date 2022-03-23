@@ -5,7 +5,7 @@ import { HeadingLevel } from 'src/common/enums';
 import { INotification } from 'src/common/types';
 import { Heading } from 'src/components';
 import { NotificationCard } from '..';
-import styles from './styles';
+import useStyles from './styles';
 
 type NotificationsSectionProps = {
   notifications: INotification[];
@@ -16,6 +16,8 @@ const NotificationsSection: React.FC<NotificationsSectionProps> = ({
   notifications,
   onMarkRead,
 }) => {
+  const styles = useStyles();
+
   if (!notifications.length) {
     return null;
   }

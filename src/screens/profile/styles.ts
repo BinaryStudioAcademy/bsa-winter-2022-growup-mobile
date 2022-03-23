@@ -1,34 +1,46 @@
+import { useMemo } from 'react';
 import { StyleSheet } from 'react-native';
 
-import { AppColor } from 'src/common/enums';
+import { useColor } from 'src/hooks';
 import { DEFAULT_SCREEN_PADDING } from 'src/styles';
 
-const styles = StyleSheet.create({
-  fullHeight: {
-    height: '100%',
-  },
-  container: {
-    flex: 1,
-  },
-  content: {
-    flex: 1,
-    backgroundColor: AppColor.WHITE,
-  },
-  swiperWrapper: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  swiperItem: {
-    flex: 1,
-    padding: DEFAULT_SCREEN_PADDING,
-  },
-  containerHeader: {
-    color: AppColor.PRIMARY,
-  },
-  card: {
-    marginVertical: 10,
-  },
-});
+const useStyles = () => {
+  const white = useColor('WHITE');
+  const primary = useColor('PRIMARY');
 
-export default styles;
+  return useMemo(
+    () =>
+      StyleSheet.create({
+        fullHeight: {
+          height: '100%',
+        },
+        screen: {
+          padding: DEFAULT_SCREEN_PADDING,
+          backgroundColor: white,
+          flex: 1,
+        },
+        content: {
+          flex: 1,
+          backgroundColor: white,
+        },
+        swiperWrapper: {
+          flex: 1,
+          justifyContent: 'center',
+          alignItems: 'center',
+        },
+        swiperItem: {
+          flex: 1,
+          padding: DEFAULT_SCREEN_PADDING,
+        },
+        containerHeader: {
+          color: primary,
+        },
+        card: {
+          marginVertical: 10,
+        },
+      }),
+    [white, primary]
+  );
+};
+
+export default useStyles;

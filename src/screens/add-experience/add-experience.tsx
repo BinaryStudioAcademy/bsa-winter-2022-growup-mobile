@@ -7,11 +7,11 @@ import { Formik } from 'formik';
 import { ButtonMode, HeadingLevel, ProfileRoute } from 'src/common/enums';
 import { FormDate, FormInput, Heading, MainButton } from 'src/components';
 import { addExperienceValidationSchema } from 'src/validation-schemas';
-import { actions as experienceActions } from 'src/store/experience';
+import { experienceActions } from 'src/store/experience';
 import { useAppDispatch, useAppNavigation } from 'src/hooks';
 import { IAddCareerPayload, ProfileStackParamList } from 'src/common/types';
 import { defaultAddExperiencePayload } from './common';
-import styles from './styles';
+import useStyles from './styles';
 
 type AddExperienceRouteProps = RouteProp<
   ProfileStackParamList,
@@ -19,6 +19,8 @@ type AddExperienceRouteProps = RouteProp<
 >;
 
 const AddExperienceScreen: React.FC = () => {
+  const styles = useStyles();
+
   const navigation = useAppNavigation();
   const route = useRoute<AddExperienceRouteProps>();
   const dispatch = useAppDispatch();

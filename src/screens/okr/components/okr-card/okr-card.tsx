@@ -6,7 +6,7 @@ import { OKRStatus, TextAppearance } from 'src/common/enums';
 import { IOkr } from 'src/common/types';
 import { Text, Avatar } from 'src/components';
 import { KeyResult } from '..';
-import styles from './styles';
+import useStyles from './styles';
 
 const KEY_RESULTS_SHOW_LIMIT = 2;
 
@@ -15,6 +15,8 @@ type OKRCardProps = {
 };
 
 const OKRCard: React.FC<OKRCardProps> = ({ okr }) => {
+  const styles = useStyles();
+
   const shownKeyResults = useMemo(
     () => okr.keyResults.slice(0, KEY_RESULTS_SHOW_LIMIT),
     [okr.keyResults]

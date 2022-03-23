@@ -1,22 +1,24 @@
 import { useMemo } from 'react';
 import { StyleSheet } from 'react-native';
+
 import { useColor } from 'src/hooks';
 
 const useStyles = () => {
-  const error = useColor('ERROR');
+  const shadow = useColor('SHADOW');
 
   return useMemo(
     () =>
       StyleSheet.create({
-        error: {
-          paddingTop: 4,
-          color: error,
-        },
-        formIcon: {
-          marginBottom: 0,
+        card: {
+          borderWidth: 1,
+          borderColor: shadow,
+          borderRadius: 10,
+          paddingTop: 15,
+          paddingBottom: 5,
+          paddingHorizontal: 15,
         },
       }),
-    [error]
+    [shadow]
   );
 };
 

@@ -1,16 +1,26 @@
+import { useMemo } from 'react';
 import { StyleSheet } from 'react-native';
 
-import { AppColor, ButtonMode } from 'src/common/enums';
+import { ButtonMode } from 'src/common/enums';
+import { useColor } from 'src/hooks';
 
-const styles = StyleSheet.create({
-  [ButtonMode.OUTLINED]: {
-    borderWidth: 2,
-    borderColor: AppColor.ACCENT,
-  },
-  text: {
-    fontFamily: 'NunitoSans-Bold',
-    fontSize: 16,
-  },
-});
+const useStyles = () => {
+  const accent = useColor('ACCENT');
 
-export default styles;
+  return useMemo(
+    () =>
+      StyleSheet.create({
+        [ButtonMode.OUTLINED]: {
+          borderWidth: 2,
+          borderColor: accent,
+        },
+        text: {
+          fontFamily: 'NunitoSans-Bold',
+          fontSize: 16,
+        },
+      }),
+    [accent]
+  );
+};
+
+export default useStyles;

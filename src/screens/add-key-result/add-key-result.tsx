@@ -4,6 +4,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { Formik } from 'formik';
 
 import { ButtonMode, HeadingLevel } from 'src/common/enums';
+
 import {
   FormInput,
   FormSlider,
@@ -11,14 +12,17 @@ import {
   MainButton,
   Text,
 } from 'src/components';
+
 import { addKeyResultValidationSchema } from 'src/validation-schemas';
 import { useAppDispatch, useAppNavigation } from 'src/hooks';
 import { okrActions } from 'src/store/okr';
 import { IKeyResult } from 'src/common/types';
 import { defaultAddKeyResultPayload } from './common';
-import styles from './styles';
+import useStyles from './styles';
 
 const AddKeyResultScreen: React.FC = () => {
+  const styles = useStyles();
+
   const navigation = useAppNavigation();
   const dispatch = useAppDispatch();
 

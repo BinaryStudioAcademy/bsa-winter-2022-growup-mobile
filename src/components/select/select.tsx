@@ -3,13 +3,14 @@ import DropDown from 'react-native-paper-dropdown';
 
 import { useColor } from 'src/hooks';
 import useStyles from '../shared/input-style/styles';
+import { Text } from '..';
 
 type Props = Omit<
   React.ComponentPropsWithoutRef<typeof DropDown>,
   'visible' | 'onDismiss' | 'showDropDown'
 >;
 
-const Select: React.FC<Props> = dropDownProps => {
+const Select: React.FC<Props> = ({ label, ...dropDownProps }) => {
   const styles = useStyles();
   const colorAccent = useColor('ACCENT');
 
@@ -25,7 +26,10 @@ const Select: React.FC<Props> = dropDownProps => {
       visible={open}
       showDropDown={handleShow}
       onDismiss={handleHide}
-      inputProps={{ style: styles.inputContainer }}
+      inputProps={{
+        style: styles.inputContainer,
+        label: label && <Text style={styles.label}>{label}</Text>,
+      }}
       {...dropDownProps}
     />
   );

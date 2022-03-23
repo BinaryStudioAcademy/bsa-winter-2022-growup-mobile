@@ -3,9 +3,9 @@ import { StyleSheet } from 'react-native';
 import { useColor } from 'src/hooks';
 
 const useStyles = () => {
-  const black = useColor('BLACK');
   const invisible = useColor('INVISIBLE');
   const white = useColor('WHITE');
+  const black = useColor('BLACK');
 
   return useMemo(
     () =>
@@ -26,6 +26,7 @@ const useStyles = () => {
           backgroundColor: invisible,
         },
         option: {
+          color: black,
           backgroundColor: white,
           paddingVertical: 10,
           paddingHorizontal: 20,

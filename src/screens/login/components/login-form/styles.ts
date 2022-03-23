@@ -15,6 +15,9 @@ const useStyles = () => {
         container: {
           flex: 1,
         },
+        button: {
+          marginTop: 10,
+        },
         formField: {
           backgroundColor: inputBg,
           height: 45,

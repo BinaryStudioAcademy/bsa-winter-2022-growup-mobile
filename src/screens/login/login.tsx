@@ -28,7 +28,7 @@ const LoginScreen: React.FC = () => {
       </View>
       <View style={styles.footer}>
         <Text>New to GrowUp?</Text>
-        <MainButton mode={ButtonMode.TEXT} onPress={() => handleSignUpPress}>
+        <MainButton mode={ButtonMode.TEXT} onPress={handleSignUpPress}>
           Sign Up
         </MainButton>
       </View>

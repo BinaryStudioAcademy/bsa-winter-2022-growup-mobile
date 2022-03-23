@@ -17,7 +17,7 @@ const RegisterScreen: React.FC = () => {
     <SafeAreaView>
       <View>
         <Text>Register screen</Text>
-        <MainButton mode={ButtonMode.TEXT} onPress={() => handleSignInPress}>
+        <MainButton mode={ButtonMode.TEXT} onPress={handleSignInPress}>
           Sign up
         </MainButton>
       </View>

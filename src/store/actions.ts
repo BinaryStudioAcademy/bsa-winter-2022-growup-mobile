@@ -5,3 +5,4 @@ export { actions as experienceActions } from './experience';
 export * from './notification';
 export * from './okr';
 export * from './education';
+export * from './opportunities';

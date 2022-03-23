@@ -7,6 +7,7 @@ import {
   GOOGLE_API_KEY,
   GOOGLE_MAPS_API_ORIGIN_URL,
 } from 'src/common/constants';
+
 import { SkillApi } from './skill-api';
 import { NotificationApi } from './notification-api';
 import { GooglePlacesApi } from './google-places-api';
@@ -14,9 +15,10 @@ import { OKRApi } from './okr-api';
 import { EducationApi } from './education-api';
 import { CareerApi } from './career-api';
 import { PushNotificationsApi } from './push-notifications-api';
+import { AuthApi } from './auth-api';
+import { OpportunitiesApi } from './opportunities-api';
 import { StorageService } from './storage';
 import { Http } from './http';
-import { AuthApi } from './auth-api';
 
 const apiPath = `${API_ORIGIN_URL}${API_PREFIX}`;
 
@@ -44,7 +46,7 @@ const skillApi = new SkillApi({
 
 const notificationApi = new NotificationApi({
   http,
-  apiPath: `${API_ORIGIN_URL}${API_PREFIX}`,
+  apiPath,
 });
 
 const googlePlacesApi = new GooglePlacesApi({
@@ -55,7 +57,7 @@ const googlePlacesApi = new GooglePlacesApi({
 
 const okrApi = new OKRApi({
   http,
-  apiPath: `${API_ORIGIN_URL}${API_PREFIX}`,
+  apiPath,
 });
 
 const educationApi = new EducationApi({
@@ -65,7 +67,12 @@ const educationApi = new EducationApi({
 
 const careerApi = new CareerApi({
   http,
-  apiPath: `${API_ORIGIN_URL}${API_PREFIX}`,
+  apiPath,
+});
+
+const opportunitiesApi = new OpportunitiesApi({
+  http,
+  apiPath,
 });
 
 const pushNotificationApi = new PushNotificationsApi();
@@ -81,4 +88,5 @@ export {
   educationApi,
   careerApi,
   pushNotificationApi,
+  opportunitiesApi,
 };

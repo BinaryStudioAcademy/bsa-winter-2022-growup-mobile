@@ -56,7 +56,6 @@ const loadCurrentUser = createAsyncThunk(
     const token = await secureStorage.getItem(SecureStorageKey.ACCESS_TOKEN);
 
     if (!token) {
-      await revokeBiometricCredentials();
       return null;
     }
 

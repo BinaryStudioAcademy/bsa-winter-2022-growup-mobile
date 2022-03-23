@@ -46,7 +46,7 @@ const ProfileScreen: React.FC = () => {
     },
     education: () => {
       navigation.navigate({
-        name: ProfileRoute.ADD_EDUCATION as never,
+        name: ProfileRoute.ADD_EDUCATION,
         params: {} as never,
       });
     },

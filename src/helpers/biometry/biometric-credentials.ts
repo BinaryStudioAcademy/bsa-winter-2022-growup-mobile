@@ -11,6 +11,13 @@ const hasBiometry = async (): Promise<boolean> => {
   return Boolean(type && allowedTypes.includes(type));
 };
 
+const hasCredentials = async (): Promise<boolean> => {
+  const biometry = await hasBiometry();
+  const credentials = await getBiometricCredentials();
+
+  return biometry && Boolean(credentials);
+};
+
 const getBiometricCredentials =
   async (): Promise<keychain.UserCredentials | null> => {
     try {
@@ -28,6 +35,7 @@ const setBiometricCredentials = async (
     securityLevel: keychain.SECURITY_LEVEL.SECURE_SOFTWARE,
     authenticationType: keychain.AUTHENTICATION_TYPE.BIOMETRICS,
     accessControl: keychain.ACCESS_CONTROL.BIOMETRY_CURRENT_SET,
+    accessible: keychain.ACCESSIBLE.WHEN_UNLOCKED_THIS_DEVICE_ONLY,
   });
 };
 
@@ -37,6 +45,7 @@ const revokeBiometricCredentials = async (): Promise<void> => {
 
 export {
   hasBiometry,
+  hasCredentials,
   getBiometricCredentials,
   setBiometricCredentials,
   revokeBiometricCredentials,

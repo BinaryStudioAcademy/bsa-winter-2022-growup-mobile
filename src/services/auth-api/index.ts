@@ -1,15 +1,8 @@
 import { Asset } from 'react-native-image-picker';
 
-import {
-  ISignInPayload,
-  IUser,
-  AuthResponse,
-  ChallengeResponse,
-} from 'src/common/types';
-
+import { ISignInPayload, IUser, AuthResponse } from 'src/common/types';
 import { ApiPath, ContentType, HttpMethod } from 'src/common/enums';
-import { decodeServerChallenge, showErrorToast } from 'src/helpers';
-import { assetToMultipartFile } from 'src/helpers/image-capture';
+import { showErrorToast, assetToMultipartFile } from 'src/helpers';
 import { Http } from '../http';
 
 type Constructor = {
@@ -38,42 +31,6 @@ class AuthApi {
       });
     } catch (err) {
       showErrorToast((err as Error | undefined)?.message ?? 'Failed to log in');
-    }
-  }
-
-  public async signInFingerprint(
-    email: string
-  ): Promise<AuthResponse | undefined> {
-    let challenge: string;
-
-    try {
-      const response = await this.#http.load<ChallengeResponse>(
-        `${this.#apiPath}${ApiPath.SIGN_IN_FINGERPRINT}`,
-        {
-          method: HttpMethod.POST,
-          contentType: ContentType.JSON,
-          payload: JSON.stringify({ email }),
-          hasAuth: false,
-        }
-      );
-
-      challenge = response.challenge;
-    } catch (err) {
-      showErrorToast((err as Error | undefined)?.message ?? 'Failed to login');
-      return;
-    }
-
-    const decoded = decodeServerChallenge(challenge);
-
-    try {
-      return this.#http.load(`${this.#apiPath}${ApiPath.SIGN_IN_CHALLENGE}`, {
-        method: HttpMethod.POST,
-        contentType: ContentType.JSON,
-        payload: JSON.stringify({ challenge: decoded }),
-        hasAuth: false,
-      });
-    } catch (err) {
-      showErrorToast((err as Error | undefined)?.message ?? 'Failed to login');
     }
   }
 

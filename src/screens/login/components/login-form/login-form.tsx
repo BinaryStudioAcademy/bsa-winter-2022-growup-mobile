@@ -6,7 +6,12 @@ import { loginValidationSchema } from 'src/validation-schemas';
 import { FormInput, FormPasswordInput, MainButton } from 'src/components';
 import { ISignInPayload } from 'src/common/types';
 import { ButtonMode } from 'src/common/enums';
-import { captureFingerprint, checkBiometry } from 'src/helpers';
+
+import {
+  getBiometricCredentials,
+  hasCredentials as checkBiometry,
+} from 'src/helpers';
+
 import { styles } from './styles';
 import { useAppDispatch } from 'src/hooks';
 import { authActions } from 'src/store/actions';
@@ -20,24 +25,15 @@ const LoginForm: React.FC = () => {
     checkBiometry().then(setHasBiometry);
   }, []);
 
-  const authenticateWithFinger = async (): Promise<boolean> => {
-    if (!hasBiometry) {
-      return false;
-    }
-
-    const { authenticated } = await captureFingerprint();
-    return authenticated;
-  };
-
   const handleLogin = (values: ISignInPayload) => {
     dispatch(authActions.signIn(values));
   };
 
-  const handleFingerprint = async ({ email }: ISignInPayload) => {
-    const authenticated = await authenticateWithFinger();
+  const handleFingerprint = async () => {
+    const credentials = await getBiometricCredentials();
 
-    if (authenticated) {
-      dispatch(authActions.signInFingerprint({ email }));
+    if (credentials) {
+      dispatch(authActions.signInFingerprint(credentials));
     }
   };
 
@@ -49,7 +45,7 @@ const LoginForm: React.FC = () => {
       validateOnChange={true}
       onSubmit={handleLogin}
     >
-      {({ values, isValid, handleSubmit }) => (
+      {({ isValid, handleSubmit }) => (
         <View style={styles.content}>
           <View style={styles.container}>
             <FormInput name="email" style={styles.formField} label="Email" />
@@ -71,7 +67,7 @@ const LoginForm: React.FC = () => {
             <MainButton
               style={styles.button}
               mode={ButtonMode.CONTAINED}
-              onPress={() => handleFingerprint(values)}
+              onPress={handleFingerprint}
               disabled={!isValid}
             >
               Log In using fingerprint

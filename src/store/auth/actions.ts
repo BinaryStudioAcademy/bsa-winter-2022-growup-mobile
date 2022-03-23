@@ -5,6 +5,12 @@ import { ISignInPayload } from 'src/common/types';
 import { ActionTypes } from './common';
 import { SecureStorageKey } from 'src/common/enums';
 
+import {
+  hasBiometry,
+  revokeBiometricCredentials,
+  setBiometricCredentials,
+} from 'src/helpers';
+
 const signIn = createAsyncThunk(
   ActionTypes.SIGN_IN,
   async (payload: ISignInPayload, { dispatch }) => {
@@ -14,6 +20,10 @@ const signIn = createAsyncThunk(
       return;
     }
 
+    if (await hasBiometry()) {
+      await setBiometricCredentials(payload.email, payload.password);
+    }
+
     await secureStorage.setItem(SecureStorageKey.ACCESS_TOKEN, response.token);
     dispatch(loadCurrentUser());
   }
@@ -21,10 +31,14 @@ const signIn = createAsyncThunk(
 
 const signInFingerprint = createAsyncThunk(
   ActionTypes.SIGN_IN_FINGERPRINT,
-  async ({ email }: { email: string }, { dispatch }) => {
-    const response = await authApi.signInFingerprint(email);
+  async (
+    { username: email, password }: { username: string; password: string },
+    { dispatch }
+  ) => {
+    const response = await authApi.signIn({ email, password });
 
     if (!response) {
+      await revokeBiometricCredentials();
       return;
     }
 

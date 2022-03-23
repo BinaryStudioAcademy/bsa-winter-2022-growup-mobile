@@ -12,10 +12,10 @@ import {
   hasCredentials as checkBiometry,
 } from 'src/helpers';
 
-import { styles } from './styles';
 import { useAppDispatch } from 'src/hooks';
 import { authActions } from 'src/store/actions';
 import { defaultLoginPayload } from '../../common';
+import { styles } from './styles';
 
 const LoginForm: React.FC = () => {
   const dispatch = useAppDispatch();

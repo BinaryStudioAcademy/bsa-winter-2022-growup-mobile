@@ -1,15 +1,17 @@
 import { createAction, createAsyncThunk } from '@reduxjs/toolkit';
+import * as keychain from 'react-native-keychain';
 
 import { authApi, secureStorage } from 'src/services';
 import { ISignInPayload } from 'src/common/types';
 import { SecureStorageKey } from 'src/common/enums';
-import { ActionTypes } from './common';
 
 import {
   hasBiometry,
   revokeBiometricCredentials,
   setBiometricCredentials,
 } from 'src/helpers';
+
+import { ActionTypes } from './common';
 
 const signIn = createAsyncThunk(
   ActionTypes.SIGN_IN,
@@ -33,7 +35,7 @@ const signIn = createAsyncThunk(
 const signInFingerprint = createAsyncThunk(
   ActionTypes.SIGN_IN_FINGERPRINT,
   async (
-    { username: email, password }: { username: string; password: string },
+    { username: email, password }: keychain.UserCredentials,
     { dispatch }
   ) => {
     const response = await authApi.signIn({ email, password });

@@ -1,11 +1,11 @@
 import React from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { View, Image, Text } from 'react-native';
+import { View, Image } from 'react-native';
 
-import { LoginForm } from 'src/screens/login/components';
 import { AuthRoute, ButtonMode } from 'src/common/enums';
-import { MainButton } from 'src/components';
+import { MainButton, Text } from 'src/components';
 import { useAppNavigation } from 'src/hooks';
+import { LoginForm } from './components';
 import useStyles from './styles';
 
 const LoginScreen: React.FC = () => {

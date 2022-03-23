@@ -11,9 +11,12 @@ const useStyles = () => {
     () =>
       StyleSheet.create({
         screen: {
-          padding: DEFAULT_SCREEN_PADDING,
           backgroundColor: white,
           height: '100%',
+        },
+        scroller: {
+          padding: DEFAULT_SCREEN_PADDING,
+          flex: 1,
         },
       }),
     [white]

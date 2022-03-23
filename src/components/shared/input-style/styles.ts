@@ -4,6 +4,7 @@ import { StyleSheet } from 'react-native';
 import { useColor } from 'src/hooks';
 
 const useStyles = () => {
+  const black = useColor('BLACK');
   const inputBg = useColor('INPUT_BACKGROUND');
 
   return useMemo(
@@ -13,8 +14,11 @@ const useStyles = () => {
           backgroundColor: inputBg,
           borderRadius: 8,
         },
+        label: {
+          color: black,
+        },
       }),
-    [inputBg]
+    [inputBg, black]
   );
 };
 

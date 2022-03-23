@@ -72,9 +72,9 @@ const MenteeHome: React.FC = () => {
 
   return (
     <SafeAreaView>
-      <View>
+      <View style={styles.screen}>
         <Header>Looking for some jobs?</Header>
-        <ScrollView contentContainerStyle={styles.screen}>
+        <ScrollView style={styles.scroller}>
           <NotificationsSection
             notifications={notifications}
             onMarkRead={handleMarkRead}

@@ -46,7 +46,7 @@ const OKRCard: React.FC<OKRCardProps> = ({ okr }) => {
   );
 
   return (
-    <Card>
+    <Card style={styles.card}>
       <Card.Title
         title={okr.name}
         subtitle={`${okr.type} ${okr.year}`}

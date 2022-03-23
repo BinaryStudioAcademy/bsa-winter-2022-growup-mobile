@@ -12,6 +12,7 @@ const MainButton: React.FC<MainButtonProps> = ({
   style,
   labelStyle,
   mode = ButtonMode.TEXT,
+  disabled,
   ...buttonProps
 }) => {
   const styles = useStyles();
@@ -22,10 +23,11 @@ const MainButton: React.FC<MainButtonProps> = ({
   return (
     <Button
       uppercase={false}
-      labelStyle={[styles.text, labelStyle]}
+      labelStyle={[styles.text, disabled && styles.disabled, labelStyle]}
       style={[isOutlined && styles[ButtonMode.OUTLINED], style]}
       mode={mode}
       color={accent}
+      disabled={disabled}
       {...buttonProps}
     >
       {children}

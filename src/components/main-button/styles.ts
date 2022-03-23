@@ -1,10 +1,11 @@
 import { useMemo } from 'react';
 import { StyleSheet } from 'react-native';
 
-import { ButtonMode } from 'src/common/enums';
+import { AppColorLight, ButtonMode } from 'src/common/enums';
 import { useColor } from 'src/hooks';
 
 const useStyles = () => {
+  const forceWhite = AppColorLight.WHITE;
   const accent = useColor('ACCENT');
 
   return useMemo(
@@ -18,8 +19,11 @@ const useStyles = () => {
           fontFamily: 'NunitoSans-Bold',
           fontSize: 16,
         },
+        disabled: {
+          color: forceWhite,
+        },
       }),
-    [accent]
+    [forceWhite, accent]
   );
 };
 

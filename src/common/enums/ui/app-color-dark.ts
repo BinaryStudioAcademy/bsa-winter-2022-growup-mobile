@@ -1,10 +1,10 @@
-enum AppColor {
+enum AppColorDark {
   INVISIBLE = '#0001',
   PRIMARY = '#463DA8',
   SECONDARY = '#291965',
   ACCENT = '#EE2A64',
-  WHITE = '#F6F7F9',
-  BLACK = '#1D1D1D',
+  WHITE = '#1D1D1D',
+  BLACK = '#F6F7F9',
   HINT = '#808C9C',
   SUCCESS = '#00CC00',
   ERROR = '#CC0000',
@@ -19,4 +19,4 @@ enum AppColor {
   SECOND_LEVEL_COLOR = '#5C5D5F',
 }
 
-export { AppColor };
+export { AppColorDark };

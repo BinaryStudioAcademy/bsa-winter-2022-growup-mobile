@@ -9,6 +9,7 @@ import Toast from 'react-native-toast-message';
 import { store } from 'src/store';
 import RootNavigation from 'src/navigation';
 import theme from 'src/styles/theme';
+import { ThemeProvider } from 'src/blocs/theme-bloc';
 import { pushNotificationApi } from 'src/services';
 
 pushNotificationApi.init();
@@ -23,9 +24,11 @@ const App = () => {
     <>
       <StoreProvider store={store}>
         <PaperProvider theme={theme}>
-          <NavigationContainer>
-            <RootNavigation />
-          </NavigationContainer>
+          <ThemeProvider>
+            <NavigationContainer>
+              <RootNavigation />
+            </NavigationContainer>
+          </ThemeProvider>
         </PaperProvider>
       </StoreProvider>
       <Toast />

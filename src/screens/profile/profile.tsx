@@ -13,7 +13,7 @@ import { Heading, Text } from 'src/components';
 import { useAppDispatch, useAppSelector, useAppNavigation } from 'src/hooks';
 import { experienceActions } from 'src/store/experience';
 import addActions from './add-actions';
-import { CareerCard, Navbar } from './components';
+import { CareerCard, Navbar, Settings } from './components';
 import useStyles from './styles';
 
 const NAVBAR_ITEMS = [
@@ -23,6 +23,7 @@ const NAVBAR_ITEMS = [
   'Skills',
   'Experience',
   'Education',
+  'Settings',
 ];
 
 const ProfileScreen: React.FC = () => {
@@ -151,6 +152,12 @@ const ProfileScreen: React.FC = () => {
             </View>
             <View style={styles.swiperItem} collapsable={false}>
               <Text>Education container</Text>
+            </View>
+            <View style={styles.swiperItem} collapsable={false}>
+              <Heading level={HeadingLevel.H5} style={styles.containerHeader}>
+                App Settings
+              </Heading>
+              <Settings />
             </View>
           </PagerView>
         </View>

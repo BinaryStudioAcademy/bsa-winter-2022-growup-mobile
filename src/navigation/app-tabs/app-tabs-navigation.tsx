@@ -33,6 +33,7 @@ const AppTabsNavigation = () => {
     <Tab.Navigator
       shifting={false}
       initialRouteName={AppRoute.HOME}
+      style={styles.container}
       barStyle={styles.barStyle}
       inactiveColor={colorNavSecondary}
     >

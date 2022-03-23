@@ -1,9 +1,12 @@
 import { useMemo } from 'react';
 import { StyleSheet } from 'react-native';
 
+import { useColor } from 'src/hooks';
 import { DEFAULT_SCREEN_PADDING } from 'src/styles';
 
 const useStyles = () => {
+  const white = useColor('WHITE');
+
   return useMemo(
     () =>
       StyleSheet.create({
@@ -11,7 +14,8 @@ const useStyles = () => {
           flex: 1,
         },
         screen: {
-          flex: 1,
+          height: '100%',
+          backgroundColor: white,
           paddingTop: DEFAULT_SCREEN_PADDING,
           paddingHorizontal: DEFAULT_SCREEN_PADDING,
         },
@@ -29,7 +33,7 @@ const useStyles = () => {
           alignItems: 'center',
         },
       }),
-    []
+    [white]
   );
 };
 

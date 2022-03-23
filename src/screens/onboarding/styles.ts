@@ -12,7 +12,7 @@ const useStyles = () => {
       StyleSheet.create({
         screen: {
           backgroundColor: white,
-          flex: 1,
+          height: '100%',
           justifyContent: 'space-between',
         },
         content: {

@@ -35,6 +35,7 @@ const Navbar = ({ activeIndex, onClick, items }: NavbarProps) => {
       <ScrollView
         horizontal={true}
         ref={scrollViewRef}
+        style={styles.scroller}
         contentContainerStyle={isButtonsScrolling && styles.contentContainer}
       >
         {items.map((item, index) => (
@@ -43,6 +44,7 @@ const Navbar = ({ activeIndex, onClick, items }: NavbarProps) => {
             style={[
               styles.button,
               activeIndex === index && styles.activeButton,
+              index < items.length - 1 && styles.padded,
             ]}
             mode={
               activeIndex === index ? ButtonMode.CONTAINED : ButtonMode.TEXT

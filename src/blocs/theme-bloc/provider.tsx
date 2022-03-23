@@ -1,7 +1,8 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { Appearance } from 'react-native';
 
-import { ThemeMode } from 'src/common/enums';
+import { SecureStorageKey, ThemeMode } from 'src/common/enums';
+import { secureStorage } from 'src/services';
 import { Theme, ThemeContext } from './context';
 
 const colorSchemeToThemeMode: Record<string, ThemeMode> = {
@@ -12,16 +13,14 @@ const colorSchemeToThemeMode: Record<string, ThemeMode> = {
 };
 
 const ThemeProvider: React.FC = ({ children }) => {
-  const [theme, setTheme] = useState<Theme>(() => {
-    const colorScheme = Appearance.getColorScheme();
-
-    return {
-      mode: colorSchemeToThemeMode[String(colorScheme)],
-    };
-  });
+  const [theme, setTheme] = useState<Theme | null>(null);
 
   const set = useCallback(
     (value: Partial<Theme>) => {
+      if (!theme) {
+        return;
+      }
+
       setTheme({
         ...theme,
         ...value,
@@ -29,6 +28,24 @@ const ThemeProvider: React.FC = ({ children }) => {
     },
     [theme]
   );
+
+  useEffect(() => {
+    secureStorage.getItem(SecureStorageKey.THEME_MODE).then(storedThemeMode => {
+      const preferredColorScheme = Appearance.getColorScheme();
+
+      const defaultTheme: Theme = {
+        mode:
+          (storedThemeMode as ThemeMode | null) ??
+          colorSchemeToThemeMode[String(preferredColorScheme)],
+      };
+
+      setTheme(defaultTheme);
+    });
+  }, []);
+
+  if (!theme) {
+    return null;
+  }
 
   return (
     <ThemeContext.Provider value={{ ...theme, set }}>

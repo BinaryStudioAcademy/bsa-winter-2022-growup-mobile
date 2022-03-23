@@ -13,6 +13,7 @@ const useStyles = () => {
         screen: {
           padding: DEFAULT_SCREEN_PADDING,
           backgroundColor: white,
+          height: '100%',
         },
         header: {
           marginBottom: 15,

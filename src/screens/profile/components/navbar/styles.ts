@@ -27,6 +27,9 @@ const useStyles = () => {
           borderRadius: 7,
           backgroundColor: white,
         },
+        padded: {
+          marginRight: 10,
+        },
         activeButton: {
           backgroundColor: accent,
         },

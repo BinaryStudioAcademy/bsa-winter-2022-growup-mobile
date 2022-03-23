@@ -14,7 +14,7 @@ const useStyles = () => {
           padding: DEFAULT_SCREEN_PADDING,
           backgroundColor: white,
           justifyContent: 'space-between',
-          flex: 1,
+          height: '100%',
         },
         inputContent: {
           marginBottom: 30,

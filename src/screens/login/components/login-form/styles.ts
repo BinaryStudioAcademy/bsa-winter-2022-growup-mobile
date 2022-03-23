@@ -9,6 +9,9 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
+  button: {
+    marginTop: 10,
+  },
   formField: {
     backgroundColor: AppColor.INPUT_BACKGROUND,
     height: 45,

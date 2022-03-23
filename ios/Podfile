@@ -14,6 +14,8 @@ target 'growupmobile' do
 
   pod 'react-native-image-picker', :path => '../node_modules/react-native-image-picker'
 
+  pod 'RNKeychain', :path => '../node_modules/react-native-keychain'
+
   target 'growupmobileTests' do
     inherit! :complete
     # Pods for testing

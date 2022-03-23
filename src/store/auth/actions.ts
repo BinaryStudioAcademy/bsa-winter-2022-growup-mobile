@@ -1,9 +1,17 @@
 import { createAction, createAsyncThunk } from '@reduxjs/toolkit';
+import * as keychain from 'react-native-keychain';
 
 import { authApi, secureStorage } from 'src/services';
 import { ISignInPayload } from 'src/common/types';
-import { ActionTypes } from './common';
 import { SecureStorageKey } from 'src/common/enums';
+
+import {
+  hasBiometry,
+  revokeBiometricCredentials,
+  setBiometricCredentials,
+} from 'src/helpers';
+
+import { ActionTypes } from './common';
 
 const signIn = createAsyncThunk(
   ActionTypes.SIGN_IN,
@@ -11,6 +19,29 @@ const signIn = createAsyncThunk(
     const response = await authApi.signIn(payload);
 
     if (!response) {
+      await revokeBiometricCredentials();
+      return;
+    }
+
+    if (await hasBiometry()) {
+      await setBiometricCredentials(payload.email, payload.password);
+    }
+
+    await secureStorage.setItem(SecureStorageKey.ACCESS_TOKEN, response.token);
+    dispatch(loadCurrentUser());
+  }
+);
+
+const signInFingerprint = createAsyncThunk(
+  ActionTypes.SIGN_IN_FINGERPRINT,
+  async (
+    { username: email, password }: keychain.UserCredentials,
+    { dispatch }
+  ) => {
+    const response = await authApi.signIn({ email, password });
+
+    if (!response) {
+      await revokeBiometricCredentials();
       return;
     }
 
@@ -34,4 +65,4 @@ const loadCurrentUser = createAsyncThunk(
   }
 );
 
-export { signIn, loadCurrentUser, signOut };
+export { signIn, signInFingerprint, loadCurrentUser, signOut };

@@ -68,7 +68,6 @@ const LoginForm: React.FC = () => {
               style={styles.button}
               mode={ButtonMode.CONTAINED}
               onPress={handleFingerprint}
-              disabled={!isValid}
             >
               Log In using fingerprint
             </MainButton>

@@ -44,7 +44,7 @@ class QuizApi {
       });
     } catch (err) {
       showErrorToast(
-        (err as Error | undefined)?.message ?? 'Failed to load questions'
+        (err as Error | undefined)?.message ?? 'Failed to send answers'
       );
 
       return [];
@@ -59,7 +59,7 @@ class QuizApi {
       });
     } catch (err) {
       showErrorToast(
-        (err as Error | undefined)?.message ?? 'Failed to load questions'
+        (err as Error | undefined)?.message ?? 'Failed to load quiz results'
       );
 
       return [];

@@ -102,9 +102,6 @@ const ProfileScreen: React.FC = () => {
     dispatch(experienceActions.loadCareerExperience());
   }, [dispatch]);
 
-  if (!user?.isCompleteTest) {
-  }
-
   return (
     <SafeAreaView style={styles.fullHeight}>
       <View style={styles.container}>

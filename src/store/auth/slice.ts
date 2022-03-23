@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 import { IUser } from 'src/common/types';
+import { sendQuizResults } from '../quiz/actions';
 import { signOut, loadCurrentUser } from './actions';
 
 interface IAuthState {
@@ -21,6 +22,11 @@ const { reducer, actions } = createSlice({
     });
     builder.addCase(loadCurrentUser.fulfilled, (state, { payload }) => {
       state.user = payload ?? null;
+    });
+    builder.addCase(sendQuizResults.fulfilled, state => {
+      if (state.user) {
+        state.user.isCompleteTest = true;
+      }
     });
   },
 });

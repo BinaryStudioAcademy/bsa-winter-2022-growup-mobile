@@ -29,15 +29,6 @@ const styles = StyleSheet.create({
   card: {
     marginVertical: 10,
   },
-  quizContent: {
-    flex: 1,
-    padding: DEFAULT_SCREEN_PADDING,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  quizHeader: {
-    marginVertical: 10,
-  },
 });
 
 export default styles;

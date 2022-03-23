@@ -1,4 +1,4 @@
-import { createAction, createAsyncThunk } from '@reduxjs/toolkit';
+import { createAsyncThunk } from '@reduxjs/toolkit';
 import * as keychain from 'react-native-keychain';
 
 import { authApi, secureStorage } from 'src/services';
@@ -50,7 +50,10 @@ const signInFingerprint = createAsyncThunk(
   }
 );
 
-const signOut = createAction(ActionTypes.SIGN_OUT);
+const signOut = createAsyncThunk(ActionTypes.SIGN_OUT, async () => {
+  await secureStorage.removeItem(SecureStorageKey.ACCESS_TOKEN);
+  await revokeBiometricCredentials();
+});
 
 const loadCurrentUser = createAsyncThunk(
   ActionTypes.LOAD_CURRENT_USER,

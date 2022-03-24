@@ -13,7 +13,7 @@ import { Heading, Text } from 'src/components';
 import { useAppDispatch, useAppSelector, useAppNavigation } from 'src/hooks';
 import { experienceActions } from 'src/store/experience';
 import addActions from './add-actions';
-import { CareerCard, Navbar, Settings } from './components';
+import { CareerCard, Navbar, Settings, Header } from './components';
 import useStyles from './styles';
 
 const NAVBAR_ITEMS = [
@@ -107,13 +107,16 @@ const ProfileScreen: React.FC = () => {
 
   return (
     <SafeAreaView style={styles.fullHeight}>
-      <View style={styles.screen}>
-        <Navbar
-          activeIndex={activeIndex}
-          onClick={handleClick}
-          items={NAVBAR_ITEMS}
-        />
-        <Divider />
+      <View style={styles.container}>
+        <View style={styles.headerContent}>
+          <Header />
+          <Navbar
+            activeIndex={activeIndex}
+            onClick={handleClick}
+            items={NAVBAR_ITEMS}
+          />
+          <Divider />
+        </View>
         <View style={styles.content}>
           <PagerView
             initialPage={0}

@@ -6,6 +6,7 @@ import { DEFAULT_SCREEN_PADDING } from 'src/styles';
 
 const useStyles = () => {
   const white = useColor('WHITE');
+  const grey = useColor('GREY');
   const primary = useColor('PRIMARY');
 
   return useMemo(
@@ -14,13 +15,12 @@ const useStyles = () => {
         fullHeight: {
           height: '100%',
         },
-        screen: {
-          padding: DEFAULT_SCREEN_PADDING,
-          backgroundColor: white,
-          height: '100%',
+        container: {
+          flex: 1,
         },
         content: {
           flex: 1,
+          backgroundColor: white,
         },
         swiperWrapper: {
           flex: 1,
@@ -37,8 +37,11 @@ const useStyles = () => {
         card: {
           marginVertical: 10,
         },
+        headerContent: {
+          backgroundColor: grey,
+        },
       }),
-    [white, primary]
+    [white, grey, primary]
   );
 };
 

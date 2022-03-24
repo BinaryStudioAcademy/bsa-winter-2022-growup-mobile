@@ -29,6 +29,9 @@ const styles = StyleSheet.create({
   card: {
     marginVertical: 10,
   },
+  headerContent: {
+    backgroundColor: AppColor.GREY,
+  },
 });
 
 export default styles;

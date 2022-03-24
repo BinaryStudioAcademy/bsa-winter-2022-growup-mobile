@@ -1,7 +1,8 @@
+import { useMemo } from 'react';
 import { configureFonts, DefaultTheme } from 'react-native-paper';
 import { Theme } from 'react-native-paper/lib/typescript/types';
 
-import { AppColor } from 'src/common/enums';
+import { useColor } from 'src/hooks';
 import fontConfig from '../fonts/font-config';
 
 type ThemeProps = {
@@ -10,18 +11,29 @@ type ThemeProps = {
   };
 } & Theme;
 
-const theme: ThemeProps = {
-  ...DefaultTheme,
-  roundness: 20,
-  colors: {
-    ...DefaultTheme.colors,
-    primary: AppColor.PRIMARY,
-    accent: AppColor.ACCENT,
-    text: AppColor.BLACK,
-    secondary: AppColor.SECONDARY,
-    surface: AppColor.WHITE,
-  },
-  fonts: configureFonts(fontConfig),
+const usePaperTheme = (): ThemeProps => {
+  const primary = useColor('PRIMARY');
+  const accent = useColor('ACCENT');
+  const secondary = useColor('SECONDARY');
+  const white = useColor('WHITE');
+  const black = useColor('BLACK');
+
+  return useMemo(
+    () => ({
+      ...DefaultTheme,
+      roundness: 20,
+      colors: {
+        ...DefaultTheme.colors,
+        primary: primary,
+        accent: accent,
+        text: black,
+        secondary: secondary,
+        surface: white,
+      },
+      fonts: configureFonts(fontConfig),
+    }),
+    [primary, accent, secondary, white, black]
+  );
 };
 
-export default theme;
+export default usePaperTheme;

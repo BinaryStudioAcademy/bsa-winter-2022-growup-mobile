@@ -3,7 +3,7 @@ import { View } from 'react-native';
 
 import { TagType } from 'src/common/enums';
 import { Tag, Text } from 'src/components';
-import styles from './styles';
+import useStyles from './styles';
 
 type SkillsSectionProps = {
   header: string;
@@ -16,6 +16,8 @@ const SkillsSection: React.FC<SkillsSectionProps> = ({
   skills,
   isHintHeader = false,
 }) => {
+  const styles = useStyles();
+
   return (
     <View>
       <Text style={[styles.heading, isHintHeader && styles.hintHeader]}>

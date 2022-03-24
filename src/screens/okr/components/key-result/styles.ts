@@ -1,10 +1,17 @@
+import { useMemo } from 'react';
 import { StyleSheet } from 'react-native';
 
-const styles = StyleSheet.create({
-  keyResult: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-  },
-});
+const useStyles = () => {
+  return useMemo(
+    () =>
+      StyleSheet.create({
+        keyResult: {
+          flexDirection: 'row',
+          justifyContent: 'space-between',
+        },
+      }),
+    []
+  );
+};
 
-export default styles;
+export default useStyles;

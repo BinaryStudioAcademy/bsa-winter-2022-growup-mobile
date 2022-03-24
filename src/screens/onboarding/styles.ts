@@ -1,24 +1,34 @@
+import { useMemo } from 'react';
 import { StyleSheet } from 'react-native';
 
-import { AppColor } from 'src/common/enums';
+import { useColor } from 'src/hooks';
 
-const styles = StyleSheet.create({
-  screen: {
-    backgroundColor: AppColor.WHITE,
-    flex: 1,
-    justifyContent: 'space-between',
-  },
-  content: {
-    flex: 1,
-  },
-  buttonContainer: {
-    marginBottom: 15,
-    paddingHorizontal: 20,
-  },
-  completeButton: {
-    borderWidth: 2,
-    borderColor: AppColor.ACCENT,
-  },
-});
+const useStyles = () => {
+  const white = useColor('WHITE');
+  const accent = useColor('ACCENT');
 
-export default styles;
+  return useMemo(
+    () =>
+      StyleSheet.create({
+        screen: {
+          backgroundColor: white,
+          height: '100%',
+          justifyContent: 'space-between',
+        },
+        content: {
+          flex: 1,
+        },
+        buttonContainer: {
+          marginBottom: 15,
+          paddingHorizontal: 20,
+        },
+        completeButton: {
+          borderWidth: 2,
+          borderColor: accent,
+        },
+      }),
+    [white, accent]
+  );
+};
+
+export default useStyles;

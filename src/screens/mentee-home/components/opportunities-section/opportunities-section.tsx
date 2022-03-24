@@ -4,7 +4,7 @@ import { View } from 'react-native';
 import { HeadingLevel } from 'src/common/enums';
 import { IOpportunity } from 'src/common/types';
 import { Heading, OpportunityCard } from 'src/components';
-import styles from './styles';
+import useStyles from './styles';
 
 type OpportunitiesSectionProps = {
   opportunities: IOpportunity[];
@@ -15,6 +15,8 @@ const OpportunitiesSection: React.FC<OpportunitiesSectionProps> = ({
   opportunities,
   onDetails,
 }) => {
+  const styles = useStyles();
+
   return (
     <View>
       <Heading level={HeadingLevel.H6}>

@@ -3,7 +3,7 @@ import { StyleProp, View, ViewStyle } from 'react-native';
 import { FormikValues, useFormikContext } from 'formik';
 
 import { Select, Text } from 'src/components';
-import styles from '../styles';
+import useStyles from '../styles';
 
 type SelectProps = React.ComponentPropsWithoutRef<typeof Select>;
 
@@ -17,6 +17,8 @@ const FormSelect: React.FC<FormSelectProps> = ({
   containerStyle,
   ...selectProps
 }) => {
+  const styles = useStyles();
+
   const { values, errors, touched, setFieldValue } =
     useFormikContext<FormikValues>();
 

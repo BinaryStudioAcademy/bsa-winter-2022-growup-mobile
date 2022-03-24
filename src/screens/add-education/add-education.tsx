@@ -8,9 +8,11 @@ import { FormDate, FormInput, Heading, MainButton } from 'src/components';
 import { addEducationValidationSchema } from 'src/validation-schemas';
 import { useAppNavigation } from 'src/hooks';
 import { defaultAddEducationPayload } from './common';
-import styles from './styles';
+import useStyles from './styles';
 
 const AddEducationScreen: React.FC = () => {
+  const styles = useStyles();
+
   const navigation = useAppNavigation();
 
   const handleCancel = () => {

@@ -2,11 +2,13 @@ import React, { useState } from 'react';
 import { TextInput } from 'react-native-paper';
 
 import { FormInput } from 'src/components';
-import styles from '../styles';
+import useStyles from '../styles';
 
 type FormInputProps = React.ComponentPropsWithoutRef<typeof FormInput>;
 
 const FormPasswordInput: React.FC<FormInputProps> = inputProps => {
+  const styles = useStyles();
+
   const [secure, setSecure] = useState(true);
 
   const handleChangePasswordSecure = () => {

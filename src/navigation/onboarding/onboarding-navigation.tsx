@@ -1,10 +1,12 @@
 import React from 'react';
+
 import {
   createNativeStackNavigator,
   NativeStackNavigationOptions,
 } from '@react-navigation/native-stack';
 
-import { OnboardingRoute } from 'src/common/enums/navigation';
+import { OnboardingRoute } from 'src/common/enums';
+
 import {
   AddEducationScreen,
   AddExperienceScreen,
@@ -12,7 +14,9 @@ import {
   AddLocationScreen,
   OnboardingScreen,
 } from 'src/screens';
+
 import { OnboardingStackParamList } from 'src/common/types';
+import { useStackScreenOptions } from 'src/hooks';
 
 const Stack = createNativeStackNavigator<OnboardingStackParamList>();
 
@@ -20,16 +24,9 @@ const addScreenGroupOptions: NativeStackNavigationOptions = {
   presentation: 'modal',
 };
 
-const screenOptions: NativeStackNavigationOptions = {
-  headerTitleAlign: 'center',
-  headerTitleStyle: {
-    fontFamily: 'NunitoSans-SemiBold',
-  },
-};
-
 const OnboardingNavigation = () => {
   return (
-    <Stack.Navigator screenOptions={screenOptions}>
+    <Stack.Navigator screenOptions={useStackScreenOptions()}>
       <Stack.Screen
         name={OnboardingRoute.ONBOARDING}
         component={OnboardingScreen}

@@ -5,6 +5,8 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { AppRoute, ButtonMode } from 'src/common/enums';
 import { MainButton } from 'src/components';
+import { useAppNavigation } from 'src/hooks';
+
 import {
   EducationContent,
   ExperienceContent,
@@ -12,13 +14,15 @@ import {
   StepDots,
   UserContent,
 } from './components';
-import styles from './styles';
-import { useAppNavigation } from 'src/hooks';
+
+import useStyles from './styles';
 
 const ONBOARDING_DOTS_COUNT = 4;
 const LAST_STEP_INDEX = ONBOARDING_DOTS_COUNT - 1;
 
 const OnboardingScreen: React.FC = () => {
+  const styles = useStyles();
+
   const [currentStep, setCurrentStep] = useState(0);
   const pagerRef = useRef<PagerView | null>(null);
   const navigation = useAppNavigation();

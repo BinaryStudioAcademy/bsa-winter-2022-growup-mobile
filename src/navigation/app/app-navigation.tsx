@@ -1,9 +1,5 @@
 import React from 'react';
-
-import {
-  createNativeStackNavigator,
-  NativeStackNavigationOptions,
-} from '@react-navigation/native-stack';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import {
   AddKeyResultScreen,
@@ -13,24 +9,18 @@ import {
 
 import { AppRoute } from 'src/common/enums';
 import { AppStackParamList } from 'src/common/types';
+import { useStackScreenOptions } from 'src/hooks';
 import { AppTabsNavigation } from '../app-tabs';
 import { OnboardingNavigation } from '../onboarding';
 
 const Stack = createNativeStackNavigator<AppStackParamList>();
-
-const screenOptions: NativeStackNavigationOptions = {
-  headerTitleAlign: 'center',
-  headerTitleStyle: {
-    fontFamily: 'NunitoSans-SemiBold',
-  },
-};
 
 const AppNavigation: React.FC = () => {
   //TODO add check for initial route when Onboarding is needed
   return (
     <Stack.Navigator
       initialRouteName={AppRoute.APP_TABS}
-      screenOptions={screenOptions}
+      screenOptions={useStackScreenOptions()}
     >
       <Stack.Screen
         name={AppRoute.APP_TABS}

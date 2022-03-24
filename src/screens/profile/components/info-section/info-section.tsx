@@ -3,7 +3,7 @@ import { View } from 'react-native';
 
 import { TagType } from 'src/common/enums';
 import { Tag, Text } from 'src/components';
-import styles from './styles';
+import useStyles from './styles';
 
 type InfoSectionProps = {
   header: string;
@@ -11,6 +11,8 @@ type InfoSectionProps = {
 };
 
 const InfoSection: React.FC<InfoSectionProps> = ({ header, tags }) => {
+  const styles = useStyles();
+
   return (
     <View>
       <Text style={styles.heading}>{header}</Text>

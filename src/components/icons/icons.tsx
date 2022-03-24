@@ -58,6 +58,10 @@ const ShieldCheckIcon: React.FC<IconProps> = iconProps => (
   <MaterialCommunityIcon name="shield-check" {...iconProps} />
 );
 
+const DotsVerticalIcon: React.FC<IconProps> = iconProps => (
+  <MaterialCommunityIcon name="dots-vertical" {...iconProps} />
+);
+
 export {
   HomeIcon,
   CompassIcon,
@@ -72,4 +76,5 @@ export {
   BookMarkIcon,
   BookMarkOutlineIcon,
   ShieldCheckIcon,
+  DotsVerticalIcon,
 };

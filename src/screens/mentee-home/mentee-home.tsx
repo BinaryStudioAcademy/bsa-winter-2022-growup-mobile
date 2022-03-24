@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { ScrollView, View } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { AppRoute } from 'src/common/enums';
 import { INotification } from 'src/common/types';
@@ -12,9 +13,11 @@ import {
   OpportunitiesSection,
 } from './components';
 
-import styles from './styles';
+import useStyles from './styles';
 
 const MenteeHome: React.FC = () => {
+  const styles = useStyles();
+
   const navigation = useAppNavigation();
   const dispatch = useAppDispatch();
 
@@ -51,19 +54,21 @@ const MenteeHome: React.FC = () => {
   };
 
   return (
-    <View>
-      <Header>Looking for some jobs?</Header>
-      <ScrollView contentContainerStyle={styles.container}>
-        <NotificationsSection
-          notifications={notifications}
-          onMarkRead={handleMarkRead}
-        />
-        <OpportunitiesSection
-          opportunities={(opportunities ?? []).slice(0, 3)}
-          onDetails={handleOpportunityDetails}
-        />
-      </ScrollView>
-    </View>
+    <SafeAreaView>
+      <View style={styles.screen}>
+        <Header>Looking for some jobs?</Header>
+        <ScrollView style={styles.scroller}>
+          <NotificationsSection
+            notifications={notifications}
+            onMarkRead={handleMarkRead}
+          />
+          <OpportunitiesSection
+            opportunities={(opportunities ?? []).slice(0, 3)}
+            onDetails={handleOpportunityDetails}
+          />
+        </ScrollView>
+      </View>
+    </SafeAreaView>
   );
 };
 

@@ -7,10 +7,10 @@ import {
 import { AppRoute } from 'src/common/enums/navigation';
 import { AddKeyResultScreen, AddOKRScreen, AdminHomeScreen } from 'src/screens';
 import { AppStackParamList } from 'src/common/types';
-import { AppTabsNavigation } from '../app-tabs';
-import { OnboardingNavigation } from '../onboarding';
 import { useAppSelector } from 'src/hooks';
 import { UserRoleType } from 'src/common/enums';
+import { AppTabsNavigation } from '../app-tabs';
+import { OnboardingNavigation } from '../onboarding';
 
 const Stack = createNativeStackNavigator<AppStackParamList>();
 

@@ -52,7 +52,6 @@ const signInFingerprint = createAsyncThunk(
 
 const signOut = createAsyncThunk(ActionTypes.SIGN_OUT, async () => {
   await secureStorage.removeItem(SecureStorageKey.ACCESS_TOKEN);
-  await revokeBiometricCredentials();
 });
 
 const loadCurrentUser = createAsyncThunk(

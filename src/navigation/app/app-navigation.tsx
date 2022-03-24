@@ -4,6 +4,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import {
   AddKeyResultScreen,
   AddOKRScreen,
+  QuizScreen,
   OpportunityDetailsScreen,
 } from 'src/screens';
 
@@ -30,12 +31,16 @@ const AppNavigation: React.FC = () => {
       <Stack.Screen
         name={AppRoute.ADD_OKR}
         component={AddOKRScreen}
-        options={{ title: 'Add New Objective' }}
+        options={{
+          title: 'Add New Objective',
+        }}
       />
       <Stack.Screen
         name={AppRoute.ADD_KEY_RESULT}
         component={AddKeyResultScreen}
-        options={{ title: 'Add Key Result' }}
+        options={{
+          title: 'Add Key Result',
+        }}
       />
       <Stack.Screen
         name={AppRoute.ONBOARDING_SETUP}
@@ -46,6 +51,11 @@ const AppNavigation: React.FC = () => {
         name={AppRoute.OPPORTUNITY_DETAILS}
         component={OpportunityDetailsScreen}
         options={{ title: 'Opportunity details' }}
+      />
+      <Stack.Screen
+        name={AppRoute.QUIZ}
+        component={QuizScreen}
+        options={{ title: 'Quiz' }}
       />
     </Stack.Navigator>
   );

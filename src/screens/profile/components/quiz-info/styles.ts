@@ -5,18 +5,12 @@ const useStyles = () => {
   return useMemo(
     () =>
       StyleSheet.create({
-        headingText: {
-          fontFamily: 'NunitoSans-SemiBold',
+        quizHeader: {
+          marginVertical: 10,
         },
-        headerContent: {
-          flexDirection: 'row',
-          padding: 15,
+        quizContent: {
           justifyContent: 'center',
           alignItems: 'center',
-        },
-        headerMenu: {
-          position: 'absolute',
-          right: 10,
         },
       }),
     []

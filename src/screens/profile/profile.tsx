@@ -13,7 +13,7 @@ import { Heading, Text } from 'src/components';
 import { useAppDispatch, useAppSelector, useAppNavigation } from 'src/hooks';
 import { experienceActions } from 'src/store/experience';
 import addActions from './add-actions';
-import { CareerCard, Navbar, Settings, Header } from './components';
+import { CareerCard, Navbar, Settings, Header, QuizInfo } from './components';
 import useStyles from './styles';
 
 const NAVBAR_ITEMS = [
@@ -67,7 +67,10 @@ const ProfileScreen: React.FC = () => {
     },
   };
 
-  const { careerExperience } = useAppSelector(state => state.experience);
+  const { careerExperience, user } = useAppSelector(state => ({
+    careerExperience: state.experience.careerExperience,
+    user: state.auth.user,
+  }));
 
   const handleItemPress = (name: string) => {
     addFunctions[name]();
@@ -127,9 +130,10 @@ const ProfileScreen: React.FC = () => {
           >
             <View style={styles.swiperItem} collapsable={false}>
               <Text>Summary container</Text>
+              {!user?.isCompleteTest && <QuizInfo />}
             </View>
             <View style={styles.swiperItem} collapsable={false}>
-              <Text>Qualities container</Text>
+              {!user?.isCompleteTest && <QuizInfo />}
             </View>
             <View style={styles.swiperItem} collapsable={false}>
               <Text>Interests container</Text>

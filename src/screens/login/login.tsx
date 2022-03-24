@@ -4,13 +4,13 @@ import { View, Image } from 'react-native';
 
 import { AuthRoute, ButtonMode } from 'src/common/enums';
 import { MainButton, Text } from 'src/components';
-import { useAppNavigation, useImage } from 'src/hooks';
+import { useAppNavigation, useAsset } from 'src/hooks';
 import { LoginForm } from './components';
 import useStyles from './styles';
 
 const LoginScreen: React.FC = () => {
   const styles = useStyles();
-  const logo = useImage('images/Logo');
+  const logo = useAsset('images/Logo');
 
   const navigation = useAppNavigation();
 

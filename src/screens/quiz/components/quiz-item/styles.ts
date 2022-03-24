@@ -1,25 +1,34 @@
+import { useMemo } from 'react';
 import { StyleSheet } from 'react-native';
 
-import { AppColor } from 'src/common/enums';
+import { useColor } from 'src/hooks';
 
-const styles = StyleSheet.create({
-  question: {
-    color: AppColor.PRIMARY,
-    marginLeft: 10,
-    fontSize: 20,
-  },
-  answersContainer: {
-    marginVertical: 10,
-  },
-  answerContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    margin: 10,
-  },
-  answerText: {
-    flex: 1,
-    flexWrap: 'wrap',
-  },
-});
+const useStyles = () => {
+  const primary = useColor('PRIMARY');
 
-export default styles;
+  return useMemo(
+    () =>
+      StyleSheet.create({
+        question: {
+          color: primary,
+          marginLeft: 10,
+          fontSize: 20,
+        },
+        answersContainer: {
+          marginVertical: 10,
+        },
+        answerContainer: {
+          flexDirection: 'row',
+          alignItems: 'center',
+          margin: 10,
+        },
+        answerText: {
+          flex: 1,
+          flexWrap: 'wrap',
+        },
+      }),
+    [primary]
+  );
+};
+
+export default useStyles;

@@ -6,10 +6,11 @@ import { HeadingLevel } from 'src/common/enums';
 import { DotsVerticalIcon, Heading } from 'src/components';
 import { useAppDispatch, useColor } from 'src/hooks';
 import { authActions } from 'src/store/actions';
-import styles from './styles';
+import useStyles from './styles';
 
 const Header: React.FC = () => {
   const colorBlack = useColor('BLACK');
+  const styles = useStyles();
 
   const [menuVisible, setMenuVisible] = useState(false);
   const dispatch = useAppDispatch();

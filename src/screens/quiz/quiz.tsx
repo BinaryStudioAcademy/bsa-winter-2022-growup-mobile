@@ -8,7 +8,7 @@ import { MainButton, Text } from 'src/components';
 import { useAppDispatch, useAppNavigation, useAppSelector } from 'src/hooks';
 import { quizActions } from 'src/store/quiz';
 import { QuizItem } from './components';
-import styles from './styles';
+import useStyles from './styles';
 
 const QuizScreen: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -16,6 +16,7 @@ const QuizScreen: React.FC = () => {
   const { quizQuestions } = useAppSelector(state => state.quiz);
   const pagerRef = useRef<PagerView | null>(null);
   const [currentStep, setCurrentStep] = useState(0);
+  const styles = useStyles();
 
   const isLastStep = currentStep === quizQuestions.length - 1;
 

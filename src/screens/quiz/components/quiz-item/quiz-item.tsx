@@ -5,7 +5,7 @@ import { RadioButton } from 'react-native-paper';
 import { HeadingLevel } from 'src/common/enums';
 import { IQuizQuestion } from 'src/common/types';
 import { Heading, Text } from 'src/components';
-import styles from './styles';
+import useStyles from './styles';
 
 interface IQuizItemProps {
   item: IQuizQuestion;
@@ -18,6 +18,7 @@ interface IQuizItemProps {
 
 const QuizItem: React.FC<IQuizItemProps> = ({ item, onAnswerChange }) => {
   const [value, setValue] = useState('0');
+  const styles = useStyles();
 
   const handleChangeAnswer = (answerIndex: string) => {
     if (answerIndex !== value) {

@@ -5,10 +5,11 @@ import { COMPLETE_QUIZ } from 'src/common/constants';
 import { AppRoute, ButtonMode } from 'src/common/enums';
 import { MainButton, Text } from 'src/components';
 import { useAppNavigation } from 'src/hooks';
-import styles from './styles';
+import useStyles from './styles';
 
 const QuizInfo: React.FC = () => {
   const navigation = useAppNavigation();
+  const styles = useStyles();
 
   const navigateToQuiz = () => {
     navigation.navigate(AppRoute.QUIZ);

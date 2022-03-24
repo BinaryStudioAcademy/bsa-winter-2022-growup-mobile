@@ -1,19 +1,19 @@
 import { useMemo } from 'react';
 import { StyleSheet } from 'react-native';
 
+import { useColor } from 'src/hooks';
+
 const useStyles = () => {
+  const grey = useColor('GREY');
+
   return useMemo(
     () =>
       StyleSheet.create({
-        quizHeader: {
-          marginVertical: 10,
-        },
-        quizContent: {
-          justifyContent: 'center',
-          alignItems: 'center',
+        header: {
+          backgroundColor: grey,
         },
       }),
-    []
+    [grey]
   );
 };
 

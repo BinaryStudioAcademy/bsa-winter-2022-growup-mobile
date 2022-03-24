@@ -1,9 +1,16 @@
+import { useMemo } from 'react';
 import { StyleSheet } from 'react-native';
 
-const styles = StyleSheet.create({
-  cardDivider: {
-    paddingBottom: 10,
-  },
-});
+const useStyles = () => {
+  return useMemo(
+    () =>
+      StyleSheet.create({
+        cardDivider: {
+          paddingBottom: 10,
+        },
+      }),
+    []
+  );
+};
 
-export default styles;
+export default useStyles;

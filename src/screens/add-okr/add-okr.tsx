@@ -5,6 +5,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { Formik } from 'formik';
 
 import { AppRoute, ButtonMode, HeadingLevel } from 'src/common/enums';
+
 import {
   Heading,
   MainButton,
@@ -13,16 +14,18 @@ import {
   Text,
   AddButton,
 } from 'src/components';
+
 import {
   createOKRValidationSchema,
   createTeamOKRValidationSchema,
 } from 'src/validation-schemas';
+
 import { AppStackParamList } from 'src/common/types';
 import { useAppDispatch, useAppNavigation, useAppSelector } from 'src/hooks';
 import { okrActions } from 'src/store/okr';
 import { IAddOkr } from 'src/common/types/okr/add-okr.interface';
 import { defaultAddOKRPayload } from './common';
-import styles from './styles';
+import useStyles from './styles';
 
 const MOCK_TEAM_NAMES = [
   {
@@ -68,6 +71,8 @@ const MOCK_OBJ_CYCLE = [
 type AddOKRRouteProps = RouteProp<AppStackParamList, AppRoute.ADD_OKR>;
 
 const AddOKRScreen: React.FC = () => {
+  const styles = useStyles();
+
   const dispatch = useAppDispatch();
   const { current } = useAppSelector(state => state.okr);
 

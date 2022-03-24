@@ -1,1 +1,1 @@
-export * from './fingerprint';
+export * from './biometric-credentials';

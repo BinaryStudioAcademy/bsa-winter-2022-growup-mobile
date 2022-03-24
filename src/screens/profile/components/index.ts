@@ -5,3 +5,5 @@ export * from './user-info';
 export * from './navbar';
 export * from './career-card';
 export * from './quiz-info';
+export * from './settings';
+export * from './header';

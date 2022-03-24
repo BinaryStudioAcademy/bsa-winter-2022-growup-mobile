@@ -1,15 +1,23 @@
+import { useMemo } from 'react';
 import { StyleSheet } from 'react-native';
+import { useColor } from 'src/hooks';
 
-import { AppColor } from 'src/common/enums';
+const useStyles = () => {
+  const error = useColor('ERROR');
 
-const styles = StyleSheet.create({
-  error: {
-    paddingTop: 4,
-    color: AppColor.ERROR,
-  },
-  formIcon: {
-    marginBottom: 0,
-  },
-});
+  return useMemo(
+    () =>
+      StyleSheet.create({
+        error: {
+          paddingTop: 4,
+          color: error,
+        },
+        formIcon: {
+          marginBottom: 0,
+        },
+      }),
+    [error]
+  );
+};
 
-export default styles;
+export default useStyles;

@@ -6,9 +6,11 @@ import { HeadingLevel } from 'src/common/enums';
 import { Heading, OpportunityCard } from 'src/components';
 import { useAppDispatch, useAppSelector } from 'src/hooks';
 import { opportunityActions } from 'src/store/actions';
-import styles from './styles';
+import useStyles from './styles';
 
 const OpportunitiesScreen: React.FC = () => {
+  const styles = useStyles();
+
   const dispatch = useAppDispatch();
 
   const { opportunitiesLoading, opportunities } = useAppSelector(
@@ -29,7 +31,7 @@ const OpportunitiesScreen: React.FC = () => {
     <SafeAreaView>
       <FlatList
         data={opportunities ?? []}
-        style={styles.container}
+        style={styles.screen}
         ListHeaderComponent={
           <Heading style={styles.header} level={HeadingLevel.H5}>
             Opportunities

@@ -2,7 +2,7 @@ import React from 'react';
 import { Text } from 'react-native-paper';
 
 import { HeadingLevel } from 'src/common/enums';
-import styles from './styles';
+import useStyles from './styles';
 
 type HeadingProps = React.ComponentPropsWithoutRef<typeof Text> & {
   level: HeadingLevel;
@@ -14,6 +14,8 @@ const Heading: React.FC<HeadingProps> = ({
   style,
   ...textProps
 }) => {
+  const styles = useStyles();
+
   return (
     <Text style={[styles[level], style]} {...textProps}>
       {children}

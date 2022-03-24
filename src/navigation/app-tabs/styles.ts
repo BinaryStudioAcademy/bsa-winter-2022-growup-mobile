@@ -1,17 +1,31 @@
+import { useMemo } from 'react';
 import { StyleSheet } from 'react-native';
 
-import { AppColor } from 'src/common/enums';
+import { useColor } from 'src/hooks';
 
-const styles = StyleSheet.create({
-  barStyle: {
-    borderWidth: 0.5,
-    borderBottomWidth: 1,
-    backgroundColor: AppColor.PRIMARY,
-    borderTopLeftRadius: 15,
-    borderTopRightRadius: 15,
-    borderColor: AppColor.NAVIGATION_SECONDARY,
-    overflow: 'hidden',
-  },
-});
+const useStyles = () => {
+  const white = useColor('WHITE');
+  const primary = useColor('PRIMARY');
+  const navSeconadry = useColor('NAVIGATION_SECONDARY');
 
-export default styles;
+  return useMemo(
+    () =>
+      StyleSheet.create({
+        container: {
+          backgroundColor: white,
+        },
+        barStyle: {
+          borderWidth: 0.5,
+          borderBottomWidth: 1,
+          backgroundColor: primary,
+          borderTopLeftRadius: 15,
+          borderTopRightRadius: 15,
+          borderColor: navSeconadry,
+          overflow: 'hidden',
+        },
+      }),
+    [white, primary, navSeconadry]
+  );
+};
+
+export default useStyles;

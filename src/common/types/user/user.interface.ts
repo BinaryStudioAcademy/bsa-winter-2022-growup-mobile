@@ -5,7 +5,7 @@ interface IUser {
   firstName: string;
   lastName: string;
   email: string;
-  roleType: UserRoleType;
+  role: UserRoleType;
   isCompleteTest: boolean;
 }
 

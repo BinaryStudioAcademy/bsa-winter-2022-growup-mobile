@@ -32,7 +32,7 @@ const AppNavigation = () => {
   const black = useColor('BLACK');
   const { user } = useAppSelector(state => state.auth);
 
-  const isUserAdmin = user?.roleType === UserRoleType.Admin;
+  const isUserAdmin = user?.role === UserRoleType.Admin;
 
   //TODO add check for initial route when Onboarding is needed
   return (

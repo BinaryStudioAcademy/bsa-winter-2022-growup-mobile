@@ -2,19 +2,19 @@ import React, { useState } from 'react';
 import { TouchableOpacity, View } from 'react-native';
 import { Menu } from 'react-native-paper';
 
-import { AppColor, HeadingLevel } from 'src/common/enums';
+import { HeadingLevel } from 'src/common/enums';
 import { DotsVerticalIcon, Heading } from 'src/components';
-import { useAppDispatch } from 'src/hooks';
+import { useAppDispatch, useColor } from 'src/hooks';
 import { authActions } from 'src/store/actions';
-import styles from './styles';
+import useStyles from './styles';
 
 const Header: React.FC = () => {
   const [menuVisible, setMenuVisible] = useState(false);
   const dispatch = useAppDispatch();
+  const styles = useStyles();
+  const colorBlack = useColor('BLACK');
 
-  const handleOpenMenu = () => setMenuVisible(true);
-
-  const handleCloseMenu = () => setMenuVisible(false);
+  const handleChangeMenuVisibility = () => setMenuVisible(current => !current);
 
   const handleLogout = () => {
     dispatch(authActions.signOut());
@@ -28,10 +28,10 @@ const Header: React.FC = () => {
       <View style={styles.headerMenu}>
         <Menu
           visible={menuVisible}
-          onDismiss={handleCloseMenu}
+          onDismiss={handleChangeMenuVisibility}
           anchor={
-            <TouchableOpacity onPress={handleOpenMenu}>
-              <DotsVerticalIcon color={AppColor.BLACK} size={30} />
+            <TouchableOpacity onPress={handleChangeMenuVisibility}>
+              <DotsVerticalIcon color={colorBlack} size={30} />
             </TouchableOpacity>
           }
         >

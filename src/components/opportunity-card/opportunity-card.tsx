@@ -4,6 +4,7 @@ import { TouchableOpacity, View } from 'react-native';
 
 import {
   AppColor,
+  ButtonMode,
   HeadingLevel,
   TagType,
   TextAppearance,
@@ -20,6 +21,7 @@ import {
 
 import { IOpportunity } from 'src/common/types';
 import { MinorCard } from '../../screens/mentee-home/components';
+import { MainButton } from '../main-button';
 import styles from './styles';
 
 type OpportunityCardProps = {
@@ -27,7 +29,10 @@ type OpportunityCardProps = {
   onDetails: () => void;
 };
 
-const OpportunityCard: React.FC<OpportunityCardProps> = ({ opportunity }) => {
+const OpportunityCard: React.FC<OpportunityCardProps> = ({
+  opportunity,
+  onDetails,
+}) => {
   const [isSaved, setIsSaved] = useState(false);
   const { name, startDate, tags, organization, type } = opportunity;
   const startDateString = dayjs(startDate).format('MMM D, YYYY');
@@ -70,6 +75,13 @@ const OpportunityCard: React.FC<OpportunityCardProps> = ({ opportunity }) => {
           />
         ))}
       </View>
+      <MainButton
+        mode={ButtonMode.TEXT}
+        style={styles.button}
+        onPress={onDetails}
+      >
+        Details
+      </MainButton>
     </MinorCard>
   );
 };

@@ -1,11 +1,17 @@
 import React from 'react';
+
 import {
   createNativeStackNavigator,
   NativeStackNavigationOptions,
 } from '@react-navigation/native-stack';
 
-import { AppRoute } from 'src/common/enums/navigation';
-import { AddKeyResultScreen, AddOKRScreen } from 'src/screens';
+import {
+  AddKeyResultScreen,
+  AddOKRScreen,
+  OpportunityDetailsScreen,
+} from 'src/screens';
+
+import { AppRoute } from 'src/common/enums';
 import { AppStackParamList } from 'src/common/types';
 import { AppTabsNavigation } from '../app-tabs';
 import { OnboardingNavigation } from '../onboarding';
@@ -19,7 +25,7 @@ const screenOptions: NativeStackNavigationOptions = {
   },
 };
 
-const AppNavigation = () => {
+const AppNavigation: React.FC = () => {
   //TODO add check for initial route when Onboarding is needed
   return (
     <Stack.Navigator
@@ -45,6 +51,11 @@ const AppNavigation = () => {
         name={AppRoute.ONBOARDING_SETUP}
         component={OnboardingNavigation}
         options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name={AppRoute.OPPORTUNITY_DETAILS}
+        component={OpportunityDetailsScreen}
+        options={{ title: 'Opportunity details' }}
       />
     </Stack.Navigator>
   );

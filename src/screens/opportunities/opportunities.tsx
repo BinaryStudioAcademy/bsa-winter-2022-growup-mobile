@@ -2,13 +2,14 @@ import React, { useEffect } from 'react';
 import { FlatList, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-import { HeadingLevel } from 'src/common/enums';
+import { AppRoute, HeadingLevel } from 'src/common/enums';
 import { Heading, OpportunityCard } from 'src/components';
-import { useAppDispatch, useAppSelector } from 'src/hooks';
+import { useAppDispatch, useAppNavigation, useAppSelector } from 'src/hooks';
 import { opportunityActions } from 'src/store/actions';
 import styles from './styles';
 
 const OpportunitiesScreen: React.FC = () => {
+  const navigation = useAppNavigation();
   const dispatch = useAppDispatch();
 
   const { opportunitiesLoading, opportunities } = useAppSelector(
@@ -21,8 +22,10 @@ const OpportunitiesScreen: React.FC = () => {
     }
   }, [opportunitiesLoading, opportunities, dispatch]);
 
-  const showOpportunityDetails = (_id: string) => {
-    /* TODO */
+  const showOpportunityDetails = (id: string) => {
+    dispatch(opportunityActions.loadExpandedOpportunity(id))
+      .unwrap()
+      .then(() => navigation.navigate(AppRoute.OPPORTUNITY_DETAILS));
   };
 
   return (

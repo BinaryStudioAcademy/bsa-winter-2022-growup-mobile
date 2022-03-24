@@ -24,6 +24,9 @@ const styles = StyleSheet.create({
   tag: {
     margin: 2,
   },
+  button: {
+    alignSelf: 'flex-end',
+  },
 });
 
 export default styles;

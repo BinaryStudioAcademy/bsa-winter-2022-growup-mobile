@@ -1,7 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 import { IEducation } from 'src/common/types';
-import { addEducation } from './actions';
+import {
+  loadEducationExperience,
+  editEducationExperience,
+  addEducationExperience,
+  deleteEducationExperience,
+} from './actions';
 
 interface IEducationState {
   educationExperience: IEducation[];
@@ -16,9 +21,27 @@ const { reducer, actions } = createSlice({
   initialState,
   reducers: {},
   extraReducers: builder => {
-    builder.addCase(addEducation.fulfilled, (state, { payload }) => {
+    builder.addCase(addEducationExperience.fulfilled, (state, { payload }) => {
       state.educationExperience.push(payload);
     });
+    builder.addCase(loadEducationExperience.fulfilled, (state, { payload }) => {
+      state.educationExperience = payload;
+    });
+    builder.addCase(editEducationExperience.fulfilled, (state, { payload }) => {
+      const index = state.educationExperience.findIndex(
+        education => education.id === payload.id
+      );
+      state.educationExperience[index] = payload;
+    });
+    builder.addCase(
+      deleteEducationExperience.fulfilled,
+      (state, { payload }) => {
+        const index = state.educationExperience.findIndex(
+          education => education.id === payload
+        );
+        state.educationExperience.splice(index, 1);
+      }
+    );
   },
 });
 

@@ -7,7 +7,7 @@ import PagerView, {
 } from 'react-native-pager-view';
 
 import { HeadingLevel, ProfileRoute } from 'src/common/enums';
-import { ICareer } from 'src/common/types';
+import { ICareer, IEducation } from 'src/common/types';
 import { Heading, Text } from 'src/components';
 import { useAppDispatch, useAppSelector, useAppNavigation } from 'src/hooks';
 import { actions as experienceActions } from 'src/store/experience';
@@ -47,7 +47,10 @@ const ProfileScreen: React.FC = () => {
     education: () => {
       navigation.navigate({
         name: ProfileRoute.ADD_EDUCATION,
-        params: {} as never,
+        params: {
+          isEdit: false,
+          education: undefined,
+        },
       });
     },
     language: () => {
@@ -96,6 +99,27 @@ const ProfileScreen: React.FC = () => {
         params: {
           isEdit: true,
           career,
+        },
+      });
+    },
+    [navigation]
+  );
+
+  const handleDeleteEducation = useCallback(
+    (educationId: string) => {
+      console.log('education_id = ', educationId);
+      dispatch(educationActions.deleteEducationExperience(educationId));
+    },
+    [dispatch]
+  );
+
+  const handleEditEducation = useCallback(
+    (education: IEducation) => {
+      navigation.navigate({
+        name: ProfileRoute.ADD_EDUCATION,
+        params: {
+          isEdit: true,
+          education,
         },
       });
     },
@@ -159,7 +183,11 @@ const ProfileScreen: React.FC = () => {
               <ScrollView showsVerticalScrollIndicator={false}>
                 {educationExperience.map(item => (
                   <View key={item.id} style={styles.card}>
-                    <EducationCard education={item} />
+                    <EducationCard
+                      education={item}
+                      onEdit={handleEditEducation}
+                      onDelete={handleDeleteEducation}
+                    />
                   </View>
                 ))}
               </ScrollView>

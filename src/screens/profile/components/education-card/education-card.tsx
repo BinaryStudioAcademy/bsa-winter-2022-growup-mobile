@@ -18,15 +18,17 @@ import styles from './styles';
 
 type EducationCardProps = {
   education: IEducation;
-  onEdit?: () => void;
-  onDelete?: () => void;
+  onEdit?: (education: IEducation) => void;
+  onDelete?: (educationId: string) => void;
 };
 
 const EducationCard: React.FC<EducationCardProps> = ({
-  education: { type, university, degree, startDate, endDate },
+  education,
   onEdit,
   onDelete,
 }) => {
+  const { specialization, university, degree, startDate, endDate } = education;
+
   const dateString = useMemo(() => {
     const startDay = dayjs(startDate);
     const endDay = dayjs(endDate);
@@ -40,20 +42,20 @@ const EducationCard: React.FC<EducationCardProps> = ({
 
   const handleEdit = () => {
     if (isFunction(onEdit)) {
-      onEdit();
+      onEdit(education);
     }
   };
 
   const handleDelete = () => {
     if (isFunction(onDelete)) {
-      onDelete();
+      onDelete(education.id);
     }
   };
 
   return (
     <View style={styles.card}>
       <View style={styles.header}>
-        <Heading level={HeadingLevel.H5}>{type}</Heading>
+        <Heading level={HeadingLevel.H5}>{specialization}</Heading>
         <View style={styles.keyvalue}>
           <Text style={styles.key} appearance={TextAppearance.HINT}>
             University

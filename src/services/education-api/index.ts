@@ -1,5 +1,5 @@
 import { ApiPath, ContentType, HttpMethod } from 'src/common/enums';
-import { IAddEducationPayload } from 'src/common/types';
+import { IAddEducationPayload, IEducation } from 'src/common/types';
 import { showErrorToast } from 'src/helpers';
 import { Http } from '../http';
 
@@ -39,6 +39,38 @@ class EducationApi {
     } catch (err) {
       showErrorToast(
         (err as Error | undefined)?.message ?? 'Failed to load educations'
+      );
+    }
+  }
+
+  public editEducation(payload: IEducation) {
+    try {
+      return this.#http.load(
+        `${this.#apiPath}${ApiPath.USER_EDUCATION}/${payload.id}`,
+        {
+          method: HttpMethod.PUT,
+          contentType: ContentType.JSON,
+          payload: JSON.stringify(payload),
+        }
+      );
+    } catch (err) {
+      showErrorToast(
+        (err as Error | undefined)?.message ?? 'Failed to edit the education'
+      );
+    }
+  }
+
+  public deleteEducation(educationId: string) {
+    try {
+      return this.#http.load(
+        `${this.#apiPath}${ApiPath.USER_EDUCATION}/${educationId}`,
+        {
+          method: HttpMethod.DELETE,
+        }
+      );
+    } catch (err) {
+      showErrorToast(
+        (err as Error | undefined)?.message ?? 'Failed to delete the education'
       );
     }
   }

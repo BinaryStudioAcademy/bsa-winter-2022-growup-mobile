@@ -1,4 +1,4 @@
-interface IEducation {
+interface IEditEducationPayload {
   id: string;
   specialization: string;
   university: string;
@@ -7,4 +7,4 @@ interface IEducation {
   endDate?: string;
 }
 
-export type { IEducation };
+export type { IEditEducationPayload };

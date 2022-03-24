@@ -3,7 +3,7 @@ import { StyleProp, View, ViewStyle } from 'react-native';
 import { FormikValues, useFormikContext } from 'formik';
 
 import { AutocompleteSelect, Text } from 'src/components';
-import styles from '../styles';
+import useStyles from '../styles';
 
 type AutocompleteSelectProps = React.ComponentPropsWithoutRef<
   typeof AutocompleteSelect
@@ -22,6 +22,8 @@ const FormAutocompleteSelect: React.FC<FormAutocompleteSelectProps> = ({
   containerStyle,
   ...selectProps
 }) => {
+  const styles = useStyles();
+
   const { values, errors, touched, setFieldValue } =
     useFormikContext<FormikValues>();
 

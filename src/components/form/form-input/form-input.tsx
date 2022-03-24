@@ -3,8 +3,8 @@ import { StyleProp, View, ViewStyle } from 'react-native';
 import { FormikValues, useFormikContext } from 'formik';
 
 import { Input, Text } from 'src/components';
-import styles from '../styles';
-import { AppColor } from 'src/common/enums';
+import useStyles from '../styles';
+import { useColor } from 'src/hooks';
 
 type InputProps = React.ComponentPropsWithoutRef<typeof Input>;
 
@@ -18,6 +18,10 @@ const FormInput: React.FC<FormInputProps> = ({
   containerStyle,
   ...inputProps
 }) => {
+  const styles = useStyles();
+  const colorInputBg = useColor('INPUT_BACKGROUND');
+  const colorError = useColor('ERROR');
+
   const { values, errors, touched, setFieldValue, handleBlur } =
     useFormikContext<FormikValues>();
 
@@ -31,7 +35,7 @@ const FormInput: React.FC<FormInputProps> = ({
         value={values[name]}
         onChangeText={handleChange}
         onBlur={handleBlur(name)}
-        outlineColor={!error ? AppColor.INPUT_BACKGROUND : AppColor.ERROR}
+        outlineColor={!error ? colorInputBg : colorError}
         {...inputProps}
       />
       {Boolean(error) && <Text style={styles.error}>{error}</Text>}

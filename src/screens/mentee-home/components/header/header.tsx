@@ -5,7 +5,7 @@ import { AppRoute, HeadingLevel } from 'src/common/enums';
 import { Heading } from 'src/components';
 import { useAppNavigation } from 'src/hooks';
 import { Avatar } from '..';
-import styles from './styles';
+import useStyles from './styles';
 
 type HeaderProps = {
   children: string;
@@ -13,6 +13,8 @@ type HeaderProps = {
 };
 
 const Header: React.FC<HeaderProps> = ({ avatarUrl, children }) => {
+  const styles = useStyles();
+
   const navigation = useAppNavigation();
 
   const handleAvatarPress = () => {

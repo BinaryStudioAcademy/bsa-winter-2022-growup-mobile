@@ -10,6 +10,7 @@ enum AppRoute {
   ADD_OKR = 'AddOKR',
   ADD_KEY_RESULT = 'AddKeyResult',
   ADMIN_HOME = 'AdminHome',
+  QUIZ = 'Quiz',
 }
 
 export { AppRoute };

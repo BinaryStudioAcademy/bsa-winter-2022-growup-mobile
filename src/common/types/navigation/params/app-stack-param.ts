@@ -11,6 +11,7 @@ type AppStackParamList = {
   [AppRoute.ADD_KEY_RESULT]: undefined;
   [AppRoute.ONBOARDING_SETUP]: undefined;
   [AppRoute.ADMIN_HOME]: undefined;
+  [AppRoute.QUIZ]: undefined;
 };
 
 export type { AppStackParamList };

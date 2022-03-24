@@ -6,6 +6,7 @@ interface IUser {
   lastName: string;
   email: string;
   roleType: UserRoleType;
+  isCompleteTest: boolean;
 }
 
 export type { IUser };

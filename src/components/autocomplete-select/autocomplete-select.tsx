@@ -13,9 +13,9 @@ import {
 import { Portal, TouchableRipple } from 'react-native-paper';
 import { isFunction } from 'lodash-es';
 
-import { AppColor } from 'src/common/enums';
+import { useColor } from 'src/hooks';
 import { Input, Text } from '..';
-import styles from './styles';
+import useStyles from './styles';
 
 type InputProps = Omit<
   React.ComponentPropsWithoutRef<typeof Input>,
@@ -39,6 +39,9 @@ const AutocompleteSelect: React.FC<AutocompleteSelectProps> = ({
   onChangeText,
   ...inputProps
 }) => {
+  const styles = useStyles();
+  const colorShadow = useColor('SHADOW');
+
   const inputRef = useRef<TextInput | null>(null);
   const [listOpen, setListOpen] = useState<boolean>(false);
   const [inputLayout, setInputLayout] = useState<LayoutRectangle>();
@@ -112,7 +115,7 @@ const AutocompleteSelect: React.FC<AutocompleteSelectProps> = ({
                 renderItem={({ item }) => (
                   <TouchableRipple
                     style={styles.option}
-                    rippleColor={AppColor.SHADOW}
+                    rippleColor={colorShadow}
                     onPress={() => handleSelect(item)}
                   >
                     <Text>{item.label}</Text>

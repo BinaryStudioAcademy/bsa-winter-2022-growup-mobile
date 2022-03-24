@@ -1,6 +1,7 @@
 import { createSlice, isAnyOf } from '@reduxjs/toolkit';
 
 import { IUser } from 'src/common/types';
+import { sendQuizResults } from '../quiz/actions';
 import { signOut, loadCurrentUser, signIn, signInFingerprint } from './actions';
 
 interface IAuthState {
@@ -19,7 +20,11 @@ const { reducer, actions } = createSlice({
     builder.addCase(signOut.fulfilled, state => {
       state.user = null;
     });
-
+    builder.addCase(sendQuizResults.fulfilled, state => {
+      if (state.user) {
+        state.user.isCompleteTest = true;
+      }
+    });
     builder.addMatcher(
       isAnyOf(
         loadCurrentUser.fulfilled,

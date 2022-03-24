@@ -1,15 +1,29 @@
+import { useMemo } from 'react';
 import { StyleSheet } from 'react-native';
 
-const styles = StyleSheet.create({
-  container: {
-    padding: 20,
-  },
-  header: {
-    marginBottom: 15,
-  },
-  cardWrapper: {
-    paddingBottom: 10,
-  },
-});
+import { useColor } from 'src/hooks';
+import { DEFAULT_SCREEN_PADDING } from 'src/styles';
 
-export default styles;
+const useStyles = () => {
+  const white = useColor('WHITE');
+
+  return useMemo(
+    () =>
+      StyleSheet.create({
+        screen: {
+          padding: DEFAULT_SCREEN_PADDING,
+          backgroundColor: white,
+          height: '100%',
+        },
+        header: {
+          marginBottom: 15,
+        },
+        cardWrapper: {
+          paddingBottom: 10,
+        },
+      }),
+    [white]
+  );
+};
+
+export default useStyles;

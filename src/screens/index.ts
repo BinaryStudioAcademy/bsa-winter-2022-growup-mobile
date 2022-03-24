@@ -14,3 +14,4 @@ export * from './add-location';
 export * from './add-okr';
 export * from './add-key-result';
 export * from './admin-home';
+export * from './quiz';

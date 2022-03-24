@@ -1,11 +1,11 @@
 import { useMemo } from 'react';
 import { StyleSheet } from 'react-native';
 
-import { AppColorLight, ButtonMode } from 'src/common/enums';
+import { ButtonMode } from 'src/common/enums';
 import { useColor } from 'src/hooks';
 
 const useStyles = () => {
-  const forceWhite = AppColorLight.WHITE;
+  const hint = useColor('HINT');
   const accent = useColor('ACCENT');
 
   return useMemo(
@@ -20,10 +20,10 @@ const useStyles = () => {
           fontSize: 16,
         },
         disabled: {
-          color: forceWhite,
+          color: hint,
         },
       }),
-    [forceWhite, accent]
+    [hint, accent]
   );
 };
 

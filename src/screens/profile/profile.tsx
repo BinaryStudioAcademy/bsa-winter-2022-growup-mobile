@@ -10,7 +10,7 @@ import { HeadingLevel, ProfileRoute } from 'src/common/enums';
 import { ICareer } from 'src/common/types';
 import { Heading, Text } from 'src/components';
 import { useAppDispatch, useAppSelector, useAppNavigation } from 'src/hooks';
-import { actions as experienceActions } from 'src/store/experience';
+import { experienceActions } from 'src/store/experience';
 import addActions from './add-actions';
 import { CareerCard, Navbar } from './components';
 import styles from './styles';

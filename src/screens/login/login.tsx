@@ -2,10 +2,10 @@ import React from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { View, Image, Text } from 'react-native';
 
-import { LoginForm } from 'src/screens/login/components';
 import { AuthRoute, ButtonMode } from 'src/common/enums';
 import { MainButton } from 'src/components';
 import { useAppNavigation } from 'src/hooks';
+import { LoginForm } from './components';
 import { styles } from './styles';
 
 const LoginScreen: React.FC = () => {
@@ -24,10 +24,9 @@ const LoginScreen: React.FC = () => {
         />
         <LoginForm />
       </View>
-
       <View style={styles.footer}>
         <Text>New to GrowUp?</Text>
-        <MainButton mode={ButtonMode.TEXT} onPress={() => handleSignUpPress}>
+        <MainButton mode={ButtonMode.TEXT} onPress={handleSignUpPress}>
           Sign Up
         </MainButton>
       </View>

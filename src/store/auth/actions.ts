@@ -15,7 +15,7 @@ import { ActionTypes } from './common';
 
 const signIn = createAsyncThunk(
   ActionTypes.SIGN_IN,
-  async (payload: ISignInPayload, { dispatch }) => {
+  async (payload: ISignInPayload) => {
     const response = await authApi.signIn(payload);
 
     if (!response) {
@@ -28,16 +28,13 @@ const signIn = createAsyncThunk(
     }
 
     await secureStorage.setItem(SecureStorageKey.ACCESS_TOKEN, response.token);
-    dispatch(loadCurrentUser());
+    return response.user;
   }
 );
 
 const signInFingerprint = createAsyncThunk(
   ActionTypes.SIGN_IN_FINGERPRINT,
-  async (
-    { username: email, password }: keychain.UserCredentials,
-    { dispatch }
-  ) => {
+  async ({ username: email, password }: keychain.UserCredentials) => {
     const response = await authApi.signIn({ email, password });
 
     if (!response) {
@@ -46,7 +43,7 @@ const signInFingerprint = createAsyncThunk(
     }
 
     await secureStorage.setItem(SecureStorageKey.ACCESS_TOKEN, response.token);
-    dispatch(loadCurrentUser());
+    return response.user;
   }
 );
 

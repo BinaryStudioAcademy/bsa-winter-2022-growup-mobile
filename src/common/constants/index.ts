@@ -5,3 +5,4 @@ export * from './date';
 export * from './google-api';
 export * from './app';
 export * from './push-notifications';
+export * from './home-screen';

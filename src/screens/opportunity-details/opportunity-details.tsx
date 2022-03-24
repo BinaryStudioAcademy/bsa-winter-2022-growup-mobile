@@ -32,7 +32,7 @@ const OpportunityDetailsScreen: React.FC = () => {
         <Text>
           {type} from {organization} in company {company.name}
         </Text>
-        {tags.length ? (
+        {Boolean(tags.length) && (
           <>
             <Heading level={HeadingLevel.H6} style={styles.subheader}>
               What&apos;s it all about?
@@ -48,7 +48,7 @@ const OpportunityDetailsScreen: React.FC = () => {
               ))}
             </View>
           </>
-        ) : null}
+        )}
         <Heading level={HeadingLevel.H6} style={styles.subheader}>
           Who offered this?
         </Heading>

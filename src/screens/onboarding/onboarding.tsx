@@ -53,6 +53,7 @@ const OnboardingScreen: React.FC = () => {
         initialPage={0}
         ref={pagerRef}
         onPageScroll={handlePageScroll}
+        scrollEnabled={false}
       >
         <View collapsable={false} key="1">
           <UserContent />

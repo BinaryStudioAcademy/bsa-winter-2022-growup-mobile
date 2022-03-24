@@ -16,6 +16,10 @@ jobs:
         uses: android-actions/setup-android@v2
       - name: Add SDK path to settings
         run: 'echo "sdk.dir = /usr/local/lib/android/sdk" > ./android/local.properties'
+      - name: Add .env file
+        env:
+          DOTENV_FILE: ${{ secrets.DOTENV_FILE }}
+        run: 'echo $DOTENV_FILE > ./.env'
       - name: Add Android google-services.json file
         env:
           ANDROID_GOOGLE_SERVICES_FILE: ${{ secrets.ANDROID_GOOGLE_SERVICES_FILE }}

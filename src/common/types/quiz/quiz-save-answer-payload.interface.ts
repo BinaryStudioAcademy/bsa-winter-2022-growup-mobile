@@ -1,7 +1,7 @@
 interface IQuizSaveAnswerPayload {
   questionId: string;
-  answerId: string;
-  prevAnswerId: string;
+  answerIndex: string;
+  prevAnswerIndex: string;
 }
 
 export type { IQuizSaveAnswerPayload };

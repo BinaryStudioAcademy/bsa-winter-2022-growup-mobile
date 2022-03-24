@@ -63,8 +63,10 @@ const ProfileScreen: React.FC = () => {
     },
   };
 
-  const { careerExperience } = useAppSelector(state => state.experience);
-  const { user } = useAppSelector(state => state.auth);
+  const { careerExperience, user } = useAppSelector(state => ({
+    careerExperience: state.experience.careerExperience,
+    user: state.auth.user,
+  }));
 
   const handleItemPress = (name: string) => {
     addFunctions[name]();

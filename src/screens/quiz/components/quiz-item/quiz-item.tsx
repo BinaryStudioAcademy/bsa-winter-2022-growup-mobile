@@ -9,22 +9,19 @@ import styles from './styles';
 
 interface IQuizItemProps {
   item: IQuizQuestion;
-  onChangeQuestionAnswer: (
+  onAnswerChange: (
     questionId: string,
     answerId: string,
     prevAnswerId: string
   ) => void;
 }
 
-const QuizItem: React.FC<IQuizItemProps> = ({
-  item,
-  onChangeQuestionAnswer,
-}) => {
+const QuizItem: React.FC<IQuizItemProps> = ({ item, onAnswerChange }) => {
   const [value, setValue] = useState('0');
 
   const handleChangeAnswer = (answerIndex: string) => {
     if (answerIndex !== value) {
-      onChangeQuestionAnswer(item.id, answerIndex, value);
+      onAnswerChange(item.id, answerIndex, value);
       setValue(answerIndex);
     }
   };
@@ -38,7 +35,7 @@ const QuizItem: React.FC<IQuizItemProps> = ({
         <RadioButton.Group onValueChange={handleChangeAnswer} value={value}>
           {item.answers.map((answer, index) => (
             <View key={answer.id} style={styles.answerContainer}>
-              <RadioButton value={index.toString()} />
+              <RadioButton value={index?.toString()} />
               <Text style={styles.answerText}>{answer.answer}</Text>
             </View>
           ))}

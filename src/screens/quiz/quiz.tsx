@@ -19,13 +19,13 @@ const QuizScreen: React.FC = () => {
 
   const isLastStep = currentStep === quizQuestions.length - 1;
 
-  const saveAnswer = (
+  const handleAnswerChange = (
     questionId: string,
-    answerId: string,
-    prevAnswerId: string
+    answerIndex: string,
+    prevAnswerIndex: string
   ) => {
     dispatch(
-      quizActions.saveQuizAnswers({ questionId, answerId, prevAnswerId })
+      quizActions.saveQuizAnswers({ questionId, answerIndex, prevAnswerIndex })
     );
   };
 
@@ -65,7 +65,7 @@ const QuizScreen: React.FC = () => {
             <Text style={styles.questionCount}>
               Question {index + 1}/{quizQuestions.length}
             </Text>
-            <QuizItem onChangeQuestionAnswer={saveAnswer} item={item} />
+            <QuizItem onAnswerChange={handleAnswerChange} item={item} />
           </View>
         ))}
       </PagerView>

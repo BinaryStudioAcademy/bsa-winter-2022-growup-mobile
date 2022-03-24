@@ -4,12 +4,13 @@ import { View, Image } from 'react-native';
 
 import { AuthRoute, ButtonMode } from 'src/common/enums';
 import { MainButton, Text } from 'src/components';
-import { useAppNavigation } from 'src/hooks';
+import { useAppNavigation, useImage } from 'src/hooks';
 import { LoginForm } from './components';
 import useStyles from './styles';
 
 const LoginScreen: React.FC = () => {
   const styles = useStyles();
+  const logo = useImage('images/Logo');
 
   const navigation = useAppNavigation();
 
@@ -20,10 +21,7 @@ const LoginScreen: React.FC = () => {
   return (
     <SafeAreaView style={styles.screen}>
       <View style={styles.content}>
-        <Image
-          source={require('src/assets/images/Logo.png')}
-          style={styles.logo}
-        />
+        <Image source={logo} style={styles.logo} />
         <LoginForm />
       </View>
       <View style={styles.footer}>

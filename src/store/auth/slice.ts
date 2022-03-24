@@ -16,7 +16,7 @@ const { reducer, actions } = createSlice({
   initialState,
   reducers: {},
   extraReducers: builder => {
-    builder.addCase(signOut, state => {
+    builder.addCase(signOut.fulfilled, state => {
       state.user = null;
     });
 

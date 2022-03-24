@@ -30,17 +30,27 @@ const ThemeProvider: React.FC = ({ children }) => {
   );
 
   useEffect(() => {
-    secureStorage.getItem(SecureStorageKey.THEME_MODE).then(storedThemeMode => {
-      const preferredColorScheme = Appearance.getColorScheme();
+    secureStorage
+      .getItem(SecureStorageKey.THEME_MODE)
+      .then(async storedThemeMode => {
+        const preferredColorScheme = Appearance.getColorScheme();
 
-      const defaultTheme: Theme = {
-        mode:
-          (storedThemeMode as ThemeMode | null) ??
-          colorSchemeToThemeMode[String(preferredColorScheme)],
-      };
+        const preferredMode =
+          colorSchemeToThemeMode[String(preferredColorScheme)];
 
-      setTheme(defaultTheme);
-    });
+        if (!storedThemeMode) {
+          await secureStorage.setItem(
+            SecureStorageKey.THEME_MODE,
+            preferredMode
+          );
+        }
+
+        const defaultTheme: Theme = {
+          mode: (storedThemeMode as ThemeMode | null) ?? preferredMode,
+        };
+
+        setTheme(defaultTheme);
+      });
   }, []);
 
   if (!theme) {

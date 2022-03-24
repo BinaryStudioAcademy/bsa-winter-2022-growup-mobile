@@ -1,5 +1,5 @@
 import { ApiPath } from 'src/common/enums';
-import { IOpportunity } from 'src/common/types';
+import { IFullOpportunity, IOpportunity } from 'src/common/types';
 import { showErrorToast } from 'src/helpers';
 import { Http } from '../http';
 
@@ -26,6 +26,21 @@ class OpportunitiesApi {
       );
 
       return [];
+    }
+  }
+
+  public async getOpportunityById(
+    id: string
+  ): Promise<IFullOpportunity | undefined> {
+    try {
+      return await this.#http.load(
+        `${this.#apiPath}${ApiPath.OPPORTUNITIES}/${id}`
+      );
+    } catch (err) {
+      showErrorToast(
+        (err as Error | undefined)?.message ??
+          'Failed to load opportunity details'
+      );
     }
   }
 }

@@ -1,6 +1,7 @@
 import { createSlice, isAnyOf } from '@reduxjs/toolkit';
 
 import { IUser } from 'src/common/types';
+import { completeOnboarding } from '../onboarding/actions';
 import { sendQuizResults } from '../quiz/actions';
 import { signOut, loadCurrentUser, signIn, signInFingerprint } from './actions';
 
@@ -24,6 +25,9 @@ const { reducer, actions } = createSlice({
       if (state.user) {
         state.user.isCompleteTest = true;
       }
+    });
+    builder.addCase(completeOnboarding.fulfilled, () => {
+      // TODO update data after completing
     });
     builder.addMatcher(
       isAnyOf(

@@ -13,3 +13,5 @@ export * from './okr';
 export * from './career';
 export * from './quiz';
 export * from './tag';
+export * from './onboarding';
+export * from './language';

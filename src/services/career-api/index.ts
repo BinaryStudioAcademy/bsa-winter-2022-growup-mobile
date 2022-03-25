@@ -1,6 +1,5 @@
 import { ApiPath, ContentType, HttpMethod } from 'src/common/enums';
 import { IAddCareerPayload, ICareer } from 'src/common/types';
-import { showErrorToast } from 'src/helpers';
 import { Http } from '../http';
 
 type Constructor = {
@@ -18,69 +17,38 @@ class CareerApi {
   }
 
   public async getCareers(): Promise<ICareer[]> {
-    try {
-      return await this.#http.load(`${this.#apiPath}${ApiPath.USER_CAREER}`, {
-        method: HttpMethod.GET,
-        hasAuth: true,
-      });
-    } catch (err) {
-      showErrorToast(
-        (err as Error | undefined)?.message ?? 'Failed to load careers'
-      );
+    const response = await this.#http.load<ICareer[]>(
+      `${this.#apiPath}${ApiPath.USER_CAREER}`
+    );
 
-      return [];
-    }
+    return response ?? [];
   }
 
   public async addCareer(
     payload: IAddCareerPayload
   ): Promise<ICareer | undefined> {
-    try {
-      return await this.#http.load(`${this.#apiPath}${ApiPath.USER_CAREER}`, {
-        method: HttpMethod.POST,
-        contentType: ContentType.JSON,
-        payload: JSON.stringify(payload),
-        hasAuth: true,
-      });
-    } catch (err) {
-      showErrorToast(
-        (err as Error | undefined)?.message ?? 'Failed to create career'
-      );
-    }
+    return this.#http.load(`${this.#apiPath}${ApiPath.USER_CAREER}`, {
+      method: HttpMethod.POST,
+      contentType: ContentType.JSON,
+      payload: JSON.stringify(payload),
+    });
   }
 
   public async deleteCareer(id: string) {
-    try {
-      return await this.#http.load(
-        `${this.#apiPath}${ApiPath.USER_CAREER}/${id}`,
-        {
-          method: HttpMethod.DELETE,
-          hasAuth: true,
-        }
-      );
-    } catch (err) {
-      showErrorToast(
-        (err as Error | undefined)?.message ?? 'Failed to delete career'
-      );
-    }
+    return this.#http.load(`${this.#apiPath}${ApiPath.USER_CAREER}/${id}`, {
+      method: HttpMethod.DELETE,
+    });
   }
 
   public async editCareer(payload: ICareer): Promise<ICareer | undefined> {
-    try {
-      return await this.#http.load(
-        `${this.#apiPath}${ApiPath.USER_CAREER}/${payload.id}`,
-        {
-          method: HttpMethod.PUT,
-          contentType: ContentType.JSON,
-          payload: JSON.stringify(payload),
-          hasAuth: true,
-        }
-      );
-    } catch (err) {
-      showErrorToast(
-        (err as Error | undefined)?.message ?? 'Failed to update career'
-      );
-    }
+    return this.#http.load(
+      `${this.#apiPath}${ApiPath.USER_CAREER}/${payload.id}`,
+      {
+        method: HttpMethod.PUT,
+        contentType: ContentType.JSON,
+        payload: JSON.stringify(payload),
+      }
+    );
   }
 }
 

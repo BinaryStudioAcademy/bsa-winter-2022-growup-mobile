@@ -6,6 +6,8 @@ type HttpOptions = {
   payload: BodyInit_ | null;
   hasAuth: boolean;
   query: Record<string, unknown>;
+  notifyError: boolean;
+  customErrorMessage: string;
 };
 
 export type { HttpOptions };

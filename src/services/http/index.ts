@@ -4,9 +4,10 @@ import {
   HttpMethod,
   SecureStorageKey,
 } from 'src/common/enums';
+
 import { GetHeadersParams, HttpOptions } from 'src/common/types';
 import { HttpError } from 'src/exceptions';
-import { getStringifiedQuery } from 'src/helpers';
+import { getStringifiedQuery, showErrorToast } from 'src/helpers';
 import { secureStorage as secureStorageService } from 'src/services';
 import { store } from 'src/store';
 import { authActions } from 'src/store/actions';
@@ -25,13 +26,15 @@ class Http {
   async load<T = unknown>(
     url: string,
     options: Partial<HttpOptions> = {}
-  ): Promise<T> {
+  ): Promise<T | undefined> {
     const {
       method = HttpMethod.GET,
       payload = null,
       contentType,
       hasAuth = true,
       query,
+      notifyError = true,
+      customErrorMessage,
     } = options;
 
     const headers = await this.getHeaders({
@@ -46,7 +49,7 @@ class Http {
     })
       .then(this.checkStatus.bind(this))
       .then(res => this.parseJSON<T>(res))
-      .catch(this.throwError);
+      .catch(err => this.handleError(err, notifyError, customErrorMessage));
   }
 
   private getUrl(url: string, query?: Record<string, unknown>): string {
@@ -105,8 +108,16 @@ class Http {
     return response.json();
   }
 
-  private throwError(err: Error): never {
-    throw err;
+  private handleError(
+    err: Error,
+    notify?: boolean,
+    customErrorMessage?: string
+  ): undefined {
+    if (notify) {
+      showErrorToast(customErrorMessage ?? err.message);
+    }
+
+    return;
   }
 }
 

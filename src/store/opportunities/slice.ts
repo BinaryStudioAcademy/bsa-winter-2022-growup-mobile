@@ -5,7 +5,7 @@ import { IFullOpportunity, IOpportunity } from 'src/common/types';
 import {
   loadExpandedOpportunity,
   loadOpportunities,
-  unloadExpandedOpportunity,
+  resetExpandedOpportunity,
 } from './actions';
 
 interface IOpportunityState {
@@ -41,7 +41,7 @@ const { reducer, actions } = createSlice({
       state.expandedOpportunity = payload;
     });
 
-    builder.addCase(unloadExpandedOpportunity, state => {
+    builder.addCase(resetExpandedOpportunity, state => {
       state.expandedOpportunity = undefined;
     });
 

@@ -18,12 +18,8 @@ const loadExpandedOpportunity = createAsyncThunk<
   return opportunitiesApi.getOpportunityById(id);
 });
 
-const unloadExpandedOpportunity = createAction(
-  ActionTypes.UNLOAD_EXPANDED_OPPORTUNITY
+const resetExpandedOpportunity = createAction(
+  ActionTypes.RESET_EXPANDED_OPPORTUNITY
 );
 
-export {
-  loadOpportunities,
-  loadExpandedOpportunity,
-  unloadExpandedOpportunity,
-};
+export { loadOpportunities, loadExpandedOpportunity, resetExpandedOpportunity };

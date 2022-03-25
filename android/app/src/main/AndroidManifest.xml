@@ -29,9 +29,9 @@
           <action android:name="android.intent.action.VIEW" />
           <category android:name="android.intent.category.DEFAULT" />
           <category android:name="android.intent.category.BROWSABLE" />
-          <data android:scheme="growupmobile" />
-          <data android:scheme="http" android:host="bsa-growup.herokuapp.com" />
-          <data android:scheme="https" android:host="bsa-growup.herokuapp.com" />
+          <data android:scheme="@strings/deep_linking_scheme" />
+          <data android:scheme="http" android:host="@strings/backend_domain" />
+          <data android:scheme="https" android:host="@strings/backend_domain" />
         </intent-filter>
       </activity>
       <meta-data

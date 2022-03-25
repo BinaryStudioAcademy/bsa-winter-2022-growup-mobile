@@ -15,4 +15,4 @@ export * from './minor-card';
 export * from './opportunity-card';
 export * from './paper-provider';
 export * from './switch';
-export * from './radar-chart';
+export * from './navigation-container';

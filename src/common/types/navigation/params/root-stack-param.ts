@@ -7,6 +7,7 @@ type RootStackParamList = {
   [AppRoute.APP]: NavigatorScreenParams<AppStackParamList>;
   [AuthRoute.SIGN_IN]: undefined;
   [AuthRoute.SIGN_UP]: undefined;
+  [AuthRoute.COMPLETE_REGISTRATION]: undefined;
 };
 
 export type { RootStackParamList };

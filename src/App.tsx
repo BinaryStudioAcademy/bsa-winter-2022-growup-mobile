@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import { NavigationContainer } from '@react-navigation/native';
 import SplashScreen from 'react-native-splash-screen';
 import { Provider as StoreProvider } from 'react-redux';
 import { en, registerTranslation } from 'react-native-paper-dates';
@@ -10,6 +9,7 @@ import RootNavigation from 'src/navigation';
 import { ThemeProvider } from 'src/blocs/theme-bloc';
 import { pushNotificationApi } from 'src/services';
 import { PaperProvider } from 'src/components';
+import { NavigationContainer } from 'src/navigation/navigation-container';
 
 pushNotificationApi.init();
 registerTranslation('en', en);

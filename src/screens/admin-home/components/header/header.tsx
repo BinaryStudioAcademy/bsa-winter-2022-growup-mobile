@@ -23,7 +23,7 @@ const Header: React.FC = () => {
   return (
     <View style={styles.headerContent}>
       <Heading level={HeadingLevel.H5} style={styles.headingText}>
-        Admin Home
+        Admin Home Page
       </Heading>
       <View style={styles.headerMenu}>
         <Menu

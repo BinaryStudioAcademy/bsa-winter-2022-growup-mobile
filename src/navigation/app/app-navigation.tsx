@@ -59,6 +59,7 @@ const AppNavigation = () => {
             options={{
               title: 'Add New Objective',
               headerStyle: styles.header,
+              headerTintColor: black,
             }}
           />
           <Stack.Screen
@@ -67,6 +68,7 @@ const AppNavigation = () => {
             options={{
               title: 'Add Key Result',
               headerStyle: styles.header,
+              headerTintColor: black,
             }}
           />
           <Stack.Screen

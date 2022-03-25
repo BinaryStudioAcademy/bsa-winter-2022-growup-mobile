@@ -13,9 +13,15 @@ import { Heading, Text } from 'src/components';
 import { useAppDispatch, useAppSelector, useAppNavigation } from 'src/hooks';
 import { experienceActions } from 'src/store/experience';
 import addActions from './add-actions';
-import { CareerCard, EducationCard, Navbar } from './components';
+import {
+  CareerCard,
+  EducationCard,
+  Navbar,
+  Header,
+  Settings,
+  QuizInfo,
+} from './components';
 import { educationActions } from 'src/store/actions';
-import { CareerCard, Navbar, Settings, Header, QuizInfo } from './components';
 import useStyles from './styles';
 
 const NAVBAR_ITEMS = [

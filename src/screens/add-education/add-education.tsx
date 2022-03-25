@@ -9,7 +9,7 @@ import { ProfileStackParamList } from 'src/common/types';
 import { FormDate, FormInput, Heading, MainButton } from 'src/components';
 import { addEducationValidationSchema } from 'src/validation-schemas';
 import { useAppNavigation, useAppDispatch } from 'src/hooks';
-import { actions as educationActions } from 'src/store/education';
+import { educationActions } from 'src/store/education';
 import { ButtonMode, HeadingLevel, ProfileRoute } from 'src/common/enums';
 import { defaultAddEducationPayload } from './common';
 import useStyles from './styles';
@@ -47,7 +47,7 @@ const AddEducationScreen: React.FC = () => {
   const handleEditEducation = (values: IEditEducationPayload) => {
     dispatch(
       educationActions.editEducationExperience({
-        id: education.id,
+        id: education?.id,
         university: values.university,
         specialization: values.specialization,
         degree: values.degree,

@@ -1,35 +1,27 @@
 import React from 'react';
-import {
-  createNativeStackNavigator,
-  NativeStackNavigationOptions,
-} from '@react-navigation/native-stack';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import { AppRoute } from 'src/common/enums/navigation';
-import { AddKeyResultScreen, AddOKRScreen, QuizScreen } from 'src/screens';
+import {
+  AddKeyResultScreen,
+  AddOKRScreen,
+  QuizScreen,
+  OpportunityDetailsScreen,
+} from 'src/screens';
+
+import { AppRoute } from 'src/common/enums';
 import { AppStackParamList } from 'src/common/types';
-import { useColor } from 'src/hooks';
+import { useStackScreenOptions } from 'src/hooks';
 import { AppTabsNavigation } from '../app-tabs';
 import { OnboardingNavigation } from '../onboarding';
-import useStyles from './styles';
 
 const Stack = createNativeStackNavigator<AppStackParamList>();
 
-const screenOptions: NativeStackNavigationOptions = {
-  headerTitleAlign: 'center',
-  headerTitleStyle: {
-    fontFamily: 'NunitoSans-SemiBold',
-  },
-};
-
-const AppNavigation = () => {
-  const styles = useStyles();
-  const black = useColor('BLACK');
-
+const AppNavigation: React.FC = () => {
   //TODO add check for initial route when Onboarding is needed
   return (
     <Stack.Navigator
       initialRouteName={AppRoute.APP_TABS}
-      screenOptions={screenOptions}
+      screenOptions={useStackScreenOptions()}
     >
       <Stack.Screen
         name={AppRoute.APP_TABS}
@@ -41,7 +33,6 @@ const AppNavigation = () => {
         component={AddOKRScreen}
         options={{
           title: 'Add New Objective',
-          headerStyle: styles.header,
         }}
       />
       <Stack.Screen
@@ -49,7 +40,6 @@ const AppNavigation = () => {
         component={AddKeyResultScreen}
         options={{
           title: 'Add Key Result',
-          headerStyle: styles.header,
         }}
       />
       <Stack.Screen
@@ -58,12 +48,14 @@ const AppNavigation = () => {
         options={{ headerShown: false }}
       />
       <Stack.Screen
+        name={AppRoute.OPPORTUNITY_DETAILS}
+        component={OpportunityDetailsScreen}
+        options={{ title: 'Opportunity details' }}
+      />
+      <Stack.Screen
         name={AppRoute.QUIZ}
         component={QuizScreen}
-        options={{
-          headerStyle: styles.header,
-          headerTintColor: black,
-        }}
+        options={{ title: 'Quiz' }}
       />
     </Stack.Navigator>
   );

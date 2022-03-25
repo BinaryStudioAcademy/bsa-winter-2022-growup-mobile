@@ -28,6 +28,9 @@ const useStyles = () => {
         tag: {
           margin: 2,
         },
+        button: {
+          alignSelf: 'flex-end',
+        },
       }),
     []
   );

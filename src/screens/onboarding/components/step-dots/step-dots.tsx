@@ -1,7 +1,7 @@
 import React from 'react';
 import { View } from 'react-native';
 
-import styles from './styles';
+import useStyles from './styles';
 
 interface IStepDotsProps {
   activeIndex: number;
@@ -9,6 +9,8 @@ interface IStepDotsProps {
 }
 
 const StepDots: React.FC<IStepDotsProps> = ({ activeIndex, count }) => {
+  const styles = useStyles();
+
   return (
     <View style={styles.dotsContainer}>
       {[...Array(count)].map((_, index) => {

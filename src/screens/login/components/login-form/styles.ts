@@ -1,20 +1,32 @@
+import { useMemo } from 'react';
 import { StyleSheet } from 'react-native';
 
-import { AppColor } from 'src/common/enums';
+import { useColor } from 'src/hooks';
 
-const styles = StyleSheet.create({
-  content: {
-    flex: 1,
-  },
-  container: {
-    flex: 1,
-  },
-  formField: {
-    backgroundColor: AppColor.INPUT_BACKGROUND,
-    height: 45,
-    marginTop: 17,
-    borderRadius: 8,
-  },
-});
+const useStyles = () => {
+  const inputBg = useColor('INPUT_BACKGROUND');
 
-export { styles };
+  return useMemo(
+    () =>
+      StyleSheet.create({
+        content: {
+          flex: 1,
+        },
+        container: {
+          flex: 1,
+        },
+        button: {
+          marginTop: 10,
+        },
+        formField: {
+          backgroundColor: inputBg,
+          height: 45,
+          marginTop: 17,
+          borderRadius: 8,
+        },
+      }),
+    [inputBg]
+  );
+};
+
+export default useStyles;

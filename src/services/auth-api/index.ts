@@ -1,10 +1,8 @@
 import { Asset } from 'react-native-image-picker';
 
+import { ISignInPayload, IUser, AuthResponse } from 'src/common/types';
 import { ApiPath, ContentType, HttpMethod } from 'src/common/enums';
-import { ISignInPayload, IUser } from 'src/common/types';
-import { AuthResponse } from 'src/common/types/auth';
-import { showErrorToast } from 'src/helpers';
-import { assetToMultipartFile } from 'src/helpers/image-capture';
+import { showErrorToast, assetToMultipartFile } from 'src/helpers';
 import { Http } from '../http';
 
 type Constructor = {

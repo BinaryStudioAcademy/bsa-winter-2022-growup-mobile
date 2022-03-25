@@ -12,7 +12,7 @@ import { useAppNavigation, useAppDispatch } from 'src/hooks';
 import { actions as educationActions } from 'src/store/education';
 import { ButtonMode, HeadingLevel, ProfileRoute } from 'src/common/enums';
 import { defaultAddEducationPayload } from './common';
-import styles from './styles';
+import useStyles from './styles';
 import { useMemo } from 'react';
 
 type AddEducationRouteProps = RouteProp<
@@ -22,6 +22,7 @@ type AddEducationRouteProps = RouteProp<
 
 const AddEducationScreen: React.FC = () => {
   const dispatch = useAppDispatch();
+  const styles = useStyles();
   const navigation = useAppNavigation();
   const route = useRoute<AddEducationRouteProps>();
   const { isEdit, education } = route.params;

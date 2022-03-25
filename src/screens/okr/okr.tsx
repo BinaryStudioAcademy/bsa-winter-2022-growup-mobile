@@ -8,7 +8,7 @@ import { useAppNavigation } from 'src/hooks';
 import { IOkr } from 'src/common/types';
 import addActions from './add-actions';
 import { OKRList } from './components';
-import styles from './styles';
+import useStyles from './styles';
 
 const MOCK_okrs: IOkr[] = [
   {
@@ -45,6 +45,8 @@ const MOCK_okrs: IOkr[] = [
 ];
 
 const OKRScreen: React.FC = () => {
+  const styles = useStyles();
+
   const [addMenuOpen, setAddMenuOpen] = useState<boolean>(false);
   const navigation = useAppNavigation();
 

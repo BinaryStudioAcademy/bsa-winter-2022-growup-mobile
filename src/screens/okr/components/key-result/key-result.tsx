@@ -3,9 +3,11 @@ import { View } from 'react-native';
 
 import { IKeyResult } from 'src/common/types';
 import { Text } from 'src/components';
-import styles from './styles';
+import useStyles from './styles';
 
 const KeyResult: React.FC<IKeyResult> = ({ name, points }) => {
+  const styles = useStyles();
+
   return (
     <View style={styles.keyResult}>
       <Text>{name}</Text>

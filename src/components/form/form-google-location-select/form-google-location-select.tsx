@@ -6,7 +6,7 @@ import { AutocompleteSelect, Text } from 'src/components';
 import { useDebouncedTimeout } from 'src/hooks';
 import { googlePlacesApi } from 'src/services';
 import { REQUEST_DEBOUNCE_TYPING_DURATION } from 'src/common/constants';
-import styles from '../styles';
+import useStyles from '../styles';
 
 type AutocompleteSelectProps = React.ComponentPropsWithoutRef<
   typeof AutocompleteSelect
@@ -25,6 +25,8 @@ const FormGoogleLocationSelect: React.FC<FormGoogleLocationSelectProps> = ({
   containerStyle,
   ...selectProps
 }) => {
+  const styles = useStyles();
+
   const [options, setOptions] = useState<string[]>([]);
   const [optionsLoading, setOptionsLoading] = useState<boolean>(false);
 

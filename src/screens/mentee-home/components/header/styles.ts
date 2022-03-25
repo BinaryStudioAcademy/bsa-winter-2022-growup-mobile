@@ -1,17 +1,28 @@
+import { useMemo } from 'react';
 import { StyleSheet } from 'react-native';
-import { AppColor } from 'src/common/enums';
 
-const styles = StyleSheet.create({
-  header: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    backgroundColor: AppColor.WHITE,
-    borderBottomWidth: 1,
-    borderBottomColor: AppColor.SHADOW,
-    paddingVertical: 10,
-    paddingHorizontal: 20,
-  },
-});
+import { useColor } from 'src/hooks';
 
-export default styles;
+const useStyles = () => {
+  const white = useColor('WHITE');
+  const shadow = useColor('SHADOW');
+
+  return useMemo(
+    () =>
+      StyleSheet.create({
+        header: {
+          flexDirection: 'row',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          backgroundColor: white,
+          borderBottomWidth: 1,
+          borderBottomColor: shadow,
+          paddingVertical: 10,
+          paddingHorizontal: 20,
+        },
+      }),
+    [white, shadow]
+  );
+};
+
+export default useStyles;

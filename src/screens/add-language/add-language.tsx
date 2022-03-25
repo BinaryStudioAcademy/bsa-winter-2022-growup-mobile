@@ -8,9 +8,11 @@ import { FormInput, Heading, MainButton } from 'src/components';
 import { addLanguageValidationSchema } from 'src/validation-schemas';
 import { useAppNavigation } from 'src/hooks';
 import { defaultAddLanguagePayload } from './common';
-import styles from './styles';
+import useStyles from './styles';
 
 const AddLanguageScreen: React.FC = () => {
+  const styles = useStyles();
+
   const navigation = useAppNavigation();
 
   const handleCancel = () => {

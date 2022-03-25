@@ -1,8 +1,8 @@
-import React, { useCallback, useMemo } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef } from 'react';
 import Canvas, { CanvasRenderingContext2D } from 'react-native-canvas';
 
 import { IPoint, IPolarPoint } from 'src/common/types';
-import { getAngleValue, polarToCartesian } from 'src/helpers';
+import { getAngleValue, polarToCartesian, normalizeAngle } from 'src/helpers';
 import { useColor } from 'src/hooks';
 
 type Axis = {
@@ -12,33 +12,36 @@ type Axis = {
 
 type RadarChartProps = {
   chartSize: number;
-  startAngle: number;
   maxScore: number;
   axes: Axis[];
 };
 
 const RadarChart: React.FC<RadarChartProps> = ({
   chartSize,
-  startAngle = 0,
   maxScore,
   axes,
 }) => {
+  const canvasRef = useRef<Canvas | null>(null);
+
   const colorHint = useColor('HINT');
+  const colorWhite = useColor('WHITE');
   // const colorPrimary = useColor('PRIMARY');
 
+  const halfSize = useMemo(() => chartSize / 2, [chartSize]);
+
   const center = useMemo<IPoint>(
-    () => ({ x: chartSize / 2, y: chartSize / 2 }),
-    [chartSize]
+    () => ({ x: halfSize, y: halfSize }),
+    [halfSize]
   );
 
-  const chartArea = useMemo(() => chartSize * (5 / 6), [chartSize]);
+  const chartArea = useMemo(() => halfSize * (5 / 6), [halfSize]);
 
   const drawNAngle = useCallback(
     (context: CanvasRenderingContext2D, angles: number, radius: number) => {
       const angleValue = getAngleValue(angles);
 
-      const points = new Array(angles).map((_, i) => {
-        const angle = angleValue * i + startAngle;
+      const points = new Array(angles + 1).fill(0).map((_, i) => {
+        const angle = normalizeAngle(angleValue * i);
         const polar: IPolarPoint = { r: radius, angle };
         const cartesian = polarToCartesian(polar, center);
 
@@ -47,24 +50,25 @@ const RadarChart: React.FC<RadarChartProps> = ({
 
       points.reduce((prev, point) => {
         if (!prev) {
-          context.moveTo(point.x, point.y);
           return point;
         }
 
+        context.moveTo(prev.x, prev.y);
         context.lineTo(point.x, point.y);
         return point;
       });
 
       context.stroke();
     },
-    [center, startAngle]
+    [center]
   );
 
   const drawChart = useCallback(
-    (canvas: Canvas) => {
-      const context = canvas.getContext('2d');
+    (context: CanvasRenderingContext2D) => {
+      context.fillStyle = colorWhite;
+      context.fillRect(0, 0, chartSize, chartSize);
 
-      context.lineWidth = 1;
+      context.lineWidth = 2;
       context.strokeStyle = colorHint;
 
       const figurePadding = chartArea / maxScore;
@@ -75,12 +79,22 @@ const RadarChart: React.FC<RadarChartProps> = ({
         drawNAngle(context, angles, radius);
       }
     },
-    [chartArea, maxScore, axes, colorHint, drawNAngle]
+    [chartSize, maxScore, axes, chartArea, colorHint, colorWhite, drawNAngle]
   );
 
-  return (
-    <Canvas ref={drawChart} style={{ width: chartSize, height: chartSize }} />
-  );
+  useEffect(() => {
+    if (!canvasRef.current) {
+      return;
+    }
+
+    canvasRef.current.width = chartSize;
+    canvasRef.current.height = chartSize;
+
+    const context = canvasRef.current.getContext('2d');
+    drawChart(context);
+  }, [chartSize, colorHint, canvasRef, drawChart]);
+
+  return <Canvas ref={canvasRef} />;
 };
 
 export default RadarChart;

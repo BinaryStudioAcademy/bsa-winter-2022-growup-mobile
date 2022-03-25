@@ -9,7 +9,7 @@ import PagerView, {
 
 import { HeadingLevel, ProfileRoute } from 'src/common/enums';
 import { ICareer } from 'src/common/types';
-import { Heading, Text } from 'src/components';
+import { Heading, RadarChart, Text } from 'src/components';
 import { useAppDispatch, useAppSelector, useAppNavigation } from 'src/hooks';
 import { experienceActions } from 'src/store/experience';
 import addActions from './add-actions';
@@ -136,7 +136,16 @@ const ProfileScreen: React.FC = () => {
               {!user?.isCompleteTest && <QuizInfo />}
             </View>
             <View style={styles.swiperItem} collapsable={false}>
-              <Text>Interests container</Text>
+              <RadarChart
+                chartSize={200}
+                maxScore={5}
+                axes={[
+                  { name: '1', score: 1 },
+                  { name: '1', score: 1 },
+                  { name: '1', score: 1 },
+                  { name: '1', score: 1 },
+                ]}
+              />
             </View>
             <View style={styles.swiperItem} collapsable={false}>
               <Text>Skills container</Text>

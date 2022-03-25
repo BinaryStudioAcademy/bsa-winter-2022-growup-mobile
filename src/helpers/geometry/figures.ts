@@ -3,7 +3,7 @@ const getAngleSum = (angleCount: number): number => {
 };
 
 const getAngleValue = (angleCount: number): number => {
-  return getAngleSum(angleCount) / angleCount;
+  return 180 - getAngleSum(angleCount) / angleCount;
 };
 
 export { getAngleSum, getAngleValue };

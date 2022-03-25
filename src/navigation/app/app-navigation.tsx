@@ -10,17 +10,21 @@ import {
 
 import { AppRoute } from 'src/common/enums';
 import { AppStackParamList } from 'src/common/types';
-import { useStackScreenOptions } from 'src/hooks';
+import { useAppSelector, useStackScreenOptions } from 'src/hooks';
 import { AppTabsNavigation } from '../app-tabs';
 import { OnboardingNavigation } from '../onboarding';
 
 const Stack = createNativeStackNavigator<AppStackParamList>();
 
 const AppNavigation: React.FC = () => {
-  //TODO add check for initial route when Onboarding is needed
+  const { user } = useAppSelector(state => state.auth);
+
+  const isCompletedOnboarding = user?.firstName;
   return (
     <Stack.Navigator
-      initialRouteName={AppRoute.APP_TABS}
+      initialRouteName={
+        isCompletedOnboarding ? AppRoute.APP_TABS : AppRoute.ONBOARDING_SETUP
+      }
       screenOptions={useStackScreenOptions()}
     >
       <Stack.Screen

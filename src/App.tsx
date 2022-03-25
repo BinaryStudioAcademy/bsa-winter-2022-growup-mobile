@@ -8,8 +8,7 @@ import { store } from 'src/store';
 import RootNavigation from 'src/navigation';
 import { ThemeProvider } from 'src/blocs/theme-bloc';
 import { pushNotificationApi } from 'src/services';
-import { PaperProvider } from 'src/components';
-import { NavigationContainer } from 'src/navigation/navigation-container';
+import { NavigationContainer, PaperProvider } from 'src/components';
 
 pushNotificationApi.init();
 registerTranslation('en', en);

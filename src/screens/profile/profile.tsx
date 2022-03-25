@@ -9,11 +9,20 @@ import PagerView, {
 
 import { HeadingLevel, ProfileRoute } from 'src/common/enums';
 import { ICareer } from 'src/common/types';
-import { Heading, RadarChart, Text } from 'src/components';
+import { Heading, Text } from 'src/components';
 import { useAppDispatch, useAppSelector, useAppNavigation } from 'src/hooks';
 import { experienceActions } from 'src/store/experience';
 import addActions from './add-actions';
-import { CareerCard, Navbar, Settings, Header, QuizInfo } from './components';
+
+import {
+  CareerCard,
+  Navbar,
+  Settings,
+  Header,
+  QuizInfo,
+  QuizResults,
+} from './components';
+
 import useStyles from './styles';
 
 const NAVBAR_ITEMS = [
@@ -133,19 +142,10 @@ const ProfileScreen: React.FC = () => {
               {!user?.isCompleteTest && <QuizInfo />}
             </View>
             <View style={styles.swiperItem} collapsable={false}>
-              {!user?.isCompleteTest && <QuizInfo />}
+              {!user?.isCompleteTest ? <QuizInfo /> : <QuizResults />}
             </View>
             <View style={styles.swiperItem} collapsable={false}>
-              <RadarChart
-                chartSize={200}
-                maxScore={10}
-                axes={[
-                  { name: 'Analytical', score: 7 },
-                  { name: 'Expressive', score: 5 },
-                  { name: 'Amiable', score: 3 },
-                  { name: 'Driver', score: 3 },
-                ]}
-              />
+              <Text>Interests container</Text>
             </View>
             <View style={styles.swiperItem} collapsable={false}>
               <Text>Skills container</Text>

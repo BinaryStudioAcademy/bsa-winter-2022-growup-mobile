@@ -6,4 +6,4 @@ const actions = {
   ...asyncAction,
 };
 
-export { reducer, actions };
+export { reducer as skillReducer, actions as skillActions };

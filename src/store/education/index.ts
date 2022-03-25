@@ -6,4 +6,4 @@ const actions = {
   ...sliceActions,
 };
 
-export { reducer, actions };
+export { reducer as educationReducer, actions as educationActions };

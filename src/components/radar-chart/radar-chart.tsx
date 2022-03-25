@@ -1,6 +1,13 @@
 import React, { useCallback, useEffect, useMemo, useRef } from 'react';
 import Canvas, { CanvasRenderingContext2D } from 'react-native-canvas';
 
+import {
+  SCALE_FRACTION,
+  TEXT_SIZE_FRACTION,
+  TEXT_MAX_WIDTH_FRACTION,
+  TEXT_POSITION_FRACTION,
+} from 'src/common/constants';
+
 import { IPoint, IPolarPoint } from 'src/common/types';
 import { getAngleValue, polarToCartesian, normalizeAngle } from 'src/helpers';
 import { useColor } from 'src/hooks';
@@ -25,6 +32,7 @@ const RadarChart: React.FC<RadarChartProps> = ({
 
   const colorHint = useColor('HINT');
   const colorWhite = useColor('WHITE');
+  const colorBlack = useColor('BLACK');
   // const colorPrimary = useColor('PRIMARY');
 
   const halfSize = useMemo(() => chartSize / 2, [chartSize]);
@@ -34,13 +42,30 @@ const RadarChart: React.FC<RadarChartProps> = ({
     [halfSize]
   );
 
-  const chartArea = useMemo(() => halfSize * (5 / 6), [halfSize]);
+  const chartArea = useMemo(() => chartSize * SCALE_FRACTION, [chartSize]);
+
+  const textRadius = useMemo(
+    () => chartSize * TEXT_POSITION_FRACTION,
+    [chartSize]
+  );
+
+  const textSize = useMemo(() => chartSize * TEXT_SIZE_FRACTION, [chartSize]);
+
+  const textMaxWith = useMemo(
+    () => chartSize * TEXT_MAX_WIDTH_FRACTION,
+    [chartSize]
+  );
 
   const drawNAngle = useCallback(
-    (context: CanvasRenderingContext2D, angles: number, radius: number) => {
-      const angleValue = getAngleValue(angles);
+    (
+      context: CanvasRenderingContext2D,
+      angles: number,
+      angleValue: number,
+      radius: number
+    ) => {
+      const cycledPointsCount = angles + 1;
 
-      const points = new Array(angles + 1).fill(0).map((_, i) => {
+      const points = new Array(cycledPointsCount).fill(0).map((_, i) => {
         const angle = normalizeAngle(angleValue * i);
         const polar: IPolarPoint = { r: radius, angle };
         const cartesian = polarToCartesian(polar, center);
@@ -57,10 +82,18 @@ const RadarChart: React.FC<RadarChartProps> = ({
         context.lineTo(point.x, point.y);
         return point;
       });
-
-      context.stroke();
     },
     [center]
+  );
+
+  const drawText = useCallback(
+    (context: CanvasRenderingContext2D, text: string, angle: number) => {
+      const polar: IPolarPoint = { r: textRadius, angle };
+      const cartesian = polarToCartesian(polar, center);
+
+      context.fillText(text, cartesian.x, cartesian.y, textMaxWith);
+    },
+    [center, textRadius, textMaxWith]
   );
 
   const drawChart = useCallback(
@@ -69,17 +102,41 @@ const RadarChart: React.FC<RadarChartProps> = ({
       context.fillRect(0, 0, chartSize, chartSize);
 
       context.lineWidth = 2;
+      context.textBaseline = 'middle';
+      context.textAlign = 'center';
+      context.lineJoin = 'round';
+      context.fillStyle = colorBlack;
       context.strokeStyle = colorHint;
+      context.font = `${textSize}px Arial`;
 
-      const figurePadding = chartArea / maxScore;
       const angles = axes.length;
+      const figurePadding = chartArea / maxScore;
+      const angleValue = getAngleValue(angles);
 
       for (let i = 1; i <= maxScore; i++) {
         const radius = figurePadding * i;
-        drawNAngle(context, angles, radius);
+        drawNAngle(context, angles, angleValue, radius);
       }
+
+      for (let i = 0; i < angles; i++) {
+        const angle = angleValue * i;
+        drawText(context, axes[i].name, angle);
+      }
+
+      context.stroke();
     },
-    [chartSize, maxScore, axes, chartArea, colorHint, colorWhite, drawNAngle]
+    [
+      chartSize,
+      maxScore,
+      axes,
+      chartArea,
+      textSize,
+      colorHint,
+      colorWhite,
+      colorBlack,
+      drawNAngle,
+      drawText,
+    ]
   );
 
   useEffect(() => {

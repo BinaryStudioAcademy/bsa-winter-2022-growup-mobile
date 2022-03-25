@@ -140,10 +140,10 @@ const ProfileScreen: React.FC = () => {
                 chartSize={200}
                 maxScore={5}
                 axes={[
-                  { name: '1', score: 1 },
-                  { name: '1', score: 1 },
-                  { name: '1', score: 1 },
-                  { name: '1', score: 1 },
+                  { name: 'Analytical', score: 1 },
+                  { name: 'Expressive', score: 1 },
+                  { name: 'Amiable', score: 1 },
+                  { name: 'Driver', score: 1 },
                 ]}
               />
             </View>

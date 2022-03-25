@@ -2,7 +2,12 @@ import React, { useState } from 'react';
 import dayjs from 'dayjs';
 import { TouchableOpacity, View } from 'react-native';
 
-import { HeadingLevel, TagType, TextAppearance } from 'src/common/enums';
+import {
+  ButtonMode,
+  HeadingLevel,
+  TagType,
+  TextAppearance,
+} from 'src/common/enums';
 
 import {
   BookMarkIcon,
@@ -15,7 +20,7 @@ import {
 
 import { IOpportunity } from 'src/common/types';
 import { useColor } from 'src/hooks';
-import { MinorCard } from '..';
+import { MinorCard, MainButton } from '..';
 import useStyles from './styles';
 
 type OpportunityCardProps = {
@@ -23,7 +28,10 @@ type OpportunityCardProps = {
   onDetails: () => void;
 };
 
-const OpportunityCard: React.FC<OpportunityCardProps> = ({ opportunity }) => {
+const OpportunityCard: React.FC<OpportunityCardProps> = ({
+  opportunity,
+  onDetails,
+}) => {
   const styles = useStyles();
   const colorPrimary = useColor('PRIMARY');
   const colorHint = useColor('HINT');
@@ -64,12 +72,19 @@ const OpportunityCard: React.FC<OpportunityCardProps> = ({ opportunity }) => {
         {tags.map(item => (
           <Tag
             style={styles.tag}
-            text={item}
-            key={item}
+            text={item.name}
+            key={item.id}
             tagType={TagType.COMMON}
           />
         ))}
       </View>
+      <MainButton
+        mode={ButtonMode.TEXT}
+        style={styles.button}
+        onPress={onDetails}
+      >
+        Details
+      </MainButton>
     </MinorCard>
   );
 };

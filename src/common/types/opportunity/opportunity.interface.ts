@@ -1,17 +1,13 @@
 import { OpportunityType } from 'src/common/enums';
+import { ITag } from '..';
 
 interface IOpportunity {
   id: string;
   name: string;
-  tags: string[];
+  tags: ITag[];
   type: OpportunityType;
-  user: string;
-  company: string;
   organization: string;
   startDate: string;
-  createdAt: string;
-  updatedAt: string;
-  deletedAt: string | null;
 }
 
 export type { IOpportunity };

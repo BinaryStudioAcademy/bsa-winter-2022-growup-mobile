@@ -1,35 +1,23 @@
 import React from 'react';
-import {
-  createNativeStackNavigator,
-  NativeStackNavigationOptions,
-} from '@react-navigation/native-stack';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import { AppRoute } from 'src/common/enums/navigation';
 import {
   AddKeyResultScreen,
   AddOKRScreen,
-  AdminHomeScreen,
   QuizScreen,
+  OpportunityDetailsScreen,
+  AdminHomeScreen,
 } from 'src/screens';
+
+import { AppRoute, UserRoleType } from 'src/common/enums';
 import { AppStackParamList } from 'src/common/types';
-import { useAppSelector, useColor } from 'src/hooks';
-import { UserRoleType } from 'src/common/enums';
+import { useAppSelector, useStackScreenOptions } from 'src/hooks';
 import { AppTabsNavigation } from '../app-tabs';
 import { OnboardingNavigation } from '../onboarding';
-import useStyles from './styles';
 
 const Stack = createNativeStackNavigator<AppStackParamList>();
 
-const screenOptions: NativeStackNavigationOptions = {
-  headerTitleAlign: 'center',
-  headerTitleStyle: {
-    fontFamily: 'NunitoSans-SemiBold',
-  },
-};
-
 const AppNavigation = () => {
-  const styles = useStyles();
-  const black = useColor('BLACK');
   const { user } = useAppSelector(state => state.auth);
 
   const isUserAdmin = user?.role === UserRoleType.Admin;
@@ -38,7 +26,7 @@ const AppNavigation = () => {
   return (
     <Stack.Navigator
       initialRouteName={isUserAdmin ? AppRoute.ADMIN_HOME : AppRoute.APP_TABS}
-      screenOptions={screenOptions}
+      screenOptions={useStackScreenOptions()}
     >
       {isUserAdmin ? (
         <Stack.Screen
@@ -58,8 +46,6 @@ const AppNavigation = () => {
             component={AddOKRScreen}
             options={{
               title: 'Add New Objective',
-              headerStyle: styles.header,
-              headerTintColor: black,
             }}
           />
           <Stack.Screen
@@ -67,8 +53,6 @@ const AppNavigation = () => {
             component={AddKeyResultScreen}
             options={{
               title: 'Add Key Result',
-              headerStyle: styles.header,
-              headerTintColor: black,
             }}
           />
           <Stack.Screen
@@ -77,12 +61,14 @@ const AppNavigation = () => {
             options={{ headerShown: false }}
           />
           <Stack.Screen
+            name={AppRoute.OPPORTUNITY_DETAILS}
+            component={OpportunityDetailsScreen}
+            options={{ title: 'Opportunity details' }}
+          />
+          <Stack.Screen
             name={AppRoute.QUIZ}
             component={QuizScreen}
-            options={{
-              headerStyle: styles.header,
-              headerTintColor: black,
-            }}
+            options={{ title: 'Quiz' }}
           />
         </>
       )}

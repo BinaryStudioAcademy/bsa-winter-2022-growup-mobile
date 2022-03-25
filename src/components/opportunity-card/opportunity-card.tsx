@@ -72,8 +72,8 @@ const OpportunityCard: React.FC<OpportunityCardProps> = ({
         {tags.map(item => (
           <Tag
             style={styles.tag}
-            text={item}
-            key={item}
+            text={item.name}
+            key={item.id}
             tagType={TagType.COMMON}
           />
         ))}

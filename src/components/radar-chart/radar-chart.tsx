@@ -3,9 +3,11 @@ import Canvas, { CanvasRenderingContext2D } from 'react-native-canvas';
 
 import {
   SCALE_FRACTION,
+  LINE_SIZE_FRACTION,
   TEXT_SIZE_FRACTION,
   TEXT_MAX_WIDTH_FRACTION,
   TEXT_POSITION_FRACTION,
+  SCOREPOINT_SIZE_FRACTION,
 } from 'src/common/constants';
 
 import { IPoint, IPolarPoint } from 'src/common/types';
@@ -33,7 +35,8 @@ const RadarChart: React.FC<RadarChartProps> = ({
   const colorHint = useColor('HINT');
   const colorWhite = useColor('WHITE');
   const colorBlack = useColor('BLACK');
-  // const colorPrimary = useColor('PRIMARY');
+  const colorPrimary = useColor('PRIMARY');
+  const colorChartArea = useColor('CHART_AREA');
 
   const halfSize = useMemo(() => chartSize / 2, [chartSize]);
 
@@ -43,6 +46,7 @@ const RadarChart: React.FC<RadarChartProps> = ({
   );
 
   const chartArea = useMemo(() => chartSize * SCALE_FRACTION, [chartSize]);
+  const lineSize = useMemo(() => chartSize * LINE_SIZE_FRACTION, [chartSize]);
 
   const textRadius = useMemo(
     () => chartSize * TEXT_POSITION_FRACTION,
@@ -53,6 +57,16 @@ const RadarChart: React.FC<RadarChartProps> = ({
 
   const textMaxWith = useMemo(
     () => chartSize * TEXT_MAX_WIDTH_FRACTION,
+    [chartSize]
+  );
+
+  const cyclePadding = useMemo(
+    () => chartArea / maxScore,
+    [chartArea, maxScore]
+  );
+
+  const scorepointSize = useMemo(
+    () => chartSize * SCOREPOINT_SIZE_FRACTION,
     [chartSize]
   );
 
@@ -80,6 +94,7 @@ const RadarChart: React.FC<RadarChartProps> = ({
 
         context.moveTo(prev.x, prev.y);
         context.lineTo(point.x, point.y);
+
         return point;
       });
     },
@@ -96,12 +111,51 @@ const RadarChart: React.FC<RadarChartProps> = ({
     [center, textRadius, textMaxWith]
   );
 
+  const drawScorepoint = useCallback(
+    (
+      context: CanvasRenderingContext2D,
+      angleValue: number,
+      angleIndex: number,
+      score: number
+    ) => {
+      const polar: IPolarPoint = {
+        r: score * cyclePadding,
+        angle: angleValue * angleIndex,
+      };
+
+      const cicrleCenter = polarToCartesian(polar, center);
+      const { x, y } = cicrleCenter;
+
+      context.moveTo(x, y);
+      context.arc(x, y, scorepointSize, 0, 2 * Math.PI);
+
+      return cicrleCenter;
+    },
+    [center, cyclePadding, scorepointSize]
+  );
+
+  const drawScoreArea = useCallback(
+    (context: CanvasRenderingContext2D, positions: IPoint[]) => {
+      positions.reduce((prev, point) => {
+        if (!prev) {
+          context.moveTo(point.x, point.y);
+          return point;
+        }
+
+        context.lineTo(point.x, point.y);
+
+        return point;
+      });
+    },
+    []
+  );
+
   const drawChart = useCallback(
     (context: CanvasRenderingContext2D) => {
       context.fillStyle = colorWhite;
       context.fillRect(0, 0, chartSize, chartSize);
 
-      context.lineWidth = 2;
+      context.lineWidth = lineSize;
       context.textBaseline = 'middle';
       context.textAlign = 'center';
       context.lineJoin = 'round';
@@ -110,11 +164,12 @@ const RadarChart: React.FC<RadarChartProps> = ({
       context.font = `${textSize}px Arial`;
 
       const angles = axes.length;
-      const figurePadding = chartArea / maxScore;
       const angleValue = getAngleValue(angles);
 
+      context.beginPath();
+
       for (let i = 1; i <= maxScore; i++) {
-        const radius = figurePadding * i;
+        const radius = cyclePadding * i;
         drawNAngle(context, angles, angleValue, radius);
       }
 
@@ -123,19 +178,55 @@ const RadarChart: React.FC<RadarChartProps> = ({
         drawText(context, axes[i].name, angle);
       }
 
+      context.closePath();
       context.stroke();
+
+      context.fillStyle = colorPrimary;
+      context.strokeStyle = colorPrimary;
+
+      context.beginPath();
+
+      const scorepointPositions = axes.map((axis, i) => {
+        return drawScorepoint(
+          context,
+          angleValue,
+          i,
+          Math.min(axis.score, maxScore)
+        );
+      });
+
+      scorepointPositions.push(scorepointPositions[0]);
+
+      context.closePath();
+      context.stroke();
+      context.fill();
+
+      context.fillStyle = colorChartArea;
+
+      context.beginPath();
+
+      drawScoreArea(context, scorepointPositions);
+
+      context.closePath();
+      context.stroke();
+      context.fill();
     },
     [
+      axes,
       chartSize,
       maxScore,
-      axes,
-      chartArea,
+      lineSize,
+      cyclePadding,
       textSize,
       colorHint,
       colorWhite,
       colorBlack,
+      colorPrimary,
+      colorChartArea,
       drawNAngle,
       drawText,
+      drawScorepoint,
+      drawScoreArea,
     ]
   );
 

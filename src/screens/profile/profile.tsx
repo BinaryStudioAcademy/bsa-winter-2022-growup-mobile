@@ -138,12 +138,12 @@ const ProfileScreen: React.FC = () => {
             <View style={styles.swiperItem} collapsable={false}>
               <RadarChart
                 chartSize={200}
-                maxScore={5}
+                maxScore={10}
                 axes={[
-                  { name: 'Analytical', score: 1 },
-                  { name: 'Expressive', score: 1 },
-                  { name: 'Amiable', score: 1 },
-                  { name: 'Driver', score: 1 },
+                  { name: 'Analytical', score: 7 },
+                  { name: 'Expressive', score: 5 },
+                  { name: 'Amiable', score: 3 },
+                  { name: 'Driver', score: 3 },
                 ]}
               />
             </View>

@@ -1,11 +1,18 @@
+import { useMemo } from 'react';
 import { StyleSheet } from 'react-native';
 
-const styles = StyleSheet.create({
-  container: {
-    paddingVertical: 15,
-    alignItems: 'center',
-    width: '100%',
-  },
-});
+const useStyles = () => {
+  return useMemo(
+    () =>
+      StyleSheet.create({
+        container: {
+          paddingVertical: 15,
+          alignItems: 'center',
+          width: '100%',
+        },
+      }),
+    []
+  );
+};
 
-export default styles;
+export default useStyles;

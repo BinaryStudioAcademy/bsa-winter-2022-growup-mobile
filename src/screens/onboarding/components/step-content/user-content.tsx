@@ -3,13 +3,17 @@ import { Formik } from 'formik';
 import { ScrollView, View } from 'react-native';
 import { Avatar } from 'react-native-paper';
 
-import { AppColor, HeadingLevel } from 'src/common/enums';
+import { HeadingLevel } from 'src/common/enums';
 import { FormAvatarPicker, FormInput, Heading } from 'src/components';
 import { userInfoValidationSchema } from 'src/validation-schemas';
+import { useColor } from 'src/hooks';
 import { defaultAddUserInfoPayload } from './common';
-import styles from './styles';
+import useStyles from './styles';
 
 const UserContent: React.FC = () => {
+  const styles = useStyles();
+  const colorWhite = useColor('WHITE');
+
   return (
     <View style={styles.content}>
       <ScrollView showsVerticalScrollIndicator={false}>
@@ -36,7 +40,7 @@ const UserContent: React.FC = () => {
                   <Avatar.Icon
                     style={styles.userAvatar}
                     size={152}
-                    color={AppColor.WHITE}
+                    color={colorWhite}
                     icon="account"
                   />
                 )}

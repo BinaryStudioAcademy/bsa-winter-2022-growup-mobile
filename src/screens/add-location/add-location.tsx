@@ -8,9 +8,11 @@ import { Heading, MainButton, FormGoogleLocationSelect } from 'src/components';
 import { addLocationValidationSchema } from 'src/validation-schemas';
 import { useAppNavigation } from 'src/hooks';
 import { defaultAddLocationPayload } from './common';
-import styles from './styles';
+import useStyles from './styles';
 
 const AddLocationScreen: React.FC = () => {
+  const styles = useStyles();
+
   const navigation = useAppNavigation();
 
   const handleCancel = () => {

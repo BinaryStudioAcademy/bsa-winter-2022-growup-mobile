@@ -1,9 +1,16 @@
+import { useMemo } from 'react';
 import { StyleSheet } from 'react-native';
 
-const styles = StyleSheet.create({
-  button: {
-    alignSelf: 'flex-end',
-  },
-});
+const useStyles = () => {
+  return useMemo(
+    () =>
+      StyleSheet.create({
+        button: {
+          alignSelf: 'flex-end',
+        },
+      }),
+    []
+  );
+};
 
-export default styles;
+export default useStyles;

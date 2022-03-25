@@ -4,9 +4,11 @@ import { View } from 'react-native';
 import { HeadingLevel, IconName, OnboardingRoute } from 'src/common/enums';
 import { Heading, AddButton } from 'src/components';
 import { useAppNavigation } from 'src/hooks';
-import styles from './styles';
+import useStyles from './styles';
 
 const InterestingContent: React.FC = () => {
+  const styles = useStyles();
+
   const navigation = useAppNavigation();
 
   const handleAddLanguage = () => {

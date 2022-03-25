@@ -4,8 +4,8 @@ import Slider from '@react-native-community/slider';
 import { FormikValues, useFormikContext } from 'formik';
 
 import { Text } from 'src/components';
-import { AppColor } from 'src/common/enums';
-import styles from '../styles';
+import { useColor } from 'src/hooks';
+import useStyles from '../styles';
 
 type SliderProps = React.ComponentPropsWithoutRef<typeof Slider>;
 
@@ -19,6 +19,9 @@ const FormSlider: React.FC<FormSliderProps> = ({
   containerStyle,
   ...sliderProps
 }) => {
+  const styles = useStyles();
+  const colorPrimary = useColor('PRIMARY');
+
   const { values, errors, setFieldValue } = useFormikContext<FormikValues>();
 
   const error = errors[name];
@@ -30,9 +33,9 @@ const FormSlider: React.FC<FormSliderProps> = ({
       <Slider
         onValueChange={handleChange}
         value={values[name]}
-        minimumTrackTintColor={AppColor.PRIMARY}
-        maximumTrackTintColor={AppColor.PRIMARY}
-        thumbTintColor={AppColor.PRIMARY}
+        minimumTrackTintColor={colorPrimary}
+        maximumTrackTintColor={colorPrimary}
+        thumbTintColor={colorPrimary}
         {...sliderProps}
       />
       {Boolean(error) && <Text style={styles.error}>{error}</Text>}

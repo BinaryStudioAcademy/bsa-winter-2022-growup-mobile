@@ -1,7 +1,7 @@
-export { actions as authActions } from './auth';
-export { actions as skillActions } from './skill';
-export { actions as educationActions } from './education';
-export { actions as experienceActions } from './experience';
+export * from './education';
+export * from './auth';
+export * from './skill';
 export * from './notification';
 export * from './okr';
-export * from './education';
+export * from './experience';
+export * from './opportunities';

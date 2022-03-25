@@ -1,7 +1,8 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, isAnyOf } from '@reduxjs/toolkit';
 
 import { IUser } from 'src/common/types';
-import { signOut, loadCurrentUser } from './actions';
+import { sendQuizResults } from '../quiz/actions';
+import { signOut, loadCurrentUser, signIn, signInFingerprint } from './actions';
 
 interface IAuthState {
   user: IUser | null;
@@ -16,12 +17,24 @@ const { reducer, actions } = createSlice({
   initialState,
   reducers: {},
   extraReducers: builder => {
-    builder.addCase(signOut, state => {
+    builder.addCase(signOut.fulfilled, state => {
       state.user = null;
     });
-    builder.addCase(loadCurrentUser.fulfilled, (state, { payload }) => {
-      state.user = payload;
+    builder.addCase(sendQuizResults.fulfilled, state => {
+      if (state.user) {
+        state.user.isCompleteTest = true;
+      }
     });
+    builder.addMatcher(
+      isAnyOf(
+        loadCurrentUser.fulfilled,
+        signIn.fulfilled,
+        signInFingerprint.fulfilled
+      ),
+      (state, { payload }) => {
+        state.user = payload ?? null;
+      }
+    );
   },
 });
 

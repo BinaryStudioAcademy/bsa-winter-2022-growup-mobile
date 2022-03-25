@@ -1,14 +1,25 @@
+import { useMemo } from 'react';
 import { StyleSheet } from 'react-native';
 
-import { AppColor, TextAppearance } from 'src/common/enums';
+import { TextAppearance } from 'src/common/enums';
+import { useColor } from 'src/hooks';
 
-const styles = StyleSheet.create({
-  [TextAppearance.HINT]: {
-    color: AppColor.HINT,
-  },
-  [TextAppearance.BODY]: {
-    color: AppColor.BLACK,
-  },
-});
+const useStyles = () => {
+  const hint = useColor('HINT');
+  const black = useColor('BLACK');
 
-export default styles;
+  return useMemo(
+    () =>
+      StyleSheet.create({
+        [TextAppearance.HINT]: {
+          color: hint,
+        },
+        [TextAppearance.BODY]: {
+          color: black,
+        },
+      }),
+    [hint, black]
+  );
+};
+
+export default useStyles;

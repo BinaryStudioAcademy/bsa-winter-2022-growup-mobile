@@ -9,6 +9,7 @@ enum AppRoute {
   ONBOARDING_SETUP = 'OnboardingSetup',
   ADD_OKR = 'AddOKR',
   ADD_KEY_RESULT = 'AddKeyResult',
+  QUIZ = 'Quiz',
 }
 
 export { AppRoute };

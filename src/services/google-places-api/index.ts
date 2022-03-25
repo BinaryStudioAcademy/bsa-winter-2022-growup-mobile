@@ -1,5 +1,6 @@
 import { ApiPath } from 'src/common/enums';
 import { IAutocompleteResponse } from 'src/common/types';
+import { showErrorToast } from 'src/helpers';
 import { Http } from '../http';
 
 type Constructor = {
@@ -24,16 +25,27 @@ class GooglePlacesApi {
       return [];
     }
 
-    const response: IAutocompleteResponse = await this.#http.load(
-      `${this.#apiPath}${ApiPath.GOOGLE_PLACES_AUTOCOMPLETE}`,
-      {
-        query: {
-          key: this.#apiKey,
-          input: existingText,
-          types: '(cities)',
-        },
-      }
-    );
+    let response: IAutocompleteResponse;
+
+    try {
+      response = await this.#http.load(
+        `${this.#apiPath}${ApiPath.GOOGLE_PLACES_AUTOCOMPLETE}`,
+        {
+          query: {
+            key: this.#apiKey,
+            input: existingText,
+            types: '(cities)',
+          },
+        }
+      );
+    } catch (err) {
+      showErrorToast(
+        (err as Error | undefined)?.message ??
+          'Failed to load autocomplete locations'
+      );
+
+      return [];
+    }
 
     if (response.status !== 'OK') {
       return [];

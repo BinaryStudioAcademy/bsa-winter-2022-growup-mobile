@@ -11,15 +11,12 @@ import {
   PencilIcon,
   Text,
 } from 'src/components';
-import {
-  AppColor,
-  DateFormat,
-  HeadingLevel,
-  TextAppearance,
-} from 'src/common/enums';
+
+import { DateFormat, HeadingLevel, TextAppearance } from 'src/common/enums';
 import { MONTHS_IN_YEAR } from 'src/common/constants';
 import { ICareer } from 'src/common/types';
-import styles from './styles';
+import { useColor } from 'src/hooks';
+import useStyles from './styles';
 
 interface ICareerProps {
   item: ICareer;
@@ -28,6 +25,10 @@ interface ICareerProps {
 }
 
 const CareerCard: React.FC<ICareerProps> = ({ item, onEdit, onDelete }) => {
+  const styles = useStyles();
+  const colorHint = useColor('HINT');
+  const colorPrimary = useColor('PRIMARY');
+
   const { position, company, startDate, endDate } = item;
 
   const dateString = useMemo(() => {
@@ -78,17 +79,17 @@ const CareerCard: React.FC<ICareerProps> = ({ item, onEdit, onDelete }) => {
       </Card.Content>
       <Card.Actions style={styles.cardActions}>
         <View style={styles.actionButtons}>
-          <CalendarIcon color={AppColor.HINT} size={16} />
+          <CalendarIcon color={colorHint} size={16} />
           <Text style={styles.date} appearance={TextAppearance.HINT}>
             {dateString}
           </Text>
         </View>
         <View style={styles.actionButtons}>
           <TouchableOpacity onPress={handleEdit}>
-            <PencilIcon color={AppColor.PRIMARY} size={16} />
+            <PencilIcon color={colorPrimary} size={16} />
           </TouchableOpacity>
           <TouchableOpacity onPress={handleDelete} style={styles.editIcon}>
-            <DeleteIcon color={AppColor.PRIMARY} size={16} />
+            <DeleteIcon color={colorPrimary} size={16} />
           </TouchableOpacity>
         </View>
       </Card.Actions>

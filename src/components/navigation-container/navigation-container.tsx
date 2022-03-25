@@ -8,7 +8,7 @@ import {
 import { AuthRoute } from 'src/common/enums';
 
 const linking: LinkingOptions<ReactNavigation.RootParamList> = {
-  prefixes: ['growupmobile://'],
+  prefixes: ['growupmobile://', 'https://bsa-growup.herokuapp.com'],
   config: {
     screens: {
       [AuthRoute.COMPLETE_REGISTRATION]: 'complete-registration/:token',

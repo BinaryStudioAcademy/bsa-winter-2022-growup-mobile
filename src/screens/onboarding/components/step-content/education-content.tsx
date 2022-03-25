@@ -4,9 +4,11 @@ import { ScrollView, View } from 'react-native';
 import { HeadingLevel, OnboardingRoute } from 'src/common/enums';
 import { Heading, AddButton } from 'src/components';
 import { useAppNavigation } from 'src/hooks';
-import styles from './styles';
+import useStyles from './styles';
 
 const EducationContent: React.FC = () => {
+  const styles = useStyles();
+
   const navigation = useAppNavigation();
 
   const handleAddEducation = () => {

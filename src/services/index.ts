@@ -19,6 +19,7 @@ import { AuthApi } from './auth-api';
 import { OpportunitiesApi } from './opportunities-api';
 import { StorageService } from './storage';
 import { Http } from './http';
+import { QuizApi } from './quiz-api';
 
 const apiPath = `${API_ORIGIN_URL}${API_PREFIX}`;
 
@@ -75,6 +76,11 @@ const opportunitiesApi = new OpportunitiesApi({
   apiPath,
 });
 
+const quizApi = new QuizApi({
+  http,
+  apiPath: `${API_ORIGIN_URL}${API_PREFIX}`,
+});
+
 const pushNotificationApi = new PushNotificationsApi();
 
 export {
@@ -88,5 +94,6 @@ export {
   educationApi,
   careerApi,
   pushNotificationApi,
+  quizApi,
   opportunitiesApi,
 };

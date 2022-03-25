@@ -10,6 +10,8 @@ type AppStackParamList = {
   };
   [AppRoute.ADD_KEY_RESULT]: undefined;
   [AppRoute.ONBOARDING_SETUP]: undefined;
+  [AppRoute.OPPORTUNITY_DETAILS]: undefined;
+  [AppRoute.QUIZ]: undefined;
 };
 
 export type { AppStackParamList };

@@ -2,13 +2,16 @@ import React, { useEffect } from 'react';
 import { FlatList, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-import { HeadingLevel } from 'src/common/enums';
+import { AppRoute, HeadingLevel } from 'src/common/enums';
 import { Heading, OpportunityCard } from 'src/components';
-import { useAppDispatch, useAppSelector } from 'src/hooks';
+import { useAppDispatch, useAppNavigation, useAppSelector } from 'src/hooks';
 import { opportunityActions } from 'src/store/actions';
-import styles from './styles';
+import useStyles from './styles';
 
 const OpportunitiesScreen: React.FC = () => {
+  const styles = useStyles();
+
+  const navigation = useAppNavigation();
   const dispatch = useAppDispatch();
 
   const { opportunitiesLoading, opportunities } = useAppSelector(
@@ -21,15 +24,17 @@ const OpportunitiesScreen: React.FC = () => {
     }
   }, [opportunitiesLoading, opportunities, dispatch]);
 
-  const showOpportunityDetails = (_id: string) => {
-    /* TODO */
+  const showOpportunityDetails = (id: string) => {
+    dispatch(opportunityActions.loadExpandedOpportunity(id))
+      .unwrap()
+      .then(() => navigation.navigate(AppRoute.OPPORTUNITY_DETAILS));
   };
 
   return (
     <SafeAreaView>
       <FlatList
         data={opportunities ?? []}
-        style={styles.container}
+        style={styles.screen}
         ListHeaderComponent={
           <Heading style={styles.header} level={HeadingLevel.H5}>
             Opportunities

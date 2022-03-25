@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useEffect, useMemo } from 'react';
 import { ScrollView, View } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
-import { INotification, IOpportunity } from 'src/common/types';
-import { useAppDispatch } from 'src/hooks';
-import { notificationActions } from 'src/store/actions';
+import { PREVIEW_CARDS_COUNT } from 'src/common/constants';
+import { AppRoute } from 'src/common/enums';
+import { INotification } from 'src/common/types';
+import { useAppDispatch, useAppNavigation, useAppSelector } from 'src/hooks';
+import { notificationActions, opportunityActions } from 'src/store/actions';
 
 import {
   Header,
@@ -11,10 +14,17 @@ import {
   OpportunitiesSection,
 } from './components';
 
-import styles from './styles';
+import useStyles from './styles';
 
 const MenteeHome: React.FC = () => {
+  const styles = useStyles();
+
+  const navigation = useAppNavigation();
   const dispatch = useAppDispatch();
+
+  const { opportunities, opportunitiesLoading } = useAppSelector(
+    state => state.opportunity
+  );
 
   const notifications: INotification[] = [
     // TODO: useSelector
@@ -28,48 +38,43 @@ const MenteeHome: React.FC = () => {
     },
   ];
 
-  const opportunities: IOpportunity[] = [
-    // TODO: useSelector
-    {
-      id: '1',
-      name: 'Senior PHP Developer',
-      orgGroup: 'Binary Studio',
-      tags: ['Kyiv', 'Remote'],
-      type: 'Project',
-      startDate: new Date('2022-02-23'),
-    },
-    {
-      id: '2',
-      name: 'Designer',
-      orgGroup: 'Super Designers',
-      type: 'Project',
-      startDate: new Date('2022-03-01'),
-      tags: ['Lviv'],
-    },
-  ];
+  useEffect(() => {
+    if (!opportunities && !opportunitiesLoading) {
+      dispatch(opportunityActions.loadOpportunities());
+    }
+  }, [opportunitiesLoading, opportunities, dispatch]);
+
+  const previewOpportunities = useMemo(
+    () => (opportunities ?? []).slice(0, PREVIEW_CARDS_COUNT),
+    [opportunities]
+  );
 
   const handleMarkRead = (id: string) => {
     dispatch(notificationActions.markNotificationRead(id));
   };
 
-  const handleOpportunityDetails = () => {
-    // TODO: navigate
+  const handleOpportunityDetails = (id: string) => {
+    dispatch(opportunityActions.loadExpandedOpportunity(id))
+      .unwrap()
+      .then(() => navigation.navigate(AppRoute.OPPORTUNITY_DETAILS));
   };
 
   return (
-    <View>
-      <Header>Looking for some jobs?</Header>
-      <ScrollView contentContainerStyle={styles.container}>
-        <NotificationsSection
-          notifications={notifications}
-          onMarkRead={handleMarkRead}
-        />
-        <OpportunitiesSection
-          opportunities={opportunities}
-          onDetails={handleOpportunityDetails}
-        />
-      </ScrollView>
-    </View>
+    <SafeAreaView>
+      <View style={styles.screen}>
+        <Header>Looking for some jobs?</Header>
+        <ScrollView style={styles.scroller}>
+          <NotificationsSection
+            notifications={notifications}
+            onMarkRead={handleMarkRead}
+          />
+          <OpportunitiesSection
+            opportunities={previewOpportunities}
+            onDetails={handleOpportunityDetails}
+          />
+        </ScrollView>
+      </View>
+    </SafeAreaView>
   );
 };
 

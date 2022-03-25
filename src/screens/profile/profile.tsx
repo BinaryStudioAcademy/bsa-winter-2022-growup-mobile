@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { ScrollView, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Divider, FAB } from 'react-native-paper';
+
 import PagerView, {
   PagerViewOnPageSelectedEvent,
 } from 'react-native-pager-view';
@@ -10,11 +11,11 @@ import { HeadingLevel, ProfileRoute } from 'src/common/enums';
 import { ICareer } from 'src/common/types';
 import { Heading, Text } from 'src/components';
 import { useAppDispatch, useAppSelector, useAppNavigation } from 'src/hooks';
-import { actions as experienceActions } from 'src/store/experience';
+import { experienceActions } from 'src/store/experience';
 import addActions from './add-actions';
-import { CareerCard, EducationCard, Navbar } from './components';
-import styles from './styles';
 import { educationActions } from 'src/store/actions';
+import { CareerCard, EducationCard, Navbar, Settings, Header, QuizInfo } from './components';
+import useStyles from './styles';
 
 const NAVBAR_ITEMS = [
   'Summary',
@@ -23,9 +24,12 @@ const NAVBAR_ITEMS = [
   'Skills',
   'Experience',
   'Education',
+  'Settings',
 ];
 
 const ProfileScreen: React.FC = () => {
+  const styles = useStyles();
+
   const navigation = useAppNavigation();
   const dispatch = useAppDispatch();
   const [addMenuOpen, setAddMenuOpen] = useState(false);
@@ -67,8 +71,11 @@ const ProfileScreen: React.FC = () => {
     },
   };
 
-  const { careerExperience } = useAppSelector(state => state.experience);
   const { educationExperience } = useAppSelector(state => state.education);
+  const { careerExperience, user } = useAppSelector(state => ({
+    careerExperience: state.experience.careerExperience,
+    user: state.auth.user,
+  }));
 
   const handleItemPress = (name: string) => {
     addFunctions[name]();
@@ -110,12 +117,15 @@ const ProfileScreen: React.FC = () => {
   return (
     <SafeAreaView style={styles.fullHeight}>
       <View style={styles.container}>
-        <Navbar
-          activeIndex={activeIndex}
-          onClick={handleClick}
-          items={NAVBAR_ITEMS}
-        />
-        <Divider />
+        <View style={styles.headerContent}>
+          <Header />
+          <Navbar
+            activeIndex={activeIndex}
+            onClick={handleClick}
+            items={NAVBAR_ITEMS}
+          />
+          <Divider />
+        </View>
         <View style={styles.content}>
           <PagerView
             initialPage={0}
@@ -126,9 +136,10 @@ const ProfileScreen: React.FC = () => {
           >
             <View style={styles.swiperItem} collapsable={false}>
               <Text>Summary container</Text>
+              {!user?.isCompleteTest && <QuizInfo />}
             </View>
             <View style={styles.swiperItem} collapsable={false}>
-              <Text>Qualities container</Text>
+              {!user?.isCompleteTest && <QuizInfo />}
             </View>
             <View style={styles.swiperItem} collapsable={false}>
               <Text>Interests container</Text>
@@ -163,6 +174,12 @@ const ProfileScreen: React.FC = () => {
                   </View>
                 ))}
               </ScrollView>
+            </View>
+            <View style={styles.swiperItem} collapsable={false}>
+              <Heading level={HeadingLevel.H5} style={styles.containerHeader}>
+                App Settings
+              </Heading>
+              <Settings />
             </View>
           </PagerView>
         </View>

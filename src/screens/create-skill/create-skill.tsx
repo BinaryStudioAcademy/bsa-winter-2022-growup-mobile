@@ -6,9 +6,11 @@ import { useAppDispatch, useAppNavigation } from 'src/hooks';
 import { skillActions } from 'src/store/actions';
 import { CreateSkillForm } from './components';
 import { ScrollView } from 'react-native';
-import styles from './styles';
+import useStyles from './styles';
 
 const CreateSkill: React.FC = () => {
+  const styles = useStyles();
+
   const dispatch = useAppDispatch();
   const navigation = useAppNavigation();
 
@@ -22,7 +24,7 @@ const CreateSkill: React.FC = () => {
   };
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={styles.screen}>
       <ScrollView>
         <CreateSkillForm onSubmit={handleSubmit} onBack={handleGoBack} />
       </ScrollView>

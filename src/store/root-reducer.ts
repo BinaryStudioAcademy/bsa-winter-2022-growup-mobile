@@ -5,6 +5,7 @@ import { okrReducer as okr } from './okr';
 import { notificationReducer as notification } from './notification';
 import { experienceReducer as experience } from './experience';
 import { opportunityReducer as opportunity } from './opportunities';
+import { quizReducer as quiz } from './quiz';
 
 export const rootReducer = {
   auth,
@@ -14,4 +15,5 @@ export const rootReducer = {
   education,
   experience,
   opportunity,
+  quiz,
 };

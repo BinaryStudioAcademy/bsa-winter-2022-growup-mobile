@@ -1,12 +1,25 @@
+import { useMemo } from 'react';
 import { StyleSheet } from 'react-native';
 
-import { AppColor } from 'src/common/enums';
+import { useColor } from 'src/hooks';
 
-const styles = StyleSheet.create({
-  inputContainer: {
-    backgroundColor: AppColor.INPUT_BACKGROUND,
-    borderRadius: 8,
-  },
-});
+const useStyles = () => {
+  const black = useColor('BLACK');
+  const inputBg = useColor('INPUT_BACKGROUND');
 
-export default styles;
+  return useMemo(
+    () =>
+      StyleSheet.create({
+        inputContainer: {
+          backgroundColor: inputBg,
+          borderRadius: 8,
+        },
+        label: {
+          color: black,
+        },
+      }),
+    [inputBg, black]
+  );
+};
+
+export default useStyles;

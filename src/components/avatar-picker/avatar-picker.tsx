@@ -6,13 +6,14 @@ import { Asset } from 'react-native-image-picker';
 import { ButtonMode } from 'src/common/enums';
 import { captureSingleImage, selectSingleImageFromGallery } from 'src/helpers';
 import { MainButton } from '..';
-import styles from './styles';
+import useStyles from './styles';
 
 type AvatarPickerProps = {
   onPick: (avatar?: Asset) => void;
 };
 
 const AvatarPicker: React.FC<AvatarPickerProps> = ({ onPick }) => {
+  const styles = useStyles();
   const [menuOpen, setMenuOpen] = useState<boolean>(false);
 
   const handleShow = () => {

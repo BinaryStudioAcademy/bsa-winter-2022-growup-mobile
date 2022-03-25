@@ -1,8 +1,9 @@
 import React from 'react';
 import { Button } from 'react-native-paper';
 
-import { AppColor, ButtonMode } from 'src/common/enums';
-import styles from './styles';
+import { ButtonMode } from 'src/common/enums';
+import { useColor } from 'src/hooks';
+import useStyles from './styles';
 
 type MainButtonProps = React.ComponentPropsWithoutRef<typeof Button>;
 
@@ -11,17 +12,22 @@ const MainButton: React.FC<MainButtonProps> = ({
   style,
   labelStyle,
   mode = ButtonMode.TEXT,
+  disabled,
   ...buttonProps
 }) => {
+  const styles = useStyles();
+  const accent = useColor('ACCENT');
+
   const isOutlined = mode === ButtonMode.OUTLINED;
 
   return (
     <Button
       uppercase={false}
-      labelStyle={[styles.text, labelStyle]}
+      labelStyle={[styles.text, disabled && styles.disabled, labelStyle]}
       style={[isOutlined && styles[ButtonMode.OUTLINED], style]}
       mode={mode}
-      color={AppColor.ACCENT}
+      color={accent}
+      disabled={disabled}
       {...buttonProps}
     >
       {children}

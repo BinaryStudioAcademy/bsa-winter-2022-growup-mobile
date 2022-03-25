@@ -10,6 +10,8 @@ enum ApiPath {
   USER_EDUCATION = '/user/education',
   USER_CAREER = '/user/career-journey',
   OPPORTUNITIES = '/company/opportunities',
+  QUIZ_QUESTION = '/work-quiz/question',
+  QUIZ_RESULT = '/work-quiz/result',
 }
 
 export { ApiPath };

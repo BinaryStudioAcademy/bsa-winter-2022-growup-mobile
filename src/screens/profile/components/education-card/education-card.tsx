@@ -12,9 +12,10 @@ import {
 } from 'src/components';
 
 import { MONTHS_IN_YEAR } from 'src/common/constants';
-import { AppColor, HeadingLevel, TextAppearance } from 'src/common/enums';
+import { HeadingLevel, TextAppearance } from 'src/common/enums';
 import { IEducation } from 'src/common/types';
-import styles from './styles';
+import { useColor } from 'src/hooks';
+import useStyles from './styles';
 
 type EducationCardProps = {
   education: IEducation;
@@ -27,6 +28,10 @@ const EducationCard: React.FC<EducationCardProps> = ({
   onEdit,
   onDelete,
 }) => {
+  const styles = useStyles();
+  const colorHint = useColor('HINT');
+  const colorPrimary = useColor('PRIMARY');
+
   const dateString = useMemo(() => {
     const startDay = dayjs(startDate);
     const endDay = dayjs(endDate);
@@ -70,16 +75,16 @@ const EducationCard: React.FC<EducationCardProps> = ({
       <View style={styles.footer}>
         <View style={styles.date}>
           <View style={styles.calendarIcon}>
-            <CalendarIcon color={AppColor.HINT} size={12} />
+            <CalendarIcon color={colorHint} size={12} />
           </View>
           <Text appearance={TextAppearance.HINT}>{dateString}</Text>
         </View>
         <View style={styles.icons}>
           <TouchableOpacity onPress={handleEdit} style={styles.editIcon}>
-            <PencilIcon color={AppColor.PRIMARY} size={14} />
+            <PencilIcon color={colorPrimary} size={14} />
           </TouchableOpacity>
           <TouchableOpacity onPress={handleDelete}>
-            <DeleteIcon color={AppColor.PRIMARY} size={14} />
+            <DeleteIcon color={colorPrimary} size={14} />
           </TouchableOpacity>
         </View>
       </View>

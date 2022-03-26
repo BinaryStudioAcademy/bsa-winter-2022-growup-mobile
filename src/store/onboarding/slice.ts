@@ -1,12 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 import { IOnboarding } from 'src/common/types';
-import {
-  saveUserInfo,
-  saveUserEducation,
-  saveUserExperience,
-  saveUserLanguage,
-} from './actions';
+import { saveUserInfo, saveUserLanguage } from './actions';
 
 interface IOnboardingState {
   userData: IOnboarding;
@@ -33,12 +28,6 @@ const { reducer, actions } = createSlice({
       state.userData.firstName = firstName;
       state.userData.lastName = lastName;
       state.userData.position = position;
-    });
-    builder.addCase(saveUserEducation, (state, { payload }) => {
-      state.userData.educations.push(payload);
-    });
-    builder.addCase(saveUserExperience, (state, { payload }) => {
-      state.userData.careerJourneys.push(payload);
     });
     builder.addCase(saveUserLanguage, (state, { payload }) => {
       state.userData.languages.push(payload);

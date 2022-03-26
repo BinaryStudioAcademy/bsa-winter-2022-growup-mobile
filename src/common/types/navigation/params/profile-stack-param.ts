@@ -5,7 +5,7 @@ type ProfileStackParamList = {
   [ProfileRoute.PROFILE_ROOT]: undefined;
   [ProfileRoute.CREATE_SKILL]: undefined;
   [ProfileRoute.ADD_CAREER_EXPERIENCE]: {
-    isEdit: boolean;
+    isEdit?: boolean;
     career?: ICareer;
   };
 };

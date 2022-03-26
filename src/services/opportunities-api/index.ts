@@ -24,9 +24,7 @@ class OpportunitiesApi {
     return response ?? [];
   }
 
-  public async getOpportunityById(
-    id: string
-  ): Promise<IFullOpportunity | undefined> {
+  public async getOpportunityById(id: string): Promise<IFullOpportunity> {
     return this.#http.load(`${this.#apiPath}${ApiPath.OPPORTUNITIES}/${id}`);
   }
 }

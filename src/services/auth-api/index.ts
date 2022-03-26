@@ -19,9 +19,7 @@ class AuthApi {
     this.#apiPath = apiPath;
   }
 
-  public async signIn(
-    payload: ISignInPayload
-  ): Promise<AuthResponse | undefined> {
+  public async signIn(payload: ISignInPayload): Promise<AuthResponse> {
     return this.#http.load(`${this.#apiPath}${ApiPath.SIGN_IN}`, {
       method: HttpMethod.POST,
       contentType: ContentType.JSON,
@@ -30,7 +28,7 @@ class AuthApi {
     });
   }
 
-  public async uploadAvatar(image: Asset): Promise<IUser | undefined> {
+  public async uploadAvatar(image: Asset): Promise<IUser> {
     const payload = new FormData();
     payload.append('avatar', assetToMultipartFile(image));
 
@@ -41,9 +39,9 @@ class AuthApi {
     });
   }
 
-  public async getCurrentUser(): Promise<IUser | undefined> {
+  public async getCurrentUser(): Promise<IUser> {
     return this.#http.load(`${this.#apiPath}${ApiPath.CURRENT_USER}`, {
-      notifyError: true,
+      notifyError: false,
     });
   }
 }

@@ -24,9 +24,7 @@ class CareerApi {
     return response ?? [];
   }
 
-  public async addCareer(
-    payload: IAddCareerPayload
-  ): Promise<ICareer | undefined> {
+  public async addCareer(payload: IAddCareerPayload): Promise<ICareer> {
     return this.#http.load(`${this.#apiPath}${ApiPath.USER_CAREER}`, {
       method: HttpMethod.POST,
       contentType: ContentType.JSON,
@@ -40,7 +38,7 @@ class CareerApi {
     });
   }
 
-  public async editCareer(payload: ICareer): Promise<ICareer | undefined> {
+  public async editCareer(payload: ICareer): Promise<ICareer> {
     return this.#http.load(
       `${this.#apiPath}${ApiPath.USER_CAREER}/${payload.id}`,
       {

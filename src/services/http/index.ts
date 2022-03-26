@@ -26,7 +26,7 @@ class Http {
   async load<T = unknown>(
     url: string,
     options: Partial<HttpOptions> = {}
-  ): Promise<T | undefined> {
+  ): Promise<T> {
     const {
       method = HttpMethod.GET,
       payload = null,
@@ -79,7 +79,6 @@ class Http {
     if (!response.ok) {
       if (this.isUnauthorized(response)) {
         this.refreshToken();
-        return response;
       }
 
       const parsedException = await response.json().catch(() => ({
@@ -112,12 +111,12 @@ class Http {
     err: Error,
     notify?: boolean,
     customErrorMessage?: string
-  ): undefined {
+  ): never {
     if (notify) {
       showErrorToast(customErrorMessage ?? err.message);
     }
 
-    return;
+    throw err;
   }
 }
 

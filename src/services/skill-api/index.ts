@@ -16,9 +16,7 @@ class SkillApi {
     this.#apiPath = apiPath;
   }
 
-  public async create(
-    payload: ICreateSkillPayload
-  ): Promise<ISkill | undefined> {
+  public async create(payload: ICreateSkillPayload): Promise<ISkill> {
     return this.#http.load(`${this.#apiPath}${ApiPath.SKILLS}`, {
       method: HttpMethod.POST,
       contentType: ContentType.JSON,

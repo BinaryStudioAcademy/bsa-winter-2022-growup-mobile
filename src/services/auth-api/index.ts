@@ -1,6 +1,12 @@
 import { Asset } from 'react-native-image-picker';
 
-import { ISignInPayload, IUser, AuthResponse } from 'src/common/types';
+import {
+  ISignInPayload,
+  IUser,
+  AuthResponse,
+  ISignUpPayload,
+} from 'src/common/types';
+
 import { ApiPath, ContentType, HttpMethod } from 'src/common/enums';
 import { showErrorToast, assetToMultipartFile } from 'src/helpers';
 import { Http } from '../http';
@@ -31,6 +37,23 @@ class AuthApi {
       });
     } catch (err) {
       showErrorToast((err as Error | undefined)?.message ?? 'Failed to log in');
+    }
+  }
+
+  public async signUp(
+    payload: ISignUpPayload
+  ): Promise<AuthResponse | undefined> {
+    try {
+      return await this.#http.load(`${this.#apiPath}${ApiPath.SIGN_UP}`, {
+        method: HttpMethod.POST,
+        contentType: ContentType.JSON,
+        payload: JSON.stringify(payload),
+        hasAuth: false,
+      });
+    } catch (err) {
+      showErrorToast(
+        (err as Error | undefined)?.message ?? 'Failed to sign up'
+      );
     }
   }
 

@@ -11,7 +11,7 @@ import {
 } from 'src/common/constants';
 
 import { IPoint, IPolarPoint } from 'src/common/types';
-import { getAngleValue, polarToCartesian, normalizeAngle } from 'src/helpers';
+import { getInAngleValue, polarToCartesian, normalizeAngle } from 'src/helpers';
 import { useColor } from 'src/hooks';
 
 type Axis = {
@@ -55,7 +55,7 @@ const RadarChart: React.FC<RadarChartProps> = ({
 
   const textSize = useMemo(() => chartSize * TEXT_SIZE_FRACTION, [chartSize]);
 
-  const textMaxWith = useMemo(
+  const textMaxWidth = useMemo(
     () => chartSize * TEXT_MAX_WIDTH_FRACTION,
     [chartSize]
   );
@@ -77,9 +77,7 @@ const RadarChart: React.FC<RadarChartProps> = ({
       angleValue: number,
       radius: number
     ) => {
-      const cycledPointsCount = angles + 1;
-
-      const points = new Array(cycledPointsCount).fill(0).map((_, i) => {
+      const points = new Array(angles).fill(0).map((_, i) => {
         const angle = normalizeAngle(angleValue * i);
         const polar: IPolarPoint = { r: radius, angle };
         const cartesian = polarToCartesian(polar, center);
@@ -87,7 +85,7 @@ const RadarChart: React.FC<RadarChartProps> = ({
         return cartesian;
       });
 
-      points.reduce((prev, point) => {
+      [...points, points[0]].reduce((prev, point) => {
         if (!prev) {
           return point;
         }
@@ -106,9 +104,9 @@ const RadarChart: React.FC<RadarChartProps> = ({
       const polar: IPolarPoint = { r: textRadius, angle };
       const cartesian = polarToCartesian(polar, center);
 
-      context.fillText(text, cartesian.x, cartesian.y, textMaxWith);
+      context.fillText(text, cartesian.x, cartesian.y, textMaxWidth);
     },
-    [center, textRadius, textMaxWith]
+    [center, textRadius, textMaxWidth]
   );
 
   const drawScorepoint = useCallback(
@@ -136,7 +134,7 @@ const RadarChart: React.FC<RadarChartProps> = ({
 
   const drawScoreArea = useCallback(
     (context: CanvasRenderingContext2D, positions: IPoint[]) => {
-      positions.reduce((prev, point) => {
+      [...positions, positions[0]].reduce((prev, point) => {
         if (!prev) {
           context.moveTo(point.x, point.y);
           return point;
@@ -164,7 +162,7 @@ const RadarChart: React.FC<RadarChartProps> = ({
       context.font = `${textSize}px Arial`;
 
       const angles = axes.length;
-      const angleValue = getAngleValue(angles);
+      const angleValue = getInAngleValue(angles);
 
       context.beginPath();
 
@@ -194,8 +192,6 @@ const RadarChart: React.FC<RadarChartProps> = ({
           Math.min(axis.score, maxScore)
         );
       });
-
-      scorepointPositions.push(scorepointPositions[0]);
 
       context.closePath();
       context.stroke();

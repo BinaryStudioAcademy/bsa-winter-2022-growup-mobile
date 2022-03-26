@@ -9,7 +9,7 @@ export * from './form';
 export * from './tag';
 export * from './date-input';
 export * from './avatar';
-export * from './avatar-picker';
+export * from './image-picker';
 export * from './add-button';
 export * from './minor-card';
 export * from './opportunity-card';

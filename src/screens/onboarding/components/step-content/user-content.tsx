@@ -4,7 +4,7 @@ import { Avatar } from 'react-native-paper';
 
 import { HeadingLevel } from 'src/common/enums';
 import { IUserInfo } from 'src/common/types';
-import { FormAvatarPicker, FormInput, Heading } from 'src/components';
+import { FormImagePicker, FormInput, Heading } from 'src/components';
 import { useColor } from 'src/hooks';
 import useStyles from './styles';
 
@@ -39,7 +39,7 @@ const UserContent: React.FC<UserContentProps> = ({ values }) => {
             />
           )}
         </View>
-        <FormAvatarPicker name="avatar" />
+        <FormImagePicker buttonText="Add Avatar" name="avatar" />
         <FormInput
           containerStyle={styles.input}
           placeholder="Enter first name"

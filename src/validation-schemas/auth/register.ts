@@ -11,12 +11,12 @@ const registerValidationSchema = yup.object({
     .string()
     .required('First name is a required field')
     .min(2, 'First name is too short')
-    .min(40, 'First name is too long'),
+    .max(40, 'First name is too long'),
   lastName: yup
     .string()
     .required('Last name is a required field')
     .min(2, 'Last name is too short')
-    .min(40, 'Last name is too long'),
+    .max(40, 'Last name is too long'),
   password: yup
     .string()
     .required('Password is a required field')

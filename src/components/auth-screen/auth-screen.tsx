@@ -30,10 +30,12 @@ const AuthScreen: React.FC<AuthScreenProps> = ({
 
   return (
     <SafeAreaView style={styles.screen}>
-      <View style={styles.logoWrapper}>
-        <Image source={logo} style={styles.logo} />
+      <View style={styles.content}>
+        <View style={styles.logoWrapper}>
+          <Image source={logo} style={styles.logo} />
+        </View>
+        {children}
       </View>
-      <View style={styles.content}>{children}</View>
       <View style={styles.footer}>
         <Text>{secondaryMessage}</Text>
         <MainButton mode={ButtonMode.TEXT} onPress={handleNavigate}>

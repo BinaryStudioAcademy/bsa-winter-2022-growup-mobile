@@ -29,8 +29,8 @@ const RegisterForm: React.FC = () => {
       onSubmit={handleRegister}
     >
       {({ isValid, handleSubmit }) => (
-        <View style={styles.content}>
-          <View style={styles.container}>
+        <View style={styles.container}>
+          <View style={styles.fields}>
             <FormInput name="email" style={styles.formField} label="Email" />
             <FormInput
               name="firstName"
@@ -54,7 +54,7 @@ const RegisterForm: React.FC = () => {
             onPress={handleSubmit}
             disabled={!isValid}
           >
-            Log In
+            Sign Up
           </MainButton>
         </View>
       )}

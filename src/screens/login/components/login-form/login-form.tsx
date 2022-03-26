@@ -48,8 +48,8 @@ const LoginForm: React.FC = () => {
       onSubmit={handleLogin}
     >
       {({ isValid, handleSubmit }) => (
-        <View style={styles.content}>
-          <View style={styles.container}>
+        <View style={styles.container}>
+          <View style={styles.fields}>
             <FormInput name="email" style={styles.formField} label="Email" />
             <FormPasswordInput
               name="password"

@@ -13,23 +13,22 @@ const useStyles = () => {
         screen: {
           height: '100%',
           backgroundColor: white,
-          paddingTop: DEFAULT_SCREEN_PADDING,
-          paddingHorizontal: DEFAULT_SCREEN_PADDING,
+          padding: DEFAULT_SCREEN_PADDING,
+        },
+        content: {
+          flex: 1,
+          paddingBottom: 15,
         },
         logoWrapper: {
+          paddingVertical: 40,
           alignItems: 'center',
-          flex: 1,
+          justifyContent: 'center',
         },
         logo: {
           height: 48,
-          alignSelf: 'center',
           resizeMode: 'contain',
         },
-        content: {
-          paddingVertical: DEFAULT_SCREEN_PADDING,
-        },
         footer: {
-          paddingVertical: DEFAULT_SCREEN_PADDING,
           flexDirection: 'row',
           flexWrap: 'wrap',
           justifyContent: 'center',

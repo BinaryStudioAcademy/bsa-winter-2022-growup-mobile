@@ -1,5 +1,6 @@
 import { ApiPath, ContentType, HttpMethod } from 'src/common/enums';
-import { IAddEducationPayload, IEducation } from 'src/common/types';
+import { IAddEducationPayload } from 'src/common/types';
+import { showErrorToast } from 'src/helpers';
 import { Http } from '../http';
 
 type Constructor = {
@@ -17,17 +18,29 @@ class EducationApi {
   }
 
   public addEducation(payload: IAddEducationPayload) {
-    return this.#http.load(`${this.#apiPath}${ApiPath.USER_EDUCATION}`, {
-      method: HttpMethod.POST,
-      contentType: ContentType.JSON,
-      payload: JSON.stringify(payload),
-    });
+    try {
+      return this.#http.load(`${this.#apiPath}${ApiPath.USER_EDUCATION}`, {
+        method: HttpMethod.POST,
+        contentType: ContentType.JSON,
+        payload: JSON.stringify(payload),
+      });
+    } catch (err) {
+      showErrorToast(
+        (err as Error | undefined)?.message ?? 'Failed to add new education'
+      );
+    }
   }
 
-  public loadEducations(): Promise<IEducation[]> {
-    return this.#http.load(`${this.#apiPath}${ApiPath.USER_EDUCATION}`, {
-      method: HttpMethod.GET,
-    });
+  public loadEducations() {
+    try {
+      return this.#http.load(`${this.#apiPath}${ApiPath.USER_EDUCATION}`, {
+        method: HttpMethod.GET,
+      });
+    } catch (err) {
+      showErrorToast(
+        (err as Error | undefined)?.message ?? 'Failed to load educations'
+      );
+    }
   }
 }
 

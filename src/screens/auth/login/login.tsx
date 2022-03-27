@@ -18,6 +18,10 @@ const LoginScreen: React.FC = () => {
     navigation.navigate(AuthRoute.SIGN_UP);
   };
 
+  const handleCompleteRegistrationPress = () => {
+    navigation.navigate(AuthRoute.COMPLETE_REGISTRATION);
+  };
+
   return (
     <SafeAreaView style={styles.screen}>
       <View style={styles.content}>
@@ -28,6 +32,12 @@ const LoginScreen: React.FC = () => {
         <Text>New to GrowUp?</Text>
         <MainButton mode={ButtonMode.TEXT} onPress={handleSignUpPress}>
           Sign Up
+        </MainButton>
+        <MainButton
+          mode={ButtonMode.TEXT}
+          onPress={handleCompleteRegistrationPress}
+        >
+          Complete Registration
         </MainButton>
       </View>
     </SafeAreaView>

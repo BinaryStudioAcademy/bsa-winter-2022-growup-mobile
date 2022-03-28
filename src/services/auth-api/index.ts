@@ -41,7 +41,9 @@ class AuthApi {
 
   public async getCurrentUser(): Promise<IUser> {
     return this.#http.load(`${this.#apiPath}${ApiPath.CURRENT_USER}`, {
-      notifyError: false,
+      errorOptions: {
+        notify: false,
+      },
     });
   }
 }

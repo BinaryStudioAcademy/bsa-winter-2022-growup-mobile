@@ -33,9 +33,13 @@ class Http {
       contentType,
       hasAuth = true,
       query,
-      notifyError = true,
-      customErrorMessage,
+      errorOptions = {
+        notify: true,
+      },
     } = options;
+
+    const { notify: notifyError = true, customMessage: customErrorMessage } =
+      errorOptions;
 
     const headers = await this.getHeaders({
       contentType,

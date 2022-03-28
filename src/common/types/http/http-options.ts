@@ -1,4 +1,5 @@
 import { ContentType, HttpMethod } from '../../enums';
+import { HttpErrorOptions } from '.';
 
 type HttpOptions = {
   method: HttpMethod;
@@ -6,8 +7,7 @@ type HttpOptions = {
   payload: BodyInit_ | null;
   hasAuth: boolean;
   query: Record<string, unknown>;
-  notifyError: boolean;
-  customErrorMessage: string;
+  errorOptions: HttpErrorOptions;
 };
 
 export type { HttpOptions };

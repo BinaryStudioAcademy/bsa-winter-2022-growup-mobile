@@ -1,6 +1,12 @@
 import { Asset } from 'react-native-image-picker';
 
-import { ISignInPayload, IUser, AuthResponse } from 'src/common/types';
+import {
+  ISignInPayload,
+  IUser,
+  AuthResponse,
+  ISignUpPayload,
+} from 'src/common/types';
+
 import { ApiPath, ContentType, HttpMethod } from 'src/common/enums';
 import { assetToMultipartFile } from 'src/helpers';
 import { Http } from '../http';
@@ -21,6 +27,15 @@ class AuthApi {
 
   public async signIn(payload: ISignInPayload): Promise<AuthResponse> {
     return this.#http.load(`${this.#apiPath}${ApiPath.SIGN_IN}`, {
+      method: HttpMethod.POST,
+      contentType: ContentType.JSON,
+      payload: JSON.stringify(payload),
+      hasAuth: false,
+    });
+  }
+
+  public async signUp(payload: ISignUpPayload): Promise<AuthResponse> {
+    return this.#http.load(`${this.#apiPath}${ApiPath.SIGN_UP}`, {
       method: HttpMethod.POST,
       contentType: ContentType.JSON,
       payload: JSON.stringify(payload),

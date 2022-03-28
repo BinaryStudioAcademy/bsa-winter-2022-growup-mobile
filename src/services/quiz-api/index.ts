@@ -33,7 +33,6 @@ class QuizApi {
         method: HttpMethod.POST,
         contentType: ContentType.JSON,
         payload: JSON.stringify(payload),
-        hasAuth: true,
       }
     );
 

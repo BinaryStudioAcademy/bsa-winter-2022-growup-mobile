@@ -10,12 +10,13 @@ import {
 
 interface IQuizState {
   quizQuestions: IQuizQuestion[];
-  quizResults: IQuizResult[];
+  quizResults?: IQuizResult[];
+  quizResultsLoading: boolean;
 }
 
 const initialState: IQuizState = {
   quizQuestions: [],
-  quizResults: [],
+  quizResultsLoading: false,
 };
 
 const { reducer, actions } = createSlice({
@@ -34,19 +35,35 @@ const { reducer, actions } = createSlice({
 
       state.quizQuestions = quizQuestionsWithAnswerFields;
     });
+
+    builder.addCase(sendQuizResults.pending, state => {
+      state.quizResultsLoading = true;
+    });
+
+    builder.addCase(loadQuizResults.pending, state => {
+      state.quizResultsLoading = true;
+    });
+
     builder.addCase(sendQuizResults.fulfilled, (state, { payload }) => {
+      state.quizResultsLoading = false;
       state.quizResults = payload;
     });
+
     builder.addCase(loadQuizResults.fulfilled, (state, { payload }) => {
+      state.quizResultsLoading = false;
       state.quizResults = payload;
     });
+
     builder.addCase(saveQuizAnswers, (state, { payload }) => {
       const { questionId, answerIndex, prevAnswerIndex } = payload;
+
       const questionIndex = state.quizQuestions.findIndex(
         item => item.id === questionId
       );
+
       state.quizQuestions[questionIndex].answers[+prevAnswerIndex].isSelected =
         false;
+
       state.quizQuestions[questionIndex].answers[+answerIndex].isSelected =
         true;
     });

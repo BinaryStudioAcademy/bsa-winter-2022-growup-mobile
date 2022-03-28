@@ -38,37 +38,20 @@ const RadarChart: React.FC<RadarChartProps> = ({
   const colorPrimary = useColor('PRIMARY');
   const colorChartArea = useColor('CHART_AREA');
 
-  const halfSize = useMemo(() => chartSize / 2, [chartSize]);
+  const halfSize = chartSize / 2;
 
   const center = useMemo<IPoint>(
     () => ({ x: halfSize, y: halfSize }),
     [halfSize]
   );
 
-  const chartArea = useMemo(() => chartSize * SCALE_FRACTION, [chartSize]);
-  const lineSize = useMemo(() => chartSize * LINE_SIZE_FRACTION, [chartSize]);
-
-  const textRadius = useMemo(
-    () => chartSize * TEXT_POSITION_FRACTION,
-    [chartSize]
-  );
-
-  const textSize = useMemo(() => chartSize * TEXT_SIZE_FRACTION, [chartSize]);
-
-  const textMaxWidth = useMemo(
-    () => chartSize * TEXT_MAX_WIDTH_FRACTION,
-    [chartSize]
-  );
-
-  const cyclePadding = useMemo(
-    () => chartArea / maxScore,
-    [chartArea, maxScore]
-  );
-
-  const scorepointSize = useMemo(
-    () => chartSize * SCOREPOINT_SIZE_FRACTION,
-    [chartSize]
-  );
+  const chartArea = chartSize * SCALE_FRACTION;
+  const lineSize = chartSize * LINE_SIZE_FRACTION;
+  const textRadius = chartSize * TEXT_POSITION_FRACTION;
+  const textSize = chartSize * TEXT_SIZE_FRACTION;
+  const textMaxWidth = chartSize * TEXT_MAX_WIDTH_FRACTION;
+  const cyclePadding = chartArea / maxScore;
+  const scorepointSize = chartSize * SCOREPOINT_SIZE_FRACTION;
 
   const drawNAngle = useCallback(
     (

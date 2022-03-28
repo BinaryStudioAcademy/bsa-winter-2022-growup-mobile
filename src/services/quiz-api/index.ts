@@ -19,10 +19,7 @@ class QuizApi {
 
   public async loadQuizQuestions(): Promise<IQuizQuestion[]> {
     try {
-      return await this.#http.load(`${this.#apiPath}${ApiPath.QUIZ_QUESTION}`, {
-        method: HttpMethod.GET,
-        hasAuth: true,
-      });
+      return await this.#http.load(`${this.#apiPath}${ApiPath.QUIZ_QUESTION}`);
     } catch (err) {
       showErrorToast(
         (err as Error | undefined)?.message ?? 'Failed to load questions'
@@ -40,7 +37,6 @@ class QuizApi {
         method: HttpMethod.POST,
         contentType: ContentType.JSON,
         payload: JSON.stringify(payload),
-        hasAuth: true,
       });
     } catch (err) {
       showErrorToast(
@@ -53,10 +49,7 @@ class QuizApi {
 
   public async loadQuizResults(): Promise<IQuizResult[]> {
     try {
-      return await this.#http.load(`${this.#apiPath}${ApiPath.QUIZ_RESULT}`, {
-        method: HttpMethod.GET,
-        hasAuth: true,
-      });
+      return await this.#http.load(`${this.#apiPath}${ApiPath.QUIZ_RESULT}`);
     } catch (err) {
       showErrorToast(
         (err as Error | undefined)?.message ?? 'Failed to load quiz results'

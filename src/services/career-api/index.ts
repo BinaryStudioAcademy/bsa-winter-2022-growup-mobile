@@ -19,10 +19,7 @@ class CareerApi {
 
   public async getCareers(): Promise<ICareer[]> {
     try {
-      return await this.#http.load(`${this.#apiPath}${ApiPath.USER_CAREER}`, {
-        method: HttpMethod.GET,
-        hasAuth: true,
-      });
+      return await this.#http.load(`${this.#apiPath}${ApiPath.USER_CAREER}`);
     } catch (err) {
       showErrorToast(
         (err as Error | undefined)?.message ?? 'Failed to load careers'
@@ -40,7 +37,6 @@ class CareerApi {
         method: HttpMethod.POST,
         contentType: ContentType.JSON,
         payload: JSON.stringify(payload),
-        hasAuth: true,
       });
     } catch (err) {
       showErrorToast(
@@ -55,7 +51,6 @@ class CareerApi {
         `${this.#apiPath}${ApiPath.USER_CAREER}/${id}`,
         {
           method: HttpMethod.DELETE,
-          hasAuth: true,
         }
       );
     } catch (err) {
@@ -73,7 +68,6 @@ class CareerApi {
           method: HttpMethod.PUT,
           contentType: ContentType.JSON,
           payload: JSON.stringify(payload),
-          hasAuth: true,
         }
       );
     } catch (err) {

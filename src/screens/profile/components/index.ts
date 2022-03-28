@@ -6,3 +6,4 @@ export * from './navbar';
 export * from './quiz-info';
 export * from './settings';
 export * from './header';
+export * from './quiz-results';

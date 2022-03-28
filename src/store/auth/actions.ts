@@ -2,7 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import * as keychain from 'react-native-keychain';
 
 import { authApi, secureStorage } from 'src/services';
-import { ISignInPayload } from 'src/common/types';
+import { ISignInPayload, ISignUpPayload } from 'src/common/types';
 import { SecureStorageKey } from 'src/common/enums';
 
 import {
@@ -22,6 +22,20 @@ const signIn = createAsyncThunk(
       await revokeBiometricCredentials();
       return;
     }
+
+    if (await hasBiometry()) {
+      await setBiometricCredentials(payload.email, payload.password);
+    }
+
+    await secureStorage.setItem(SecureStorageKey.ACCESS_TOKEN, response.token);
+    return response.user;
+  }
+);
+
+const signUp = createAsyncThunk(
+  ActionTypes.SIGN_UP,
+  async (payload: ISignUpPayload) => {
+    const response = await authApi.signUp(payload);
 
     if (await hasBiometry()) {
       await setBiometricCredentials(payload.email, payload.password);
@@ -64,4 +78,4 @@ const loadCurrentUser = createAsyncThunk(
   }
 );
 
-export { signIn, signInFingerprint, loadCurrentUser, signOut };
+export { signIn, signUp, signInFingerprint, loadCurrentUser, signOut };

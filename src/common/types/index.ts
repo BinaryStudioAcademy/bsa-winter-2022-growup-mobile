@@ -15,3 +15,4 @@ export * from './quiz';
 export * from './tag';
 export * from './onboarding';
 export * from './language';
+export * from './geometry';

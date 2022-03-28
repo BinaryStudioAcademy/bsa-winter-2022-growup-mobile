@@ -3,7 +3,14 @@ import { createSlice, isAnyOf } from '@reduxjs/toolkit';
 import { IUser } from 'src/common/types';
 import { completeOnboarding, uploadUserAvatar } from '../onboarding/actions';
 import { sendQuizResults } from '../quiz/actions';
-import { signOut, loadCurrentUser, signIn, signInFingerprint } from './actions';
+
+import {
+  signOut,
+  loadCurrentUser,
+  signIn,
+  signInFingerprint,
+  signUp,
+} from './actions';
 
 interface IAuthState {
   user: IUser | null;
@@ -21,6 +28,7 @@ const { reducer, actions } = createSlice({
     builder.addCase(signOut.fulfilled, state => {
       state.user = null;
     });
+
     builder.addCase(sendQuizResults.fulfilled, state => {
       if (state.user) {
         state.user.isCompleteTest = true;
@@ -45,6 +53,7 @@ const { reducer, actions } = createSlice({
       isAnyOf(
         loadCurrentUser.fulfilled,
         signIn.fulfilled,
+        signUp.fulfilled,
         signInFingerprint.fulfilled
       ),
       (state, { payload }) => {

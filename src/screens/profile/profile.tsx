@@ -13,7 +13,7 @@ import { CareerCard, Heading, Text } from 'src/components';
 import { useAppDispatch, useAppSelector, useAppNavigation } from 'src/hooks';
 import { experienceActions } from 'src/store/experience';
 import addActions from './add-actions';
-import { Navbar, Settings, Header, QuizInfo } from './components';
+import { Navbar, Settings, Header, QuizInfo, QuizResults } from './components';
 import useStyles from './styles';
 
 const NAVBAR_ITEMS = [
@@ -133,7 +133,7 @@ const ProfileScreen: React.FC = () => {
               {!user?.isCompleteTest && <QuizInfo />}
             </View>
             <View style={styles.swiperItem} collapsable={false}>
-              {!user?.isCompleteTest && <QuizInfo />}
+              {!user?.isCompleteTest ? <QuizInfo /> : <QuizResults />}
             </View>
             <View style={styles.swiperItem} collapsable={false}>
               <Text>Interests container</Text>

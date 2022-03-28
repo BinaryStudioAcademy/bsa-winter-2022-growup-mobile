@@ -40,21 +40,13 @@ class AuthApi {
     }
   }
 
-  public async signUp(
-    payload: ISignUpPayload
-  ): Promise<AuthResponse | undefined> {
-    try {
-      return await this.#http.load(`${this.#apiPath}${ApiPath.SIGN_UP}`, {
-        method: HttpMethod.POST,
-        contentType: ContentType.JSON,
-        payload: JSON.stringify(payload),
-        hasAuth: false,
-      });
-    } catch (err) {
-      showErrorToast(
-        (err as Error | undefined)?.message ?? 'Failed to sign up'
-      );
-    }
+  public async signUp(payload: ISignUpPayload): Promise<AuthResponse> {
+    return this.#http.load(`${this.#apiPath}${ApiPath.SIGN_UP}`, {
+      method: HttpMethod.POST,
+      contentType: ContentType.JSON,
+      payload: JSON.stringify(payload),
+      hasAuth: false,
+    });
   }
 
   public async uploadAvatar(image: Asset): Promise<IUser | undefined> {

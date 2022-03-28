@@ -37,10 +37,6 @@ const signUp = createAsyncThunk(
   async (payload: ISignUpPayload) => {
     const response = await authApi.signUp(payload);
 
-    if (!response) {
-      return;
-    }
-
     if (await hasBiometry()) {
       await setBiometricCredentials(payload.email, payload.password);
     }

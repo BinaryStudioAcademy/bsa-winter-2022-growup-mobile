@@ -47,12 +47,13 @@ const ExperienceContent: React.FC = () => {
       </View>
       <ScrollView showsVerticalScrollIndicator={false}>
         {careerExperience.map(career => (
-          <CareerCard
-            item={career}
-            key={career.id}
-            onEdit={handleEditExperience}
-            onDelete={handleDeleteExperience}
-          />
+          <View style={styles.cardItem} key={career.id}>
+            <CareerCard
+              item={career}
+              onEdit={handleEditExperience}
+              onDelete={handleDeleteExperience}
+            />
+          </View>
         ))}
       </ScrollView>
     </View>

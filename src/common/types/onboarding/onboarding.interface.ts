@@ -8,7 +8,7 @@ interface IOnboarding {
   position: string;
   educations: IEducation[];
   careerJourneys: IAddCareerPayload[];
-  languages: IAddLanguagePayload[];
+  interests: IAddLanguagePayload[];
 }
 
 export type { IOnboarding };

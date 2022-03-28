@@ -12,6 +12,7 @@ enum ApiPath {
   QUIZ_QUESTION = '/work-quiz/question',
   QUIZ_RESULT = '/work-quiz/result',
   ONBOARDING = '/user/profile',
+  AVATAR = '/user/avatar',
 }
 
 export { ApiPath };

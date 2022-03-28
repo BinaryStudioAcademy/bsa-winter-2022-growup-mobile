@@ -4,17 +4,16 @@ import { View } from 'react-native';
 import PagerView, { PagerViewOnPageScrollEvent } from 'react-native-pager-view';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-import { AppRoute, ButtonMode } from 'src/common/enums';
+import { ButtonMode } from 'src/common/enums';
 import { IUserInfo } from 'src/common/types';
 import { MainButton } from 'src/components';
-import { useAppDispatch, useAppNavigation } from 'src/hooks';
+import { useAppDispatch, useAppSelector } from 'src/hooks';
 import { onboardingActions } from 'src/store/onboarding';
 import { userInfoValidationSchema } from 'src/validation-schemas';
 
 import {
   EducationContent,
   ExperienceContent,
-  InterestingContent,
   StepDots,
   UserContent,
 } from './components';
@@ -22,7 +21,7 @@ import { defaultAddUserInfoPayload } from './components/step-content/common';
 
 import useStyles from './styles';
 
-const ONBOARDING_DOTS_COUNT = 4;
+const ONBOARDING_DOTS_COUNT = 3; // TODO change to 4
 const LAST_STEP_INDEX = ONBOARDING_DOTS_COUNT - 1;
 
 const OnboardingScreen: React.FC = () => {
@@ -30,8 +29,8 @@ const OnboardingScreen: React.FC = () => {
 
   const [currentStep, setCurrentStep] = useState(0);
   const pagerRef = useRef<PagerView | null>(null);
-  const navigation = useAppNavigation();
   const dispatch = useAppDispatch();
+  const { userData, avatar } = useAppSelector(state => state.onboarding);
 
   const changeCurrentPage = () => {
     pagerRef.current?.setPage(currentStep + 1);
@@ -42,16 +41,17 @@ const OnboardingScreen: React.FC = () => {
   }, []);
 
   const handleComplete = () => {
-    navigation.replace(AppRoute.APP, {
-      screen: AppRoute.APP_TABS,
-      params: {
-        screen: AppRoute.HOME,
-      },
-    });
+    dispatch(onboardingActions.completeOnboarding(userData));
+    if (avatar) {
+      dispatch(onboardingActions.uploadUserAvatar(avatar));
+    }
   };
 
   const handleSaveUserInfo = (userInfo: IUserInfo) => {
     dispatch(onboardingActions.saveUserInfo(userInfo));
+    if (userInfo.avatar) {
+      dispatch(onboardingActions.saveUserAvatar(userInfo.avatar));
+    }
     changeCurrentPage();
   };
 
@@ -83,9 +83,10 @@ const OnboardingScreen: React.FC = () => {
               <View collapsable={false} key="3">
                 <EducationContent />
               </View>
-              <View collapsable={false} key="4">
+              {/* TODO uncomment it */}
+              {/* <View collapsable={false} key="4">
                 <InterestingContent />
-              </View>
+              </View> */}
             </PagerView>
             <View style={styles.buttonContainer}>
               <StepDots

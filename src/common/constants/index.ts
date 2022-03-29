@@ -5,4 +5,8 @@ export * from './date';
 export * from './google-api';
 export * from './app';
 export * from './push-notifications';
+export * from './home-screen';
 export * from './info-text';
+export * from './radar-chart';
+export * from './quiz';
+export * from './linking';

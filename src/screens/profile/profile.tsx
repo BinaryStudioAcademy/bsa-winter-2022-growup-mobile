@@ -16,11 +16,12 @@ import { educationActions } from 'src/store/actions';
 import addActions from './add-actions';
 import {
   CareerCard,
-  EducationCard,
   Navbar,
-  Header,
   Settings,
+  Header,
   QuizInfo,
+  QuizResults,
+  EducationCard,
 } from './components';
 import useStyles from './styles';
 
@@ -169,7 +170,7 @@ const ProfileScreen: React.FC = () => {
               {!user?.isCompleteTest && <QuizInfo />}
             </View>
             <View style={styles.swiperItem} collapsable={false}>
-              {!user?.isCompleteTest && <QuizInfo />}
+              {!user?.isCompleteTest ? <QuizInfo /> : <QuizResults />}
             </View>
             <View style={styles.swiperItem} collapsable={false}>
               <Text>Interests container</Text>

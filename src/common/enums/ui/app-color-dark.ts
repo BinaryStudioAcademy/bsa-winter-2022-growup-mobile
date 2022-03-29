@@ -17,6 +17,7 @@ enum AppColorDark {
   TAG_TEXT_COMMON = 'rgba(91, 75, 151, 0.6)',
   GREY = '#141414',
   SECOND_LEVEL = '#a0a2a3',
+  CHART_AREA = 'rgba(41, 25, 101, 0.8)',
 }
 
 export { AppColorDark };

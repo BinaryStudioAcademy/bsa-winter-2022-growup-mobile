@@ -1,15 +1,23 @@
 import { createSlice, isAnyOf } from '@reduxjs/toolkit';
 
-import { IOpportunity } from 'src/common/types';
-import { loadOpportunities } from './actions';
+import { IFullOpportunity, IOpportunity } from 'src/common/types';
+
+import {
+  loadExpandedOpportunity,
+  loadOpportunities,
+  resetExpandedOpportunity,
+} from './actions';
 
 interface IOpportunityState {
   opportunitiesLoading: boolean;
   opportunities?: IOpportunity[];
+  expandedLoading: boolean;
+  expandedOpportunity?: IFullOpportunity;
 }
 
 const initialState: IOpportunityState = {
   opportunitiesLoading: false,
+  expandedLoading: false,
 };
 
 const { reducer, actions } = createSlice({
@@ -25,10 +33,32 @@ const { reducer, actions } = createSlice({
       state.opportunities = payload;
     });
 
+    builder.addCase(loadExpandedOpportunity.pending, state => {
+      state.expandedLoading = true;
+    });
+
+    builder.addCase(loadExpandedOpportunity.fulfilled, (state, { payload }) => {
+      state.expandedOpportunity = payload;
+    });
+
+    builder.addCase(resetExpandedOpportunity, state => {
+      state.expandedOpportunity = undefined;
+    });
+
     builder.addMatcher(
       isAnyOf(loadOpportunities.fulfilled, loadOpportunities.rejected),
       state => {
         state.opportunitiesLoading = false;
+      }
+    );
+
+    builder.addMatcher(
+      isAnyOf(
+        loadExpandedOpportunity.fulfilled,
+        loadExpandedOpportunity.rejected
+      ),
+      state => {
+        state.expandedLoading = false;
       }
     );
   },

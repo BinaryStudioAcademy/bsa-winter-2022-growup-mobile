@@ -17,6 +17,7 @@ enum AppColorLight {
   TAG_TEXT_COMMON = 'rgba(41, 25, 101, 0.6)',
   GREY = '#EBEBEB',
   SECOND_LEVEL = '#5C5D5F',
+  CHART_AREA = 'rgba(214, 154, 230, 0.8)',
 }
 
 export { AppColorLight };

@@ -1,19 +1,23 @@
 import { useMemo } from 'react';
 import { StyleSheet } from 'react-native';
-
 import { useColor } from 'src/hooks';
 
 const useStyles = () => {
+  const white = useColor('WHITE');
   const grey = useColor('GREY');
 
   return useMemo(
     () =>
       StyleSheet.create({
-        header: {
+        screen: {
+          flex: 1,
+          backgroundColor: white,
+        },
+        headerContent: {
           backgroundColor: grey,
         },
       }),
-    [grey]
+    [white, grey]
   );
 };
 

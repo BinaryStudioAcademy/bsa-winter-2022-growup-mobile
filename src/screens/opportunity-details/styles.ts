@@ -10,27 +10,29 @@ const useStyles = () => {
   return useMemo(
     () =>
       StyleSheet.create({
-        content: {
-          flex: 1,
-        },
         screen: {
-          height: '100%',
-          backgroundColor: white,
-          paddingTop: DEFAULT_SCREEN_PADDING,
-          paddingHorizontal: DEFAULT_SCREEN_PADDING,
-        },
-        logo: {
-          height: 48,
-          alignSelf: 'center',
-          marginVertical: DEFAULT_SCREEN_PADDING * 4,
-          resizeMode: 'contain',
-        },
-        footer: {
           padding: DEFAULT_SCREEN_PADDING,
+          backgroundColor: white,
+          height: '100%',
+        },
+        subheader: {
+          marginTop: 15,
+        },
+        tagsContainer: {
           flexDirection: 'row',
           flexWrap: 'wrap',
-          justifyContent: 'center',
-          alignItems: 'center',
+          alignItems: 'flex-start',
+          marginVertical: 5,
+        },
+        tag: {
+          margin: 3,
+        },
+        user: {
+          flexDirection: 'row',
+          marginVertical: 5,
+        },
+        userInfo: {
+          marginLeft: 10,
         },
       }),
     [white]

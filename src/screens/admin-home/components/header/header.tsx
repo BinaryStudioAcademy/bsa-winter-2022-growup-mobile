@@ -9,11 +9,10 @@ import { authActions } from 'src/store/actions';
 import useStyles from './styles';
 
 const Header: React.FC = () => {
-  const colorBlack = useColor('BLACK');
-  const styles = useStyles();
-
   const [menuVisible, setMenuVisible] = useState(false);
   const dispatch = useAppDispatch();
+  const styles = useStyles();
+  const colorBlack = useColor('BLACK');
 
   const handleChangeMenuVisibility = () => setMenuVisible(current => !current);
 
@@ -24,7 +23,7 @@ const Header: React.FC = () => {
   return (
     <View style={styles.headerContent}>
       <Heading level={HeadingLevel.H5} style={styles.headingText}>
-        User profile
+        Admin Home Page
       </Heading>
       <View style={styles.headerMenu}>
         <Menu

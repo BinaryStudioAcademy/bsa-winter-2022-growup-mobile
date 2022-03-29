@@ -1,7 +1,7 @@
 enum UserRoleType {
-  Admin = 'Admin',
-  Mentor = 'Mentor',
-  Mentee = 'Mentee',
+  ADMIN = 'Admin',
+  MENTOR = 'Mentor',
+  MENTEE = 'Mentee',
 }
 
 export { UserRoleType };

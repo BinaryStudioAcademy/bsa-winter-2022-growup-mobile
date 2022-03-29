@@ -20,7 +20,7 @@ const Stack = createNativeStackNavigator<AppStackParamList>();
 const AppNavigation = () => {
   const { user } = useAppSelector(state => state.auth);
 
-  const isUserAdmin = user?.role === UserRoleType.Admin;
+  const isUserAdmin = user?.role === UserRoleType.ADMIN;
 
   //TODO add check for initial route when Onboarding is needed
   return (

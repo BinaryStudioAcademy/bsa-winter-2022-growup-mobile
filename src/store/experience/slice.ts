@@ -22,9 +22,7 @@ const { reducer, actions } = createSlice({
   reducers: {},
   extraReducers: builder => {
     builder.addCase(addCareerExperience.fulfilled, (state, { payload }) => {
-      if (payload) {
-        state.careerExperience.push(payload);
-      }
+      state.careerExperience.push(payload);
     });
     builder.addCase(loadCareerExperience.fulfilled, (state, { payload }) => {
       state.careerExperience = payload;
@@ -36,12 +34,10 @@ const { reducer, actions } = createSlice({
       state.careerExperience.splice(deleteIndex, 1);
     });
     builder.addCase(editCareerExperience.fulfilled, (state, { payload }) => {
-      if (payload) {
-        const updateIndex = state.careerExperience.findIndex(
-          item => item.id === payload.id
-        );
-        state.careerExperience[updateIndex] = payload;
-      }
+      const updateIndex = state.careerExperience.findIndex(
+        item => item.id === payload.id
+      );
+      state.careerExperience[updateIndex] = payload;
     });
   },
 });

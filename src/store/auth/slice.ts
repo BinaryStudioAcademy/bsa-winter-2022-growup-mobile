@@ -35,13 +35,11 @@ const { reducer, actions } = createSlice({
       }
     });
     builder.addCase(completeOnboarding.fulfilled, (state, { payload }) => {
-      if (payload) {
-        const { firstName, lastName, position } = payload;
-        if (state.user) {
-          state.user.firstName = firstName;
-          state.user.lastName = lastName;
-          state.user.position = position;
-        }
+      const { firstName, lastName, position } = payload;
+      if (state.user) {
+        state.user.firstName = firstName;
+        state.user.lastName = lastName;
+        state.user.position = position;
       }
     });
     builder.addCase(uploadUserAvatar.fulfilled, (state, { payload }) => {

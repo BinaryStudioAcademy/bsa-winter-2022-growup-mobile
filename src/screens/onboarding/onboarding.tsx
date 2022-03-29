@@ -14,6 +14,7 @@ import { userInfoValidationSchema } from 'src/validation-schemas';
 import {
   EducationContent,
   ExperienceContent,
+  InterestingContent,
   StepDots,
   UserContent,
 } from './components';
@@ -21,7 +22,7 @@ import { defaultAddUserInfoPayload } from './components/step-content/common';
 
 import useStyles from './styles';
 
-const ONBOARDING_DOTS_COUNT = 3; // TODO change to 4
+const ONBOARDING_DOTS_COUNT = 4;
 const LAST_STEP_INDEX = ONBOARDING_DOTS_COUNT - 1;
 
 const OnboardingScreen: React.FC = () => {
@@ -83,10 +84,9 @@ const OnboardingScreen: React.FC = () => {
               <View collapsable={false} key="3">
                 <EducationContent />
               </View>
-              {/* TODO uncomment it */}
-              {/* <View collapsable={false} key="4">
+              <View collapsable={false} key="4">
                 <InterestingContent />
-              </View> */}
+              </View>
             </PagerView>
             <View style={styles.buttonContainer}>
               <StepDots

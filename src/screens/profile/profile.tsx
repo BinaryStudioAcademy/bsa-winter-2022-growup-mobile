@@ -14,7 +14,14 @@ import { useAppDispatch, useAppSelector, useAppNavigation } from 'src/hooks';
 import { experienceActions } from 'src/store/experience';
 import addActions from './add-actions';
 import { educationActions } from 'src/store/actions';
-import { CareerCard, EducationCard, Navbar, Settings, Header, QuizInfo } from './components';
+import {
+  CareerCard,
+  EducationCard,
+  Navbar,
+  Settings,
+  Header,
+  QuizInfo,
+} from './components';
 import useStyles from './styles';
 
 const NAVBAR_ITEMS = [
@@ -71,7 +78,7 @@ const ProfileScreen: React.FC = () => {
     },
   };
 
-  const { educationExperience } = useAppSelector(state => state.education);
+  const { education } = useAppSelector(state => state.education);
   const { careerExperience, user } = useAppSelector(state => ({
     careerExperience: state.experience.careerExperience,
     user: state.auth.user,
@@ -168,7 +175,7 @@ const ProfileScreen: React.FC = () => {
                 Education
               </Heading>
               <ScrollView showsVerticalScrollIndicator={false}>
-                {educationExperience.map(item => (
+                {education.map(item => (
                   <View key={item.id} style={styles.card}>
                     <EducationCard education={item} />
                   </View>

@@ -14,7 +14,7 @@ const addEducation = createAsyncThunk(
 const loadEducationExperience = createAsyncThunk(
   ActionTypes.LOAD_EDUCATION,
   async () => {
-    return await educationApi.loadEducations();
+    return educationApi.loadEducations();
   }
 );
 

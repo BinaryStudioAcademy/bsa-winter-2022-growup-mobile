@@ -1,14 +1,14 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 import { IEducation } from 'src/common/types';
-import { addEducation } from './actions';
+import { addEducation, loadEducationExperience } from './actions';
 
 interface IEducationState {
-  educationExperience: IEducation[];
+  education: IEducation[];
 }
 
 const initialState: IEducationState = {
-  educationExperience: [],
+  education: [],
 };
 
 const { reducer, actions } = createSlice({
@@ -17,7 +17,10 @@ const { reducer, actions } = createSlice({
   reducers: {},
   extraReducers: builder => {
     builder.addCase(addEducation.fulfilled, (state, { payload }) => {
-      state.educationExperience.push(payload);
+      state.education.push(payload);
+    });
+    builder.addCase(loadEducationExperience.fulfilled, (state, { payload }) => {
+      state.education = payload;
     });
   },
 });

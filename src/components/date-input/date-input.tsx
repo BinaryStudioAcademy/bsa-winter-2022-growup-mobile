@@ -3,7 +3,6 @@ import { DatePickerInput } from 'react-native-paper-dates';
 
 import { useColor } from 'src/hooks';
 import useStyles from '../shared/input-style/styles';
-import { Text } from '..';
 
 type DatePickerInputProps = React.ComponentPropsWithoutRef<
   typeof DatePickerInput
@@ -27,7 +26,7 @@ const DateInput: React.FC<DateInputProps> = ({
       mode="outlined"
       locale="en"
       activeUnderlineColor={colorAccent}
-      label={label && <Text style={styles.label}>{label}</Text>}
+      label={label}
       {...textInputProps}
     />
   );

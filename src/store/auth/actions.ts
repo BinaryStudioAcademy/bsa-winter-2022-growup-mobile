@@ -2,7 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import * as keychain from 'react-native-keychain';
 
 import { authApi, secureStorage } from 'src/services';
-import { ISignInPayload } from 'src/common/types';
+import { ISignInPayload, ISignUpPayload } from 'src/common/types';
 import { SecureStorageKey } from 'src/common/enums';
 
 import {
@@ -16,12 +16,30 @@ import { ActionTypes } from './common';
 const signIn = createAsyncThunk(
   ActionTypes.SIGN_IN,
   async (payload: ISignInPayload) => {
-    const response = await authApi.signIn(payload);
+    try {
+      const response = await authApi.signIn(payload);
 
-    if (!response) {
+      if (await hasBiometry()) {
+        await setBiometricCredentials(payload.email, payload.password);
+      }
+
+      await secureStorage.setItem(
+        SecureStorageKey.ACCESS_TOKEN,
+        response.token
+      );
+
+      return response.user;
+    } catch (err) {
       await revokeBiometricCredentials();
-      return;
+      throw err;
     }
+  }
+);
+
+const signUp = createAsyncThunk(
+  ActionTypes.SIGN_UP,
+  async (payload: ISignUpPayload) => {
+    const response = await authApi.signUp(payload);
 
     if (await hasBiometry()) {
       await setBiometricCredentials(payload.email, payload.password);
@@ -35,15 +53,19 @@ const signIn = createAsyncThunk(
 const signInFingerprint = createAsyncThunk(
   ActionTypes.SIGN_IN_FINGERPRINT,
   async ({ username: email, password }: keychain.UserCredentials) => {
-    const response = await authApi.signIn({ email, password });
+    try {
+      const response = await authApi.signIn({ email, password });
 
-    if (!response) {
+      await secureStorage.setItem(
+        SecureStorageKey.ACCESS_TOKEN,
+        response.token
+      );
+
+      return response.user;
+    } catch (err) {
       await revokeBiometricCredentials();
-      return;
+      throw err;
     }
-
-    await secureStorage.setItem(SecureStorageKey.ACCESS_TOKEN, response.token);
-    return response.user;
   }
 );
 
@@ -64,4 +86,4 @@ const loadCurrentUser = createAsyncThunk(
   }
 );
 
-export { signIn, signInFingerprint, loadCurrentUser, signOut };
+export { signIn, signUp, signInFingerprint, loadCurrentUser, signOut };

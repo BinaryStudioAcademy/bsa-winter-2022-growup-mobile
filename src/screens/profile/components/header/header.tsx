@@ -15,8 +15,7 @@ const Header: React.FC = () => {
   const [menuVisible, setMenuVisible] = useState(false);
   const dispatch = useAppDispatch();
 
-  const handleOpenMenu = () => setMenuVisible(true);
-  const handleCloseMenu = () => setMenuVisible(false);
+  const handleChangeMenuVisibility = () => setMenuVisible(current => !current);
 
   const handleLogout = () => {
     dispatch(authActions.signOut());
@@ -30,9 +29,9 @@ const Header: React.FC = () => {
       <View style={styles.headerMenu}>
         <Menu
           visible={menuVisible}
-          onDismiss={handleCloseMenu}
+          onDismiss={handleChangeMenuVisibility}
           anchor={
-            <TouchableOpacity onPress={handleOpenMenu}>
+            <TouchableOpacity onPress={handleChangeMenuVisibility}>
               <DotsVerticalIcon color={colorBlack} size={30} />
             </TouchableOpacity>
           }

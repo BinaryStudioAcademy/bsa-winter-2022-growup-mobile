@@ -12,6 +12,10 @@ target 'growupmobile' do
     :hermes_enabled => false
   )
 
+  pod 'React', :path => '../node_modules/react-native', :subspecs => [
+    'RCTLinkingIOS',
+  ]
+
   pod 'react-native-image-picker', :path => '../node_modules/react-native-image-picker'
 
   pod 'RNKeychain', :path => '../node_modules/react-native-keychain'

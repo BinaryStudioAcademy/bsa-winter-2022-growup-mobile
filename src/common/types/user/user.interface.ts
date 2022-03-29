@@ -1,3 +1,5 @@
+import { UserRoleType } from 'src/common/enums';
+
 interface IUser {
   id: string;
   firstName: string;
@@ -6,6 +8,7 @@ interface IUser {
   email: string;
   avatar?: string;
   isCompleteTest: boolean;
+  role: UserRoleType;
 }
 
 export type { IUser };

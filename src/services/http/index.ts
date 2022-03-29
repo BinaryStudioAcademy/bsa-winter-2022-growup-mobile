@@ -4,9 +4,10 @@ import {
   HttpMethod,
   SecureStorageKey,
 } from 'src/common/enums';
+
 import { GetHeadersParams, HttpOptions } from 'src/common/types';
 import { HttpError } from 'src/exceptions';
-import { getStringifiedQuery } from 'src/helpers';
+import { getStringifiedQuery, showErrorToast } from 'src/helpers';
 import { secureStorage as secureStorageService } from 'src/services';
 import { store } from 'src/store';
 import { authActions } from 'src/store/actions';
@@ -32,7 +33,13 @@ class Http {
       contentType,
       hasAuth = true,
       query,
+      errorOptions = {
+        notify: true,
+      },
     } = options;
+
+    const { notify: notifyError = true, customMessage: customErrorMessage } =
+      errorOptions;
 
     const headers = await this.getHeaders({
       contentType,
@@ -46,7 +53,7 @@ class Http {
     })
       .then(this.checkStatus.bind(this))
       .then(res => this.parseJSON<T>(res))
-      .catch(this.throwError);
+      .catch(err => this.handleError(err, notifyError, customErrorMessage));
   }
 
   private getUrl(url: string, query?: Record<string, unknown>): string {
@@ -76,7 +83,6 @@ class Http {
     if (!response.ok) {
       if (this.isUnauthorized(response)) {
         this.refreshToken();
-        return response;
       }
 
       const parsedException = await response.json().catch(() => ({
@@ -105,7 +111,15 @@ class Http {
     return response.json();
   }
 
-  private throwError(err: Error): never {
+  private handleError(
+    err: Error,
+    notify?: boolean,
+    customErrorMessage?: string
+  ): never {
+    if (notify) {
+      showErrorToast(customErrorMessage ?? err.message);
+    }
+
     throw err;
   }
 }

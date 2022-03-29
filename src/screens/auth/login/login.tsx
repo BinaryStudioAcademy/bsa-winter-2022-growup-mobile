@@ -1,6 +1,6 @@
 import React from 'react';
+import { Image, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { View, Image } from 'react-native';
 
 import { AuthRoute, ButtonMode } from 'src/common/enums';
 import { MainButton, Text } from 'src/components';

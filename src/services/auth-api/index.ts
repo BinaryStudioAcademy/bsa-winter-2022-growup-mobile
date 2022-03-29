@@ -1,6 +1,12 @@
 import { Asset } from 'react-native-image-picker';
 
-import { ISignInPayload, IUser, AuthResponse } from 'src/common/types';
+import {
+  ISignInPayload,
+  IUser,
+  AuthResponse,
+  ISignUpPayload,
+} from 'src/common/types';
+
 import { ApiPath, ContentType, HttpMethod } from 'src/common/enums';
 import { showErrorToast, assetToMultipartFile } from 'src/helpers';
 import { Http } from '../http';
@@ -34,6 +40,15 @@ class AuthApi {
     }
   }
 
+  public async signUp(payload: ISignUpPayload): Promise<AuthResponse> {
+    return this.#http.load(`${this.#apiPath}${ApiPath.SIGN_UP}`, {
+      method: HttpMethod.POST,
+      contentType: ContentType.JSON,
+      payload: JSON.stringify(payload),
+      hasAuth: false,
+    });
+  }
+
   public async uploadAvatar(image: Asset): Promise<IUser | undefined> {
     const payload = new FormData();
     payload.append('avatar', assetToMultipartFile(image));
@@ -56,6 +71,21 @@ class AuthApi {
       return await this.#http.load(`${this.#apiPath}${ApiPath.CURRENT_USER}`);
     } catch {
       // ignore
+    }
+  }
+
+  public async verifyToken(
+    accessToken: string
+  ): Promise<{ token: string } | undefined> {
+    try {
+      return await this.#http.load(
+        `${this.#apiPath}${ApiPath.VERIFY_TOKEN}/${accessToken}`
+      );
+    } catch (err) {
+      showErrorToast(
+        (err as Error | undefined)?.message ??
+          'Failed to verify temporary registration token'
+      );
     }
   }
 }

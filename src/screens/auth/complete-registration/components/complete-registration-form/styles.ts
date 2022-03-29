@@ -9,10 +9,10 @@ const useStyles = () => {
   return useMemo(
     () =>
       StyleSheet.create({
-        content: {
+        container: {
           flex: 1,
         },
-        container: {
+        fields: {
           flex: 1,
         },
         button: {

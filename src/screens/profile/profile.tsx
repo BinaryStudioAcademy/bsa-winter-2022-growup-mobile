@@ -13,7 +13,9 @@ import { Heading, Text } from 'src/components';
 import { useAppDispatch, useAppSelector, useAppNavigation } from 'src/hooks';
 import { experienceActions } from 'src/store/experience';
 import addActions from './add-actions';
+
 import { CareerCard, Navbar, Settings, Header, QuizInfo } from './components';
+
 import useStyles from './styles';
 
 const NAVBAR_ITEMS = [

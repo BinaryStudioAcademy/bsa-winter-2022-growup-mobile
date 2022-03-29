@@ -10,14 +10,23 @@ import { AuthRoute } from 'src/common/enums';
 import { useAppNavigation } from 'src/hooks';
 import { defaultCompleteRegistrationPayload } from '../../common';
 import useStyles from './styles';
+// import { authActions } from 'src/store/actions';
 
-const CompleteRegistrationForm: React.FC = () => {
+interface ICompleteRegistrationProps {
+  accessToken?: string;
+}
+
+const CompleteRegistrationForm: React.FC<ICompleteRegistrationProps> = ({
+  accessToken,
+}) => {
   const styles = useStyles();
   const navigation = useAppNavigation();
+  // const dispatch = useAppDispatch();
 
   const handleCompleteRegistration = (values: ICompleteRegistrationPayload) => {
-    // TODO
-    console.log(values);
+    // const { token } = dispatch(authActions.verifyToken(accessToken));
+    // dispatch(authActions.completeRegistration({ payload: values, token: '' }));
+    console.log(accessToken, values);
     navigation.navigate(AuthRoute.SIGN_IN);
   };
 
@@ -30,8 +39,8 @@ const CompleteRegistrationForm: React.FC = () => {
       onSubmit={handleCompleteRegistration}
     >
       {({ isValid, handleSubmit }) => (
-        <View style={styles.content}>
-          <View style={styles.container}>
+        <View style={styles.container}>
+          <View style={styles.fields}>
             <FormPasswordInput
               name="password"
               style={styles.formField}

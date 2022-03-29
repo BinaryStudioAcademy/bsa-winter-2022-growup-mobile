@@ -6,7 +6,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { AppRoute, OKRStatus } from 'src/common/enums';
 import { useAppNavigation } from 'src/hooks';
 import { IOkr } from 'src/common/types';
-import { NothingHere } from 'src/components';
+import { EmptyListMessage } from 'src/components';
 import addActions from './add-actions';
 import { OKRList } from './components';
 import useStyles from './styles';
@@ -82,10 +82,10 @@ const OKRScreen: React.FC = () => {
   return (
     <SafeAreaView style={styles.screen}>
       <OKRList data={okrs} />
-      {Boolean(!okrs?.length) && (
-        <NothingHere>
+      {!okrs?.length && (
+        <EmptyListMessage>
           You haven&apos;t created any OKRs for yourself yet.
-        </NothingHere>
+        </EmptyListMessage>
       )}
       <FAB.Group
         open={addMenuOpen}

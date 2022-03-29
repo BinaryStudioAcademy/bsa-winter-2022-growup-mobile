@@ -3,11 +3,13 @@ import { HeadingLevel } from 'src/common/enums';
 import { Heading } from '..';
 import useStyles from './styles';
 
-type NothingHereProps = {
+type EmptyListMessageProps = {
   children: string;
 };
 
-const NothingHere: React.FC<NothingHereProps> = ({ children: text }) => {
+const EmptyListMessage: React.FC<EmptyListMessageProps> = ({
+  children: text,
+}) => {
   const styles = useStyles();
 
   return (
@@ -17,4 +19,4 @@ const NothingHere: React.FC<NothingHereProps> = ({ children: text }) => {
   );
 };
 
-export default NothingHere;
+export default EmptyListMessage;

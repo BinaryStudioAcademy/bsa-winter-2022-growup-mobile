@@ -5,7 +5,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { PREVIEW_CARDS_COUNT } from 'src/common/constants';
 import { AppRoute } from 'src/common/enums';
 import { INotification } from 'src/common/types';
-import { NothingHere } from 'src/components';
+import { EmptyListMessage } from 'src/components';
 import { useAppDispatch, useAppNavigation, useAppSelector } from 'src/hooks';
 import { notificationActions, opportunityActions } from 'src/store/actions';
 
@@ -53,12 +53,6 @@ const MenteeHome: React.FC = () => {
     [opportunities]
   );
 
-  const showNothingHere = useMemo(
-    () =>
-      Boolean(!notifications.length) && Boolean(!previewOpportunities.length),
-    [notifications, previewOpportunities]
-  );
-
   const handleMarkRead = (id: string) => {
     dispatch(notificationActions.markNotificationRead(id));
   };
@@ -82,10 +76,10 @@ const MenteeHome: React.FC = () => {
             opportunities={previewOpportunities}
             onDetails={handleOpportunityDetails}
           />
-          {showNothingHere && (
-            <NothingHere>
+          {!notifications.length && !previewOpportunities.length && (
+            <EmptyListMessage>
               You have no notifications and no opportunities here...
-            </NothingHere>
+            </EmptyListMessage>
           )}
         </ScrollView>
       </View>

@@ -32,7 +32,7 @@ const FormInput: React.FC<FormInputProps> = ({
   return (
     <View style={containerStyle}>
       <Input
-        value={values[name]}
+        value={String(values[name])}
         onChangeText={handleChange}
         onBlur={handleBlur(name)}
         outlineColor={!error ? colorInputBg : colorError}

@@ -7,7 +7,7 @@ import { ICreateSkillPayload } from 'src/common/types/skill';
 import { createSkillValidationSchema } from 'src/validation-schemas';
 import { FormInput, FormSelect, Heading, MainButton } from 'src/components';
 import { defaultCreateSkillPayload, skillTypeOptions } from '../../common';
-import styles from '../../styles';
+import useStyles from '../../styles';
 
 type CreateSkillFormProps = {
   onSubmit: (data: ICreateSkillPayload) => void;
@@ -18,6 +18,8 @@ const CreateSkillForm: React.FC<CreateSkillFormProps> = ({
   onSubmit,
   onBack,
 }) => {
+  const styles = useStyles();
+
   const handleFormSubmit = (values: ICreateSkillPayload) => {
     onSubmit({ ...values, estimate: Number(values.estimate) });
   };

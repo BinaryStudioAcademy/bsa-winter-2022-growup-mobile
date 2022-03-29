@@ -68,7 +68,7 @@ const LoginForm: React.FC = () => {
             >
               Log In
             </MainButton>
-            {hasBiometry ? (
+            {hasBiometry && (
               <MainButton
                 style={styles.topPadded}
                 mode={ButtonMode.CONTAINED}
@@ -76,7 +76,7 @@ const LoginForm: React.FC = () => {
               >
                 Log In using fingerprint
               </MainButton>
-            ) : null}
+            )}
           </View>
         </View>
       )}

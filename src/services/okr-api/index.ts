@@ -15,7 +15,7 @@ class OKRApi {
     this.#apiPath = apiPath;
   }
 
-  public async createOKR(payload: IAddOkr): Promise<IAddOkr | undefined> {
+  public async createOKR(payload: IAddOkr): Promise<IAddOkr> {
     // TODO add request
     return payload;
   }

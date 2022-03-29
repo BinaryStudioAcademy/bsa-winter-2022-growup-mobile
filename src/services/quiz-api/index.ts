@@ -1,6 +1,5 @@
 import { ApiPath, ContentType, HttpMethod } from 'src/common/enums';
 import { IQuizQuestion, IQuizResult } from 'src/common/types';
-import { showErrorToast } from 'src/helpers';
 import { Http } from '../http';
 
 type Constructor = {
@@ -18,45 +17,34 @@ class QuizApi {
   }
 
   public async loadQuizQuestions(): Promise<IQuizQuestion[]> {
-    try {
-      return await this.#http.load(`${this.#apiPath}${ApiPath.QUIZ_QUESTION}`);
-    } catch (err) {
-      showErrorToast(
-        (err as Error | undefined)?.message ?? 'Failed to load questions'
-      );
+    const response = await this.#http.load<IQuizQuestion[]>(
+      `${this.#apiPath}${ApiPath.QUIZ_QUESTION}`
+    );
 
-      return [];
-    }
+    return response ?? [];
   }
 
   public async sendQuizResults(
     payload: IQuizQuestion[]
   ): Promise<IQuizResult[]> {
-    try {
-      return await this.#http.load(`${this.#apiPath}${ApiPath.QUIZ_RESULT}`, {
+    const response = await this.#http.load<IQuizResult[]>(
+      `${this.#apiPath}${ApiPath.QUIZ_RESULT}`,
+      {
         method: HttpMethod.POST,
         contentType: ContentType.JSON,
         payload: JSON.stringify(payload),
-      });
-    } catch (err) {
-      showErrorToast(
-        (err as Error | undefined)?.message ?? 'Failed to send answers'
-      );
+      }
+    );
 
-      return [];
-    }
+    return response ?? [];
   }
 
   public async loadQuizResults(): Promise<IQuizResult[]> {
-    try {
-      return await this.#http.load(`${this.#apiPath}${ApiPath.QUIZ_RESULT}`);
-    } catch (err) {
-      showErrorToast(
-        (err as Error | undefined)?.message ?? 'Failed to load quiz results'
-      );
+    const response = await this.#http.load<IQuizResult[]>(
+      `${this.#apiPath}${ApiPath.QUIZ_RESULT}`
+    );
 
-      return [];
-    }
+    return response ?? [];
   }
 }
 

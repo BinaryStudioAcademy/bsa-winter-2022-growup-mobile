@@ -2,22 +2,23 @@ import React from 'react';
 import { View } from 'react-native';
 
 import { HeadingLevel, IconName, OnboardingRoute } from 'src/common/enums';
-import { Heading, AddButton } from 'src/components';
-import { useAppNavigation } from 'src/hooks';
+import { Heading, AddButton, LanguageCard } from 'src/components';
+import { useAppNavigation, useAppSelector } from 'src/hooks';
 import useStyles from './styles';
 
 const InterestingContent: React.FC = () => {
   const styles = useStyles();
-
   const navigation = useAppNavigation();
+
+  const { languages } = useAppSelector(state => state.language);
 
   const handleAddLanguage = () => {
     navigation.navigate(OnboardingRoute.ADD_LANGUAGE);
   };
 
-  const handleAddLocation = () => {
-    navigation.navigate(OnboardingRoute.ADD_LOCATION);
-  };
+  // const handleAddLocation = () => {
+  //   navigation.navigate(OnboardingRoute.ADD_LOCATION);
+  // };
 
   return (
     <View style={styles.content}>
@@ -36,7 +37,10 @@ const InterestingContent: React.FC = () => {
         >
           Add Language
         </AddButton>
-        <Heading style={styles.interestingHeadings} level={HeadingLevel.H5}>
+        {languages.map(item => (
+          <LanguageCard style={styles.cardItem} language={item} key={item.id} />
+        ))}
+        {/* <Heading style={styles.interestingHeadings} level={HeadingLevel.H5}>
           What are your locations?
         </Heading>
         <AddButton
@@ -46,7 +50,7 @@ const InterestingContent: React.FC = () => {
           icon={IconName.MAP_MARKER_PLUS}
         >
           Add Location
-        </AddButton>
+        </AddButton> */}
       </View>
     </View>
   );

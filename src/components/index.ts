@@ -19,3 +19,5 @@ export * from './radar-chart';
 export * from './navigation-container';
 export * from './auth-screen';
 export * from './career-card';
+export * from './language-card';
+export * from './education-card';

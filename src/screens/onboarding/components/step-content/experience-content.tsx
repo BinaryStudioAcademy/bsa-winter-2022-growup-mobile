@@ -12,6 +12,7 @@ const ExperienceContent: React.FC = () => {
   const styles = useStyles();
   const navigation = useAppNavigation();
   const dispatch = useAppDispatch();
+
   const { careerExperience } = useAppSelector(state => state.experience);
 
   const handleAddExperience = () => {

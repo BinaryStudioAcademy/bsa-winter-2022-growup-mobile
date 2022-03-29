@@ -2,7 +2,12 @@ import { createSlice } from '@reduxjs/toolkit';
 import { Asset } from 'react-native-image-picker';
 
 import { IOnboarding } from 'src/common/types';
-import { saveUserAvatar, saveUserInfo, saveUserLanguage } from './actions';
+import {
+  completeOnboarding,
+  saveUserAvatar,
+  saveUserInfo,
+  saveUserLanguage,
+} from './actions';
 
 interface IOnboardingState {
   userData: IOnboarding;
@@ -37,6 +42,12 @@ const { reducer, actions } = createSlice({
     });
     builder.addCase(saveUserAvatar, (state, { payload }) => {
       state.avatar = payload;
+    });
+    builder.addCase(completeOnboarding.fulfilled, state => {
+      state.avatar = undefined;
+      state.userData.firstName = '';
+      state.userData.lastName = '';
+      state.userData.position = '';
     });
   },
 });

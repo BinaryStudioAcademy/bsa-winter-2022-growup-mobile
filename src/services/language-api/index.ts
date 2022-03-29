@@ -24,7 +24,7 @@ class LanguageApi {
     return response ?? [];
   }
 
-  public addLanguage(payload: IAddLanguagePayload): Promise<ILanguage> {
+  public addLanguage(payload: IAddLanguagePayload[]): Promise<ILanguage[]> {
     return this.#http.load(`${this.#apiPath}${ApiPath.LANGUAGE}`, {
       method: HttpMethod.POST,
       contentType: ContentType.JSON,

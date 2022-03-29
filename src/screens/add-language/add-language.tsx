@@ -6,16 +6,23 @@ import { Formik } from 'formik';
 import { ButtonMode, HeadingLevel } from 'src/common/enums';
 import { FormInput, Heading, MainButton } from 'src/components';
 import { addLanguageValidationSchema } from 'src/validation-schemas';
-import { useAppNavigation } from 'src/hooks';
+import { languageActions } from 'src/store/language';
+import { IAddLanguagePayload } from 'src/common/types';
+import { useAppDispatch, useAppNavigation } from 'src/hooks';
 import { defaultAddLanguagePayload } from './common';
 import useStyles from './styles';
 
 const AddLanguageScreen: React.FC = () => {
   const styles = useStyles();
-
   const navigation = useAppNavigation();
+  const dispatch = useAppDispatch();
 
   const handleCancel = () => {
+    navigation.goBack();
+  };
+
+  const handleAddLanguage = (values: IAddLanguagePayload) => {
+    dispatch(languageActions.addLanguage([values]));
     navigation.goBack();
   };
 
@@ -25,9 +32,7 @@ const AddLanguageScreen: React.FC = () => {
         <Formik
           initialValues={defaultAddLanguagePayload}
           validationSchema={addLanguageValidationSchema}
-          onSubmit={() => {
-            // TODO
-          }}
+          onSubmit={handleAddLanguage}
         >
           {({ isValid, handleSubmit }) => (
             <>
@@ -36,7 +41,7 @@ const AddLanguageScreen: React.FC = () => {
                   <Heading style={styles.heading} level={HeadingLevel.H5}>
                     Language
                   </Heading>
-                  <FormInput name="language" placeholder="Language" />
+                  <FormInput name="name" placeholder="Language" />
                 </View>
                 <View style={styles.inputContent}>
                   <Heading style={styles.heading} level={HeadingLevel.H5}>

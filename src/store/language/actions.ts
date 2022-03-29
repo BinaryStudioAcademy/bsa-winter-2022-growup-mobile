@@ -11,7 +11,7 @@ const loadLanguages = createAsyncThunk(ActionTypes.LOAD_LANGUAGE, async () => {
 
 const addLanguage = createAsyncThunk(
   ActionTypes.ADD_LANGUAGE,
-  async (payload: IAddLanguagePayload) => {
+  async (payload: IAddLanguagePayload[]) => {
     const language = await languageApi.addLanguage(payload);
     return language;
   }

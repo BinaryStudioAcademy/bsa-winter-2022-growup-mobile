@@ -4,10 +4,11 @@ import { SkillType } from 'src/common/enums';
 const createSkillValidationSchema = yup.object({
   type: yup
     .string()
+    .trim()
     .oneOf(Object.values(SkillType))
     .required('Type must be selected'),
-  name: yup.string().required('Name must not be empty'),
-  description: yup.string(),
+  name: yup.string().trim().required('Name must not be empty'),
+  description: yup.string().trim(),
   estimate: yup
     .number()
     .typeError('Estimate must be a valid number')

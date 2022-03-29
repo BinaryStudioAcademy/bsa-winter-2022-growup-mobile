@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { StyleProp, View, ViewStyle } from 'react-native';
 import { FormikValues, useFormikContext } from 'formik';
 
@@ -10,31 +10,52 @@ type InputProps = React.ComponentPropsWithoutRef<typeof Input>;
 
 type FormInputProps = Omit<InputProps, 'value' | 'onChangeText' | 'onBlur'> & {
   name: string;
+  trimValue?: boolean;
   containerStyle?: StyleProp<ViewStyle>;
 };
 
 const FormInput: React.FC<FormInputProps> = ({
   name,
   containerStyle,
+  trimValue = true,
   ...inputProps
 }) => {
   const styles = useStyles();
   const colorInputBg = useColor('INPUT_BACKGROUND');
   const colorError = useColor('ERROR');
 
-  const { values, errors, touched, setFieldValue, handleBlur } =
-    useFormikContext<FormikValues>();
+  const {
+    values,
+    errors,
+    touched,
+    setFieldValue,
+    handleBlur: handleFormikBlur,
+  } = useFormikContext<FormikValues>();
+
+  const [userValue, setUserValue] = useState<string>(values[name]);
 
   const error = touched[name] && errors[name];
 
-  const handleChange = (text: string) => setFieldValue(name, text);
+  const handleChange = (text: string) => {
+    setFieldValue(name, trimValue ? text.trim() : text);
+  };
+
+  // Native onBlur passes any
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const handleBlur = (event: any) => {
+    if (trimValue) {
+      setUserValue(val => val.trim());
+    }
+
+    handleFormikBlur(name)(event);
+  };
 
   return (
     <View style={containerStyle}>
       <Input
-        value={values[name]}
+        value={userValue}
         onChangeText={handleChange}
-        onBlur={handleBlur(name)}
+        onBlur={handleBlur}
         outlineColor={!error ? colorInputBg : colorError}
         {...inputProps}
       />

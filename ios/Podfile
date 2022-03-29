@@ -20,6 +20,8 @@ target 'growupmobile' do
 
   pod 'RNKeychain', :path => '../node_modules/react-native-keychain'
 
+  pod 'react-native-webview', :path => '../node_modules/react-native-webview'
+
   target 'growupmobileTests' do
     inherit! :complete
     # Pods for testing

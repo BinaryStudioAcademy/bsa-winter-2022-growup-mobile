@@ -5,7 +5,6 @@ type OnboardingStackParamList = {
   [OnboardingRoute.ONBOARDING]: undefined;
   [OnboardingRoute.ADD_EDUCATION]: undefined;
   [OnboardingRoute.ADD_EXPERIENCE]: {
-    isEdit?: boolean;
     career?: ICareer;
   };
   [OnboardingRoute.ADD_LANGUAGE]: undefined;

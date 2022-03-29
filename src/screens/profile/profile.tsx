@@ -57,7 +57,6 @@ const ProfileScreen: React.FC = () => {
       navigation.navigate({
         name: ProfileRoute.ADD_CAREER_EXPERIENCE,
         params: {
-          isEdit: false,
           career: undefined,
         },
       });
@@ -96,7 +95,6 @@ const ProfileScreen: React.FC = () => {
       navigation.navigate({
         name: ProfileRoute.ADD_CAREER_EXPERIENCE,
         params: {
-          isEdit: true,
           career,
         },
       });

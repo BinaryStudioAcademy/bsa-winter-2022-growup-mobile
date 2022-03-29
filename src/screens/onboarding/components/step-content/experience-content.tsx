@@ -17,7 +17,7 @@ const ExperienceContent: React.FC = () => {
 
   const handleAddExperience = () => {
     navigation.navigate(OnboardingRoute.ADD_EXPERIENCE, {
-      isEdit: false,
+      career: undefined,
     });
   };
 
@@ -31,7 +31,6 @@ const ExperienceContent: React.FC = () => {
   const handleEditExperience = useCallback(
     (career: ICareer) => {
       navigation.navigate(OnboardingRoute.ADD_EXPERIENCE, {
-        isEdit: true,
         career,
       });
     },

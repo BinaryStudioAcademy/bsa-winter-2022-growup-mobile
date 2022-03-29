@@ -1,5 +1,5 @@
 interface IEducation {
-  id: string;
+  id?: string;
   specialization: string;
   university: string;
   degree: string;

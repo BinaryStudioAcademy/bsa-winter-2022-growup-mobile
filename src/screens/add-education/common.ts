@@ -1,4 +1,5 @@
 const defaultAddEducationPayload = {
+  id: '',
   specialization: '',
   university: '',
   degree: '',

@@ -12,6 +12,7 @@ import { ICareer, IEducation } from 'src/common/types';
 import { Heading, Text } from 'src/components';
 import { useAppDispatch, useAppSelector, useAppNavigation } from 'src/hooks';
 import { experienceActions } from 'src/store/experience';
+import { educationActions } from 'src/store/actions';
 import addActions from './add-actions';
 import {
   CareerCard,
@@ -21,7 +22,6 @@ import {
   Settings,
   QuizInfo,
 } from './components';
-import { educationActions } from 'src/store/actions';
 import useStyles from './styles';
 
 const NAVBAR_ITEMS = [
@@ -59,7 +59,6 @@ const ProfileScreen: React.FC = () => {
       navigation.navigate({
         name: ProfileRoute.ADD_EDUCATION,
         params: {
-          isEdit: false,
           education: undefined,
         },
       });
@@ -122,7 +121,6 @@ const ProfileScreen: React.FC = () => {
 
   const handleDeleteEducation = useCallback(
     (educationId: string) => {
-      console.log('education_id = ', educationId);
       dispatch(educationActions.deleteEducationExperience(educationId));
     },
     [dispatch]

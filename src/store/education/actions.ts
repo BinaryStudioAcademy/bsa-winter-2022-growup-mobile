@@ -1,27 +1,30 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-import { IAddEducationPayload, IEducation } from 'src/common/types';
+import { IEducation } from 'src/common/types';
 import { educationApi } from 'src/services';
 import { ActionTypes } from './common';
 
 const addEducationExperience = createAsyncThunk(
   ActionTypes.ADD_EDUCATION,
-  (payload: IAddEducationPayload) => {
-    return educationApi.addEducation(payload);
+  async (payload: IEducation) => {
+    const education = await educationApi.addEducation(payload);
+    return education;
   }
 );
 
 const loadEducationExperience = createAsyncThunk(
   ActionTypes.LOAD_EDUCATION,
   async () => {
-    return await educationApi.loadEducations();
+    const educations = await educationApi.loadEducations();
+    return educations;
   }
 );
 
 const editEducationExperience = createAsyncThunk(
   ActionTypes.EDIT_EDUCATION,
   async (payload: IEducation) => {
-    return await educationApi.editEducation(payload);
+    const education = await educationApi.editEducation(payload);
+    return education;
   }
 );
 

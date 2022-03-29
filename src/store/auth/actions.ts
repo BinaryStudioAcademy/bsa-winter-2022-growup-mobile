@@ -2,7 +2,11 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import * as keychain from 'react-native-keychain';
 
 import { authApi, secureStorage } from 'src/services';
-import { ISignInPayload, ISignUpPayload } from 'src/common/types';
+import {
+  ICompleteRegistrationPayload,
+  ISignInPayload,
+  ISignUpPayload,
+} from 'src/common/types';
 import { SecureStorageKey } from 'src/common/enums';
 
 import {
@@ -78,4 +82,28 @@ const loadCurrentUser = createAsyncThunk(
   }
 );
 
-export { signIn, signUp, signInFingerprint, loadCurrentUser, signOut };
+const verifyToken = createAsyncThunk(
+  ActionTypes.VERIFY_TOKEN,
+  async (accessToken: string) => {
+    const token = await authApi.verifyToken(accessToken);
+
+    return token;
+  }
+);
+
+const completeRegistration = createAsyncThunk(
+  ActionTypes.COMPLETE_REGISTRATION,
+  async (payload: ICompleteRegistrationPayload, token: string) => {
+    return await authApi.completeRegistration(payload, token);
+  }
+);
+
+export {
+  signIn,
+  signUp,
+  signInFingerprint,
+  loadCurrentUser,
+  signOut,
+  verifyToken,
+  completeRegistration,
+};

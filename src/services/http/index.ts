@@ -29,6 +29,7 @@ class Http {
     const {
       method = HttpMethod.GET,
       payload = null,
+      accessToken = null,
       contentType,
       hasAuth = true,
       query,
@@ -37,6 +38,7 @@ class Http {
     const headers = await this.getHeaders({
       contentType,
       hasAuth,
+      accessToken,
     });
 
     return fetch(this.getUrl(url, query), {
@@ -56,11 +58,18 @@ class Http {
   private async getHeaders({
     contentType,
     hasAuth,
+    accessToken,
   }: GetHeadersParams): Promise<Headers> {
     const headers = new Headers();
 
     if (contentType) {
       headers.append(HttpHeader.CONTENT_TYPE, contentType);
+    }
+
+    if (accessToken !== null) {
+      const token = accessToken;
+
+      headers.append(HttpHeader.AUTHORIZATION, token || '');
     }
 
     if (hasAuth) {

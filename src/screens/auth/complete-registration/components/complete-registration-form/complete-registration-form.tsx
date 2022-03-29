@@ -7,10 +7,10 @@ import { FormPasswordInput, MainButton } from 'src/components';
 import { ICompleteRegistrationPayload } from 'src/common/types';
 import { AuthRoute } from 'src/common/enums';
 
-import { useAppNavigation } from 'src/hooks';
+import { useAppDispatch, useAppNavigation } from 'src/hooks';
 import { defaultCompleteRegistrationPayload } from '../../common';
 import useStyles from './styles';
-// import { authActions } from 'src/store/actions';
+import { authActions } from 'src/store/actions';
 
 interface ICompleteRegistrationProps {
   accessToken?: string;
@@ -21,12 +21,13 @@ const CompleteRegistrationForm: React.FC<ICompleteRegistrationProps> = ({
 }) => {
   const styles = useStyles();
   const navigation = useAppNavigation();
-  // const dispatch = useAppDispatch();
+  const dispatch = useAppDispatch();
 
   const handleCompleteRegistration = (values: ICompleteRegistrationPayload) => {
-    // const { token } = dispatch(authActions.verifyToken(accessToken));
-    // dispatch(authActions.completeRegistration({ payload: values, token: '' }));
-    console.log(accessToken, values);
+    const { token } = dispatch(authActions.verifyToken(accessToken));
+    dispatch(
+      authActions.completeRegistration({ payload: values, token: token })
+    );
     navigation.navigate(AuthRoute.SIGN_IN);
   };
 

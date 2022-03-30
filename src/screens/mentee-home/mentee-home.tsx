@@ -1,5 +1,5 @@
-import React, { useEffect, useMemo } from 'react';
-import { ScrollView, View } from 'react-native';
+import React, { useCallback, useEffect, useMemo } from 'react';
+import { RefreshControl, ScrollView, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { PREVIEW_CARDS_COUNT } from 'src/common/constants';
@@ -42,11 +42,19 @@ const MenteeHome: React.FC = () => {
     []
   );
 
+  const reloadOpportunities = useCallback(() => {
+    dispatch(opportunityActions.loadOpportunities());
+  }, [dispatch]);
+
+  const reloadList = useCallback(() => {
+    reloadOpportunities();
+  }, [reloadOpportunities]);
+
   useEffect(() => {
     if (!opportunities && !opportunitiesLoading) {
-      dispatch(opportunityActions.loadOpportunities());
+      reloadOpportunities();
     }
-  }, [opportunitiesLoading, opportunities, dispatch]);
+  }, [opportunitiesLoading, opportunities, reloadOpportunities]);
 
   const previewOpportunities = useMemo(
     () => (opportunities ?? []).slice(0, PREVIEW_CARDS_COUNT),
@@ -67,7 +75,15 @@ const MenteeHome: React.FC = () => {
     <SafeAreaView>
       <View style={styles.screen}>
         <Header>Looking for some jobs?</Header>
-        <ScrollView style={styles.scroller}>
+        <ScrollView
+          style={styles.scroller}
+          refreshControl={
+            <RefreshControl
+              refreshing={opportunitiesLoading}
+              onRefresh={reloadList}
+            />
+          }
+        >
           <NotificationsSection
             notifications={notifications}
             onMarkRead={handleMarkRead}

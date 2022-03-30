@@ -21,6 +21,7 @@ import {
   Header,
   QuizInfo,
   QuizResults,
+  UserInfo,
 } from './components';
 
 import useStyles from './styles';
@@ -138,8 +139,7 @@ const ProfileScreen: React.FC = () => {
             style={styles.swiperWrapper}
           >
             <View style={styles.swiperItem} collapsable={false}>
-              <Text>Summary container</Text>
-              {!user?.isCompleteTest && <QuizInfo />}
+              {!user?.isCompleteTest ? <QuizInfo /> : <UserInfo />}
             </View>
             <View style={styles.swiperItem} collapsable={false}>
               {!user?.isCompleteTest ? <QuizInfo /> : <QuizResults />}

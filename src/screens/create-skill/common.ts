@@ -1,10 +1,8 @@
 import { SkillType } from '../../common/enums';
 
 const defaultCreateSkillPayload = {
-  type: SkillType.OTHER,
+  type: SkillType.HARD_SKILLS,
   name: '',
-  description: '',
-  estimate: 0,
 };
 
 const skillTypeOptions = [
@@ -17,8 +15,8 @@ const skillTypeOptions = [
     value: SkillType.SOFT_SKILLS,
   },
   {
-    label: 'Other',
-    value: SkillType.OTHER,
+    label: 'Language',
+    value: SkillType.LANGUAGE,
   },
 ];
 

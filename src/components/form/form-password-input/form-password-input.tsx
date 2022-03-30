@@ -18,6 +18,7 @@ const FormPasswordInput: React.FC<FormInputProps> = inputProps => {
   return (
     <FormInput
       {...inputProps}
+      trimValue={false}
       secureTextEntry={secure}
       right={
         <TextInput.Icon

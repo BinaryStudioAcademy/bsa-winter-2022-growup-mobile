@@ -17,6 +17,7 @@ const usePaperTheme = (): ThemeProps => {
   const secondary = useColor('SECONDARY');
   const white = useColor('WHITE');
   const black = useColor('BLACK');
+  const hint = useColor('HINT');
 
   return useMemo(
     () => ({
@@ -29,10 +30,11 @@ const usePaperTheme = (): ThemeProps => {
         text: black,
         secondary: secondary,
         surface: white,
+        placeholder: hint,
       },
       fonts: configureFonts(fontConfig),
     }),
-    [primary, accent, secondary, white, black]
+    [primary, accent, secondary, white, black, hint]
   );
 };
 

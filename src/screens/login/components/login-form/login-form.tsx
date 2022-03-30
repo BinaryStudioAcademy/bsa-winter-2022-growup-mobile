@@ -3,7 +3,7 @@ import { View } from 'react-native';
 import { Formik } from 'formik';
 
 import { loginValidationSchema } from 'src/validation-schemas';
-import { FormInput, FormPasswordInput, MainButton } from 'src/components';
+import { FormInput, FormPasswordInput, Logo, MainButton } from 'src/components';
 import { ISignInPayload } from 'src/common/types';
 import { ButtonMode } from 'src/common/enums';
 
@@ -49,35 +49,39 @@ const LoginForm: React.FC = () => {
     >
       {({ isValid, handleSubmit }) => (
         <View style={styles.container}>
-          <View style={styles.fields}>
-            <FormInput name="email" style={styles.formField} label="Email" />
-            <FormPasswordInput
-              name="password"
-              style={styles.formField}
-              label="Password"
-            />
+          <View style={styles.spaceAround}>
+            <Logo />
+            <View style={styles.block}>
+              <FormInput name="email" style={styles.formField} label="Email" />
+              <FormPasswordInput
+                name="password"
+                style={[styles.formField, styles.topPadded]}
+                label="Password"
+              />
+            </View>
           </View>
-          <MainButton
-            style={styles.button}
-            mode={hasBiometry ? ButtonMode.OUTLINED : ButtonMode.CONTAINED}
-            onPress={handleSubmit}
-            disabled={!isValid}
-          >
-            Log In
-          </MainButton>
-          {hasBiometry ? (
+          <View style={styles.block}>
             <MainButton
-              style={styles.button}
-              mode={ButtonMode.CONTAINED}
-              onPress={handleFingerprint}
+              mode={hasBiometry ? ButtonMode.OUTLINED : ButtonMode.CONTAINED}
+              onPress={handleSubmit}
+              disabled={!isValid}
             >
-              Log In using fingerprint
+              Log In
             </MainButton>
-          ) : null}
+            {hasBiometry && (
+              <MainButton
+                style={styles.topPadded}
+                mode={ButtonMode.CONTAINED}
+                onPress={handleFingerprint}
+              >
+                Log In using fingerprint
+              </MainButton>
+            )}
+          </View>
         </View>
       )}
     </Formik>
   );
 };
 
-export { LoginForm };
+export default LoginForm;

@@ -4,3 +4,5 @@ export * from './notification';
 export * from './okr';
 export * from './experience';
 export * from './opportunities';
+export * from './onboarding';
+export * from './language';

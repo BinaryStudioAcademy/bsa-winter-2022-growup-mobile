@@ -6,6 +6,7 @@ import { DEFAULT_SCREEN_PADDING } from 'src/styles';
 
 const useStyles = () => {
   const white = useColor('WHITE');
+  const grey = useColor('GREY');
 
   return useMemo(
     () =>
@@ -14,10 +15,17 @@ const useStyles = () => {
           padding: DEFAULT_SCREEN_PADDING,
           backgroundColor: white,
           justifyContent: 'space-between',
-          height: '100%',
+          flex: 1,
         },
         inputContent: {
           marginBottom: 30,
+        },
+        imageContainer: {
+          alignSelf: 'center',
+          marginVertical: 10,
+        },
+        image: {
+          backgroundColor: grey,
         },
         buttonContainer: {
           paddingHorizontal: 20,
@@ -29,7 +37,7 @@ const useStyles = () => {
           marginBottom: 10,
         },
       }),
-    [white]
+    [white, grey]
   );
 };
 

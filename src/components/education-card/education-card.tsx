@@ -1,7 +1,7 @@
-import dayjs from 'dayjs';
-import { isFunction } from 'lodash-es';
 import React, { useMemo } from 'react';
 import { TouchableOpacity, View } from 'react-native';
+import dayjs from 'dayjs';
+import { isFunction } from 'lodash-es';
 
 import {
   CalendarIcon,

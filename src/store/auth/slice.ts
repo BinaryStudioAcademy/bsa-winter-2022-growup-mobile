@@ -13,10 +13,12 @@ import {
 
 interface IAuthState {
   user: IUser | null;
+  authLoading: boolean;
 }
 
 const initialState: IAuthState = {
   user: null,
+  authLoading: false,
 };
 
 const { reducer, actions } = createSlice({
@@ -36,6 +38,18 @@ const { reducer, actions } = createSlice({
 
     builder.addMatcher(
       isAnyOf(
+        loadCurrentUser.pending,
+        signIn.pending,
+        signUp.pending,
+        signInFingerprint.pending
+      ),
+      state => {
+        state.authLoading = true;
+      }
+    );
+
+    builder.addMatcher(
+      isAnyOf(
         loadCurrentUser.fulfilled,
         signIn.fulfilled,
         signUp.fulfilled,
@@ -43,6 +57,22 @@ const { reducer, actions } = createSlice({
       ),
       (state, { payload }) => {
         state.user = payload ?? null;
+      }
+    );
+
+    builder.addMatcher(
+      isAnyOf(
+        loadCurrentUser.fulfilled,
+        signIn.fulfilled,
+        signUp.fulfilled,
+        signInFingerprint.fulfilled,
+        loadCurrentUser.rejected,
+        signIn.rejected,
+        signUp.rejected,
+        signInFingerprint.rejected
+      ),
+      state => {
+        state.authLoading = false;
       }
     );
   },

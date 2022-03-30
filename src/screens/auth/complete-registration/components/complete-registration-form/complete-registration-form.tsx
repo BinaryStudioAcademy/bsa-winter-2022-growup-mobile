@@ -24,10 +24,17 @@ const CompleteRegistrationForm: React.FC<ICompleteRegistrationProps> = ({
   const dispatch = useAppDispatch();
 
   const handleCompleteRegistration = (values: ICompleteRegistrationPayload) => {
-    const { token } = dispatch(authActions.verifyToken(accessToken));
-    dispatch(
-      authActions.completeRegistration({ payload: values, token: token })
-    );
+    dispatch(authActions.verifyToken(accessToken))
+      .unwrap()
+      .then((success: { token: string }) => {
+        dispatch(
+          authActions.completeRegistration({
+            password: values.password,
+            token: success.token,
+          })
+        );
+      });
+
     navigation.navigate(AuthRoute.SIGN_IN);
   };
 

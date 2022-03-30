@@ -94,7 +94,7 @@ const verifyToken = createAsyncThunk(
 const completeRegistration = createAsyncThunk(
   ActionTypes.COMPLETE_REGISTRATION,
   async (payload: ICompleteRegistrationPayload, token: string) => {
-    return await authApi.completeRegistration(payload, token);
+    return await authApi.completeRegistration({ payload, token });
   }
 );
 

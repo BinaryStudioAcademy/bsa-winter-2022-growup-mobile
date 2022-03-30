@@ -5,7 +5,6 @@ import {
   IUser,
   AuthResponse,
   ISignUpPayload,
-  ICompleteRegistrationPayload,
 } from 'src/common/types';
 
 import { ApiPath, ContentType, HttpMethod } from 'src/common/enums';
@@ -78,26 +77,25 @@ class AuthApi {
   public async verifyToken(
     accessToken: string
   ): Promise<{ token: string } | undefined> {
-    console.log(
-      'URL: ',
+    const response: { token: string } | undefined = await this.#http.load(
       `${this.#apiPath}${ApiPath.VERIFY_TOKEN}/${accessToken}`
     );
-    return await this.#http.load(
-      `${this.#apiPath}${ApiPath.VERIFY_TOKEN}/${accessToken}`
-    );
+
+    return response;
   }
 
-  public async completeRegistration(
-    payload: ICompleteRegistrationPayload,
-    token: string
-  ) {
-    return await this.#http.load(
+  public async completeRegistration(payload: {
+    payload: { token: string; password: string };
+  }) {
+    const { password, token } = payload.payload;
+
+    const response = await this.#http.load(
       `${this.#apiPath}${ApiPath.COMPLETE_REGISTRATION}`,
       {
         method: HttpMethod.PATCH,
         contentType: ContentType.JSON,
         payload: JSON.stringify({
-          password: payload.password,
+          password: password,
           firstName: '',
           lastName: '',
           position: '',
@@ -106,6 +104,8 @@ class AuthApi {
         accessToken: token,
       }
     );
+
+    return response;
   }
 }
 

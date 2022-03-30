@@ -4,7 +4,7 @@ const defaultCreateSkillPayload = {
   type: SkillType.OTHER,
   name: '',
   description: '',
-  estimate: 6.7,
+  estimate: 0,
 };
 
 const skillTypeOptions = [

@@ -76,6 +76,7 @@ const LoginForm: React.FC = () => {
                 style={styles.topPadded}
                 mode={ButtonMode.CONTAINED}
                 onPress={handleFingerprint}
+                loading={authLoading}
               >
                 Log In using fingerprint
               </MainButton>

@@ -1,5 +1,7 @@
 const defaultAddLanguagePayload = {
-  language: '',
+  name: '',
+  level: '',
+  certificate: '',
 };
 
 export { defaultAddLanguagePayload };

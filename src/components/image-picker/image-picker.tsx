@@ -8,11 +8,12 @@ import { captureSingleImage, selectSingleImageFromGallery } from 'src/helpers';
 import { MainButton } from '..';
 import useStyles from './styles';
 
-type AvatarPickerProps = {
+type ImagePickerProps = {
   onPick: (avatar?: Asset) => void;
+  buttonText: string;
 };
 
-const AvatarPicker: React.FC<AvatarPickerProps> = ({ onPick }) => {
+const ImagePicker: React.FC<ImagePickerProps> = ({ onPick, buttonText }) => {
   const styles = useStyles();
   const [menuOpen, setMenuOpen] = useState<boolean>(false);
 
@@ -43,7 +44,7 @@ const AvatarPicker: React.FC<AvatarPickerProps> = ({ onPick }) => {
             compact={true}
             onPress={handleShow}
           >
-            Add an avatar
+            {buttonText}
           </MainButton>
         }
       >
@@ -54,4 +55,4 @@ const AvatarPicker: React.FC<AvatarPickerProps> = ({ onPick }) => {
   );
 };
 
-export default AvatarPicker;
+export default ImagePicker;

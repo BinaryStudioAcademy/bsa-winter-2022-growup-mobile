@@ -46,6 +46,9 @@ const useStyles = () => {
         userAvatar: {
           backgroundColor: grey,
         },
+        cardItem: {
+          marginVertical: 5,
+        },
       }),
     [grey]
   );

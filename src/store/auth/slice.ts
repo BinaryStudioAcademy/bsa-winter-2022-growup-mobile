@@ -1,6 +1,7 @@
 import { createSlice, isAnyOf } from '@reduxjs/toolkit';
 
 import { IUser } from 'src/common/types';
+import { completeOnboarding, uploadUserAvatar } from '../onboarding/actions';
 import { sendQuizResults } from '../quiz/actions';
 
 import {
@@ -33,7 +34,19 @@ const { reducer, actions } = createSlice({
         state.user.isCompleteTest = true;
       }
     });
-
+    builder.addCase(completeOnboarding.fulfilled, (state, { payload }) => {
+      const { firstName, lastName, position } = payload;
+      if (state.user) {
+        state.user.firstName = firstName;
+        state.user.lastName = lastName;
+        state.user.position = position;
+      }
+    });
+    builder.addCase(uploadUserAvatar.fulfilled, (state, { payload }) => {
+      if (state.user) {
+        state.user.avatar = payload?.avatar;
+      }
+    });
     builder.addMatcher(
       isAnyOf(
         loadCurrentUser.fulfilled,

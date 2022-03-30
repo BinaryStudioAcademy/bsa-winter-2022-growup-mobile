@@ -24,7 +24,7 @@ const AddExperienceScreen: React.FC = () => {
   const navigation = useAppNavigation();
   const route = useRoute<AddExperienceRouteProps>();
   const dispatch = useAppDispatch();
-  const { isEdit, career } = route.params;
+  const { career } = route.params;
 
   const handleCancel = () => {
     navigation.goBack();
@@ -38,7 +38,7 @@ const AddExperienceScreen: React.FC = () => {
       endDate: values.endDate,
     };
 
-    if (isEdit && career) {
+    if (career) {
       dispatch(
         experienceActions.editCareerExperience({
           id: career.id,
@@ -53,7 +53,7 @@ const AddExperienceScreen: React.FC = () => {
   };
 
   const initialValues: IAddCareerPayload = useMemo(() => {
-    if (isEdit && career) {
+    if (career) {
       return {
         company: career.company,
         position: career.position,
@@ -63,7 +63,7 @@ const AddExperienceScreen: React.FC = () => {
     } else {
       return defaultAddExperiencePayload;
     }
-  }, [isEdit, career]);
+  }, [career]);
 
   return (
     <SafeAreaView style={styles.screen}>
@@ -119,7 +119,7 @@ const AddExperienceScreen: React.FC = () => {
                   onPress={handleSubmit}
                   mode={ButtonMode.CONTAINED}
                 >
-                  {isEdit ? 'Edit' : 'Add'}
+                  {career ? 'Edit' : 'Add'}
                 </MainButton>
               </View>
             </>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 
 import { FAB } from 'react-native-paper';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -51,6 +51,7 @@ const OKRScreen: React.FC = () => {
   const [addMenuOpen, setAddMenuOpen] = useState<boolean>(false);
   const navigation = useAppNavigation();
   const okrs = MOCK_okrs;
+  const okrsLoading = false;
 
   const addFunctions: Record<string, () => void> = {
     ownOKR: () => {
@@ -71,6 +72,10 @@ const OKRScreen: React.FC = () => {
     },
   };
 
+  const reloadOKRs = useCallback(() => {
+    /* TODO */
+  }, []);
+
   const handleItemPress = (name: string) => {
     addFunctions[name]();
   };
@@ -81,7 +86,7 @@ const OKRScreen: React.FC = () => {
 
   return (
     <SafeAreaView style={styles.screen}>
-      <OKRList data={okrs} />
+      <OKRList data={okrs} loading={okrsLoading} onReload={reloadOKRs} />
       {!okrs?.length && (
         <EmptyListMessage>
           You haven&apos;t created any OKRs for yourself yet.

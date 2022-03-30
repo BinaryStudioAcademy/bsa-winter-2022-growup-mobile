@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { ScrollView, View } from 'react-native';
+import { RefreshControl, ScrollView, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Divider, FAB } from 'react-native-paper';
 
@@ -76,10 +76,13 @@ const ProfileScreen: React.FC = () => {
     },
   };
 
-  const { careerExperience, user } = useAppSelector(state => ({
-    careerExperience: state.experience.careerExperience,
-    user: state.auth.user,
-  }));
+  const { careerExperience, careerExperienceLoading, user } = useAppSelector(
+    state => ({
+      careerExperience: state.experience.careerExperience,
+      careerExperienceLoading: state.experience.careerExperienceLoading,
+      user: state.auth.user,
+    })
+  );
 
   const handleItemPress = (name: string) => {
     addFunctions[name]();
@@ -113,9 +116,13 @@ const ProfileScreen: React.FC = () => {
     [navigation]
   );
 
-  useEffect(() => {
+  const reloadCareerExperience = useCallback(() => {
     dispatch(experienceActions.loadCareerExperience());
   }, [dispatch]);
+
+  useEffect(() => {
+    reloadCareerExperience();
+  }, [reloadCareerExperience]);
 
   return (
     <SafeAreaView style={styles.fullHeight}>
@@ -154,7 +161,15 @@ const ProfileScreen: React.FC = () => {
               <Heading level={HeadingLevel.H5} style={styles.containerHeader}>
                 Career journey
               </Heading>
-              <ScrollView showsVerticalScrollIndicator={false}>
+              <ScrollView
+                showsVerticalScrollIndicator={false}
+                refreshControl={
+                  <RefreshControl
+                    refreshing={careerExperienceLoading}
+                    onRefresh={reloadCareerExperience}
+                  />
+                }
+              >
                 {careerExperience.map(item => (
                   <View key={item.id} style={styles.card}>
                     <CareerCard

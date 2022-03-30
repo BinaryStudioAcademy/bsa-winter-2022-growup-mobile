@@ -1,8 +1,8 @@
 const defaultAddEducationPayload = {
-  universityName: '',
-  courseName: '',
+  specialization: '',
+  university: '',
   degree: '',
-  startDate: undefined,
+  startDate: new Date().toISOString(),
   endDate: undefined,
 };
 

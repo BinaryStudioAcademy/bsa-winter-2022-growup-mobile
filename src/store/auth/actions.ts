@@ -2,11 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import * as keychain from 'react-native-keychain';
 
 import { authApi, secureStorage } from 'src/services';
-import {
-  ICompleteRegistrationPayload,
-  ISignInPayload,
-  ISignUpPayload,
-} from 'src/common/types';
+import { ISignInPayload, ISignUpPayload } from 'src/common/types';
 import { SecureStorageKey } from 'src/common/enums';
 
 import {
@@ -93,8 +89,8 @@ const verifyToken = createAsyncThunk(
 
 const completeRegistration = createAsyncThunk(
   ActionTypes.COMPLETE_REGISTRATION,
-  async (payload: ICompleteRegistrationPayload, token: string) => {
-    return await authApi.completeRegistration({ payload, token });
+  async (payload: { password: string; token: string }) => {
+    return await authApi.completeRegistration(payload);
   }
 );
 

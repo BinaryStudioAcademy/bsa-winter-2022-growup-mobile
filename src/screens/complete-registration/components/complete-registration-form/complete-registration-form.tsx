@@ -24,18 +24,20 @@ const CompleteRegistrationForm: React.FC<ICompleteRegistrationProps> = ({
   const dispatch = useAppDispatch();
 
   const handleCompleteRegistration = (values: ICompleteRegistrationPayload) => {
-    dispatch(authActions.verifyToken(accessToken))
-      .unwrap()
-      .then((success: { token: string }) => {
-        dispatch(
-          authActions.completeRegistration({
-            password: values.password,
-            token: success.token,
-          })
-        );
-      });
+    if (accessToken) {
+      dispatch(authActions.verifyToken(accessToken))
+        .unwrap()
+        .then((success: { token: string }) => {
+          dispatch(
+            authActions.completeRegistration({
+              password: values.password,
+              token: success.token,
+            })
+          );
+        });
 
-    navigation.navigate(AuthRoute.SIGN_IN);
+      navigation.navigate(AuthRoute.SIGN_IN);
+    }
   };
 
   return (
@@ -62,7 +64,7 @@ const CompleteRegistrationForm: React.FC<ICompleteRegistrationProps> = ({
             <MainButton
               style={styles.button}
               onPress={handleSubmit}
-              disabled={!isValid}
+              disabled={!isValid && accessToken !== undefined}
             >
               Complete Registration
             </MainButton>

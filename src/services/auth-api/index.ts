@@ -74,10 +74,8 @@ class AuthApi {
     }
   }
 
-  public async verifyToken(
-    accessToken: string
-  ): Promise<{ token: string } | undefined> {
-    const response: { token: string } | undefined = await this.#http.load(
+  public async verifyToken(accessToken: string): Promise<{ token: string }> {
+    const response: { token: string } = await this.#http.load(
       `${this.#apiPath}${ApiPath.VERIFY_TOKEN}/${accessToken}`
     );
 
@@ -85,23 +83,22 @@ class AuthApi {
   }
 
   public async completeRegistration(payload: {
-    payload: { token: string; password: string };
+    token: string;
+    password: string;
   }) {
-    const { password, token } = payload.payload;
-
     const response = await this.#http.load(
       `${this.#apiPath}${ApiPath.COMPLETE_REGISTRATION}`,
       {
         method: HttpMethod.PATCH,
         contentType: ContentType.JSON,
         payload: JSON.stringify({
-          password: password,
+          password: payload.password,
           firstName: '',
           lastName: '',
           position: '',
         }),
         hasAuth: false,
-        accessToken: token,
+        accessToken: payload.token,
       }
     );
 

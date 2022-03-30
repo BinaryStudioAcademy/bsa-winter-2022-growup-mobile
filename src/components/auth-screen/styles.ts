@@ -15,18 +15,12 @@ const useStyles = () => {
           backgroundColor: white,
           padding: DEFAULT_SCREEN_PADDING,
         },
-        content: {
+        form: {
           flex: 1,
-          paddingBottom: 15,
         },
-        logoWrapper: {
-          paddingVertical: 40,
-          alignItems: 'center',
-          justifyContent: 'center',
-        },
-        logo: {
-          height: 48,
-          resizeMode: 'contain',
+        container: {
+          flex: 1,
+          justifyContent: 'space-between',
         },
         footer: {
           flexDirection: 'row',

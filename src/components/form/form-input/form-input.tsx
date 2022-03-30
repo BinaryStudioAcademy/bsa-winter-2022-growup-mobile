@@ -32,7 +32,7 @@ const FormInput: React.FC<FormInputProps> = ({
     handleBlur: handleFormikBlur,
   } = useFormikContext<FormikValues>();
 
-  const [userValue, setUserValue] = useState<string>(values[name]);
+  const [userValue, setUserValue] = useState<string>(String(values[name]));
 
   const error = touched[name] && errors[name];
 

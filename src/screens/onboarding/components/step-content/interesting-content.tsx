@@ -16,10 +16,6 @@ const InterestingContent: React.FC = () => {
     navigation.navigate(OnboardingRoute.ADD_LANGUAGE);
   };
 
-  // const handleAddLocation = () => {
-  //   navigation.navigate(OnboardingRoute.ADD_LOCATION);
-  // };
-
   return (
     <View style={styles.content}>
       <Heading style={styles.header} level={HeadingLevel.H4}>
@@ -40,17 +36,6 @@ const InterestingContent: React.FC = () => {
         {languages.map(item => (
           <LanguageCard style={styles.cardItem} language={item} key={item.id} />
         ))}
-        {/* <Heading style={styles.interestingHeadings} level={HeadingLevel.H5}>
-          What are your locations?
-        </Heading>
-        <AddButton
-          onPress={handleAddLocation}
-          labelStyle={styles.tabButtonLabel}
-          style={styles.tagButton}
-          icon={IconName.MAP_MARKER_PLUS}
-        >
-          Add Location
-        </AddButton> */}
       </View>
     </View>
   );

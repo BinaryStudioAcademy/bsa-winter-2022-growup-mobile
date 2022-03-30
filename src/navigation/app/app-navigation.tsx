@@ -15,8 +15,6 @@ import { useAppSelector, useStackScreenOptions } from 'src/hooks';
 import { AppTabsNavigation } from '../app-tabs';
 import { OnboardingNavigation } from '../onboarding';
 
-// initialRouteName={isUserAdmin ? AppRoute.ADMIN_HOME : AppRoute.APP_TABS}
-
 const Stack = createNativeStackNavigator<AppStackParamList>();
 
 const AppNavigation: React.FC = () => {
@@ -28,11 +26,11 @@ const AppNavigation: React.FC = () => {
   const initialRouteName = useMemo(() => {
     if (isUserAdmin) {
       return AppRoute.ADMIN_HOME;
-    } else if (isCompletedOnboarding) {
-      return AppRoute.APP_TABS;
-    } else {
-      return AppRoute.ONBOARDING_SETUP;
     }
+    if (isCompletedOnboarding) {
+      return AppRoute.APP_TABS;
+    }
+    return AppRoute.ONBOARDING_SETUP;
   }, [isUserAdmin, isCompletedOnboarding]);
 
   return (

@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, ViewStyle } from 'react-native';
+import { StyleProp, View, ViewStyle } from 'react-native';
 import { Card } from 'react-native-paper';
 
 import { TextAppearance } from 'src/common/enums';
@@ -9,7 +9,7 @@ import useStyles from './styles';
 
 type LanguageCardProps = {
   language: ILanguage;
-  style?: ViewStyle;
+  style?: StyleProp<ViewStyle>;
 };
 
 const LanguageCard: React.FC<LanguageCardProps> = ({ language, style }) => {

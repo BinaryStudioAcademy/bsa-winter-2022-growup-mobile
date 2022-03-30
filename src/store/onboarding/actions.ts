@@ -1,7 +1,7 @@
 import { createAction, createAsyncThunk } from '@reduxjs/toolkit';
 import { Asset } from 'react-native-image-picker';
 
-import { IAddLanguagePayload, IOnboarding, IUserInfo } from 'src/common/types';
+import { IOnboarding, IUserInfo } from 'src/common/types';
 import { authApi, onboardingApi } from 'src/services';
 import { ActionTypes } from './common';
 
@@ -23,16 +23,6 @@ const uploadUserAvatar = createAsyncThunk(
 
 const saveUserInfo = createAction<IUserInfo>(ActionTypes.SAVE_USER_INFO);
 
-const saveUserLanguage = createAction<IAddLanguagePayload>(
-  ActionTypes.SAVE_USER_LANGUAGE
-);
-
 const saveUserAvatar = createAction<Asset>(ActionTypes.SAVE_USER_AVATAR);
 
-export {
-  completeOnboarding,
-  saveUserInfo,
-  saveUserLanguage,
-  saveUserAvatar,
-  uploadUserAvatar,
-};
+export { completeOnboarding, saveUserInfo, saveUserAvatar, uploadUserAvatar };

@@ -5,6 +5,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { PREVIEW_CARDS_COUNT } from 'src/common/constants';
 import { AppRoute } from 'src/common/enums';
 import { INotification } from 'src/common/types';
+import { EmptyListMessage } from 'src/components';
 import { useAppDispatch, useAppNavigation, useAppSelector } from 'src/hooks';
 import { notificationActions, opportunityActions } from 'src/store/actions';
 
@@ -26,17 +27,20 @@ const MenteeHome: React.FC = () => {
     state => state.opportunity
   );
 
-  const notifications: INotification[] = [
+  const notifications: INotification[] = useMemo(
     // TODO: useSelector
-    {
-      id: '1',
-      text: 'You have been offered a new position!',
-    },
-    {
-      id: '2',
-      text: "You've learned everything to become a Fullstack JS Developer",
-    },
-  ];
+    () => [
+      {
+        id: '1',
+        text: 'You have been offered a new position!',
+      },
+      {
+        id: '2',
+        text: "You've learned everything to become a Fullstack JS Developer",
+      },
+    ],
+    []
+  );
 
   useEffect(() => {
     if (!opportunities && !opportunitiesLoading) {
@@ -72,6 +76,11 @@ const MenteeHome: React.FC = () => {
             opportunities={previewOpportunities}
             onDetails={handleOpportunityDetails}
           />
+          {!notifications.length && !previewOpportunities.length && (
+            <EmptyListMessage>
+              You have no notifications and no opportunities here...
+            </EmptyListMessage>
+          )}
         </ScrollView>
       </View>
     </SafeAreaView>

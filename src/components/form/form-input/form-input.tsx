@@ -37,6 +37,7 @@ const FormInput: React.FC<FormInputProps> = ({
   const error = touched[name] && errors[name];
 
   const handleChange = (text: string) => {
+    setUserValue(text);
     setFieldValue(name, trimValue ? text.trim() : text);
   };
 

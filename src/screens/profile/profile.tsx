@@ -9,7 +9,7 @@ import PagerView, {
 
 import { HeadingLevel, ProfileRoute } from 'src/common/enums';
 import { ICareer, IEducation } from 'src/common/types';
-import { Heading, Text } from 'src/components';
+import { Heading, EmptyListMessage, Text } from 'src/components';
 import { useAppDispatch, useAppSelector, useAppNavigation } from 'src/hooks';
 import { experienceActions } from 'src/store/experience';
 import { educationActions } from 'src/store/actions';
@@ -189,6 +189,11 @@ const ProfileScreen: React.FC = () => {
                     />
                   </View>
                 ))}
+                {!careerExperience?.length && (
+                  <EmptyListMessage>
+                    No career experience here.
+                  </EmptyListMessage>
+                )}
               </ScrollView>
             </View>
             <View style={styles.swiperItem} collapsable={false}>

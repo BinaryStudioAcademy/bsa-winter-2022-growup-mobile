@@ -3,7 +3,7 @@ import { View } from 'react-native';
 import { Formik } from 'formik';
 
 import { registerValidationSchema } from 'src/validation-schemas';
-import { FormInput, FormPasswordInput, MainButton } from 'src/components';
+import { FormInput, FormPasswordInput, Logo, MainButton } from 'src/components';
 import { ISignUpPayload } from 'src/common/types';
 import { ButtonMode } from 'src/common/enums';
 import { useAppDispatch } from 'src/hooks';
@@ -30,32 +30,36 @@ const RegisterForm: React.FC = () => {
     >
       {({ isValid, handleSubmit }) => (
         <View style={styles.container}>
-          <View style={styles.fields}>
-            <FormInput name="email" style={styles.formField} label="Email" />
-            <FormInput
-              name="firstName"
-              style={styles.formField}
-              label="First name"
-            />
-            <FormInput
-              name="lastName"
-              style={styles.formField}
-              label="Last name"
-            />
-            <FormPasswordInput
-              name="password"
-              style={styles.formField}
-              label="Password"
-            />
+          <View style={styles.spaceAround}>
+            <Logo />
+            <View style={styles.block}>
+              <FormInput name="email" style={styles.formField} label="Email" />
+              <FormInput
+                name="firstName"
+                style={[styles.formField, styles.topPadded]}
+                label="First name"
+              />
+              <FormInput
+                name="lastName"
+                style={[styles.formField, styles.topPadded]}
+                label="Last name"
+              />
+              <FormPasswordInput
+                name="password"
+                style={[styles.formField, styles.topPadded]}
+                label="Password"
+              />
+            </View>
           </View>
-          <MainButton
-            style={styles.button}
-            mode={ButtonMode.CONTAINED}
-            onPress={handleSubmit}
-            disabled={!isValid}
-          >
-            Sign Up
-          </MainButton>
+          <View style={styles.block}>
+            <MainButton
+              mode={ButtonMode.CONTAINED}
+              onPress={handleSubmit}
+              disabled={!isValid}
+            >
+              Sign Up
+            </MainButton>
+          </View>
         </View>
       )}
     </Formik>

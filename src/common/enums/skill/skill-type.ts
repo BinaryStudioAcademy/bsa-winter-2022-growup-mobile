@@ -1,7 +1,7 @@
-enum SkillType { // TODO: real values from server
-  SOFT_SKILLS = 'softSkills',
-  HARD_SKILLS = 'hardSkills',
-  OTHER = 'other',
+enum SkillType {
+  SOFT_SKILLS = 'Soft skills',
+  HARD_SKILLS = 'Hard skills',
+  LANGUAGE = 'Language',
 }
 
 export { SkillType };

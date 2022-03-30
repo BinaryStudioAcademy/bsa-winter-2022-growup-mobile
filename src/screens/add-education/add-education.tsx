@@ -20,7 +20,7 @@ type AddEducationRouteProps = RouteProp<
   ProfileRoute.ADD_EDUCATION
 >;
 
-const AddEducationScreen: React.FC = () => {
+const AddEducationScreen: React.FC<AddEducationRouteProps> = () => {
   const dispatch = useAppDispatch();
   const styles = useStyles();
   const navigation = useAppNavigation();

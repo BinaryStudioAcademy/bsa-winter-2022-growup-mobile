@@ -12,7 +12,7 @@ import {
 } from 'src/components';
 
 import { MONTHS_IN_YEAR } from 'src/common/constants';
-import { HeadingLevel, TextAppearance } from 'src/common/enums';
+import { DateFormat, HeadingLevel, TextAppearance } from 'src/common/enums';
 import { IEducation } from 'src/common/types';
 import { useColor } from 'src/hooks';
 import useStyles from './styles';
@@ -34,12 +34,16 @@ const EducationCard: React.FC<EducationCardProps> = ({
   const colorPrimary = useColor('PRIMARY');
 
   const dateString = useMemo(() => {
-    const startDay = dayjs(startDate);
-    const endDay = dayjs(endDate);
+    const startDay = dayjs(startDate, DateFormat.DATE_ONLY);
+    const endDay = dayjs(endDate, DateFormat.DATE_ONLY);
 
     const differenceYears = endDay.diff(startDay, 'years');
     const extraMonths = differenceYears * MONTHS_IN_YEAR;
     const differenceMonths = endDay.diff(startDay, 'months') - extraMonths;
+
+    if (!endDate) {
+      return `${startDay.format('MM/YYYY')} - now`;
+    }
 
     return `${differenceYears} yr ${differenceMonths} mo`;
   }, [startDate, endDate]);

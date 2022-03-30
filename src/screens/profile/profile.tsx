@@ -59,9 +59,7 @@ const ProfileScreen: React.FC = () => {
     education: () => {
       navigation.navigate({
         name: ProfileRoute.ADD_EDUCATION,
-        params: {
-          education: undefined,
-        },
+        params: {},
       });
     },
     language: () => {
@@ -132,7 +130,6 @@ const ProfileScreen: React.FC = () => {
       navigation.navigate({
         name: ProfileRoute.ADD_EDUCATION,
         params: {
-          isEdit: true,
           education,
         },
       });

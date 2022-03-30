@@ -20,7 +20,7 @@ class SkillApi {
     return this.#http.load(`${this.#apiPath}${ApiPath.SKILLS}`, {
       method: HttpMethod.POST,
       contentType: ContentType.JSON,
-      payload: JSON.stringify(payload),
+      payload: JSON.stringify([payload]),
     });
   }
 }

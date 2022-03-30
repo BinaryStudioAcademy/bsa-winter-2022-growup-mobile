@@ -12,17 +12,22 @@ const useStyles = () => {
         container: {
           flex: 1,
         },
-        fields: {
+        spaceAround: {
           flex: 1,
+          width: '100%',
+          alignItems: 'center',
+          justifyContent: 'space-around',
         },
-        button: {
-          marginTop: 10,
+        block: {
+          width: '100%',
         },
         formField: {
           backgroundColor: inputBg,
           height: 45,
-          marginTop: 17,
           borderRadius: 8,
+        },
+        topPadded: {
+          marginTop: 17,
         },
       }),
     [inputBg]

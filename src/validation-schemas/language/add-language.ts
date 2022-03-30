@@ -3,6 +3,7 @@ import * as yup from 'yup';
 const addLanguageValidationSchema = yup.object({
   name: yup
     .string()
+    .trim()
     .required('Language must not be empty')
     .max(100, 'Language must be less than 100 symbols'),
   level: yup

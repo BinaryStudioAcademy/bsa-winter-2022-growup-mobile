@@ -3,7 +3,7 @@ import { FlatList, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { AppRoute, HeadingLevel } from 'src/common/enums';
-import { Heading, OpportunityCard } from 'src/components';
+import { Heading, EmptyListMessage, OpportunityCard } from 'src/components';
 import { useAppDispatch, useAppNavigation, useAppSelector } from 'src/hooks';
 import { opportunityActions } from 'src/store/actions';
 import useStyles from './styles';
@@ -49,6 +49,9 @@ const OpportunitiesScreen: React.FC = () => {
           </View>
         )}
       />
+      {!opportunities?.length && (
+        <EmptyListMessage>No opportunities for you.</EmptyListMessage>
+      )}
     </SafeAreaView>
   );
 };

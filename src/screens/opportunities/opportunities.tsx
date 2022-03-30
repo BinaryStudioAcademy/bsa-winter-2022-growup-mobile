@@ -1,16 +1,13 @@
-import React, { useEffect } from 'react';
-import { FlatList, View } from 'react-native';
+import React, { useCallback, useEffect } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-import { AppRoute, HeadingLevel } from 'src/common/enums';
-import { Heading, EmptyListMessage, OpportunityCard } from 'src/components';
+import { AppRoute } from 'src/common/enums';
+import { EmptyListMessage } from 'src/components';
 import { useAppDispatch, useAppNavigation, useAppSelector } from 'src/hooks';
 import { opportunityActions } from 'src/store/actions';
-import useStyles from './styles';
+import { OpportunitiesList } from './components';
 
 const OpportunitiesScreen: React.FC = () => {
-  const styles = useStyles();
-
   const navigation = useAppNavigation();
   const dispatch = useAppDispatch();
 
@@ -18,11 +15,15 @@ const OpportunitiesScreen: React.FC = () => {
     state => state.opportunity
   );
 
+  const reload = useCallback(() => {
+    dispatch(opportunityActions.loadOpportunities());
+  }, [dispatch]);
+
   useEffect(() => {
     if (!opportunities && !opportunitiesLoading) {
-      dispatch(opportunityActions.loadOpportunities());
+      reload();
     }
-  }, [opportunitiesLoading, opportunities, dispatch]);
+  }, [opportunitiesLoading, opportunities, reload]);
 
   const showOpportunityDetails = (id: string) => {
     dispatch(opportunityActions.loadExpandedOpportunity(id))
@@ -32,22 +33,11 @@ const OpportunitiesScreen: React.FC = () => {
 
   return (
     <SafeAreaView>
-      <FlatList
+      <OpportunitiesList
         data={opportunities ?? []}
-        style={styles.screen}
-        ListHeaderComponent={
-          <Heading style={styles.header} level={HeadingLevel.H5}>
-            Opportunities
-          </Heading>
-        }
-        renderItem={({ item }) => (
-          <View style={styles.cardWrapper}>
-            <OpportunityCard
-              opportunity={item}
-              onDetails={() => showOpportunityDetails(item.id)}
-            />
-          </View>
-        )}
+        loading={opportunitiesLoading}
+        onReload={reload}
+        onDetails={showOpportunityDetails}
       />
       {!opportunities?.length && (
         <EmptyListMessage>No opportunities for you.</EmptyListMessage>

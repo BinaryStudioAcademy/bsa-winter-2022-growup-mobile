@@ -9,7 +9,7 @@ import PagerView, {
 
 import { HeadingLevel, ProfileRoute } from 'src/common/enums';
 import { ICareer } from 'src/common/types';
-import { Heading, EmptyListMessage, Text } from 'src/components';
+import { Heading, EmptyListMessage, Text, CareerCard } from 'src/components';
 import { useAppDispatch, useAppSelector, useAppNavigation } from 'src/hooks';
 import { experienceActions } from 'src/store/experience';
 import addActions from './add-actions';
@@ -69,7 +69,6 @@ const ProfileScreen: React.FC = () => {
       navigation.navigate({
         name: ProfileRoute.ADD_CAREER_EXPERIENCE,
         params: {
-          isEdit: false,
           career: undefined,
         },
       });
@@ -109,7 +108,6 @@ const ProfileScreen: React.FC = () => {
       navigation.navigate({
         name: ProfileRoute.ADD_CAREER_EXPERIENCE,
         params: {
-          isEdit: true,
           career,
         },
       });

@@ -4,9 +4,11 @@ interface IUser {
   id: string;
   firstName: string;
   lastName: string;
+  position: string;
   email: string;
-  role: UserRoleType;
+  avatar?: string;
   isCompleteTest: boolean;
+  role: UserRoleType;
 }
 
 export type { IUser };

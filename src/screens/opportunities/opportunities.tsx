@@ -15,15 +15,15 @@ const OpportunitiesScreen: React.FC = () => {
     state => state.opportunity
   );
 
-  const reload = useCallback(() => {
+  const loadOpportunities = useCallback(() => {
     dispatch(opportunityActions.loadOpportunities());
   }, [dispatch]);
 
   useEffect(() => {
     if (!opportunities && !opportunitiesLoading) {
-      reload();
+      loadOpportunities();
     }
-  }, [opportunitiesLoading, opportunities, reload]);
+  }, [opportunitiesLoading, opportunities, loadOpportunities]);
 
   const showOpportunityDetails = (id: string) => {
     dispatch(opportunityActions.loadExpandedOpportunity(id))
@@ -36,7 +36,7 @@ const OpportunitiesScreen: React.FC = () => {
       <OpportunitiesList
         data={opportunities ?? []}
         loading={opportunitiesLoading}
-        onReload={reload}
+        onReload={loadOpportunities}
         onDetails={showOpportunityDetails}
       />
       {!opportunities?.length && (

@@ -42,19 +42,19 @@ const MenteeHome: React.FC = () => {
     []
   );
 
-  const reloadOpportunities = useCallback(() => {
+  const loadOpportunities = useCallback(() => {
     dispatch(opportunityActions.loadOpportunities());
   }, [dispatch]);
 
   const reloadList = useCallback(() => {
-    reloadOpportunities();
-  }, [reloadOpportunities]);
+    loadOpportunities();
+  }, [loadOpportunities]);
 
   useEffect(() => {
     if (!opportunities && !opportunitiesLoading) {
-      reloadOpportunities();
+      loadOpportunities();
     }
-  }, [opportunitiesLoading, opportunities, reloadOpportunities]);
+  }, [opportunitiesLoading, opportunities, loadOpportunities]);
 
   const previewOpportunities = useMemo(
     () => (opportunities ?? []).slice(0, PREVIEW_CARDS_COUNT),

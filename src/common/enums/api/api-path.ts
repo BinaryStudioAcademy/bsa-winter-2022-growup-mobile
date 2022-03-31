@@ -15,6 +15,7 @@ enum ApiPath {
   ONBOARDING = '/user/profile',
   AVATAR = '/user/avatar',
   LANGUAGE = '/user/languages',
+  COMPANY_USERS = '/company/users',
 }
 
 export { ApiPath };

@@ -22,6 +22,7 @@ import { Http } from './http';
 import { QuizApi } from './quiz-api';
 import { OnboardingApi } from './onboarding-api';
 import { LanguageApi } from './language-api';
+import { UserApi } from './user-api';
 
 const apiPath = `${API_ORIGIN_URL}${API_PREFIX}`;
 
@@ -80,17 +81,22 @@ const opportunitiesApi = new OpportunitiesApi({
 
 const quizApi = new QuizApi({
   http,
-  apiPath: `${API_ORIGIN_URL}${API_PREFIX}`,
+  apiPath,
 });
 
 const onboardingApi = new OnboardingApi({
   http,
-  apiPath: `${API_ORIGIN_URL}${API_PREFIX}`,
+  apiPath,
 });
 
 const languageApi = new LanguageApi({
   http,
-  apiPath: `${API_ORIGIN_URL}${API_PREFIX}`,
+  apiPath,
+});
+
+const userApi = new UserApi({
+  http,
+  apiPath,
 });
 
 const pushNotificationApi = new PushNotificationsApi();
@@ -110,4 +116,5 @@ export {
   opportunitiesApi,
   onboardingApi,
   languageApi,
+  userApi,
 };

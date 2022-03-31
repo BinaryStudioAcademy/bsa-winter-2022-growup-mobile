@@ -16,10 +16,6 @@ const roleTypeOptions = [
     label: 'Mentor',
     value: UserRoleType.MENTOR,
   },
-  {
-    label: 'Admin',
-    value: UserRoleType.ADMIN,
-  },
 ];
 
 export { defaultAddUserPayload, roleTypeOptions };

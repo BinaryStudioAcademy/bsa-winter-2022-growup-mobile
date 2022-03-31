@@ -1,9 +1,10 @@
 interface IEducation {
+  id: string;
   type: string;
   university: string;
   degree: string;
-  startDate: Date;
-  endDate: Date;
+  startDate: string;
+  endDate?: string;
 }
 
 export type { IEducation };

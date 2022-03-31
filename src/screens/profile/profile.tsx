@@ -9,10 +9,17 @@ import PagerView, {
 
 import { HeadingLevel, ProfileRoute } from 'src/common/enums';
 import { ICareer } from 'src/common/types';
-import { Heading, EmptyListMessage, Text, CareerCard } from 'src/components';
+import {
+  Heading,
+  EmptyListMessage,
+  Text,
+  CareerCard,
+  EducationCard,
+} from 'src/components';
 import { useAppDispatch, useAppSelector, useAppNavigation } from 'src/hooks';
 import { experienceActions } from 'src/store/experience';
 import addActions from './add-actions';
+import { educationActions } from 'src/store/actions';
 
 import {
   Navbar,
@@ -57,7 +64,10 @@ const ProfileScreen: React.FC = () => {
       /* TODO */
     },
     education: () => {
-      /* TODO */
+      navigation.navigate({
+        name: ProfileRoute.ADD_EDUCATION as never,
+        params: {} as never,
+      });
     },
     language: () => {
       /* TODO */
@@ -75,7 +85,8 @@ const ProfileScreen: React.FC = () => {
     },
   };
 
-  const { careerExperience, user } = useAppSelector(state => ({
+  const { education, careerExperience, user } = useAppSelector(state => ({
+    education: state.education.education,
     careerExperience: state.experience.careerExperience,
     user: state.auth.user,
   }));
@@ -113,6 +124,7 @@ const ProfileScreen: React.FC = () => {
 
   useEffect(() => {
     dispatch(experienceActions.loadCareerExperience());
+    dispatch(educationActions.loadEducationExperience());
   }, [dispatch]);
 
   return (
@@ -169,7 +181,16 @@ const ProfileScreen: React.FC = () => {
               </ScrollView>
             </View>
             <View style={styles.swiperItem} collapsable={false}>
-              <Text>Education container</Text>
+              <Heading level={HeadingLevel.H5} style={styles.containerHeader}>
+                Education
+              </Heading>
+              <ScrollView showsVerticalScrollIndicator={false}>
+                {education.map(item => (
+                  <View key={item.id} style={styles.card}>
+                    <EducationCard education={item} />
+                  </View>
+                ))}
+              </ScrollView>
             </View>
             <View style={styles.swiperItem} collapsable={false}>
               <Heading level={HeadingLevel.H5} style={styles.containerHeader}>

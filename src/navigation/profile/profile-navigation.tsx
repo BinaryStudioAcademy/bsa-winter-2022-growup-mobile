@@ -2,6 +2,7 @@ import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import {
+  AddEducationScreen,
   AddExperienceScreen,
   CreateSkillScreen,
   ProfileScreen,
@@ -28,6 +29,10 @@ const ProfileNavigation: React.FC = () => {
       <ProfileStack.Screen
         name={ProfileRoute.ADD_CAREER_EXPERIENCE}
         component={AddExperienceScreen}
+      />
+      <ProfileStack.Screen
+        name={ProfileRoute.ADD_EDUCATION}
+        component={AddEducationScreen}
       />
     </ProfileStack.Navigator>
   );

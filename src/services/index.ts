@@ -12,6 +12,7 @@ import { SkillApi } from './skill-api';
 import { NotificationApi } from './notification-api';
 import { GooglePlacesApi } from './google-places-api';
 import { OKRApi } from './okr-api';
+import { EducationApi } from './education-api';
 import { CareerApi } from './career-api';
 import { PushNotificationsApi } from './push-notifications-api';
 import { AuthApi } from './auth-api';
@@ -62,6 +63,11 @@ const okrApi = new OKRApi({
   apiPath,
 });
 
+const educationApi = new EducationApi({
+  http,
+  apiPath,
+});
+
 const careerApi = new CareerApi({
   http,
   apiPath,
@@ -97,6 +103,7 @@ export {
   notificationApi,
   googlePlacesApi,
   okrApi,
+  educationApi,
   careerApi,
   pushNotificationApi,
   quizApi,

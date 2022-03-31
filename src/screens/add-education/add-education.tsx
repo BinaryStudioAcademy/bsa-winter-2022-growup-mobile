@@ -1,45 +1,78 @@
-import React from 'react';
+import React, { useMemo } from 'react';
+
 import { ScrollView, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { RouteProp, useRoute } from '@react-navigation/native';
 import { Formik } from 'formik';
 
-import { IAddEducationPayload } from 'src/common/types';
+import { IEducation } from 'src/common/types';
+import { ProfileStackParamList } from 'src/common/types';
 import { FormDate, FormInput, Heading, MainButton } from 'src/components';
 import { addEducationValidationSchema } from 'src/validation-schemas';
 import { useAppNavigation, useAppDispatch } from 'src/hooks';
-import { actions as educationActions } from 'src/store/education';
-import { ButtonMode, HeadingLevel } from 'src/common/enums';
+import { educationActions } from 'src/store/education';
+import { ButtonMode, HeadingLevel, ProfileRoute } from 'src/common/enums';
 import { defaultAddEducationPayload } from './common';
 import useStyles from './styles';
 
-const AddEducationScreen: React.FC = () => {
+type AddEducationRouteProps = RouteProp<
+  ProfileStackParamList,
+  ProfileRoute.ADD_EDUCATION
+>;
+
+const AddEducationScreen: React.FC<AddEducationRouteProps> = () => {
   const dispatch = useAppDispatch();
   const styles = useStyles();
   const navigation = useAppNavigation();
+  const {
+    params: { _education },
+  } = useRoute<AddEducationRouteProps>();
 
   const handleCancel = () => {
     navigation.goBack();
   };
 
-  const handleAddEducation = (values: IAddEducationPayload) => {
-    dispatch(
-      educationActions.addEducation({
-        university: values.university,
-        specialization: values.specialization,
-        degree: values.degree,
-        startDate: values.startDate,
-        endDate: values.endDate,
-      })
-    );
+  const handleAddEducation = (values: IEducation) => {
+    const commonPayload = {
+      university: values.university,
+      specialization: values.specialization,
+      degree: values.degree,
+      startDate: values.startDate,
+      endDate: values.endDate,
+    };
+    if (_education) {
+      dispatch(
+        educationActions.editEducationExperience({
+          id: _education.id,
+          ...commonPayload,
+        })
+      );
+    } else {
+      dispatch(educationActions.addEducationExperience(commonPayload));
+    }
     navigation.goBack();
   };
+
+  const initialValues: IEducation = useMemo(() => {
+    if (_education) {
+      return {
+        id: _education.id,
+        university: _education.university,
+        specialization: _education.specialization,
+        degree: _education.degree,
+        startDate: _education.startDate,
+        endDate: _education.endDate ? _education.endDate : undefined,
+      };
+    }
+    return defaultAddEducationPayload;
+  }, [_education]);
 
   return (
     <SafeAreaView style={styles.screen}>
       <ScrollView showsVerticalScrollIndicator={false}>
         <Formik
           validationSchema={addEducationValidationSchema}
-          initialValues={defaultAddEducationPayload}
+          initialValues={initialValues}
           onSubmit={handleAddEducation}
         >
           {({ isValid, handleSubmit }) => (
@@ -91,7 +124,7 @@ const AddEducationScreen: React.FC = () => {
                   disabled={!isValid}
                   mode={ButtonMode.CONTAINED}
                 >
-                  Add
+                  {_education ? 'Save' : 'Add'}
                 </MainButton>
               </View>
             </>

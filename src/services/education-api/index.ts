@@ -1,6 +1,5 @@
 import { ApiPath, ContentType, HttpMethod } from 'src/common/enums';
-import { IAddEducationPayload } from 'src/common/types';
-import { showErrorToast } from 'src/helpers';
+import { IEducation } from 'src/common/types';
 import { Http } from '../http';
 
 type Constructor = {
@@ -17,30 +16,38 @@ class EducationApi {
     this.#apiPath = apiPath;
   }
 
-  public addEducation(payload: IAddEducationPayload) {
-    try {
-      return this.#http.load(`${this.#apiPath}${ApiPath.USER_EDUCATION}`, {
-        method: HttpMethod.POST,
-        contentType: ContentType.JSON,
-        payload: JSON.stringify(payload),
-      });
-    } catch (err) {
-      showErrorToast(
-        (err as Error | undefined)?.message ?? 'Failed to add new education'
-      );
-    }
+  public async addEducation(payload: IEducation) {
+    return await this.#http.load(`${this.#apiPath}${ApiPath.USER_EDUCATION}`, {
+      method: HttpMethod.POST,
+      contentType: ContentType.JSON,
+      payload: JSON.stringify(payload),
+    });
   }
 
-  public loadEducations() {
-    try {
-      return this.#http.load(`${this.#apiPath}${ApiPath.USER_EDUCATION}`, {
-        method: HttpMethod.GET,
-      });
-    } catch (err) {
-      showErrorToast(
-        (err as Error | undefined)?.message ?? 'Failed to load educations'
-      );
-    }
+  public async loadEducations() {
+    return await this.#http.load(`${this.#apiPath}${ApiPath.USER_EDUCATION}`, {
+      method: HttpMethod.GET,
+    });
+  }
+
+  public async editEducation(payload: IEducation) {
+    return await this.#http.load(
+      `${this.#apiPath}${ApiPath.USER_EDUCATION}/${payload.id}`,
+      {
+        method: HttpMethod.PUT,
+        contentType: ContentType.JSON,
+        payload: JSON.stringify(payload),
+      }
+    );
+  }
+
+  public async deleteEducation(educationId: string) {
+    return await this.#http.load(
+      `${this.#apiPath}${ApiPath.USER_EDUCATION}/${educationId}`,
+      {
+        method: HttpMethod.DELETE,
+      }
+    );
   }
 }
 

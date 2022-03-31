@@ -1,7 +1,12 @@
 import { createSlice, isAnyOf } from '@reduxjs/toolkit';
 
 import { IEducation } from 'src/common/types';
-import { addEducation, loadEducationExperience } from './actions';
+import {
+  loadEducationExperience,
+  editEducationExperience,
+  addEducationExperience,
+  deleteEducationExperience,
+} from './actions';
 
 interface IEducationState {
   education: IEducation[];
@@ -18,7 +23,7 @@ const { reducer, actions } = createSlice({
   initialState,
   reducers: {},
   extraReducers: builder => {
-    builder.addCase(addEducation.fulfilled, (state, { payload }) => {
+    builder.addCase(addEducationExperience.fulfilled, (state, { payload }) => {
       state.education.push(payload);
     });
 
@@ -26,8 +31,30 @@ const { reducer, actions } = createSlice({
       state.education = payload;
     });
 
+    builder.addCase(editEducationExperience.fulfilled, (state, { payload }) => {
+      const index = state.education.findIndex(
+        education => education.id === payload.id
+      );
+      state.education[index] = payload;
+    });
+
+    builder.addCase(
+      deleteEducationExperience.fulfilled,
+      (state, { payload }) => {
+        const index = state.education.findIndex(
+          education => education.id === payload
+        );
+        state.education.splice(index, 1);
+      }
+    );
+
     builder.addMatcher(
-      isAnyOf(addEducation.pending, loadEducationExperience.pending),
+      isAnyOf(
+        addEducationExperience.pending,
+        loadEducationExperience.pending,
+        editEducationExperience.pending,
+        deleteEducationExperience.pending
+      ),
       state => {
         state.educationLoading = true;
       }
@@ -35,10 +62,14 @@ const { reducer, actions } = createSlice({
 
     builder.addMatcher(
       isAnyOf(
-        addEducation.fulfilled,
+        addEducationExperience.fulfilled,
         loadEducationExperience.fulfilled,
-        addEducation.rejected,
-        loadEducationExperience.rejected
+        editEducationExperience.fulfilled,
+        deleteEducationExperience.fulfilled,
+        addEducationExperience.rejected,
+        loadEducationExperience.rejected,
+        editEducationExperience.rejected,
+        deleteEducationExperience.rejected
       ),
       state => {
         state.educationLoading = false;

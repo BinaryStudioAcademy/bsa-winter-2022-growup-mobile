@@ -1,6 +1,13 @@
 import React from 'react';
-import { StyleProp, View, ViewStyle } from 'react-native';
+import {
+  NativeSyntheticEvent,
+  StyleProp,
+  TextInputEndEditingEventData,
+  View,
+  ViewStyle,
+} from 'react-native';
 import { FormikValues, useFormikContext } from 'formik';
+import dayjs from 'dayjs';
 
 import { DateInput, Text } from 'src/components';
 import { useColor } from 'src/hooks';
@@ -29,16 +36,30 @@ const FormDate: React.FC<FormDateProps> = ({
 
   const handleChange = (date: Date | undefined) => setFieldValue(name, date);
 
+  const handleManualEdit = (
+    e: NativeSyntheticEvent<TextInputEndEditingEventData>
+  ) => {
+    const { text } = e.nativeEvent;
+    const date = dayjs(text);
+    if (date.isValid() && date.year() > 1800) {
+      setFieldValue(name, new Date(text));
+    } else {
+      setFieldValue(name, undefined);
+    }
+  };
+
   return (
     <View style={containerStyle}>
       <DateInput
+        autoFocus={true}
         value={values[name] ? new Date(values[name]) : undefined}
         onChange={handleChange}
+        onEndEditing={handleManualEdit}
         outlineColor={!error ? colorInputBg : colorError}
         onBlur={handleBlur(name)}
         {...inputProps}
       />
-      {Boolean(error) && <Text style={styles.error}>{error}</Text>}
+      {Boolean(error) && <Text style={styles.dateError}>{error}</Text>}
     </View>
   );
 };

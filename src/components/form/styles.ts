@@ -15,6 +15,11 @@ const useStyles = () => {
         formIcon: {
           marginBottom: 0,
         },
+        dateError: {
+          color: error,
+          position: 'absolute',
+          bottom: 0,
+        },
       }),
     [error]
   );

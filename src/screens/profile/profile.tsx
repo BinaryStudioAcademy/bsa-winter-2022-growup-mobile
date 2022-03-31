@@ -8,7 +8,7 @@ import PagerView, {
 } from 'react-native-pager-view';
 
 import { HeadingLevel, ProfileRoute } from 'src/common/enums';
-import { ICareer } from 'src/common/types';
+import { ICareer, IEducation } from 'src/common/types';
 
 import {
   Heading,
@@ -22,7 +22,16 @@ import { useAppDispatch, useAppSelector, useAppNavigation } from 'src/hooks';
 import { experienceActions } from 'src/store/experience';
 import addActions from './add-actions';
 import { educationActions } from 'src/store/actions';
-import { Navbar, Settings, Header, QuizInfo, QuizResults } from './components';
+
+import {
+  Navbar,
+  Settings,
+  Header,
+  QuizInfo,
+  QuizResults,
+  UserInfo,
+} from './components';
+
 import useStyles from './styles';
 
 const NAVBAR_ITEMS = [
@@ -58,8 +67,8 @@ const ProfileScreen: React.FC = () => {
     },
     education: () => {
       navigation.navigate({
-        name: ProfileRoute.ADD_EDUCATION as never,
-        params: {} as never,
+        name: ProfileRoute.ADD_EDUCATION,
+        params: {},
       });
     },
     language: () => {
@@ -123,6 +132,25 @@ const ProfileScreen: React.FC = () => {
     [navigation]
   );
 
+  const handleDeleteEducation = useCallback(
+    (educationId: string) => {
+      dispatch(educationActions.deleteEducationExperience(educationId));
+    },
+    [dispatch]
+  );
+
+  const handleEditEducation = useCallback(
+    (_education: IEducation) => {
+      navigation.navigate({
+        name: ProfileRoute.ADD_EDUCATION,
+        params: {
+          _education,
+        },
+      });
+    },
+    [navigation]
+  );
+
   const loadCareerExperience = useCallback(() => {
     dispatch(experienceActions.loadCareerExperience());
   }, [dispatch]);
@@ -157,8 +185,7 @@ const ProfileScreen: React.FC = () => {
             style={styles.swiperWrapper}
           >
             <View style={styles.swiperItem} collapsable={false}>
-              <Text>Summary container</Text>
-              {!user?.isCompleteTest && <QuizInfo />}
+              {!user?.isCompleteTest ? <QuizInfo /> : <UserInfo />}
             </View>
             <View style={styles.swiperItem} collapsable={false}>
               {!user?.isCompleteTest ? <QuizInfo /> : <QuizResults />}
@@ -213,7 +240,11 @@ const ProfileScreen: React.FC = () => {
               >
                 {education.map(item => (
                   <View key={item.id} style={styles.card}>
-                    <EducationCard education={item} />
+                    <EducationCard
+                      education={item}
+                      onEdit={handleEditEducation}
+                      onDelete={handleDeleteEducation}
+                    />
                   </View>
                 ))}
                 {!education?.length && (

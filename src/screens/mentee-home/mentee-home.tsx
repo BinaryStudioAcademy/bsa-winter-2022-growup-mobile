@@ -23,8 +23,12 @@ const MenteeHome: React.FC = () => {
   const navigation = useAppNavigation();
   const dispatch = useAppDispatch();
 
-  const { opportunities, opportunitiesLoading } = useAppSelector(
-    state => state.opportunity
+  const { opportunities, opportunitiesLoading, user } = useAppSelector(
+    state => ({
+      opportunities: state.opportunity.opportunities,
+      opportunitiesLoading: state.opportunity.opportunitiesLoading,
+      user: state.auth.user,
+    })
   );
 
   const notifications: INotification[] = useMemo(
@@ -71,10 +75,14 @@ const MenteeHome: React.FC = () => {
       .then(() => navigation.navigate(AppRoute.OPPORTUNITY_DETAILS));
   };
 
+  if (!user) {
+    return null;
+  }
+
   return (
     <SafeAreaView>
       <View style={styles.screen}>
-        <Header>Looking for some jobs?</Header>
+        <Header avatarUrl={user.avatar}>Looking for some jobs?</Header>
         <ScrollView
           style={styles.scroller}
           refreshControl={

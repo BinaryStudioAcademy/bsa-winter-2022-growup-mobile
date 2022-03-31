@@ -18,10 +18,11 @@ jobs:
         run: 'echo "sdk.dir = /usr/local/lib/android/sdk" > ./android/local.properties'
       - name: Add .env file
         env:
+          APP_DOMAIN: ${{ secrets.DOTENV_APP_DOMAIN }}
           API_ORIGIN_URL: ${{ secrets.DOTENV_API_ORIGIN_URL }}
           API_PREFIX: ${{ secrets.DOTENV_API_PREFIX }}
           GOOGLE_API_KEY: ${{ secrets.DOTENV_GOOGLE_API_KEY }}
-        run: 'echo -e "API_ORIGIN_URL=$API_ORIGIN_URL\nAPI_PREFIX=$API_PREFIX\nGOOGLE_API_KEY=$GOOGLE_API_KEY\n" > ./.env'
+        run: 'echo -e "APP_DOMAIN=$APP_DOMAIN\nAPI_ORIGIN_URL=$API_ORIGIN_URL\nAPI_PREFIX=$API_PREFIX\nGOOGLE_API_KEY=$GOOGLE_API_KEY\n" > ./.env'
       - name: Add Android google-services.json file
         env:
           ANDROID_GOOGLE_SERVICES_FILE: ${{ secrets.ANDROID_GOOGLE_SERVICES_FILE }}
@@ -38,7 +39,7 @@ jobs:
         with:
           slack-token: ${{ secrets.SLACK_APP_TOKEN }}
           channel: C032QNEGYHF
-          message: "GrowUp Mobile build failed in branch ${{ github.ref }} :("
+          message: 'GrowUp Mobile build failed in branch ${{ github.ref }} :('
       - name: Notify success in Slack channel
         if: ${{ success() }}
         uses: adrey/slack-file-upload-action@1.0.5

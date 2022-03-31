@@ -9,20 +9,18 @@ import PagerView, {
 
 import { HeadingLevel, ProfileRoute } from 'src/common/enums';
 import { ICareer } from 'src/common/types';
-import { Heading, EmptyListMessage, Text, CareerCard } from 'src/components';
+import {
+  Heading,
+  EmptyListMessage,
+  Text,
+  CareerCard,
+  EducationCard,
+} from 'src/components';
 import { useAppDispatch, useAppSelector, useAppNavigation } from 'src/hooks';
 import { experienceActions } from 'src/store/experience';
 import addActions from './add-actions';
 import { educationActions } from 'src/store/actions';
-import {
-  CareerCard,
-  Navbar,
-  Settings,
-  Header,
-  QuizInfo,
-  EducationCard,
-  QuizResults,
-} from './components';
+import { Navbar, Settings, Header, QuizInfo, QuizResults } from './components';
 import useStyles from './styles';
 
 const NAVBAR_ITEMS = [

@@ -25,7 +25,7 @@ const AddEducationScreen: React.FC<AddEducationRouteProps> = () => {
   const styles = useStyles();
   const navigation = useAppNavigation();
   const {
-    params: { education },
+    params: { _education },
   } = useRoute<AddEducationRouteProps>();
 
   const handleCancel = () => {
@@ -40,10 +40,10 @@ const AddEducationScreen: React.FC<AddEducationRouteProps> = () => {
       startDate: values.startDate,
       endDate: values.endDate,
     };
-    if (education) {
+    if (_education) {
       dispatch(
         educationActions.editEducationExperience({
-          id: education.id,
+          id: _education.id,
           ...commonPayload,
         })
       );
@@ -54,18 +54,18 @@ const AddEducationScreen: React.FC<AddEducationRouteProps> = () => {
   };
 
   const initialValues: IEducation = useMemo(() => {
-    if (education) {
+    if (_education) {
       return {
-        id: education.id,
-        university: education.university,
-        specialization: education.specialization,
-        degree: education.degree,
-        startDate: education.startDate,
-        endDate: education.endDate ? education.endDate : undefined,
+        id: _education.id,
+        university: _education.university,
+        specialization: _education.specialization,
+        degree: _education.degree,
+        startDate: _education.startDate,
+        endDate: _education.endDate ? _education.endDate : undefined,
       };
     }
     return defaultAddEducationPayload;
-  }, [education]);
+  }, [_education]);
 
   return (
     <SafeAreaView style={styles.screen}>
@@ -124,7 +124,7 @@ const AddEducationScreen: React.FC<AddEducationRouteProps> = () => {
                   disabled={!isValid}
                   mode={ButtonMode.CONTAINED}
                 >
-                  {education ? 'Save' : 'Add'}
+                  {_education ? 'Save' : 'Add'}
                 </MainButton>
               </View>
             </>

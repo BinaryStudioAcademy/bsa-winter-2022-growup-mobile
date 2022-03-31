@@ -9,20 +9,18 @@ import PagerView, {
 
 import { HeadingLevel, ProfileRoute } from 'src/common/enums';
 import { ICareer, IEducation } from 'src/common/types';
-import { Heading, EmptyListMessage, Text } from 'src/components';
+import {
+  Heading,
+  EmptyListMessage,
+  Text,
+  CareerCard,
+  EducationCard,
+} from 'src/components';
 import { useAppDispatch, useAppSelector, useAppNavigation } from 'src/hooks';
 import { experienceActions } from 'src/store/experience';
 import { educationActions } from 'src/store/actions';
 import addActions from './add-actions';
-import {
-  CareerCard,
-  Navbar,
-  Settings,
-  Header,
-  QuizInfo,
-  QuizResults,
-  EducationCard,
-} from './components';
+import { Navbar, Settings, Header, QuizInfo, QuizResults } from './components';
 import useStyles from './styles';
 
 const NAVBAR_ITEMS = [
@@ -69,7 +67,6 @@ const ProfileScreen: React.FC = () => {
       navigation.navigate({
         name: ProfileRoute.ADD_CAREER_EXPERIENCE,
         params: {
-          isEdit: false,
           career: undefined,
         },
       });
@@ -79,8 +76,7 @@ const ProfileScreen: React.FC = () => {
     },
   };
 
-  const { educationExperience } = useAppSelector(state => state.education);
-
+  const { education } = useAppSelector(state => state.education);
   const { careerExperience, user } = useAppSelector(state => ({
     careerExperience: state.experience.careerExperience,
     user: state.auth.user,
@@ -110,7 +106,6 @@ const ProfileScreen: React.FC = () => {
       navigation.navigate({
         name: ProfileRoute.ADD_CAREER_EXPERIENCE,
         params: {
-          isEdit: true,
           career,
         },
       });
@@ -126,11 +121,11 @@ const ProfileScreen: React.FC = () => {
   );
 
   const handleEditEducation = useCallback(
-    (education: IEducation) => {
+    (_education: IEducation) => {
       navigation.navigate({
         name: ProfileRoute.ADD_EDUCATION,
         params: {
-          education,
+          _education,
         },
       });
     },
@@ -201,7 +196,7 @@ const ProfileScreen: React.FC = () => {
                 Education
               </Heading>
               <ScrollView showsVerticalScrollIndicator={false}>
-                {educationExperience.map(item => (
+                {education.map(item => (
                   <View key={item.id} style={styles.card}>
                     <EducationCard
                       education={item}

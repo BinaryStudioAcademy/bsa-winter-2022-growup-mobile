@@ -6,7 +6,7 @@ import { registerValidationSchema } from 'src/validation-schemas';
 import { FormInput, FormPasswordInput, Logo, MainButton } from 'src/components';
 import { ISignUpPayload } from 'src/common/types';
 import { ButtonMode } from 'src/common/enums';
-import { useAppDispatch } from 'src/hooks';
+import { useAppDispatch, useAppSelector } from 'src/hooks';
 import { authActions } from 'src/store/actions';
 import { defaultRegisterPayload } from '../../common';
 import useStyles from './styles';
@@ -15,6 +15,7 @@ const RegisterForm: React.FC = () => {
   const styles = useStyles();
 
   const dispatch = useAppDispatch();
+  const { authLoading } = useAppSelector(state => state.auth);
 
   const handleRegister = (values: ISignUpPayload) => {
     dispatch(authActions.signUp(values));
@@ -56,6 +57,7 @@ const RegisterForm: React.FC = () => {
               mode={ButtonMode.CONTAINED}
               onPress={handleSubmit}
               disabled={!isValid}
+              loading={authLoading}
             >
               Sign Up
             </MainButton>

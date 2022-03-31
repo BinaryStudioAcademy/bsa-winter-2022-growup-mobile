@@ -20,6 +20,8 @@ import { OpportunitiesApi } from './opportunities-api';
 import { StorageService } from './storage';
 import { Http } from './http';
 import { QuizApi } from './quiz-api';
+import { OnboardingApi } from './onboarding-api';
+import { LanguageApi } from './language-api';
 
 const apiPath = `${API_ORIGIN_URL}${API_PREFIX}`;
 
@@ -81,6 +83,16 @@ const quizApi = new QuizApi({
   apiPath: `${API_ORIGIN_URL}${API_PREFIX}`,
 });
 
+const onboardingApi = new OnboardingApi({
+  http,
+  apiPath: `${API_ORIGIN_URL}${API_PREFIX}`,
+});
+
+const languageApi = new LanguageApi({
+  http,
+  apiPath: `${API_ORIGIN_URL}${API_PREFIX}`,
+});
+
 const pushNotificationApi = new PushNotificationsApi();
 
 export {
@@ -96,4 +108,6 @@ export {
   pushNotificationApi,
   quizApi,
   opportunitiesApi,
+  onboardingApi,
+  languageApi,
 };

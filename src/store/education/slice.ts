@@ -9,11 +9,11 @@ import {
 } from './actions';
 
 interface IEducationState {
-  educationExperience: IEducation[];
+  education: IEducation[];
 }
 
 const initialState: IEducationState = {
-  educationExperience: [],
+  education: [],
 };
 
 const { reducer, actions } = createSlice({
@@ -22,24 +22,24 @@ const { reducer, actions } = createSlice({
   reducers: {},
   extraReducers: builder => {
     builder.addCase(addEducationExperience.fulfilled, (state, { payload }) => {
-      state.educationExperience.push(payload);
+      state.education.push(payload);
     });
     builder.addCase(loadEducationExperience.fulfilled, (state, { payload }) => {
-      state.educationExperience = payload;
+      state.education = payload;
     });
     builder.addCase(editEducationExperience.fulfilled, (state, { payload }) => {
-      const index = state.educationExperience.findIndex(
+      const index = state.education.findIndex(
         education => education.id === payload.id
       );
-      state.educationExperience[index] = payload;
+      state.education[index] = payload;
     });
     builder.addCase(
       deleteEducationExperience.fulfilled,
       (state, { payload }) => {
-        const index = state.educationExperience.findIndex(
+        const index = state.education.findIndex(
           education => education.id === payload
         );
-        state.educationExperience.splice(index, 1);
+        state.education.splice(index, 1);
       }
     );
   },

@@ -18,8 +18,8 @@ import {
 } from 'src/components';
 import { useAppDispatch, useAppSelector, useAppNavigation } from 'src/hooks';
 import { experienceActions } from 'src/store/experience';
-import { educationActions } from 'src/store/actions';
 import addActions from './add-actions';
+import { educationActions } from 'src/store/actions';
 import { Navbar, Settings, Header, QuizInfo, QuizResults } from './components';
 import useStyles from './styles';
 

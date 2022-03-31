@@ -12,6 +12,7 @@ import { SkillApi } from './skill-api';
 import { NotificationApi } from './notification-api';
 import { GooglePlacesApi } from './google-places-api';
 import { OKRApi } from './okr-api';
+import { EducationApi } from './education-api';
 import { CareerApi } from './career-api';
 import { PushNotificationsApi } from './push-notifications-api';
 import { AuthApi } from './auth-api';
@@ -19,6 +20,8 @@ import { OpportunitiesApi } from './opportunities-api';
 import { StorageService } from './storage';
 import { Http } from './http';
 import { QuizApi } from './quiz-api';
+import { OnboardingApi } from './onboarding-api';
+import { LanguageApi } from './language-api';
 
 const apiPath = `${API_ORIGIN_URL}${API_PREFIX}`;
 
@@ -60,6 +63,11 @@ const okrApi = new OKRApi({
   apiPath,
 });
 
+const educationApi = new EducationApi({
+  http,
+  apiPath,
+});
+
 const careerApi = new CareerApi({
   http,
   apiPath,
@@ -75,6 +83,16 @@ const quizApi = new QuizApi({
   apiPath: `${API_ORIGIN_URL}${API_PREFIX}`,
 });
 
+const onboardingApi = new OnboardingApi({
+  http,
+  apiPath: `${API_ORIGIN_URL}${API_PREFIX}`,
+});
+
+const languageApi = new LanguageApi({
+  http,
+  apiPath: `${API_ORIGIN_URL}${API_PREFIX}`,
+});
+
 const pushNotificationApi = new PushNotificationsApi();
 
 export {
@@ -85,8 +103,11 @@ export {
   notificationApi,
   googlePlacesApi,
   okrApi,
+  educationApi,
   careerApi,
   pushNotificationApi,
   quizApi,
   opportunitiesApi,
+  onboardingApi,
+  languageApi,
 };

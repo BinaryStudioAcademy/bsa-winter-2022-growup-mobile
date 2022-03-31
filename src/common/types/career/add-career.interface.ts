@@ -1,8 +1,5 @@
-interface IAddCareerPayload {
-  position: string;
-  company: string;
-  startDate: string;
-  endDate?: string;
-}
+import { ICareer } from './career.interface';
+
+type IAddCareerPayload = Omit<ICareer, 'id'>;
 
 export type { IAddCareerPayload };

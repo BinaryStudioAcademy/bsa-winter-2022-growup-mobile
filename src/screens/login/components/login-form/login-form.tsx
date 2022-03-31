@@ -12,7 +12,7 @@ import {
   hasCredentials as checkBiometry,
 } from 'src/helpers';
 
-import { useAppDispatch } from 'src/hooks';
+import { useAppDispatch, useAppSelector } from 'src/hooks';
 import { authActions } from 'src/store/actions';
 import { defaultLoginPayload } from '../../common';
 import useStyles from './styles';
@@ -21,6 +21,8 @@ const LoginForm: React.FC = () => {
   const styles = useStyles();
 
   const dispatch = useAppDispatch();
+  const { authLoading } = useAppSelector(state => state.auth);
+
   const [hasBiometry, setHasBiometry] = useState<boolean>(false);
 
   useEffect(() => {
@@ -65,6 +67,7 @@ const LoginForm: React.FC = () => {
               mode={hasBiometry ? ButtonMode.OUTLINED : ButtonMode.CONTAINED}
               onPress={handleSubmit}
               disabled={!isValid}
+              loading={authLoading}
             >
               Log In
             </MainButton>
@@ -73,6 +76,7 @@ const LoginForm: React.FC = () => {
                 style={styles.topPadded}
                 mode={ButtonMode.CONTAINED}
                 onPress={handleFingerprint}
+                loading={authLoading}
               >
                 Log In using fingerprint
               </MainButton>

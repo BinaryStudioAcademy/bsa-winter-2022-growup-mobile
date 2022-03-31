@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import {
@@ -17,15 +17,25 @@ import { OnboardingNavigation } from '../onboarding';
 
 const Stack = createNativeStackNavigator<AppStackParamList>();
 
-const AppNavigation = () => {
+const AppNavigation: React.FC = () => {
   const { user } = useAppSelector(state => state.auth);
 
+  const isCompletedOnboarding = user?.firstName;
   const isUserAdmin = user?.role === UserRoleType.ADMIN;
 
-  //TODO add check for initial route when Onboarding is needed
+  const initialRouteName = useMemo(() => {
+    if (isUserAdmin) {
+      return AppRoute.ADMIN_HOME;
+    }
+    if (isCompletedOnboarding) {
+      return AppRoute.APP_TABS;
+    }
+    return AppRoute.ONBOARDING_SETUP;
+  }, [isUserAdmin, isCompletedOnboarding]);
+
   return (
     <Stack.Navigator
-      initialRouteName={isUserAdmin ? AppRoute.ADMIN_HOME : AppRoute.APP_TABS}
+      initialRouteName={initialRouteName}
       screenOptions={useStackScreenOptions()}
     >
       {isUserAdmin ? (
@@ -36,40 +46,45 @@ const AppNavigation = () => {
         />
       ) : (
         <>
-          <Stack.Screen
-            name={AppRoute.APP_TABS}
-            component={AppTabsNavigation}
-            options={{ headerShown: false }}
-          />
-          <Stack.Screen
-            name={AppRoute.ADD_OKR}
-            component={AddOKRScreen}
-            options={{
-              title: 'Add New Objective',
-            }}
-          />
-          <Stack.Screen
-            name={AppRoute.ADD_KEY_RESULT}
-            component={AddKeyResultScreen}
-            options={{
-              title: 'Add Key Result',
-            }}
-          />
-          <Stack.Screen
-            name={AppRoute.ONBOARDING_SETUP}
-            component={OnboardingNavigation}
-            options={{ headerShown: false }}
-          />
-          <Stack.Screen
-            name={AppRoute.OPPORTUNITY_DETAILS}
-            component={OpportunityDetailsScreen}
-            options={{ title: 'Opportunity details' }}
-          />
-          <Stack.Screen
-            name={AppRoute.QUIZ}
-            component={QuizScreen}
-            options={{ title: 'Quiz' }}
-          />
+          {isCompletedOnboarding ? (
+            <>
+              <Stack.Screen
+                name={AppRoute.APP_TABS}
+                component={AppTabsNavigation}
+                options={{ headerShown: false }}
+              />
+              <Stack.Screen
+                name={AppRoute.ADD_OKR}
+                component={AddOKRScreen}
+                options={{
+                  title: 'Add New Objective',
+                }}
+              />
+              <Stack.Screen
+                name={AppRoute.ADD_KEY_RESULT}
+                component={AddKeyResultScreen}
+                options={{
+                  title: 'Add Key Result',
+                }}
+              />
+              <Stack.Screen
+                name={AppRoute.OPPORTUNITY_DETAILS}
+                component={OpportunityDetailsScreen}
+                options={{ title: 'Opportunity details' }}
+              />
+              <Stack.Screen
+                name={AppRoute.QUIZ}
+                component={QuizScreen}
+                options={{ title: 'Quiz' }}
+              />
+            </>
+          ) : (
+            <Stack.Screen
+              name={AppRoute.ONBOARDING_SETUP}
+              component={OnboardingNavigation}
+              options={{ headerShown: false }}
+            />
+          )}
         </>
       )}
     </Stack.Navigator>

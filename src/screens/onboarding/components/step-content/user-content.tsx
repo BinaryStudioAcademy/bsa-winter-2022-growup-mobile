@@ -1,16 +1,18 @@
 import React from 'react';
-import { Formik } from 'formik';
 import { ScrollView, View } from 'react-native';
 import { Avatar } from 'react-native-paper';
 
 import { HeadingLevel } from 'src/common/enums';
-import { FormAvatarPicker, FormInput, Heading } from 'src/components';
-import { userInfoValidationSchema } from 'src/validation-schemas';
+import { IUserInfo } from 'src/common/types';
+import { FormImagePicker, FormInput, Heading } from 'src/components';
 import { useColor } from 'src/hooks';
-import { defaultAddUserInfoPayload } from './common';
 import useStyles from './styles';
 
-const UserContent: React.FC = () => {
+type UserContentProps = {
+  values: IUserInfo;
+};
+
+const UserContent: React.FC<UserContentProps> = ({ values }) => {
   const styles = useStyles();
   const colorWhite = useColor('WHITE');
 
@@ -20,53 +22,39 @@ const UserContent: React.FC = () => {
         <Heading style={styles.header} level={HeadingLevel.H4}>
           Tell Us About Yourself
         </Heading>
-        <Formik
-          initialValues={defaultAddUserInfoPayload}
-          validationSchema={userInfoValidationSchema}
-          onSubmit={() => {
-            // TODO
-          }}
-        >
-          {({ values }) => (
-            <>
-              <View style={styles.imageContainer}>
-                {values.avatar?.uri ? (
-                  <Avatar.Image
-                    style={styles.userAvatar}
-                    size={152}
-                    source={{ uri: values.avatar.uri }}
-                  />
-                ) : (
-                  <Avatar.Icon
-                    style={styles.userAvatar}
-                    size={152}
-                    color={colorWhite}
-                    icon="account"
-                  />
-                )}
-              </View>
-              <FormAvatarPicker name="avatar" />
-              <FormInput
-                containerStyle={styles.input}
-                label="First name"
-                placeholder="Enter first name"
-                name="firstName"
-              />
-              <FormInput
-                containerStyle={styles.input}
-                label="Last name"
-                placeholder="Enter last name"
-                name="lastName"
-              />
-              <FormInput
-                containerStyle={styles.input}
-                label="Position"
-                placeholder="Enter your position"
-                name="position"
-              />
-            </>
+
+        <View style={styles.imageContainer}>
+          {values.avatar?.uri ? (
+            <Avatar.Image
+              style={styles.userAvatar}
+              size={152}
+              source={{ uri: values.avatar.uri }}
+            />
+          ) : (
+            <Avatar.Icon
+              style={styles.userAvatar}
+              size={152}
+              color={colorWhite}
+              icon="account"
+            />
           )}
-        </Formik>
+        </View>
+        <FormImagePicker buttonText="Add Avatar" name="avatar" />
+        <FormInput
+          containerStyle={styles.input}
+          placeholder="Enter first name"
+          name="firstName"
+        />
+        <FormInput
+          containerStyle={styles.input}
+          placeholder="Enter last name"
+          name="lastName"
+        />
+        <FormInput
+          containerStyle={styles.input}
+          placeholder="Enter your position"
+          name="position"
+        />
       </ScrollView>
     </View>
   );

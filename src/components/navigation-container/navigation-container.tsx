@@ -12,7 +12,7 @@ const linking: LinkingOptions<ReactNavigation.RootParamList> = {
   prefixes: [DEEP_LINKING_SCHEME, API_ORIGIN_URL],
   config: {
     screens: {
-      [AuthRoute.COMPLETE_REGISTRATION]: 'complete-registration/:token',
+      [AuthRoute.COMPLETE_REGISTRATION]: 'registration-complete/:token',
     },
   },
 };

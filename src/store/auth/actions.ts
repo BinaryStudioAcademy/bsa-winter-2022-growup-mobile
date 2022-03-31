@@ -86,15 +86,6 @@ const loadCurrentUser = createAsyncThunk(
   }
 );
 
-const verifyToken = createAsyncThunk(
-  ActionTypes.VERIFY_TOKEN,
-  async (accessToken: string) => {
-    const token = await authApi.verifyToken(accessToken);
-
-    return token;
-  }
-);
-
 const completeRegistration = createAsyncThunk(
   ActionTypes.COMPLETE_REGISTRATION,
   async (payload: { password: string; token: string }) => {
@@ -108,6 +99,5 @@ export {
   signInFingerprint,
   loadCurrentUser,
   signOut,
-  verifyToken,
   completeRegistration,
 };

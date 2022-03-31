@@ -73,7 +73,7 @@ class Http {
       headers.append(HttpHeader.CONTENT_TYPE, contentType);
     }
 
-    if (accessToken !== null) {
+    if (accessToken) {
       const token = accessToken;
 
       headers.append(HttpHeader.AUTHORIZATION, token || '');

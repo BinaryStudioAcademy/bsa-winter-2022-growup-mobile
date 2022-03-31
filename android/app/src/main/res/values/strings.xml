@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">GrowUp Mobile</string>
     <string name="notification_channel_id">growup_push_notifications</string>
-    <string name="deep_linking_scheme">growupmobile</string>
-    <string name="backend_domain">bsa-growup.herokuapp.com</string>
+    <string name="app_scheme">growupmobile</string>
 </resources>

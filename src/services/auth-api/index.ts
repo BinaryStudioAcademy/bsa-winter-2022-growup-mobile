@@ -62,18 +62,14 @@ class AuthApi {
     });
   }
 
-  public async verifyToken(accessToken: string): Promise<{ token: string }> {
-    const response: { token: string } = await this.#http.load(
-      `${this.#apiPath}${ApiPath.VERIFY_TOKEN}/${accessToken}`
-    );
-
-    return response;
-  }
-
   public async completeRegistration(payload: {
     token: string;
     password: string;
   }) {
+    const authToken: { token: string } = await this.#http.load(
+      `${this.#apiPath}${ApiPath.VERIFY_TOKEN}/${payload.token}`
+    );
+
     const response = await this.#http.load(
       `${this.#apiPath}${ApiPath.COMPLETE_REGISTRATION}`,
       {
@@ -86,7 +82,7 @@ class AuthApi {
           position: '',
         }),
         hasAuth: false,
-        accessToken: payload.token,
+        accessToken: authToken.token,
       }
     );
 

@@ -6,11 +6,10 @@ import { completeRegistrationValidationSchema } from 'src/validation-schemas';
 import { FormPasswordInput, MainButton } from 'src/components';
 import { ICompleteRegistrationPayload } from 'src/common/types';
 import { AuthRoute } from 'src/common/enums';
-
 import { useAppDispatch, useAppNavigation } from 'src/hooks';
+import { authActions } from 'src/store/actions';
 import { defaultCompleteRegistrationPayload } from '../../common';
 import useStyles from './styles';
-import { authActions } from 'src/store/actions';
 
 interface ICompleteRegistrationProps {
   accessToken?: string;
@@ -25,16 +24,12 @@ const CompleteRegistrationForm: React.FC<ICompleteRegistrationProps> = ({
 
   const handleCompleteRegistration = (values: ICompleteRegistrationPayload) => {
     if (accessToken) {
-      dispatch(authActions.verifyToken(accessToken))
-        .unwrap()
-        .then((success: { token: string }) => {
-          dispatch(
-            authActions.completeRegistration({
-              password: values.password,
-              token: success.token,
-            })
-          );
-        });
+      dispatch(
+        authActions.completeRegistration({
+          password: values.password,
+          token: accessToken,
+        })
+      );
 
       navigation.navigate(AuthRoute.SIGN_IN);
     }
@@ -57,14 +52,14 @@ const CompleteRegistrationForm: React.FC<ICompleteRegistrationProps> = ({
               label="Password"
             />
             <FormPasswordInput
-              name="repeat_password"
+              name="password_repeat"
               style={styles.formField}
               label="Repeat Password"
             />
             <MainButton
               style={styles.button}
               onPress={handleSubmit}
-              disabled={!isValid && accessToken !== undefined}
+              disabled={!isValid && Boolean(accessToken)}
             >
               Complete Registration
             </MainButton>

@@ -10,6 +10,7 @@ import { FormikValues, useFormikContext } from 'formik';
 import dayjs from 'dayjs';
 
 import { MIN_DATE_INPUT_YEAR } from 'src/common/constants';
+import { DateFormat } from 'src/common/enums';
 import { DateInput, Text } from 'src/components';
 import { useColor } from 'src/hooks';
 import useStyles from '../styles';
@@ -41,7 +42,7 @@ const FormDate: React.FC<FormDateProps> = ({
     event: NativeSyntheticEvent<TextInputEndEditingEventData>
   ) => {
     const { text } = event.nativeEvent;
-    const date = dayjs(text, 'DD/MM/YYYY');
+    const date = dayjs(text, DateFormat.DATE_ONLY);
     if (date.isValid() && date.year() > MIN_DATE_INPUT_YEAR) {
       setFieldValue(name, date.toDate());
     } else {

@@ -1,9 +1,12 @@
 import { OnboardingRoute } from 'src/common/enums';
 import { ICareer } from '../../career';
+import { IEducation } from '../../education';
 
 type OnboardingStackParamList = {
   [OnboardingRoute.ONBOARDING]: undefined;
-  [OnboardingRoute.ADD_EDUCATION]: undefined;
+  [OnboardingRoute.ADD_EDUCATION]: {
+    _education?: IEducation;
+  };
   [OnboardingRoute.ADD_EXPERIENCE]: {
     career?: ICareer;
   };

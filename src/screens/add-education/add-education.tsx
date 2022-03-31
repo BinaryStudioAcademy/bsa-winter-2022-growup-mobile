@@ -24,9 +24,8 @@ const AddEducationScreen: React.FC<AddEducationRouteProps> = () => {
   const dispatch = useAppDispatch();
   const styles = useStyles();
   const navigation = useAppNavigation();
-  const {
-    params: { _education },
-  } = useRoute<AddEducationRouteProps>();
+  const { params } = useRoute<AddEducationRouteProps>();
+  const education = params?.education;
 
   const handleCancel = () => {
     navigation.goBack();
@@ -40,10 +39,10 @@ const AddEducationScreen: React.FC<AddEducationRouteProps> = () => {
       startDate: values.startDate,
       endDate: values.endDate,
     };
-    if (_education) {
+    if (education) {
       dispatch(
         educationActions.editEducationExperience({
-          id: _education.id,
+          id: education.id,
           ...commonPayload,
         })
       );
@@ -54,18 +53,18 @@ const AddEducationScreen: React.FC<AddEducationRouteProps> = () => {
   };
 
   const initialValues: IEducation = useMemo(() => {
-    if (_education) {
+    if (education) {
       return {
-        id: _education.id,
-        university: _education.university,
-        specialization: _education.specialization,
-        degree: _education.degree,
-        startDate: _education.startDate,
-        endDate: _education.endDate ? _education.endDate : undefined,
+        id: education.id,
+        university: education.university,
+        specialization: education.specialization,
+        degree: education.degree,
+        startDate: education.startDate,
+        endDate: education.endDate ? education.endDate : undefined,
       };
     }
     return defaultAddEducationPayload;
-  }, [_education]);
+  }, [education]);
 
   return (
     <SafeAreaView style={styles.screen}>
@@ -124,7 +123,7 @@ const AddEducationScreen: React.FC<AddEducationRouteProps> = () => {
                   disabled={!isValid}
                   mode={ButtonMode.CONTAINED}
                 >
-                  {_education ? 'Save' : 'Add'}
+                  {education ? 'Save' : 'Add'}
                 </MainButton>
               </View>
             </>

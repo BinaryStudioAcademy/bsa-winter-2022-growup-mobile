@@ -16,9 +16,7 @@ const ExperienceContent: React.FC = () => {
   const { careerExperience } = useAppSelector(state => state.experience);
 
   const handleAddExperience = () => {
-    navigation.navigate(OnboardingRoute.ADD_EXPERIENCE, {
-      career: undefined,
-    });
+    navigation.navigate(OnboardingRoute.ADD_EXPERIENCE);
   };
 
   const handleDeleteExperience = useCallback(

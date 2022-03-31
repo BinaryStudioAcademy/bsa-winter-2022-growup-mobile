@@ -3,7 +3,7 @@ import { View } from 'react-native';
 import PagerView, { PagerViewOnPageScrollEvent } from 'react-native-pager-view';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-import { AppRoute, ButtonMode } from 'src/common/enums';
+import { AppRoute, ButtonMode, ProfileRoute } from 'src/common/enums';
 import { MainButton, Text } from 'src/components';
 import { useAppDispatch, useAppNavigation, useAppSelector } from 'src/hooks';
 import { quizActions } from 'src/store/quiz';
@@ -40,6 +40,9 @@ const QuizScreen: React.FC = () => {
       screen: AppRoute.APP_TABS,
       params: {
         screen: AppRoute.PROFILE,
+        params: {
+          screen: ProfileRoute.PROFILE_ROOT,
+        },
       },
     });
   };

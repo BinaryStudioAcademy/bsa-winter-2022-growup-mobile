@@ -72,7 +72,7 @@ const OKRScreen: React.FC = () => {
     },
   };
 
-  const reloadOKRs = useCallback(() => {
+  const loadOKRs = useCallback(() => {
     /* TODO */
   }, []);
 
@@ -86,7 +86,7 @@ const OKRScreen: React.FC = () => {
 
   return (
     <SafeAreaView style={styles.screen}>
-      <OKRList data={okrs} loading={okrsLoading} onReload={reloadOKRs} />
+      <OKRList data={okrs} loading={okrsLoading} onReload={loadOKRs} />
       {!okrs?.length && (
         <EmptyListMessage>
           You haven&apos;t created any OKRs for yourself yet.

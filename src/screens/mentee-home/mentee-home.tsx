@@ -46,7 +46,7 @@ const MenteeHome: React.FC = () => {
     dispatch(opportunityActions.loadOpportunities());
   }, [dispatch]);
 
-  const reloadList = useCallback(() => {
+  const loadList = useCallback(() => {
     loadOpportunities();
   }, [loadOpportunities]);
 
@@ -80,7 +80,7 @@ const MenteeHome: React.FC = () => {
           refreshControl={
             <RefreshControl
               refreshing={opportunitiesLoading}
-              onRefresh={reloadList}
+              onRefresh={loadList}
             />
           }
         >

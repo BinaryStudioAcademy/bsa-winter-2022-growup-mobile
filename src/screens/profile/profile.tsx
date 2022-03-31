@@ -78,13 +78,19 @@ const ProfileScreen: React.FC = () => {
     },
   };
 
-  const { education, careerExperience, careerExperienceLoading, user } =
-    useAppSelector(state => ({
-      education: state.education.education,
-      careerExperience: state.experience.careerExperience,
-      careerExperienceLoading: state.experience.careerExperienceLoading,
-      user: state.auth.user,
-    }));
+  const {
+    education,
+    educationLoading,
+    careerExperience,
+    careerExperienceLoading,
+    user,
+  } = useAppSelector(state => ({
+    education: state.education.education,
+    educationLoading: state.education.educationLoading,
+    careerExperience: state.experience.careerExperience,
+    careerExperienceLoading: state.experience.careerExperienceLoading,
+    user: state.auth.user,
+  }));
 
   const handleItemPress = (name: string) => {
     addFunctions[name]();
@@ -117,14 +123,18 @@ const ProfileScreen: React.FC = () => {
     [navigation]
   );
 
-  const reloadCareerExperience = useCallback(() => {
+  const loadCareerExperience = useCallback(() => {
     dispatch(experienceActions.loadCareerExperience());
+  }, [dispatch]);
+
+  const loadEducation = useCallback(() => {
     dispatch(educationActions.loadEducationExperience());
   }, [dispatch]);
 
   useEffect(() => {
-    reloadCareerExperience();
-  }, [reloadCareerExperience]);
+    loadCareerExperience();
+    loadEducation();
+  }, [loadCareerExperience, loadEducation]);
 
   return (
     <SafeAreaView style={styles.fullHeight}>
@@ -167,8 +177,8 @@ const ProfileScreen: React.FC = () => {
                 showsVerticalScrollIndicator={false}
                 refreshControl={
                   <RefreshControl
-                    refreshing={careerExperienceLoading}
-                    onRefresh={reloadCareerExperience}
+                    refreshing={educationLoading}
+                    onRefresh={loadEducation}
                   />
                 }
               >
@@ -192,12 +202,23 @@ const ProfileScreen: React.FC = () => {
               <Heading level={HeadingLevel.H5} style={styles.containerHeader}>
                 Education
               </Heading>
-              <ScrollView showsVerticalScrollIndicator={false}>
+              <ScrollView
+                showsVerticalScrollIndicator={false}
+                refreshControl={
+                  <RefreshControl
+                    refreshing={careerExperienceLoading}
+                    onRefresh={loadCareerExperience}
+                  />
+                }
+              >
                 {education.map(item => (
                   <View key={item.id} style={styles.card}>
                     <EducationCard education={item} />
                   </View>
                 ))}
+                {!education?.length && (
+                  <EmptyListMessage>No education here.</EmptyListMessage>
+                )}
               </ScrollView>
             </View>
             <View style={styles.swiperItem} collapsable={false}>

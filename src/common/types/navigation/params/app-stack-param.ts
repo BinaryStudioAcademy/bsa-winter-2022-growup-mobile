@@ -13,6 +13,7 @@ type AppStackParamList = {
   [AppRoute.ADMIN_HOME]: undefined;
   [AppRoute.OPPORTUNITY_DETAILS]: undefined;
   [AppRoute.QUIZ]: undefined;
+  [AppRoute.ADD_USER]: undefined;
 };
 
 export type { AppStackParamList };

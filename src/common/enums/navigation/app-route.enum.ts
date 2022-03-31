@@ -12,6 +12,7 @@ enum AppRoute {
   ADMIN_HOME = 'AdminHome',
   OPPORTUNITY_DETAILS = 'OpportunityDetails',
   QUIZ = 'Quiz',
+  ADD_USER = 'AddUser',
 }
 
 export { AppRoute };

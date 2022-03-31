@@ -35,6 +35,7 @@ const FormDate: React.FC<FormDateProps> = ({
   const error = touched[name] && errors[name];
 
   const handleChange = (date: Date | undefined) => setFieldValue(name, date);
+
   const handleManualEdit = (
     e: NativeSyntheticEvent<TextInputEndEditingEventData>
   ) => {

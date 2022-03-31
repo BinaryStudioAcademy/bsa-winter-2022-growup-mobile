@@ -1,22 +1,27 @@
 import React from 'react';
 import { View } from 'react-native';
-import { Avatar } from 'react-native-paper';
 
-import { ShieldCheckIcon, Heading, Text } from 'src/components';
+import { ShieldCheckIcon, Heading, Text, Avatar } from 'src/components';
 import { HeadingLevel } from 'src/common/enums';
-import { useColor } from 'src/hooks';
+import { useAppSelector, useColor } from 'src/hooks';
 import useStyles from './styles';
 
 const UserInfo: React.FC = () => {
   const styles = useStyles();
   const colorPrimary = useColor('PRIMARY');
 
+  const { user } = useAppSelector(state => state.auth);
+
+  if (!user) {
+    return null;
+  }
+
   return (
     <View style={styles.container}>
-      <Avatar.Icon size={152} icon="account" style={styles.avatar} />
+      <Avatar size={152} style={styles.avatar} url={user.avatar} />
       <View>
         <Heading level={HeadingLevel.H4} style={styles.name}>
-          Cristofer Westervelt
+          {user.firstName} {user.lastName}
         </Heading>
         <Text style={styles.role}>Fullstack JS Engineer</Text>
         <View style={styles.levelWrapper}>

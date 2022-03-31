@@ -12,53 +12,58 @@ import {
 } from 'src/components';
 
 import { MONTHS_IN_YEAR } from 'src/common/constants';
-import { HeadingLevel, TextAppearance } from 'src/common/enums';
+import { DateFormat, HeadingLevel, TextAppearance } from 'src/common/enums';
 import { IEducation } from 'src/common/types';
 import { useColor } from 'src/hooks';
 import useStyles from './styles';
 
 type EducationCardProps = {
   education: IEducation;
-  onEdit?: () => void;
-  onDelete?: () => void;
+  onEdit?: (education: IEducation) => void;
+  onDelete?: (educationId: string) => void;
 };
 
 const EducationCard: React.FC<EducationCardProps> = ({
-  education: { type, university, degree, startDate, endDate },
+  education,
   onEdit,
   onDelete,
 }) => {
+  const { specialization, university, degree, startDate, endDate } = education;
   const styles = useStyles();
   const colorHint = useColor('HINT');
   const colorPrimary = useColor('PRIMARY');
 
   const dateString = useMemo(() => {
-    const startDay = dayjs(startDate);
-    const endDay = dayjs(endDate);
+    const startDay = dayjs(startDate, DateFormat.DATE_ONLY);
+    const endDay = dayjs(endDate, DateFormat.DATE_ONLY);
 
     const differenceYears = endDay.diff(startDay, 'years');
     const extraMonths = differenceYears * MONTHS_IN_YEAR;
     const differenceMonths = endDay.diff(startDay, 'months') - extraMonths;
+
+    if (!endDate) {
+      return `${startDay.format('MM/YYYY')} - now`;
+    }
 
     return `${differenceYears} yr ${differenceMonths} mo`;
   }, [startDate, endDate]);
 
   const handleEdit = () => {
     if (isFunction(onEdit)) {
-      onEdit();
+      onEdit(education);
     }
   };
 
   const handleDelete = () => {
     if (isFunction(onDelete)) {
-      onDelete();
+      onDelete(education.id);
     }
   };
 
   return (
     <View style={styles.card}>
       <View style={styles.header}>
-        <Heading level={HeadingLevel.H5}>{type}</Heading>
+        <Heading level={HeadingLevel.H5}>{specialization}</Heading>
         <View style={styles.keyvalue}>
           <Text style={styles.key} appearance={TextAppearance.HINT}>
             University

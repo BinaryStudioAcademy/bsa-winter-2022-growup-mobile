@@ -1,6 +1,6 @@
 interface IEducation {
-  id: string;
-  type: string;
+  id?: string;
+  specialization: string;
   university: string;
   degree: string;
   startDate: string;

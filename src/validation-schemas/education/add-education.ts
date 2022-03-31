@@ -5,7 +5,7 @@ const addEducationValidationSchema = yup.object({
     .string()
     .trim()
     .required('University name must not be empty')
-    .max(100, 'University name must be less than 100 symbols'),
+    .max(100, 'University name must be less than 100 characters'),
   specialization: yup
     .string()
     .trim()
@@ -15,7 +15,7 @@ const addEducationValidationSchema = yup.object({
     .string()
     .trim()
     .required('Degree must not be empty')
-    .max(100, 'Degree name must be less than 100 symbols'),
+    .max(100, 'Degree name must be less than 100 characters'),
   startDate: yup.date().required('Select start date'),
   endDate: yup
     .date()

@@ -70,7 +70,7 @@ const AppNavigation: React.FC = () => {
               <Stack.Screen
                 name={AppRoute.OPPORTUNITY_DETAILS}
                 component={OpportunityDetailsScreen}
-                options={{ title: 'Opportunity details' }}
+                options={{ title: 'Opportunity Details' }}
               />
               <Stack.Screen
                 name={AppRoute.QUIZ}

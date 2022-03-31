@@ -7,7 +7,7 @@ import {
   QuizScreen,
   OpportunityDetailsScreen,
   AdminHomeScreen,
-  AddUser,
+  AddUserScreen,
 } from 'src/screens';
 
 import { AppRoute, UserRoleType } from 'src/common/enums';
@@ -48,7 +48,7 @@ const AppNavigation: React.FC = () => {
           />
           <Stack.Screen
             name={AppRoute.ADD_USER}
-            component={AddUser}
+            component={AddUserScreen}
             options={{ title: 'Add User' }}
           />
         </>

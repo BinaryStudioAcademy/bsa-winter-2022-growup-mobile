@@ -8,6 +8,7 @@ import { opportunityReducer as opportunity } from './opportunities';
 import { quizReducer as quiz } from './quiz';
 import { onboardingReducer as onboarding } from './onboarding';
 import { languageReducer as language } from './language';
+import { usersReducer as users } from './users';
 
 export const rootReducer = {
   auth,
@@ -20,4 +21,5 @@ export const rootReducer = {
   quiz,
   onboarding,
   language,
+  users,
 };

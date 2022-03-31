@@ -6,16 +6,19 @@ import { defaultAddUserPayload, roleTypeOptions } from './common';
 import { addUserValidationSchema } from 'src/validation-schemas';
 import { FormInput, FormSelect, MainButton } from 'src/components';
 import { ButtonMode } from 'src/common/enums';
-import { useAppNavigation } from 'src/hooks';
+import { useAppDispatch, useAppNavigation } from 'src/hooks';
+import { usersActions } from 'src/store/users';
+import { IAddUserPayload } from 'src/common/types';
 import useStyles from './styles';
 
 const AddUser: React.FC = () => {
   const styles = useStyles();
 
   const navigation = useAppNavigation();
+  const dispatch = useAppDispatch();
 
-  const handleAddUser = () => {
-    /* TODO */
+  const handleAddUser = (values: IAddUserPayload) => {
+    dispatch(usersActions.addUser(values)).unwrap().then(handleBack);
   };
 
   const handleBack = () => {

@@ -13,8 +13,6 @@ const initialState: IOnboardingState = {
   userData: {
     firstName: '',
     lastName: '',
-    careerJourneys: [],
-    educations: [],
     interests: [],
   },
   avatar: undefined,

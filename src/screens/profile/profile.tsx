@@ -77,15 +77,17 @@ const ProfileScreen: React.FC = () => {
     educationLoading,
     careerExperience,
     careerExperienceLoading,
-    user,
     languages,
+    languagesLoading,
+    user,
   } = useAppSelector(state => ({
     education: state.education.education,
     educationLoading: state.education.educationLoading,
     careerExperience: state.experience.careerExperience,
     careerExperienceLoading: state.experience.careerExperienceLoading,
-    user: state.auth.user,
     languages: state.language.languages,
+    languagesLoading: state.language.languagesLoading,
+    user: state.auth.user,
   }));
 
   const handleItemPress = (name: string) => {
@@ -141,14 +143,22 @@ const ProfileScreen: React.FC = () => {
 
   const loadEducation = useCallback(() => {
     dispatch(educationActions.loadEducationExperience());
+  }, [dispatch]);
+
+  const loadLanguages = useCallback(() => {
     dispatch(languageActions.loadLanguages());
+  }, [dispatch]);
+
+  const loadQuizResults = useCallback(() => {
     dispatch(quizActions.loadQuizResults());
   }, [dispatch]);
 
   useEffect(() => {
     loadCareerExperience();
     loadEducation();
-  }, [loadCareerExperience, loadEducation]);
+    loadLanguages();
+    loadQuizResults();
+  }, [loadCareerExperience, loadEducation, loadLanguages, loadQuizResults]);
 
   return (
     <SafeAreaView style={styles.fullHeight}>
@@ -180,7 +190,15 @@ const ProfileScreen: React.FC = () => {
               <Heading level={HeadingLevel.H5} style={styles.containerHeader}>
                 Languages
               </Heading>
-              <ScrollView showsVerticalScrollIndicator={false}>
+              <ScrollView
+                showsVerticalScrollIndicator={false}
+                refreshControl={
+                  <RefreshControl
+                    refreshing={languagesLoading}
+                    onRefresh={loadLanguages}
+                  />
+                }
+              >
                 {languages.map(item => (
                   <LanguageCard
                     key={item.id}

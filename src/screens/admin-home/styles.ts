@@ -1,6 +1,8 @@
 import { useMemo } from 'react';
 import { StyleSheet } from 'react-native';
+
 import { useColor } from 'src/hooks';
+import { DEFAULT_SCREEN_PADDING } from 'src/styles';
 
 const useStyles = () => {
   const white = useColor('WHITE');
@@ -12,6 +14,7 @@ const useStyles = () => {
         screen: {
           flex: 1,
           backgroundColor: white,
+          padding: DEFAULT_SCREEN_PADDING,
         },
         headerContent: {
           backgroundColor: grey,

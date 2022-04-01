@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 import { ISkill } from 'src/common/types';
-import { loadSkills } from './actions';
+import { loadSkills, createSkill } from './actions';
 
 interface ISkillState {
   skills: ISkill[];
@@ -18,6 +18,9 @@ const { reducer, actions } = createSlice({
   extraReducers: builder => {
     builder.addCase(loadSkills.fulfilled, (state, { payload }) => {
       state.skills = payload;
+    });
+    builder.addCase(createSkill.fulfilled, (state, { payload }) => {
+      state.skills.push(payload);
     });
   },
 });

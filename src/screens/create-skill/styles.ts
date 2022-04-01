@@ -20,6 +20,22 @@ const useStyles = () => {
           flexDirection: 'row',
           justifyContent: 'space-between',
         },
+        inputContent: {
+          marginBottom: 30,
+          paddingHorizontal: 10,
+        },
+        buttonContainer: {
+          paddingHorizontal: 20,
+        },
+        heading: {
+          marginBottom: 10,
+        },
+        button: {
+          marginBottom: 10,
+        },
+        dateInput: {
+          marginTop: 15,
+        },
       }),
     [white]
   );

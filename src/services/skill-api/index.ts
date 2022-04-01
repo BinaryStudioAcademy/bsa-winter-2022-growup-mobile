@@ -17,11 +17,15 @@ class SkillApi {
   }
 
   public async create(payload: ICreateSkillPayload): Promise<ISkill> {
-    return this.#http.load(`${this.#apiPath}${ApiPath.SKILLS}`, {
-      method: HttpMethod.POST,
-      contentType: ContentType.JSON,
-      payload: JSON.stringify([payload]),
-    });
+    const response: { skills: ISkill[] } = await this.#http.load(
+      `${this.#apiPath}${ApiPath.SKILLS}`,
+      {
+        method: HttpMethod.POST,
+        contentType: ContentType.JSON,
+        payload: JSON.stringify([payload]),
+      }
+    );
+    return response.skills[0] as ISkill;
   }
 
   public async loadSkills() {

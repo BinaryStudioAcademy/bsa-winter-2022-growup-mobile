@@ -1,5 +1,5 @@
-import React, { useEffect, useMemo } from 'react';
-import { ScrollView, View } from 'react-native';
+import React, { useCallback, useEffect, useMemo } from 'react';
+import { RefreshControl, ScrollView, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { PREVIEW_CARDS_COUNT } from 'src/common/constants';
@@ -46,11 +46,19 @@ const MenteeHome: React.FC = () => {
     []
   );
 
+  const loadOpportunities = useCallback(() => {
+    dispatch(opportunityActions.loadOpportunities());
+  }, [dispatch]);
+
+  const loadList = useCallback(() => {
+    loadOpportunities();
+  }, [loadOpportunities]);
+
   useEffect(() => {
     if (!opportunities && !opportunitiesLoading) {
-      dispatch(opportunityActions.loadOpportunities());
+      loadOpportunities();
     }
-  }, [opportunitiesLoading, opportunities, dispatch]);
+  }, [opportunitiesLoading, opportunities, loadOpportunities]);
 
   const previewOpportunities = useMemo(
     () => (opportunities ?? []).slice(0, PREVIEW_CARDS_COUNT),
@@ -76,7 +84,14 @@ const MenteeHome: React.FC = () => {
       <View style={styles.screen}>
         <Header>Looking for some jobs?</Header>
         <View style={styles.scroller}>
-          <ScrollView showsVerticalScrollIndicator={false}>
+          <ScrollView
+            refreshControl={
+              <RefreshControl
+                refreshing={opportunitiesLoading}
+                onRefresh={loadList}
+              />
+            }
+          >
             <NotificationsSection
               notifications={notifications}
               onMarkRead={handleMarkRead}

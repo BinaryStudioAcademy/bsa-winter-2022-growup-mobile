@@ -19,6 +19,7 @@ const useStyles = () => {
         indicator: {
           width: 16,
           height: 16,
+          marginRight: 15,
           borderRadius: 8,
         },
         active: {

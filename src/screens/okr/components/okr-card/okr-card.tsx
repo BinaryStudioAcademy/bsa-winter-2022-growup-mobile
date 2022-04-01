@@ -55,7 +55,7 @@ const OKRCard: React.FC<OKRCardProps> = ({ okr }) => {
       />
       <Card.Content>
         {shownKeyResults.map(keyResult => (
-          <KeyResult key={keyResult.name} {...keyResult} />
+          <KeyResult key={keyResult.name} keyResult={keyResult} />
         ))}
         {hasOverflowedKeyResults && (
           <Text appearance={TextAppearance.HINT}>

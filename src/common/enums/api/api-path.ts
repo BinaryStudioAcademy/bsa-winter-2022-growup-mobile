@@ -1,6 +1,8 @@
 enum ApiPath {
   SIGN_IN = '/auth/login',
   SIGN_UP = '/auth/register',
+  VERIFY_TOKEN = '/auth/register/verify',
+  COMPLETE_REGISTRATION = '/auth/register/finish',
   CURRENT_USER = '/user',
   SKILLS = '/skills',
   NOTIFICATIONS = '/notifications',

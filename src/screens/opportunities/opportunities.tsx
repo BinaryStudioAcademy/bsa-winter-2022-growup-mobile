@@ -31,10 +31,9 @@ const OpportunitiesScreen: React.FC = () => {
   };
 
   return (
-    <SafeAreaView>
+    <SafeAreaView style={styles.screen}>
       <FlatList
         data={opportunities ?? []}
-        style={styles.screen}
         ListHeaderComponent={
           <Heading style={styles.header} level={HeadingLevel.H5}>
             Opportunities

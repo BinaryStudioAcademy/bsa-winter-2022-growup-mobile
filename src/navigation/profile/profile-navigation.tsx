@@ -4,6 +4,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import {
   AddEducationScreen,
   AddExperienceScreen,
+  AddLanguageScreen,
   CreateSkillScreen,
   ProfileScreen,
 } from 'src/screens';
@@ -33,6 +34,10 @@ const ProfileNavigation: React.FC = () => {
       <ProfileStack.Screen
         name={ProfileRoute.ADD_EDUCATION}
         component={AddEducationScreen}
+      />
+      <ProfileStack.Screen
+        name={ProfileRoute.ADD_LANGUAGE}
+        component={AddLanguageScreen}
       />
     </ProfileStack.Navigator>
   );

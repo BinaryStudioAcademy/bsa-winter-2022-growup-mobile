@@ -15,7 +15,8 @@ const loadQuizQuestions = createAsyncThunk(
 const sendQuizResults = createAsyncThunk(
   ActionTypes.SEND_QUIZ_RESULTS,
   async (payload: IQuizQuestion[]) => {
-    const quizResults = await quizApi.sendQuizResults(payload);
+    await quizApi.sendQuizResults(payload);
+    const quizResults = await quizApi.loadQuizResults();
     return quizResults;
   }
 );

@@ -4,18 +4,12 @@ import { EventArg } from '@react-navigation/native';
 
 import {
   AccountIcon,
-  CompassIcon,
   HomeIcon,
   RadarIcon,
   ShieldSearchIcon,
 } from 'src/components';
 
-import {
-  ExploreScreen,
-  MenteeHomeScreen,
-  OKRScreen,
-  OpportunitiesScreen,
-} from 'src/screens';
+import { MenteeHomeScreen, OKRScreen, OpportunitiesScreen } from 'src/screens';
 
 import { AppRoute } from 'src/common/enums';
 import { AppTabsParamList } from 'src/common/types';
@@ -55,14 +49,6 @@ const AppTabsNavigation = () => {
         component={MenteeHomeScreen}
         options={{
           tabBarIcon: ({ color }) => <HomeIcon color={color} size={25} />,
-        }}
-        listeners={navigationEvent}
-      />
-      <Tab.Screen
-        name={AppRoute.EXPLORE}
-        component={ExploreScreen}
-        options={{
-          tabBarIcon: ({ color }) => <CompassIcon color={color} size={25} />,
         }}
         listeners={navigationEvent}
       />

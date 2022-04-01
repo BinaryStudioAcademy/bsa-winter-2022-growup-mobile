@@ -2,6 +2,8 @@ import React, { useMemo } from 'react';
 import { StyleProp, ViewStyle } from 'react-native';
 import { Avatar as AvatarUI } from 'react-native-paper';
 
+import { FONT_SIZE_FRACTION } from './constants';
+
 type AvatarProps = {
   size: number;
   user?: null | {
@@ -18,7 +20,7 @@ const Avatar: React.FC<AvatarProps> = ({ size, user, style }) => {
       return '';
     }
 
-    return `${user.firstName[0]}.${user.lastName[0]}.`;
+    return `${user.firstName[0]}${user.lastName[0]}`;
   }, [user]);
 
   if (user?.avatar) {
@@ -30,7 +32,7 @@ const Avatar: React.FC<AvatarProps> = ({ size, user, style }) => {
   return (
     <AvatarUI.Text
       label={initials}
-      labelStyle={{ fontSize: size / 4 }}
+      labelStyle={{ fontSize: size / FONT_SIZE_FRACTION }}
       size={size}
       style={style}
     />

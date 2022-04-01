@@ -34,17 +34,6 @@ const AddUser: React.FC = () => {
     >
       {({ isValid, handleSubmit }) => (
         <View style={styles.screen}>
-          <FormInput
-            name="firstName"
-            label="First name"
-            placeholder="Enter first name"
-          />
-          <FormInput
-            name="lastName"
-            label="Last name"
-            placeholder="Enter last name"
-            style={styles.topPadded}
-          />
           <FormSelect
             name="role"
             label="Role"

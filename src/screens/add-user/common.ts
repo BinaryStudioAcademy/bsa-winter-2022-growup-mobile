@@ -1,8 +1,6 @@
 import { UserRoleType } from 'src/common/enums';
 
 const defaultAddUserPayload = {
-  firstName: '',
-  lastName: '',
   role: UserRoleType.MENTEE,
   email: '',
 };

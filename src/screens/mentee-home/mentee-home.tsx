@@ -75,21 +75,23 @@ const MenteeHome: React.FC = () => {
     <SafeAreaView>
       <View style={styles.screen}>
         <Header avatarUrl={user.avatar}>Looking for some jobs?</Header>
-        <ScrollView style={styles.scroller}>
-          <NotificationsSection
-            notifications={notifications}
-            onMarkRead={handleMarkRead}
-          />
-          <OpportunitiesSection
-            opportunities={previewOpportunities}
-            onDetails={handleOpportunityDetails}
-          />
-          {!notifications.length && !previewOpportunities.length && (
-            <EmptyListMessage>
-              You have no notifications and no opportunities here...
-            </EmptyListMessage>
-          )}
-        </ScrollView>
+        <View style={styles.scroller}>
+          <ScrollView showsVerticalScrollIndicator={false}>
+            <NotificationsSection
+              notifications={notifications}
+              onMarkRead={handleMarkRead}
+            />
+            <OpportunitiesSection
+              opportunities={previewOpportunities}
+              onDetails={handleOpportunityDetails}
+            />
+            {!notifications.length && !previewOpportunities.length && (
+              <EmptyListMessage>
+                You have no notifications and no opportunities here...
+              </EmptyListMessage>
+            )}
+          </ScrollView>
+        </View>
       </View>
     </SafeAreaView>
   );

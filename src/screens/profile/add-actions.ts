@@ -18,7 +18,7 @@ const addActions = (select: (name: string) => void) => {
       onPress: getSelect('language'),
     },
     {
-      label: 'Career experience',
+      label: 'Career Experience',
       icon: 'check-circle',
       onPress: getSelect('careerPoint'),
     },

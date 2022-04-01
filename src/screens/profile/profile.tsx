@@ -178,7 +178,7 @@ const ProfileScreen: React.FC = () => {
             </View>
             <View style={styles.swiperItem} collapsable={false}>
               <Heading level={HeadingLevel.H5} style={styles.containerHeader}>
-                Career journey
+                Career Journey
               </Heading>
               <ScrollView showsVerticalScrollIndicator={false}>
                 {careerExperience.map(item => (

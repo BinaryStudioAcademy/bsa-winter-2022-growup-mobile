@@ -33,7 +33,7 @@ const CreateSkillForm: React.FC<CreateSkillFormProps> = ({
     >
       {({ isValid, handleSubmit }) => (
         <>
-          <Heading level={HeadingLevel.H4}>Create skill</Heading>
+          <Heading level={HeadingLevel.H4}>Create Skill</Heading>
           <FormSelect
             name="type"
             label="Type"

@@ -2,17 +2,15 @@ import React from 'react';
 import { TouchableOpacity, View } from 'react-native';
 
 import { HeadingLevel, ProfileRoute } from 'src/common/enums';
-import { Heading } from 'src/components';
+import { Avatar, Heading } from 'src/components';
 import { useAppNavigation } from 'src/hooks';
-import { Avatar } from '..';
 import useStyles from './styles';
 
 type HeaderProps = {
   children: string;
-  avatarUrl?: string;
 };
 
-const Header: React.FC<HeaderProps> = ({ avatarUrl, children }) => {
+const Header: React.FC<HeaderProps> = ({ children }) => {
   const styles = useStyles();
 
   const navigation = useAppNavigation();
@@ -25,7 +23,7 @@ const Header: React.FC<HeaderProps> = ({ avatarUrl, children }) => {
     <View style={styles.header}>
       <Heading level={HeadingLevel.H5}>{children}</Heading>
       <TouchableOpacity onPress={handleAvatarPress}>
-        <Avatar url={avatarUrl} />
+        <Avatar size={40} />
       </TouchableOpacity>
     </View>
   );

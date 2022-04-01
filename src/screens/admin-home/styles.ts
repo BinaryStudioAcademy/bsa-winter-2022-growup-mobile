@@ -12,7 +12,7 @@ const useStyles = () => {
     () =>
       StyleSheet.create({
         screen: {
-          flex: 1,
+          height: '100%',
           backgroundColor: white,
           padding: DEFAULT_SCREEN_PADDING,
         },

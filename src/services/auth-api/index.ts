@@ -66,7 +66,7 @@ class AuthApi {
     token: string;
     password: string;
   }) {
-    const authToken: { token: string } = await this.#http.load(
+    const { token: accessToken }: { token: string } = await this.#http.load(
       `${this.#apiPath}${ApiPath.VERIFY_TOKEN}/${payload.token}`
     );
 
@@ -81,8 +81,7 @@ class AuthApi {
           lastName: '',
           position: '',
         }),
-        hasAuth: false,
-        accessToken: authToken.token,
+        accessToken: accessToken,
       }
     );
 

@@ -73,14 +73,12 @@ class Http {
       headers.append(HttpHeader.CONTENT_TYPE, contentType);
     }
 
-    if (accessToken) {
-      const token = accessToken;
-
-      headers.append(HttpHeader.AUTHORIZATION, token || '');
-    }
-
     if (hasAuth) {
-      const token = await this.#storage.getItem(SecureStorageKey.ACCESS_TOKEN);
+      let token = accessToken;
+
+      if (!token) {
+        token = await this.#storage.getItem(SecureStorageKey.ACCESS_TOKEN);
+      }
 
       headers.append(HttpHeader.AUTHORIZATION, token || '');
     }

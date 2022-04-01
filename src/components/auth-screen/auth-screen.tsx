@@ -8,9 +8,9 @@ import { MainButton, Text } from '..';
 import useStyles from './styles';
 
 type AuthScreenProps = {
-  secondaryMessage?: string;
-  secondaryButtonTitle?: string;
-  navigateScreen?: AuthRoute;
+  secondaryMessage: string;
+  secondaryButtonTitle: string;
+  navigateScreen: AuthRoute;
 };
 
 const AuthScreen: React.FC<AuthScreenProps> = ({

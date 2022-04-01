@@ -59,7 +59,6 @@ const AppTabsNavigation = () => {
           tabBarIcon: ({ color }) => (
             <ShieldSearchIcon color={color} size={25} />
           ),
-          title: 'Opportunities',
         }}
         listeners={navigationEvent}
       />
@@ -68,7 +67,6 @@ const AppTabsNavigation = () => {
         component={OKRScreen}
         options={{
           tabBarIcon: ({ color }) => <RadarIcon color={color} size={25} />,
-          title: 'OKRs',
         }}
         listeners={navigationEvent}
       />

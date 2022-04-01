@@ -4,8 +4,7 @@ import { StyleSheet } from 'react-native';
 import { useColor } from 'src/hooks';
 
 const useStyles = () => {
-  const white = useColor('WHITE');
-  const shadow = useColor('SHADOW');
+  const grey = useColor('GREY');
 
   return useMemo(
     () =>
@@ -14,14 +13,12 @@ const useStyles = () => {
           flexDirection: 'row',
           justifyContent: 'space-between',
           alignItems: 'center',
-          backgroundColor: white,
-          borderBottomWidth: 1,
-          borderBottomColor: shadow,
+          backgroundColor: grey,
           paddingVertical: 10,
           paddingHorizontal: 20,
         },
       }),
-    [white, shadow]
+    [grey]
   );
 };
 

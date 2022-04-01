@@ -2,30 +2,23 @@ import React from 'react';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import { EventArg } from '@react-navigation/native';
 
-import { AppRoute } from 'src/common/enums';
-
 import {
   AccountIcon,
-  CompassIcon,
   HomeIcon,
   RadarIcon,
   ShieldSearchIcon,
 } from 'src/components';
 
-import {
-  ExploreScreen,
-  MenteeHomeScreen,
-  OKRScreen,
-  OpportunitiesScreen,
-} from 'src/screens';
+import { MenteeHomeScreen, OKRScreen, OpportunitiesScreen } from 'src/screens';
 
+import { AppRoute } from 'src/common/enums';
 import { AppTabsParamList } from 'src/common/types';
 import { useAppSelector } from 'src/hooks';
 import { showInfoToast } from 'src/helpers/notifications';
 import { COMPLETE_QUIZ } from 'src/common/constants';
 import ProfileNavigation from '../profile/profile-navigation';
-import useStyles from './styles';
 import { useColor } from 'src/hooks';
+import useStyles from './styles';
 
 const Tab = createMaterialBottomTabNavigator<AppTabsParamList>();
 
@@ -56,14 +49,6 @@ const AppTabsNavigation = () => {
         component={MenteeHomeScreen}
         options={{
           tabBarIcon: ({ color }) => <HomeIcon color={color} size={25} />,
-        }}
-        listeners={navigationEvent}
-      />
-      <Tab.Screen
-        name={AppRoute.EXPLORE}
-        component={ExploreScreen}
-        options={{
-          tabBarIcon: ({ color }) => <CompassIcon color={color} size={25} />,
         }}
         listeners={navigationEvent}
       />

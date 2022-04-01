@@ -18,13 +18,15 @@ const AdminHomeScreen: React.FC = () => {
   };
 
   return (
-    <SafeAreaView style={styles.screen}>
+    <SafeAreaView>
       <View style={styles.headerContent}>
         <Header />
       </View>
-      <MainButton mode={ButtonMode.CONTAINED} onPress={handleAddUser}>
-        Add User
-      </MainButton>
+      <View style={styles.screen}>
+        <MainButton mode={ButtonMode.CONTAINED} onPress={handleAddUser}>
+          Add User
+        </MainButton>
+      </View>
     </SafeAreaView>
   );
 };

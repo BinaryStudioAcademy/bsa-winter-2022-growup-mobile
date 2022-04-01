@@ -3,8 +3,11 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import { AppRoute, AuthRoute } from 'src/common/enums/navigation';
 import { useAppDispatch, useAppSelector } from 'src/hooks';
-import { CompleteRegistrationScreen, LoginScreen } from 'src/screens';
-import { RegisterScreen } from 'src/screens';
+import {
+  LoginScreen,
+  RegisterScreen,
+  CompleteRegistrationScreen,
+} from 'src/screens';
 import { RootStackParamList } from 'src/common/types';
 import { authActions } from 'src/store/actions';
 import AppNavigation from './app/app-navigation';

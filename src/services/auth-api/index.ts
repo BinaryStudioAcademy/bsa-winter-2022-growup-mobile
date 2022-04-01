@@ -61,6 +61,32 @@ class AuthApi {
       },
     });
   }
+
+  public async completeRegistration(payload: {
+    token: string;
+    password: string;
+  }) {
+    const { token: accessToken }: { token: string } = await this.#http.load(
+      `${this.#apiPath}${ApiPath.VERIFY_TOKEN}/${payload.token}`
+    );
+
+    const response = await this.#http.load(
+      `${this.#apiPath}${ApiPath.COMPLETE_REGISTRATION}`,
+      {
+        method: HttpMethod.PATCH,
+        contentType: ContentType.JSON,
+        payload: JSON.stringify({
+          password: payload.password,
+          firstName: '',
+          lastName: '',
+          position: '',
+        }),
+        accessToken: accessToken,
+      }
+    );
+
+    return response;
+  }
 }
 
 export { AuthApi };

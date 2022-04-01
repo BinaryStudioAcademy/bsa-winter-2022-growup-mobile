@@ -86,4 +86,18 @@ const loadCurrentUser = createAsyncThunk(
   }
 );
 
-export { signIn, signUp, signInFingerprint, loadCurrentUser, signOut };
+const completeRegistration = createAsyncThunk(
+  ActionTypes.COMPLETE_REGISTRATION,
+  async (payload: { password: string; token: string }) => {
+    return await authApi.completeRegistration(payload);
+  }
+);
+
+export {
+  signIn,
+  signUp,
+  signInFingerprint,
+  loadCurrentUser,
+  signOut,
+  completeRegistration,
+};

@@ -1,4 +1,5 @@
 import { UserRoleType } from 'src/common/enums';
+import { IUserLevel } from './user-level.interface';
 
 interface IUser {
   id: string;
@@ -9,6 +10,7 @@ interface IUser {
   avatar?: string;
   isCompleteTest: boolean;
   role: UserRoleType;
+  level: IUserLevel;
 }
 
 export type { IUser };

@@ -1,6 +1,8 @@
 enum ApiPath {
   SIGN_IN = '/auth/login',
   SIGN_UP = '/auth/register',
+  VERIFY_TOKEN = '/auth/register/verify',
+  COMPLETE_REGISTRATION = '/auth/register/finish',
   CURRENT_USER = '/user',
   SKILLS = '/skills',
   NOTIFICATIONS = '/notifications',
@@ -16,6 +18,7 @@ enum ApiPath {
   AVATAR = '/user/avatar',
   LANGUAGE = '/user/languages',
   COMPANY_USERS = '/company/users',
+  OKR = '/company/okr',
 }
 
 export { ApiPath };

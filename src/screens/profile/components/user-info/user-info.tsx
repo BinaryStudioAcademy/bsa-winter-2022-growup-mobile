@@ -18,16 +18,20 @@ const UserInfo: React.FC = () => {
 
   return (
     <View style={styles.container}>
-      <Avatar size={152} style={styles.avatar} url={user.avatar} />
+      <Avatar size={152} style={styles.avatar} user={user} />
       <View>
         <Heading level={HeadingLevel.H4} style={styles.name}>
           {user.firstName} {user.lastName}
         </Heading>
-        <Text style={styles.role}>Fullstack JS Engineer</Text>
-        <View style={styles.levelWrapper}>
-          <ShieldCheckIcon color={colorPrimary} size={15} />
-          <Text style={styles.levelText}>Level 2</Text>
-        </View>
+        {Boolean(user.level) && (
+          <>
+            <Text style={styles.role}>{user.level.domain.name}</Text>
+            <View style={styles.levelWrapper}>
+              <ShieldCheckIcon color={colorPrimary} size={15} />
+              <Text style={styles.levelText}>{user.level.name}</Text>
+            </View>
+          </>
+        )}
       </View>
     </View>
   );

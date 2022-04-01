@@ -82,12 +82,12 @@ const OKRScreen: React.FC = () => {
   return (
     <SafeAreaView>
       <View style={styles.screen}>
-        <OKRList data={okrs} />
         {!okrs?.length && (
           <EmptyListMessage>
             You haven&apos;t created any OKRs for yourself yet.
           </EmptyListMessage>
         )}
+        <OKRList data={okrs} />
         <FAB.Group
           open={addMenuOpen}
           visible={true}

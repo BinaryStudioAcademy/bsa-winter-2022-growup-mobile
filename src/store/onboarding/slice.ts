@@ -13,7 +13,6 @@ const initialState: IOnboardingState = {
   userData: {
     firstName: '',
     lastName: '',
-    position: '',
     careerJourneys: [],
     educations: [],
     interests: [],
@@ -27,10 +26,9 @@ const { reducer, actions } = createSlice({
   reducers: {},
   extraReducers: builder => {
     builder.addCase(saveUserInfo, (state, { payload }) => {
-      const { firstName, lastName, position } = payload;
+      const { firstName, lastName } = payload;
       state.userData.firstName = firstName;
       state.userData.lastName = lastName;
-      state.userData.position = position;
     });
     builder.addCase(saveUserAvatar, (state, { payload }) => {
       state.avatar = payload;
@@ -39,7 +37,6 @@ const { reducer, actions } = createSlice({
       state.avatar = undefined;
       state.userData.firstName = '';
       state.userData.lastName = '';
-      state.userData.position = '';
     });
   },
 });

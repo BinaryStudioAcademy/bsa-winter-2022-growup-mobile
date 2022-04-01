@@ -24,7 +24,6 @@ const OpportunitiesList: React.FC<OpportunitiesListProps> = ({
   return (
     <FlatList
       data={data}
-      style={styles.screen}
       ListHeaderComponent={
         <Heading style={styles.header} level={HeadingLevel.H5}>
           Opportunities

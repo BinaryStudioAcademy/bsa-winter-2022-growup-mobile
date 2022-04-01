@@ -22,9 +22,10 @@ const AddExperienceScreen: React.FC = () => {
   const styles = useStyles();
 
   const navigation = useAppNavigation();
-  const route = useRoute<AddExperienceRouteProps>();
+
   const dispatch = useAppDispatch();
-  const { career } = route.params;
+  const { params } = useRoute<AddExperienceRouteProps>();
+  const career = params?.career;
 
   const handleCancel = () => {
     navigation.goBack();

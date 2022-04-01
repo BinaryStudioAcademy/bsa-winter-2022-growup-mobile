@@ -8,3 +8,4 @@ export * from './education';
 export * from './opportunities';
 export * from './onboarding';
 export * from './language';
+export * from './users';

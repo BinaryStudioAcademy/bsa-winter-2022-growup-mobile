@@ -29,9 +29,9 @@
           <action android:name="android.intent.action.VIEW" />
           <category android:name="android.intent.category.DEFAULT" />
           <category android:name="android.intent.category.BROWSABLE" />
-          <data android:scheme="@strings/deep_linking_scheme" />
-          <data android:scheme="http" android:host="@strings/backend_domain" />
-          <data android:scheme="https" android:host="@strings/backend_domain" />
+          <data android:scheme="@string/app_scheme" />
+          <data android:scheme="http" android:host="@string/APP_DOMAIN" />
+          <data android:scheme="https" android:host="@string/APP_DOMAIN" />
         </intent-filter>
       </activity>
       <meta-data

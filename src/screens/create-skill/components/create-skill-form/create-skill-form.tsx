@@ -33,18 +33,14 @@ const CreateSkillForm: React.FC<CreateSkillFormProps> = ({
     >
       {({ isValid, handleSubmit }) => (
         <>
-          <Heading level={HeadingLevel.H4}>Create skill</Heading>
+          <Heading level={HeadingLevel.H4}>Create Skill</Heading>
           <FormSelect
             name="type"
             label="Type"
             placeholder="What kind of skill is it?"
             list={skillTypeOptions}
           />
-          <FormInput
-            name="name"
-            label="Name"
-            placeholder="Enter skill name..."
-          />
+          <FormInput name="name" label="Name" placeholder="Enter skill name" />
           <View style={styles.buttons}>
             <MainButton
               mode={ButtonMode.CONTAINED}

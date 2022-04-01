@@ -7,6 +7,7 @@ import {
   QuizScreen,
   OpportunityDetailsScreen,
   AdminHomeScreen,
+  AddUserScreen,
 } from 'src/screens';
 
 import { AppRoute, UserRoleType } from 'src/common/enums';
@@ -39,11 +40,18 @@ const AppNavigation: React.FC = () => {
       screenOptions={useStackScreenOptions()}
     >
       {isUserAdmin ? (
-        <Stack.Screen
-          name={AppRoute.ADMIN_HOME}
-          component={AdminHomeScreen}
-          options={{ headerShown: false }}
-        />
+        <>
+          <Stack.Screen
+            name={AppRoute.ADMIN_HOME}
+            component={AdminHomeScreen}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name={AppRoute.ADD_USER}
+            component={AddUserScreen}
+            options={{ title: 'Add User' }}
+          />
+        </>
       ) : (
         <>
           {isCompletedOnboarding ? (
@@ -70,7 +78,7 @@ const AppNavigation: React.FC = () => {
               <Stack.Screen
                 name={AppRoute.OPPORTUNITY_DETAILS}
                 component={OpportunityDetailsScreen}
-                options={{ title: 'Opportunity details' }}
+                options={{ title: 'Opportunity Details' }}
               />
               <Stack.Screen
                 name={AppRoute.QUIZ}

@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import { TouchableOpacity, View } from 'react-native';
+import { StyleProp, TouchableOpacity, View, ViewStyle } from 'react-native';
 import dayjs from 'dayjs';
 import { isFunction } from 'lodash-es';
 
@@ -21,12 +21,14 @@ type EducationCardProps = {
   education: IEducation;
   onEdit?: (education: IEducation) => void;
   onDelete?: (educationId: string) => void;
+  style?: StyleProp<ViewStyle>;
 };
 
 const EducationCard: React.FC<EducationCardProps> = ({
   education,
   onEdit,
   onDelete,
+  style,
 }) => {
   const { specialization, university, degree, startDate, endDate } = education;
   const styles = useStyles();
@@ -55,13 +57,13 @@ const EducationCard: React.FC<EducationCardProps> = ({
   };
 
   const handleDelete = () => {
-    if (isFunction(onDelete)) {
+    if (isFunction(onDelete) && education?.id) {
       onDelete(education.id);
     }
   };
 
   return (
-    <View style={styles.card}>
+    <View style={[styles.card, style]}>
       <View style={styles.header}>
         <Heading level={HeadingLevel.H5}>{specialization}</Heading>
         <View style={styles.keyvalue}>

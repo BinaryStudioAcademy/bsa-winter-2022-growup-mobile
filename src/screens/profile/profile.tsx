@@ -13,16 +13,15 @@ import { ICareer, IEducation } from 'src/common/types';
 import {
   Heading,
   EmptyListMessage,
-  Text,
   CareerCard,
   EducationCard,
+  LanguageCard,
 } from 'src/components';
 
 import { useAppDispatch, useAppSelector, useAppNavigation } from 'src/hooks';
 import { experienceActions } from 'src/store/experience';
-import addActions from './add-actions';
-import { educationActions } from 'src/store/actions';
-
+import { quizActions } from 'src/store/quiz';
+import { educationActions, languageActions } from 'src/store/actions';
 import {
   Navbar,
   Settings,
@@ -31,13 +30,13 @@ import {
   QuizResults,
   UserInfo,
 } from './components';
+import addActions from './add-actions';
 
 import useStyles from './styles';
 
 const NAVBAR_ITEMS = [
   'Summary',
   'Qualities',
-  'Interests',
   'Skills',
   'Experience',
   'Education',
@@ -62,28 +61,14 @@ const ProfileScreen: React.FC = () => {
     skill: () => {
       navigation.navigate(ProfileRoute.CREATE_SKILL);
     },
-    location: () => {
-      /* TODO */
-    },
     education: () => {
-      navigation.navigate({
-        name: ProfileRoute.ADD_EDUCATION,
-        params: {},
-      });
+      navigation.navigate(ProfileRoute.ADD_EDUCATION);
     },
     language: () => {
-      /* TODO */
+      navigation.navigate(ProfileRoute.ADD_LANGUAGE);
     },
     careerPoint: () => {
-      navigation.navigate({
-        name: ProfileRoute.ADD_CAREER_EXPERIENCE,
-        params: {
-          career: undefined,
-        },
-      });
-    },
-    interest: () => {
-      /* TODO */
+      navigation.navigate(ProfileRoute.ADD_CAREER_EXPERIENCE);
     },
   };
 
@@ -93,12 +78,14 @@ const ProfileScreen: React.FC = () => {
     careerExperience,
     careerExperienceLoading,
     user,
+    languages,
   } = useAppSelector(state => ({
     education: state.education.education,
     educationLoading: state.education.educationLoading,
     careerExperience: state.experience.careerExperience,
     careerExperienceLoading: state.experience.careerExperienceLoading,
     user: state.auth.user,
+    languages: state.language.languages,
   }));
 
   const handleItemPress = (name: string) => {
@@ -141,11 +128,8 @@ const ProfileScreen: React.FC = () => {
 
   const handleEditEducation = useCallback(
     (_education: IEducation) => {
-      navigation.navigate({
-        name: ProfileRoute.ADD_EDUCATION,
-        params: {
-          _education,
-        },
+      navigation.navigate(ProfileRoute.ADD_EDUCATION, {
+        education: _education,
       });
     },
     [navigation]
@@ -157,6 +141,8 @@ const ProfileScreen: React.FC = () => {
 
   const loadEducation = useCallback(() => {
     dispatch(educationActions.loadEducationExperience());
+    dispatch(languageActions.loadLanguages());
+    dispatch(quizActions.loadQuizResults());
   }, [dispatch]);
 
   useEffect(() => {
@@ -191,14 +177,25 @@ const ProfileScreen: React.FC = () => {
               {!user?.isCompleteTest ? <QuizInfo /> : <QuizResults />}
             </View>
             <View style={styles.swiperItem} collapsable={false}>
-              <Text>Interests container</Text>
-            </View>
-            <View style={styles.swiperItem} collapsable={false}>
-              <Text>Skills container</Text>
+              <Heading level={HeadingLevel.H5} style={styles.containerHeader}>
+                Languages
+              </Heading>
+              <ScrollView showsVerticalScrollIndicator={false}>
+                {languages.map(item => (
+                  <LanguageCard
+                    key={item.id}
+                    style={styles.card}
+                    language={item}
+                  />
+                ))}
+                {!languages?.length && (
+                  <EmptyListMessage>No languages here.</EmptyListMessage>
+                )}
+              </ScrollView>
             </View>
             <View style={styles.swiperItem} collapsable={false}>
               <Heading level={HeadingLevel.H5} style={styles.containerHeader}>
-                Career journey
+                Career Journey
               </Heading>
               <ScrollView
                 showsVerticalScrollIndicator={false}

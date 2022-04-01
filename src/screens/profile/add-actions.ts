@@ -8,11 +8,6 @@ const addActions = (select: (name: string) => void) => {
       onPress: getSelect('skill'),
     },
     {
-      label: 'Location',
-      icon: 'map-marker',
-      onPress: getSelect('location'),
-    },
-    {
       label: 'Education',
       icon: 'school',
       onPress: getSelect('education'),
@@ -23,14 +18,9 @@ const addActions = (select: (name: string) => void) => {
       onPress: getSelect('language'),
     },
     {
-      label: 'Career experience',
+      label: 'Career Experience',
       icon: 'check-circle',
       onPress: getSelect('careerPoint'),
-    },
-    {
-      label: 'Interest',
-      icon: 'heart',
-      onPress: getSelect('interest'),
     },
   ];
 };

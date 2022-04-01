@@ -16,7 +16,7 @@ class EducationApi {
     this.#apiPath = apiPath;
   }
 
-  public async addEducation(payload: IEducation) {
+  public async addEducation(payload: IEducation): Promise<IEducation> {
     return await this.#http.load(`${this.#apiPath}${ApiPath.USER_EDUCATION}`, {
       method: HttpMethod.POST,
       contentType: ContentType.JSON,
@@ -24,13 +24,13 @@ class EducationApi {
     });
   }
 
-  public async loadEducations() {
+  public async loadEducations(): Promise<IEducation[]> {
     return await this.#http.load(`${this.#apiPath}${ApiPath.USER_EDUCATION}`, {
       method: HttpMethod.GET,
     });
   }
 
-  public async editEducation(payload: IEducation) {
+  public async editEducation(payload: IEducation): Promise<IEducation> {
     return await this.#http.load(
       `${this.#apiPath}${ApiPath.USER_EDUCATION}/${payload.id}`,
       {

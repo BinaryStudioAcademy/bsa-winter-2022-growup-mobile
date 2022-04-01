@@ -15,11 +15,16 @@ import {
   CareerCard,
   EducationCard,
   LanguageCard,
+  SkillCard,
 } from 'src/components';
 import { useAppDispatch, useAppSelector, useAppNavigation } from 'src/hooks';
 import { experienceActions } from 'src/store/experience';
 import { quizActions } from 'src/store/quiz';
-import { educationActions, languageActions } from 'src/store/actions';
+import {
+  educationActions,
+  languageActions,
+  skillActions,
+} from 'src/store/actions';
 import {
   Navbar,
   Settings,
@@ -70,14 +75,14 @@ const ProfileScreen: React.FC = () => {
     },
   };
 
-  const { education, careerExperience, user, languages } = useAppSelector(
-    state => ({
+  const { education, careerExperience, user, languages, skills } =
+    useAppSelector(state => ({
       education: state.education.education,
       careerExperience: state.experience.careerExperience,
       user: state.auth.user,
       languages: state.language.languages,
-    })
-  );
+      skills: state.skill.skills,
+    }));
 
   const handleItemPress = (name: string) => {
     addFunctions[name]();
@@ -130,6 +135,7 @@ const ProfileScreen: React.FC = () => {
     dispatch(experienceActions.loadCareerExperience());
     dispatch(educationActions.loadEducationExperience());
     dispatch(languageActions.loadLanguages());
+    dispatch(skillActions.loadSkills());
     dispatch(quizActions.loadQuizResults());
   }, [dispatch]);
 
@@ -160,10 +166,10 @@ const ProfileScreen: React.FC = () => {
               {!user?.isCompleteTest ? <QuizInfo /> : <QuizResults />}
             </View>
             <View style={styles.swiperItem} collapsable={false}>
-              <Heading level={HeadingLevel.H5} style={styles.containerHeader}>
-                Languages
-              </Heading>
               <ScrollView showsVerticalScrollIndicator={false}>
+                <Heading level={HeadingLevel.H5} style={styles.containerHeader}>
+                  Languages
+                </Heading>
                 {languages.map(item => (
                   <LanguageCard
                     key={item.id}
@@ -173,6 +179,15 @@ const ProfileScreen: React.FC = () => {
                 ))}
                 {!languages?.length && (
                   <EmptyListMessage>No languages here.</EmptyListMessage>
+                )}
+                <Heading level={HeadingLevel.H5} style={styles.containerHeader}>
+                  Skills
+                </Heading>
+                {skills.map(item => (
+                  <SkillCard key={item.id} style={styles.card} skill={item} />
+                ))}
+                {!skills?.length && (
+                  <EmptyListMessage>No skills here.</EmptyListMessage>
                 )}
               </ScrollView>
             </View>

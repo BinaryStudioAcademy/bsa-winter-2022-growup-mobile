@@ -11,4 +11,10 @@ const createSkill = createAsyncThunk(
   }
 );
 
-export { createSkill };
+const loadSkills = createAsyncThunk(ActionTypes.LOAD_SKILLS, async () => {
+  const skills = await skillApi.loadSkills();
+
+  return skills;
+});
+
+export { createSkill, loadSkills };

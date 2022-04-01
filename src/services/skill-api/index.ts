@@ -23,6 +23,16 @@ class SkillApi {
       payload: JSON.stringify([payload]),
     });
   }
+
+  public async loadSkills() {
+    const response = await this.#http.load(
+      `${this.#apiPath}${ApiPath.SKILLS}`,
+      {
+        method: HttpMethod.GET,
+      }
+    );
+    return response;
+  }
 }
 
 export { SkillApi };

@@ -17,3 +17,4 @@ export * from './admin-home';
 export * from './opportunity-details';
 export * from './quiz';
 export * from './complete-registration';
+export * from './add-user';

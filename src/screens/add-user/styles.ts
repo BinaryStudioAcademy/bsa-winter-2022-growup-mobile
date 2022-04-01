@@ -1,26 +1,28 @@
 import { useMemo } from 'react';
 import { StyleSheet } from 'react-native';
-
 import { useColor } from 'src/hooks';
 import { DEFAULT_SCREEN_PADDING } from 'src/styles';
 
 const useStyles = () => {
   const white = useColor('WHITE');
-  const grey = useColor('GREY');
 
   return useMemo(
     () =>
       StyleSheet.create({
         screen: {
-          flex: 1,
+          height: '100%',
           backgroundColor: white,
           padding: DEFAULT_SCREEN_PADDING,
         },
-        headerContent: {
-          backgroundColor: grey,
+        topPadded: {
+          marginTop: 16,
+        },
+        buttons: {
+          flexDirection: 'row',
+          justifyContent: 'space-between',
         },
       }),
-    [white, grey]
+    [white]
   );
 };
 

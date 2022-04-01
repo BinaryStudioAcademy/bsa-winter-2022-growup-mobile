@@ -2,8 +2,8 @@ import React, { useEffect } from 'react';
 import { FlatList, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-import { AppRoute, HeadingLevel } from 'src/common/enums';
-import { Heading, EmptyListMessage, OpportunityCard } from 'src/components';
+import { AppRoute } from 'src/common/enums';
+import { EmptyListMessage, OpportunityCard } from 'src/components';
 import { useAppDispatch, useAppNavigation, useAppSelector } from 'src/hooks';
 import { opportunityActions } from 'src/store/actions';
 import useStyles from './styles';
@@ -32,9 +32,6 @@ const OpportunitiesScreen: React.FC = () => {
 
   return (
     <SafeAreaView style={styles.screen}>
-      <Heading style={styles.header} level={HeadingLevel.H5}>
-        Opportunities
-      </Heading>
       {!opportunities?.length && (
         <EmptyListMessage>No opportunities for you.</EmptyListMessage>
       )}

@@ -1,4 +1,5 @@
-import { IAddOkr } from 'src/common/types/okr/add-okr.interface';
+import { ApiPath } from 'src/common/enums';
+import { IOkr, IAddOkr } from 'src/common/types';
 import { Http } from '../http';
 
 type Constructor = {
@@ -13,6 +14,10 @@ class OKRApi {
   constructor({ http, apiPath }: Constructor) {
     this.#http = http;
     this.#apiPath = apiPath;
+  }
+
+  public getAll(): Promise<IOkr[]> {
+    return this.#http.load(`${this.#apiPath}${ApiPath.OKR}`);
   }
 
   public async createOKR(payload: IAddOkr): Promise<IAddOkr> {

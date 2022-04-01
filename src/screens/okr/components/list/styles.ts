@@ -8,6 +8,9 @@ const useStyles = () => {
         cardDivider: {
           paddingBottom: 10,
         },
+        header: {
+          marginBottom: 15,
+        },
       }),
     []
   );

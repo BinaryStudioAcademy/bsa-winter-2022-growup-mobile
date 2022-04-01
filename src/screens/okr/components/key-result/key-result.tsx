@@ -5,7 +5,13 @@ import { IKeyResult } from 'src/common/types';
 import { Text } from 'src/components';
 import useStyles from './styles';
 
-const KeyResult: React.FC<IKeyResult> = ({ name, points }) => {
+type KeyResultProps = {
+  keyResult: IKeyResult;
+};
+
+const KeyResult: React.FC<KeyResultProps> = ({
+  keyResult: { name, points },
+}) => {
   const styles = useStyles();
 
   return (

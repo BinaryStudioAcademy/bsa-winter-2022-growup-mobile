@@ -1,7 +1,7 @@
 import React from 'react';
 import { TouchableOpacity, View } from 'react-native';
 
-import { AppRoute, HeadingLevel } from 'src/common/enums';
+import { HeadingLevel, ProfileRoute } from 'src/common/enums';
 import { Heading } from 'src/components';
 import { useAppNavigation } from 'src/hooks';
 import { Avatar } from '..';
@@ -18,7 +18,7 @@ const Header: React.FC<HeaderProps> = ({ avatarUrl, children }) => {
   const navigation = useAppNavigation();
 
   const handleAvatarPress = () => {
-    navigation.navigate(AppRoute.PROFILE);
+    navigation.navigate(ProfileRoute.PROFILE_ROOT);
   };
 
   return (

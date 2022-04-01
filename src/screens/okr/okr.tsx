@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-
+import { View } from 'react-native';
 import { FAB } from 'react-native-paper';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
@@ -80,20 +80,22 @@ const OKRScreen: React.FC = () => {
   };
 
   return (
-    <SafeAreaView style={styles.screen}>
-      <OKRList data={okrs} />
-      {!okrs?.length && (
-        <EmptyListMessage>
-          You haven&apos;t created any OKRs for yourself yet.
-        </EmptyListMessage>
-      )}
-      <FAB.Group
-        open={addMenuOpen}
-        visible={true}
-        icon="plus"
-        actions={addActions(handleItemPress)}
-        onStateChange={handleMenuStateChange}
-      />
+    <SafeAreaView>
+      <View style={styles.screen}>
+        {!okrs?.length && (
+          <EmptyListMessage>
+            You haven&apos;t created any OKRs for yourself yet.
+          </EmptyListMessage>
+        )}
+        <OKRList data={okrs} />
+        <FAB.Group
+          open={addMenuOpen}
+          visible={true}
+          icon="plus"
+          actions={addActions(handleItemPress)}
+          onStateChange={handleMenuStateChange}
+        />
+      </View>
     </SafeAreaView>
   );
 };

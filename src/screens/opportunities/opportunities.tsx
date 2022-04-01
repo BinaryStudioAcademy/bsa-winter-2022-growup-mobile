@@ -32,13 +32,14 @@ const OpportunitiesScreen: React.FC = () => {
 
   return (
     <SafeAreaView style={styles.screen}>
+      <Heading style={styles.header} level={HeadingLevel.H5}>
+        Opportunities
+      </Heading>
+      {!opportunities?.length && (
+        <EmptyListMessage>No opportunities for you.</EmptyListMessage>
+      )}
       <FlatList
         data={opportunities ?? []}
-        ListHeaderComponent={
-          <Heading style={styles.header} level={HeadingLevel.H5}>
-            Opportunities
-          </Heading>
-        }
         renderItem={({ item }) => (
           <View style={styles.cardWrapper}>
             <OpportunityCard
@@ -48,9 +49,6 @@ const OpportunitiesScreen: React.FC = () => {
           </View>
         )}
       />
-      {!opportunities?.length && (
-        <EmptyListMessage>No opportunities for you.</EmptyListMessage>
-      )}
     </SafeAreaView>
   );
 };

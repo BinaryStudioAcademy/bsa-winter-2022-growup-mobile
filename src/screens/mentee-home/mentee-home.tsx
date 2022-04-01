@@ -74,7 +74,7 @@ const MenteeHome: React.FC = () => {
   return (
     <SafeAreaView>
       <View style={styles.screen}>
-        <Header avatarUrl={user.avatar}>Looking for some jobs?</Header>
+        <Header>Looking for some jobs?</Header>
         <View style={styles.scroller}>
           <ScrollView showsVerticalScrollIndicator={false}>
             <NotificationsSection

@@ -2,8 +2,6 @@ import React from 'react';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import { EventArg } from '@react-navigation/native';
 
-import { AppRoute } from 'src/common/enums';
-
 import {
   AccountIcon,
   HomeIcon,
@@ -13,13 +11,14 @@ import {
 
 import { MenteeHomeScreen, OKRScreen, OpportunitiesScreen } from 'src/screens';
 
+import { AppRoute } from 'src/common/enums';
 import { AppTabsParamList } from 'src/common/types';
 import { useAppSelector } from 'src/hooks';
 import { showInfoToast } from 'src/helpers/notifications';
 import { COMPLETE_QUIZ } from 'src/common/constants';
 import ProfileNavigation from '../profile/profile-navigation';
-import useStyles from './styles';
 import { useColor } from 'src/hooks';
+import useStyles from './styles';
 
 const Tab = createMaterialBottomTabNavigator<AppTabsParamList>();
 
@@ -60,6 +59,7 @@ const AppTabsNavigation = () => {
           tabBarIcon: ({ color }) => (
             <ShieldSearchIcon color={color} size={25} />
           ),
+          title: 'Opportunities',
         }}
         listeners={navigationEvent}
       />
@@ -68,6 +68,7 @@ const AppTabsNavigation = () => {
         component={OKRScreen}
         options={{
           tabBarIcon: ({ color }) => <RadarIcon color={color} size={25} />,
+          title: 'OKRs',
         }}
         listeners={navigationEvent}
       />

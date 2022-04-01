@@ -1,15 +1,15 @@
 import React, { useEffect, useMemo } from 'react';
 import { Dialog, Portal } from 'react-native-paper';
+import { ScrollView, TouchableOpacity, View } from 'react-native';
 
 import { QUIZ_MAX_SCORE, SCREEN_MIN_DIMENSION } from 'src/common/constants';
 import { useAppDispatch, useAppSelector } from 'src/hooks';
 import { Heading, RadarChart, Text } from 'src/components';
 import { quizActions } from 'src/store/quiz';
 import { DEFAULT_SCREEN_PADDING } from 'src/styles';
-import { ScrollView, TouchableOpacity, View } from 'react-native';
 import { HeadingLevel, QuizCategoryName } from 'src/common/enums';
-import useStyles from './styles';
 import { QUIZ_TEXT } from './common';
+import useStyles from './styles';
 
 const QuizResults: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -105,7 +105,6 @@ const QuizResults: React.FC = () => {
           </Dialog.Content>
         </Dialog>
       </Portal>
-
       <RadarChart
         chartSize={SCREEN_MIN_DIMENSION - DEFAULT_SCREEN_PADDING * 2}
         maxScore={QUIZ_MAX_SCORE}

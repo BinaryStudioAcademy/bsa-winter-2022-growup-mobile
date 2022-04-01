@@ -60,7 +60,7 @@ const AddEducationScreen: React.FC<AddEducationRouteProps> = () => {
         specialization: education.specialization,
         degree: education.degree,
         startDate: education.startDate,
-        endDate: education.endDate ? education.endDate : undefined,
+        endDate: education.endDate ?? undefined,
       };
     }
     return defaultAddEducationPayload;

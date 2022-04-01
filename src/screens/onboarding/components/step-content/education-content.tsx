@@ -16,9 +16,7 @@ const EducationContent: React.FC = () => {
   const { education } = useAppSelector(state => state.education);
 
   const handleAddEducation = () => {
-    navigation.navigate(OnboardingRoute.ADD_EDUCATION, {
-      _education: undefined,
-    });
+    navigation.navigate(OnboardingRoute.ADD_EDUCATION);
   };
 
   const handleDeleteEducation = useCallback(
@@ -31,7 +29,7 @@ const EducationContent: React.FC = () => {
   const handleEditEducation = useCallback(
     (_education: IEducation) => {
       navigation.navigate(OnboardingRoute.ADD_EDUCATION, {
-        _education,
+        education: _education,
       });
     },
     [navigation]

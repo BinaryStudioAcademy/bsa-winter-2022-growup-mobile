@@ -23,7 +23,7 @@ const UserInfo: React.FC = () => {
         <Heading level={HeadingLevel.H4} style={styles.name}>
           {user.firstName} {user.lastName}
         </Heading>
-        <Text style={styles.role}>Fullstack JS Engineer</Text>
+        <Text style={styles.role}>{user.position}</Text>
         <View style={styles.levelWrapper}>
           <ShieldCheckIcon color={colorPrimary} size={15} />
           <Text style={styles.levelText}>Level 2</Text>

@@ -40,11 +40,7 @@ const CreateSkillForm: React.FC<CreateSkillFormProps> = ({
             placeholder="What kind of skill is it?"
             list={skillTypeOptions}
           />
-          <FormInput
-            name="name"
-            label="Name"
-            placeholder="Enter skill name..."
-          />
+          <FormInput name="name" label="Name" placeholder="Enter skill name" />
           <View style={styles.buttons}>
             <MainButton
               mode={ButtonMode.CONTAINED}

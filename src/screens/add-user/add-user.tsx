@@ -37,25 +37,25 @@ const AddUser: React.FC = () => {
           <FormInput
             name="firstName"
             label="First name"
-            placeholder="Enter first name.."
+            placeholder="Enter first name"
           />
           <FormInput
             name="lastName"
             label="Last name"
-            placeholder="Enter last name..."
+            placeholder="Enter last name"
             style={styles.topPadded}
           />
           <FormSelect
             name="role"
             label="Role"
-            placeholder="Select user role..."
+            placeholder="Select user role"
             list={roleTypeOptions}
             containerStyle={styles.topPadded}
           />
           <FormInput
             name="email"
             label="Email"
-            placeholder="Enter email..."
+            placeholder="Enter email"
             style={styles.topPadded}
           />
           <View style={[styles.buttons, styles.topPadded]}>

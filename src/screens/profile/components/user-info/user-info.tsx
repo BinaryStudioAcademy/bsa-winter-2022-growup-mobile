@@ -18,7 +18,7 @@ const UserInfo: React.FC = () => {
 
   return (
     <View style={styles.container}>
-      <Avatar size={152} style={styles.avatar} />
+      <Avatar size={152} style={styles.avatar} user={user} />
       <View>
         <Heading level={HeadingLevel.H4} style={styles.name}>
           {user.firstName} {user.lastName}

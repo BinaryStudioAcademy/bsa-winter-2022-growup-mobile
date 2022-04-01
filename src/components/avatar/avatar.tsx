@@ -1,11 +1,10 @@
 import React, { useMemo } from 'react';
 import { StyleProp, ViewStyle } from 'react-native';
 import { Avatar as AvatarUI } from 'react-native-paper';
-import { useAppSelector } from 'src/hooks';
 
 type AvatarProps = {
   size: number;
-  user?: {
+  user?: null | {
     firstName: string;
     lastName: string;
     avatar?: string;
@@ -13,11 +12,7 @@ type AvatarProps = {
   style?: StyleProp<ViewStyle>;
 };
 
-const Avatar: React.FC<AvatarProps> = ({ size, user: customUser, style }) => {
-  const { user: reduxUser } = useAppSelector(state => state.auth);
-
-  const user = useMemo(() => customUser ?? reduxUser, [customUser, reduxUser]);
-
+const Avatar: React.FC<AvatarProps> = ({ size, user, style }) => {
   const initials = useMemo<string>(() => {
     if (!user) {
       return '';

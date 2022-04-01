@@ -57,7 +57,7 @@ const EducationCard: React.FC<EducationCardProps> = ({
   };
 
   const handleDelete = () => {
-    if (isFunction(onDelete) && education.id) {
+    if (isFunction(onDelete) && education?.id) {
       onDelete(education.id);
     }
   };

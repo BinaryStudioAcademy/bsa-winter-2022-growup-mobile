@@ -23,4 +23,5 @@ export * from './career-card';
 export * from './language-card';
 export * from './education-card';
 export * from './empty-list-message';
+export * from './skill-card';
 export * from './screen-header';

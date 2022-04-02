@@ -16,12 +16,17 @@ import {
   CareerCard,
   EducationCard,
   LanguageCard,
+  SkillCard,
 } from 'src/components';
 
 import { useAppDispatch, useAppSelector, useAppNavigation } from 'src/hooks';
 import { experienceActions } from 'src/store/experience';
 import { quizActions } from 'src/store/quiz';
-import { educationActions, languageActions } from 'src/store/actions';
+import {
+  educationActions,
+  languageActions,
+  skillActions,
+} from 'src/store/actions';
 import {
   Navbar,
   Settings,
@@ -80,6 +85,8 @@ const ProfileScreen: React.FC = () => {
     languages,
     languagesLoading,
     user,
+    skills,
+    skillsLoading,
   } = useAppSelector(state => ({
     education: state.education.education,
     educationLoading: state.education.educationLoading,
@@ -88,6 +95,8 @@ const ProfileScreen: React.FC = () => {
     languages: state.language.languages,
     languagesLoading: state.language.languagesLoading,
     user: state.auth.user,
+    skills: state.skill.skills,
+    skillsLoading: state.skill.skillsLoading,
   }));
 
   const handleItemPress = (name: string) => {
@@ -145,8 +154,9 @@ const ProfileScreen: React.FC = () => {
     dispatch(educationActions.loadEducationExperience());
   }, [dispatch]);
 
-  const loadLanguages = useCallback(() => {
+  const loadLanguagesSkills = useCallback(() => {
     dispatch(languageActions.loadLanguages());
+    dispatch(skillActions.loadSkills());
   }, [dispatch]);
 
   const loadQuizResults = useCallback(() => {
@@ -156,9 +166,14 @@ const ProfileScreen: React.FC = () => {
   useEffect(() => {
     loadCareerExperience();
     loadEducation();
-    loadLanguages();
+    loadLanguagesSkills();
     loadQuizResults();
-  }, [loadCareerExperience, loadEducation, loadLanguages, loadQuizResults]);
+  }, [
+    loadCareerExperience,
+    loadEducation,
+    loadQuizResults,
+    loadLanguagesSkills,
+  ]);
 
   return (
     <SafeAreaView style={styles.fullHeight}>
@@ -187,18 +202,18 @@ const ProfileScreen: React.FC = () => {
               {!user?.isCompleteTest ? <QuizInfo /> : <QuizResults />}
             </View>
             <View style={styles.swiperItem} collapsable={false}>
-              <Heading level={HeadingLevel.H5} style={styles.containerHeader}>
-                Languages
-              </Heading>
               <ScrollView
                 showsVerticalScrollIndicator={false}
                 refreshControl={
                   <RefreshControl
-                    refreshing={languagesLoading}
-                    onRefresh={loadLanguages}
+                    refreshing={languagesLoading && skillsLoading}
+                    onRefresh={loadLanguagesSkills}
                   />
                 }
               >
+                <Heading level={HeadingLevel.H5} style={styles.containerHeader}>
+                  Languages
+                </Heading>
                 {languages.map(item => (
                   <LanguageCard
                     key={item.id}
@@ -208,6 +223,15 @@ const ProfileScreen: React.FC = () => {
                 ))}
                 {!languages?.length && (
                   <EmptyListMessage>No languages here.</EmptyListMessage>
+                )}
+                <Heading level={HeadingLevel.H5} style={styles.containerHeader}>
+                  Skills
+                </Heading>
+                {skills.map(item => (
+                  <SkillCard key={item.id} style={styles.card} skill={item} />
+                ))}
+                {!skills?.length && (
+                  <EmptyListMessage>No skills here.</EmptyListMessage>
                 )}
               </ScrollView>
             </View>

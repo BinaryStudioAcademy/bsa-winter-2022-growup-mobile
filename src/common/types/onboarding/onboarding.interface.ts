@@ -5,7 +5,6 @@ import { IAddLanguagePayload } from '../language';
 interface IOnboarding {
   firstName: string;
   lastName: string;
-  position: string;
   educations: IEducation[];
   careerJourneys: IAddCareerPayload[];
   interests: IAddLanguagePayload[];

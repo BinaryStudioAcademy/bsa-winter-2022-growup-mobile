@@ -53,7 +53,7 @@ const OpportunityDetailsScreen: React.FC = () => {
           Who offered this?
         </Heading>
         <View style={styles.user}>
-          <Avatar size={32} url={user.avatar} />
+          <Avatar size={32} user={user} />
           <View style={styles.userInfo}>
             <Text>
               {user.firstName} {user.lastName}

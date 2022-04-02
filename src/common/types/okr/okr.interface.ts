@@ -1,14 +1,12 @@
-import { OKRStatus } from 'src/common/enums';
-import { IKeyResult } from '.';
+import { IObjective } from '.';
 
 interface IOkr {
   id: string;
-  userId: string;
   name: string;
   type: string;
-  year: number;
-  status: OKRStatus;
-  keyResults: IKeyResult[];
+  startDate: string;
+  endDate: string;
+  objectives: IObjective[];
 }
 
 export type { IOkr };

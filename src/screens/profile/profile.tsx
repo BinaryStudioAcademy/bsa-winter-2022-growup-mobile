@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { ScrollView, View } from 'react-native';
+import { RefreshControl, ScrollView, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Divider, FAB } from 'react-native-paper';
 
@@ -9,6 +9,7 @@ import PagerView, {
 
 import { HeadingLevel, ProfileRoute } from 'src/common/enums';
 import { ICareer, IEducation } from 'src/common/types';
+
 import {
   Heading,
   EmptyListMessage,
@@ -17,6 +18,7 @@ import {
   LanguageCard,
   SkillCard,
 } from 'src/components';
+
 import { useAppDispatch, useAppSelector, useAppNavigation } from 'src/hooks';
 import { experienceActions } from 'src/store/experience';
 import { quizActions } from 'src/store/quiz';
@@ -75,14 +77,27 @@ const ProfileScreen: React.FC = () => {
     },
   };
 
-  const { education, careerExperience, user, languages, skills } =
-    useAppSelector(state => ({
-      education: state.education.education,
-      careerExperience: state.experience.careerExperience,
-      user: state.auth.user,
-      languages: state.language.languages,
-      skills: state.skill.skills,
-    }));
+  const {
+    education,
+    educationLoading,
+    careerExperience,
+    careerExperienceLoading,
+    languages,
+    languagesLoading,
+    user,
+    skills,
+    skillsLoading,
+  } = useAppSelector(state => ({
+    education: state.education.education,
+    educationLoading: state.education.educationLoading,
+    careerExperience: state.experience.careerExperience,
+    careerExperienceLoading: state.experience.careerExperienceLoading,
+    languages: state.language.languages,
+    languagesLoading: state.language.languagesLoading,
+    user: state.auth.user,
+    skills: state.skill.skills,
+    skillsLoading: state.skill.skillsLoading,
+  }));
 
   const handleItemPress = (name: string) => {
     addFunctions[name]();
@@ -131,13 +146,34 @@ const ProfileScreen: React.FC = () => {
     [navigation]
   );
 
-  useEffect(() => {
+  const loadCareerExperience = useCallback(() => {
     dispatch(experienceActions.loadCareerExperience());
+  }, [dispatch]);
+
+  const loadEducation = useCallback(() => {
     dispatch(educationActions.loadEducationExperience());
+  }, [dispatch]);
+
+  const loadLanguagesSkills = useCallback(() => {
     dispatch(languageActions.loadLanguages());
     dispatch(skillActions.loadSkills());
+  }, [dispatch]);
+
+  const loadQuizResults = useCallback(() => {
     dispatch(quizActions.loadQuizResults());
   }, [dispatch]);
+
+  useEffect(() => {
+    loadCareerExperience();
+    loadEducation();
+    loadLanguagesSkills();
+    loadQuizResults();
+  }, [
+    loadCareerExperience,
+    loadEducation,
+    loadQuizResults,
+    loadLanguagesSkills,
+  ]);
 
   return (
     <SafeAreaView style={styles.fullHeight}>
@@ -166,7 +202,15 @@ const ProfileScreen: React.FC = () => {
               {!user?.isCompleteTest ? <QuizInfo /> : <QuizResults />}
             </View>
             <View style={styles.swiperItem} collapsable={false}>
-              <ScrollView showsVerticalScrollIndicator={false}>
+              <ScrollView
+                showsVerticalScrollIndicator={false}
+                refreshControl={
+                  <RefreshControl
+                    refreshing={languagesLoading && skillsLoading}
+                    onRefresh={loadLanguagesSkills}
+                  />
+                }
+              >
                 <Heading level={HeadingLevel.H5} style={styles.containerHeader}>
                   Languages
                 </Heading>
@@ -195,7 +239,15 @@ const ProfileScreen: React.FC = () => {
               <Heading level={HeadingLevel.H5} style={styles.containerHeader}>
                 Career Journey
               </Heading>
-              <ScrollView showsVerticalScrollIndicator={false}>
+              <ScrollView
+                showsVerticalScrollIndicator={false}
+                refreshControl={
+                  <RefreshControl
+                    refreshing={educationLoading}
+                    onRefresh={loadEducation}
+                  />
+                }
+              >
                 {careerExperience.map(item => (
                   <View key={item.id} style={styles.card}>
                     <CareerCard
@@ -216,7 +268,15 @@ const ProfileScreen: React.FC = () => {
               <Heading level={HeadingLevel.H5} style={styles.containerHeader}>
                 Education
               </Heading>
-              <ScrollView showsVerticalScrollIndicator={false}>
+              <ScrollView
+                showsVerticalScrollIndicator={false}
+                refreshControl={
+                  <RefreshControl
+                    refreshing={careerExperienceLoading}
+                    onRefresh={loadCareerExperience}
+                  />
+                }
+              >
                 {education.map(item => (
                   <View key={item.id} style={styles.card}>
                     <EducationCard

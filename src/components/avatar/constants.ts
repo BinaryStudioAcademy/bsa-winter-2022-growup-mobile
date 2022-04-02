@@ -1,0 +1,3 @@
+const FONT_SIZE_FRACTION = 1 / 3;
+
+export { FONT_SIZE_FRACTION };

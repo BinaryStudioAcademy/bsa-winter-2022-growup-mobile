@@ -16,6 +16,7 @@ const useStyles = () => {
           backgroundColor: grey,
           paddingVertical: 10,
           paddingHorizontal: 20,
+          minHeight: 60,
         },
       }),
     [grey]

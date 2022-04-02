@@ -18,6 +18,7 @@ enum ApiPath {
   AVATAR = '/user/avatar',
   LANGUAGE = '/user/languages',
   COMPANY_USERS = '/company/users',
+  OKR = '/company/okr',
 }
 
 export { ApiPath };

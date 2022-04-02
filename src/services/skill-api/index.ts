@@ -29,13 +29,7 @@ class SkillApi {
   }
 
   public async loadSkills() {
-    const response = await this.#http.load(
-      `${this.#apiPath}${ApiPath.SKILLS}`,
-      {
-        method: HttpMethod.GET,
-      }
-    );
-    return response;
+    return await this.#http.load(`${this.#apiPath}${ApiPath.SKILLS}`);
   }
 }
 

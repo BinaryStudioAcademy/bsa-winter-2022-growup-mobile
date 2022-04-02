@@ -44,8 +44,9 @@ const { reducer, actions } = createSlice({
       state.quizResultsLoading = true;
     });
 
-    builder.addCase(sendQuizResults.fulfilled, state => {
+    builder.addCase(sendQuizResults.fulfilled, (state, { payload }) => {
       state.quizResultsLoading = false;
+      state.quizResults = payload;
     });
 
     builder.addCase(loadQuizResults.fulfilled, (state, { payload }) => {

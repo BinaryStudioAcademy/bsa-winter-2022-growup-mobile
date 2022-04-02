@@ -5,13 +5,17 @@ import { IAddOkr } from 'src/common/types/okr/add-okr.interface';
 import { okrApi } from 'src/services';
 import { ActionTypes } from './common';
 
+const loadOKRs = createAsyncThunk(ActionTypes.LOAD_OKR, () => {
+  return okrApi.getAll();
+});
+
 const createOKR = createAsyncThunk(
   ActionTypes.CREATE_OKR,
-  async (payload: IAddOkr) => {
-    return await okrApi.createOKR(payload);
+  (payload: IAddOkr) => {
+    return okrApi.createOKR(payload);
   }
 );
 
 const addKeyResult = createAction<IKeyResult>(ActionTypes.ADD_KEY_RESULT);
 
-export { createOKR, addKeyResult };
+export { loadOKRs, createOKR, addKeyResult };

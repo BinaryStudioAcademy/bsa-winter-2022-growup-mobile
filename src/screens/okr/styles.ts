@@ -10,10 +10,13 @@ const useStyles = () => {
   return useMemo(
     () =>
       StyleSheet.create({
+        wrapper: {
+          height: '100%',
+        },
         screen: {
           padding: DEFAULT_SCREEN_PADDING,
           backgroundColor: white,
-          height: '100%',
+          flex: 1,
         },
       }),
     [white]

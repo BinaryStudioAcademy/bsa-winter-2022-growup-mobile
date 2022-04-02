@@ -1,14 +1,13 @@
 import React, { useMemo } from 'react';
-import { View } from 'react-native';
 import { Card } from 'react-native-paper';
 
-import { OKRStatus, TextAppearance } from 'src/common/enums';
+import { TextAppearance } from 'src/common/enums';
 import { IOkr } from 'src/common/types';
 import { Text, Avatar } from 'src/components';
-import { KeyResult } from '..';
+import { Objective } from '..';
 import useStyles from './styles';
 
-const KEY_RESULTS_SHOW_LIMIT = 2;
+const OBJECTIVES_SHOW_LIMIT = 2;
 
 type OKRCardProps = {
   okr: IOkr;
@@ -17,49 +16,33 @@ type OKRCardProps = {
 const OKRCard: React.FC<OKRCardProps> = ({ okr }) => {
   const styles = useStyles();
 
-  const shownKeyResults = useMemo(
-    () => okr.keyResults.slice(0, KEY_RESULTS_SHOW_LIMIT),
-    [okr.keyResults]
+  const shownObjectives = useMemo(
+    () => okr.objectives.slice(0, OBJECTIVES_SHOW_LIMIT),
+    [okr.objectives]
   );
 
-  const moreKeyResults = useMemo(
-    () => okr.keyResults.length - KEY_RESULTS_SHOW_LIMIT,
-    [okr.keyResults]
+  const moreObjectives = useMemo(
+    () => okr.objectives.length - OBJECTIVES_SHOW_LIMIT,
+    [okr.objectives]
   );
 
-  const hasOverflowedKeyResults = useMemo(
-    () => moreKeyResults > 0,
-    [moreKeyResults]
-  );
-
-  const isActive = useMemo(
-    () => okr.status === OKRStatus.InProgress,
-    [okr.status]
+  const hasOverflowedObjectives = useMemo(
+    () => moreObjectives > 0,
+    [moreObjectives]
   );
 
   const renderCardLeft = () => <Avatar size={36} />;
 
-  const renderCardRight = () => (
-    <View
-      style={[styles.indicator, isActive ? styles.active : styles.inactive]}
-    />
-  );
-
   return (
     <Card style={styles.card}>
-      <Card.Title
-        title={okr.name}
-        subtitle={`${okr.type} ${okr.year}`}
-        left={renderCardLeft}
-        right={renderCardRight}
-      />
+      <Card.Title title={okr.name} subtitle={okr.type} left={renderCardLeft} />
       <Card.Content>
-        {shownKeyResults.map(keyResult => (
-          <KeyResult key={keyResult.name} {...keyResult} />
+        {shownObjectives.map(keyResult => (
+          <Objective key={keyResult.name} keyResult={keyResult} />
         ))}
-        {hasOverflowedKeyResults && (
+        {hasOverflowedObjectives && (
           <Text appearance={TextAppearance.HINT}>
-            + {moreKeyResults} more Key Results
+            + {moreObjectives} more Objectives
           </Text>
         )}
       </Card.Content>

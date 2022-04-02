@@ -50,11 +50,6 @@ const UserContent: React.FC<UserContentProps> = ({ values }) => {
           placeholder="Enter last name"
           name="lastName"
         />
-        <FormInput
-          containerStyle={styles.input}
-          placeholder="Enter your position"
-          name="position"
-        />
       </ScrollView>
     </View>
   );

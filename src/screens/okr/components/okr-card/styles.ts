@@ -5,8 +5,6 @@ import { useColor } from 'src/hooks';
 
 const useStyles = () => {
   const shadow = useColor('SHADOW');
-  const success = useColor('SUCCESS');
-  const error = useColor('ERROR');
 
   return useMemo(
     () =>
@@ -16,19 +14,8 @@ const useStyles = () => {
           borderRadius: 10,
           borderColor: shadow,
         },
-        indicator: {
-          width: 16,
-          height: 16,
-          borderRadius: 8,
-        },
-        active: {
-          backgroundColor: success,
-        },
-        inactive: {
-          backgroundColor: error,
-        },
       }),
-    [success, error, shadow]
+    [shadow]
   );
 };
 

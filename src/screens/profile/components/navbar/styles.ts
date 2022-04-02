@@ -2,7 +2,6 @@ import { useMemo } from 'react';
 import { StyleSheet } from 'react-native';
 
 import { useColor } from 'src/hooks';
-import { DEFAULT_SCREEN_PADDING } from 'src/styles';
 import { NAVBAR_BUTTON_WIDTH } from './constants';
 
 const useStyles = () => {
@@ -15,7 +14,6 @@ const useStyles = () => {
       StyleSheet.create({
         navbar: {
           backgroundColor: grey,
-          paddingHorizontal: DEFAULT_SCREEN_PADDING,
           paddingVertical: 10,
         },
         contentContainer: {
@@ -24,11 +22,8 @@ const useStyles = () => {
         button: {
           flex: 1,
           minWidth: NAVBAR_BUTTON_WIDTH,
-          borderRadius: 7,
           backgroundColor: white,
-        },
-        padded: {
-          marginRight: 10,
+          marginHorizontal: 4,
         },
         activeButton: {
           backgroundColor: accent,

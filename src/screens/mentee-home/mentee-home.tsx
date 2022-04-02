@@ -91,6 +91,7 @@ const MenteeHome: React.FC = () => {
                 onRefresh={loadList}
               />
             }
+            showsVerticalScrollIndicator={false}
           >
             <NotificationsSection
               notifications={notifications}

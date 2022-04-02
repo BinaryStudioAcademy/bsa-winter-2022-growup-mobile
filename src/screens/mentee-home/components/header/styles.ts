@@ -17,6 +17,9 @@ const useStyles = () => {
           paddingVertical: 10,
           paddingHorizontal: 20,
         },
+        avatar: {
+          marginRight: 8,
+        },
       }),
     [grey]
   );

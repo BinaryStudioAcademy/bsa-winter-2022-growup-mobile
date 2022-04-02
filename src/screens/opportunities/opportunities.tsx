@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect } from 'react';
 import { View } from 'react-native';
+import { Appbar } from 'react-native-paper';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { AppRoute } from 'src/common/enums';
@@ -37,6 +38,9 @@ const OpportunitiesScreen: React.FC = () => {
 
   return (
     <SafeAreaView style={styles.wrapper}>
+      <Appbar.Header>
+        <Appbar.Content title="Opportunities" />
+      </Appbar.Header>
       <View style={styles.screen}>
         <OpportunitiesList
           data={opportunities ?? []}

@@ -1,11 +1,11 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { View } from 'react-native';
-import { FAB } from 'react-native-paper';
+import { Appbar, FAB } from 'react-native-paper';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { AppRoute } from 'src/common/enums';
 import { useAppDispatch, useAppNavigation, useAppSelector } from 'src/hooks';
-import { EmptyListMessage, ScreenHeader } from 'src/components';
+import { EmptyListMessage } from 'src/components';
 import { okrActions } from 'src/store/actions';
 import addActions from './add-actions';
 import { OKRList } from './components';
@@ -57,7 +57,9 @@ const OKRScreen: React.FC = () => {
 
   return (
     <SafeAreaView style={styles.wrapper}>
-      <ScreenHeader>OKRs</ScreenHeader>
+      <Appbar.Header>
+        <Appbar.Content title="OKR" />
+      </Appbar.Header>
       <View style={styles.screen}>
         {!okrs?.length && (
           <EmptyListMessage>

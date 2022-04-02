@@ -23,15 +23,11 @@ const UserInfo: React.FC = () => {
         <Heading level={HeadingLevel.H4} style={styles.name}>
           {user.firstName} {user.lastName}
         </Heading>
-        {Boolean(user.level) && (
-          <>
-            <Text style={styles.role}>{user.level.domain.name}</Text>
-            <View style={styles.levelWrapper}>
-              <ShieldCheckIcon color={colorPrimary} size={15} />
-              <Text style={styles.levelText}>{user.level.name}</Text>
-            </View>
-          </>
-        )}
+        <Text style={styles.role}>Mobile Developer</Text>
+        <View style={styles.levelWrapper}>
+          <ShieldCheckIcon color={colorPrimary} size={15} />
+          <Text style={styles.levelText}>Junior</Text>
+        </View>
       </View>
     </View>
   );

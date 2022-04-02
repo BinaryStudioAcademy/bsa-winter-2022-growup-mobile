@@ -1,16 +1,13 @@
 import React from 'react';
-import { TouchableOpacity, View } from 'react-native';
+import { TouchableOpacity } from 'react-native';
+import { Appbar } from 'react-native-paper';
 
-import { HeadingLevel, ProfileRoute } from 'src/common/enums';
-import { Avatar, Heading } from 'src/components';
+import { ProfileRoute } from 'src/common/enums';
+import { Avatar } from 'src/components';
 import { useAppNavigation, useAppSelector } from 'src/hooks';
 import useStyles from './styles';
 
-type HeaderProps = {
-  children: string;
-};
-
-const Header: React.FC<HeaderProps> = ({ children }) => {
+const Header: React.FC = () => {
   const styles = useStyles();
 
   const navigation = useAppNavigation();
@@ -24,13 +21,15 @@ const Header: React.FC<HeaderProps> = ({ children }) => {
     return null;
   }
 
+  const greeting = user?.firstName ? `Hey, ${user?.firstName}!` : 'Hey there!';
+
   return (
-    <View style={styles.header}>
-      <Heading level={HeadingLevel.H5}>{children}</Heading>
+    <Appbar.Header>
+      <Appbar.Content title={greeting} />
       <TouchableOpacity onPress={handleAvatarPress}>
-        <Avatar size={40} user={user} />
+        <Avatar size={36} user={user} style={styles.avatar} />
       </TouchableOpacity>
-    </View>
+    </Appbar.Header>
   );
 };
 

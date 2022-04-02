@@ -1,9 +1,8 @@
 import React from 'react';
 import { FlatList, RefreshControl, View } from 'react-native';
 
-import { HeadingLevel } from 'src/common/enums';
 import { IOpportunity } from 'src/common/types';
-import { Heading, OpportunityCard } from 'src/components';
+import { OpportunityCard } from 'src/components';
 import useStyles from '../../styles';
 
 type OpportunitiesListProps = {
@@ -24,11 +23,6 @@ const OpportunitiesList: React.FC<OpportunitiesListProps> = ({
   return (
     <FlatList
       data={data}
-      ListHeaderComponent={
-        <Heading style={styles.header} level={HeadingLevel.H5}>
-          Opportunities
-        </Heading>
-      }
       renderItem={({ item }) => (
         <View style={styles.cardWrapper}>
           <OpportunityCard
@@ -40,6 +34,7 @@ const OpportunitiesList: React.FC<OpportunitiesListProps> = ({
       refreshControl={
         <RefreshControl refreshing={loading} onRefresh={onReload} />
       }
+      showsVerticalScrollIndicator={false}
     />
   );
 };

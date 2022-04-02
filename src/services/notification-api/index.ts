@@ -1,4 +1,3 @@
-import { ApiPath, ContentType, HttpMethod } from 'src/common/enums';
 import { Http } from '../http';
 
 type Constructor = {
@@ -15,14 +14,8 @@ class NotificationApi {
     this.#apiPath = apiPath;
   }
 
-  public async markRead(id: string): Promise<void> {
-    await this.#http.load(
-      `${this.#apiPath}${ApiPath.NOTIFICATIONS}${ApiPath.MARK_READ}/${id}`,
-      {
-        method: HttpMethod.POST,
-        contentType: ContentType.JSON,
-      }
-    );
+  public async markRead(_id: string): Promise<void> {
+    // TODO: http request
   }
 }
 

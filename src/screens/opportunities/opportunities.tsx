@@ -36,7 +36,7 @@ const OpportunitiesScreen: React.FC = () => {
   };
 
   return (
-    <SafeAreaView>
+    <SafeAreaView style={styles.wrapper}>
       <View style={styles.screen}>
         <OpportunitiesList
           data={opportunities ?? []}
